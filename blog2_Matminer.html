@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index_edited.html">Home</a></li>
+                                                               
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="Subscribe_mdxp.html">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+        <img src ="assets/img/logo_mdxp.png" width=8%>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                                         
+                        </header>
+                    
+                    <!--Title of the blog-->
+          <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">                 
+<p><center><h1><font face ="verdana", color = "maroon"> Uncovering the Potential of Materials Data using Matminer and Pymatgen
+</font></h1></center> 
+                         
+                    <p><center><subtitle><i>Steps to decipher chemistry of materials by python-based materials libraries</i></subtitle></center></p>
+                        <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
+                    <hr size =4 > </p>
+              
+                        <center><img src ='assets/img/TETRA3.jpg' width=100%></center>
+                            <span class="caption text-muted"> Materials Tetrahedron: Image by author, inspired from a photo by Markus Spiske on Unsplash</span>
+                        
+ <!--BLOG POST-->
+    <h2> Introduction</h2>
+    <p>The usage of different types of devices is an integral part of our everyday life. And these devices are made of myriad combinations of elements forming materials for daily applications. Materials scientists are engaged with the processing of these materials and studying their structures and properties. For example, to develop a new semiconductor, a materials scientist requires to choose the most optimized combination of ingredients from the palette of elements in the Periodic table so that the new semiconductor has the right set of properties.</p>
+
+                        <p>Moreover, performance of a material depends on the trinity of Processing conditions, Structure that spans from electronic scale to macro-scale, and its various structural and functional Properties . Thus, materials scientists have come up with the concept of <a href="https://www.e-education.psu.edu/matse81/node/2094"><font color=blue>“Materials Tetrahedron” </font></a>where the vertices represent Processing, Structure, Properties and Performance, and the lines connecting these vertices denote interrelations between them. These interconnections are also termed as <a href="https://aip.scitation.org/doi/10.1063/1.4946894"><font color=blue>PSPP linkages</font></a>.</p>
+
+<p>A comprehensive library of discovered materials with their PSPP linkages will immensely benefit the materials scientists and engineers who aim to design the next super materials such as a battery more efficient than the existing lithium ion battery or a car lighter and stronger than the new Tesla cars.</p>
+
+<p>Hence, extracting meaningful data from these interconnected parameters becomes a crucial step in the design and discovery of high-performance cutting edge materials. The number of parameters can be so diverse that it becomes difficult to extract physics-based cause-effect relations between all these parameters. In such cases, machine learning (ML) can facilitate the development of new knowledge by extracting useful correlations between these parameters.</p>
+
+<h3> Materials Data</h3>
+
+<p>The very first and crucial step of ML, regardless of the algorithm used, is importing and preprocessing data. Clean data increase the reliability of training and building a machine learning model for successful deployment. This data is further categorized into input variables (also known as predictors/ descriptors in ML language) and outcome (known as target/ response).</p>
+<center><img src ='assets/img/TDS-Sept2021_1.jpg' width=100%></center>
+<span class="caption text-muted"> Image by author</span>
+    <p>Materials data comprise a wide spectrum of descriptors. These include<ul>
+
+        <li><b>Processing conditions</b>: <i>Compositions with constituent elements, Temperature, Pressure, Heating and Cooling Rates, Relative Humidity, etc.</i></li>
+                        <li><b>Structural information</b>: <i>Arrangement of atoms or crystal structure, Microstructural and Textural patterns across length scales spanning between few <a href="https://en.wikipedia.org/wiki/Angstrom"><font color=blue>Angstroms</font></a> (1 Angstrom = 10⁻¹⁰ m) and few hundreds of <a href="https://en.wikipedia.org/wiki/Micrometre"><font color=blue>microns</font></a>  (1 micron = 10⁻⁶ m).</i></li>
+        <li><b>Physical properties</b>: <i>Density, Viscosity, Refractive index, Thermal and Electrical conductivity and so on.</i></li>
+        <li><b>Mechanical properties</b>: <i>Toughness, Hardness, Yield strength, Elastic Stiffness, Fracture toughness, Ductility, Hardness and others.</i></li>
+                        </ul>
+
+<p>The target or the response is usually the property dictating the overall performance of the material.</p>
+
+                        <p>Mining important features from a given dataset is the most critical and challenging step for developing a robust data-driven model. Otherwise, the model will follow the <a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out"><font color=blue>GIGO (Garbage-In-Garbage-Out)</font></a> rule.</p>
+<p>We can show the importance of featurization in materials datasets using a very simple example. Let us consider a dataset containing chemical formulae of several materials and their densities. A chemical formula is represented by a combination of elements and their atomic proportions. For example, the chemical formula (AᵢBⱼCₖDₗ) contains four elements A, B, C and D where their corresponding subscripts i, j, k and l represent the number of atoms of each element. For instance, the formula of water is H₂O which implies 2 atoms of hydrogen (H is the element symbol) and 1 atom of oxygen (denoted by the symbol O).</p>
+
+<p>Now, to understand the correlations between features and design a super-dense material from such data, we need to unearth the contribution of each element on density. These individual elemental contributions become features (descriptors) for the prediction of the target variable — density in this example. Hence, it is required to split the formula into its individual constituents (or elements) along with their corresponding amount. There is no direct way to achieve this task in the conventional ML technique such as encoding. However, thanks to the <b>Python-based materials libraries, Pymatgen and Matminer</b>, which helps in reaching this goal.</p>
+
+<p>In this article, I will demonstrate how to import constituent elements and their amount from formulae with the aid of the mentioned materials libraries.</p>
+                        <h3>A Step-by-Step Guide to Preprocessing</h3>
+
+<p>Tabulating the descriptor and target variables in comma-delimited (csv) or Excel file (XLSX) is a good way to organize data for machine learning. Once csv/ excel file is ready, we can import the same to any machine learning environment. Here, I will show all the steps, written and run, in Jupyter Notebook. You can also choose Google Colab Notebook for the same purpose.</p>
+
+    <p><b>Step 1: Importing libraries</b></p>
+
+<p>The first and foremost step is to import all the required basic libraries such as Pandas, NumPy, Matplotlib. Moreover, exclusive libraries for materials data mining <b>(Matminer)</b> and materials analysis <b>(Pymatgen)</b> are installed and then the necessary modules are imported. Both Matminer and Pymatgen are open-source python libraries.</p>
+
+                        <!--CODE-->
+        <pre style="background-color:gainsboro"><code class="language-python">import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from matplotlib.pyplot import figure</code></pre>
+                    <p><b>Step 2: Loading data</b></p>
+
+                    <p><i>(Dataset used in here is a subset of the <a href="https://github.com/ngs00/DopNet/tree/main/dataset">original dataset.)</a></i></p>
+                    
+
+<p>After importing the basic libraries, we need to load and read the csv or excel file containing data using pandas from their file path. In the code snippet below, the first three columns are descriptor variables designated as X, while the last column is the target variable denoted as y.</p>
+                    <!--CODE-->
+                    <pre style='background-color: gainsboro'><code>ds_PF_ZT = pd.read_csv('TE/csv/PF_ZT.csv')
+X = ds_PF_ZT.iloc[:, 0:3]
+y = ds_PF_ZT.iloc[:, -1]
+ds_PF_ZT</code></pre>
+    <center><img src ='assets/img/Table1.png' width=100%></center>
+<span class="caption text-muted"> Output snippet</span>
+
+                        <p>Now, we need to add the individual elements comprising the materials (denoted as Formula in the above Dataframe) as predictors. The synergistic effect of these elemental contributions along with other variables result in the outcome or the response. Here comes the application of Pymatgen and Matminer tools which have <b>featurizers</b> such as core.composition and featurizers.composition to split a given formula into its individual elements. Before proceeding with the coding activity, let me give a preface about Matminer and Pymatgen.</p>
+<p><b>Pymatgen and Matminer: Beneficial libraries for materials data preprocessing</b></p>
+<p>Both Pymatgen and Matminer are open-source Python libraries employed for materials data mining and analysis.</p>
+
+                        <p><a href= "https://pymatgen.org/"><font color=blue>Pymatgen</font> </a>has many modules and sub modules and their respective classes aiding in analysis of structural and functional characteristics of materials. We will be viewing the application of one such module: <b>pymatgen.core.composition </b>and its class: <b>Composition</b>. This class maps each composition in a dataset into individual element and its amount in immutable and hashable form and not as Python dictionary. In Python, there are two types of data: <a href="https://towardsdatascience.com/https-towardsdatascience-com-python-basics-mutable-vs-immutable-objects-829a0cb1530a"><font color=blue>Mutable and Immutable</font></a>. The values of mutable data can be altered/ mutated while that of immutable cannot. Few examples of mutable data are lists, dictionaries. On the other hand, a tuple is a quintessential example of immutable data. All immutable objects are hashable which means that these objects have unique identification number for easy tracking.</p>
+
+                        <p><a href="https://hackingmaterials.lbl.gov/matminer/index.html?highlight=featurize_dataframe"><font color=blue>Matminer </font></a>helps in extracting complex materials attributes applying various featurizers. There are almost more than 70 featurizers (matminer.featurizers) that convert materials attributes into numerical descriptors or vectors. We will focus on <b>Composition featurizer</b> and its <b>ElementFraction</b> class to preprocess our dataset. The said class calculates element fraction of individual elements in a composition.</p>
+
+<p><b>Step 3: Installing Pymatgen and Matminer</b></p>
+                        
+<!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python">pip install pymatgen
+pip install matminer</code></pre>
+                        
+<p>Note: Matminer and Pymatgen requires Python version 3.6+.</p>
+
+<b>Step 4: Mapping elements and their amount using Pymatgen</b>
+
+<p>Composition class of pymatgen splits each and every formula, in the given dataset, into constituent elements and their amount. Let’s take the first formula, Ca0.98Bi0.02Mn0.98Nb0.02O3.0, in column 1, row 1 :</p>
+<center><img src ='assets/img/formulaExample.jpg' width=100%></center>
+<span class="caption text-muted"> Mapping of each element and its amount</span> 
+                        
+                        <!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python">from pymatgen.core.composition import Composition
+ds_PF_ZT['Formula']
+Comp = []
+for value in ds_PF_ZT['Formula']:
+  Comp.append(Composition(value))
+  Comp</code></pre>
+ <p>                       
+<center><img src ='assets/img/Comp.png' width=100%></center>
+     <span class="caption text-muted"> Output snippet</span></p>
+                        
+<p>An <b>additional composition column</b> is added to the original dataset containing only the constituent elements corresponding to each composition.</p>
+                        
+            <!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python">ds_PF_ZT['Composition'] = Comp
+ds_PF_ZT</code></pre>
+                        
+<p>                       
+<center><img src ='assets/img/data_composition.png' width=100%></center>
+     <span class="caption text-muted">Output snippet </span></p>
+     <p><b>Step 5: Calculation of atomic fraction using ElementFraction class</b></p>
+
+<p>We now need to add the individual element along with its atomic fraction in the Dataframe to be subjected to machine learning. A class in matminer.featurizers.composition named “ElementFraction” serves the said intent.</p>
+
+<!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python">from matminer.featurizers.composition import ElementFraction
+ef = ElementFraction()</code></pre>
+                    <p>We, then, create a Dataframe using the <b>featurize_dataframe</b> function which contains all the elements of the periodic table along with other variables. The dimension of the dataframe increased to <b>573 X 108</b> (encircled by orange in the output of the code snippet shown below).</p>
+                    <!--CODE-->
+<p>                       <pre style='background-color: gainsboro'><code>ds_PF_ZT = ef.featurize_dataframe(ds_PF_ZT,'Composition')
+ds_PF_ZT</code></pre>
+<p><center><img src ='assets/img/InkedMoreColumns_1_LI.jpg' width=100%></center>
+<span class="caption text-muted">Output snippet </span></p>
+<p>Let me elaborate on element fraction calculation. Let’s consider the very first composition (in the formula column of the given dataset). The composition,Ca0.98Bi0.02Mn0.98Nb0.02O3.0, has five elements: Ca (calcium), Bi (bismuth), Mn (manganese), Nb (niobium), and O (oxygen). The amount of Ca present in the formula is 0.98, and the element fraction of Ca is calculated by taking into account the amount of other elements present in the formula. Hence, element fraction of Ca is 0.196 ((0⋅98)/(0.98+0.02+0.98+0.02+3.0) ). Similarly, element fractions of Bi, Mn, Nb, and O are 0.004, 0.196, 0.004, and 0.6 respectively. The element fraction of the rest of the elements, for this formula, in the periodic table remains zero.</p>
+
+<b>Step 6: Reduction in Dimensionality and display of final, clean, preprocessed data</b>
+            
+<p>                
+<center><img src ='assets/img/tim-peterson-IIjWzuOaMdk-unsplash.jpg' width=100%></center>
+    <span class="caption text-muted"><a href='https://unsplash.com/photos/IIjWzuOaMdk'>Photo by Tim Peterson on Unsplash</a></span></p>
+<p>Note that above Dataframe contains many columns with only zero value. This is due to the non-existence of such elements in compositions in the given dataset. Hence, these zero columns are omitted from the Dataframe which resulted in dimensionality reduction of the Dataframe from <b><mark>573 rows x 108 columns to 573 rows x 57 columns.</mark></b>.</p>
+                        
+<!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python">ds_PF_ZT = ds_PF_ZT.loc[:, (ds_PF_ZT != 0).any(axis=0)]
+ds_PF_ZT</code></pre>
+<p>                       
+<center><img src ='assets/img/lessColumn.jpg' width=100%></center>
+<span class="caption text-muted">Output snippet </span></p>
+    <p>The above preprocessed, clean Dataframe is the final form ready for machine learning. It is a good practice to keep the response or target column as the last one in the final Dataframe.</p>
+                        <p><i>The code is published on <a href="https://github.com/Bjoyita/ThermoelectricDataAnalysis"><font color=blue>Github</font></a>.</i></p>
+
+<b>Concluding Remarks</b>
+
+<p>In the contemporary world, “data is the new oil” — a phrase coined by a British mathematician Clive Humby. Hence, mining this treasure to get maximum useful latent information is necessary for technological advancement. From a materials science perspective, numerous materials attributes, processing parameters, and elemental contributions form a complete dataset. These details constitute a part of materials informatics which play an enormous role in the discovery of new high-performance materials. Uncovering the role of constituent elements on material properties is a crucial but tricky job. Matminer and Pymatgen have made this task easier. Here I described the usage of a few relevant modules of these materials libraries to gather elemental information from the original dataset. I hope this article is informative, especially for engineers and scientists working on the design and discovery of new materials.</p>
+
+Please feel free to connect if you need any clarifications and do share your feedback and suggestions.
+
+<p>Thank you for reading!</p>
+                         <!-- Footer-->
+        <footer class="border-top">
+           
+                        <!--LIKE AND SHARE BUTTONS-->
+    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+<body>
+   
+    <button class="likeBTN"><i class='far fa-thumbs-up' ></i>
+      (<span class="totalLikes">0</span>)
+</button>
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body> </center>  
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+
+                       <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>
+
+
+                        
+                        
+                        
+                     
+                     
+                        
+                        
+                        
+                        

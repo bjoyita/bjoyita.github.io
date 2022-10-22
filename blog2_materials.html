@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index_edited.html">Home</a></li>
+                                                               
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="Subscribe_mdxp.html">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            <img src ="assets/img/logo_mdxp.png" width=5%>
+      
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+     
+                         </header>
+                    
+                    <!--Title of the blog-->
+                     <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+<p><h1><font face ="verdana", color = "maroon"> Materials Data Mining via Image Processing of Micrographs - I
+                        </font></h1></div></div></div> 
+                    <p><center><subtitle><i>Basic processing steps for micrograph-based feature extraction</i></subtitle></center></p>
+                    <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
+                    <hr size =4 > </p>
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                        <center><img src ='assets/img/Ridge.jpg'></center>
+                            <span class="caption text-muted"><a href="https://unsplash.com/photos/N4Qd97B0MYE"> Scanning Electron Micrograph of coarse-grained partilces by Joyita Bhattacharya on Unsplash</a></span>
+                        
+ <!--BLOGPOST-->
+    <h2> Background</font></h2>
+                        
+                    <p>In my post <a href="https://towardsdatascience.com/uncovering-the-potential-of-materials-data-using-matminer-and-pymatgen-83126fadde1c"><font color=blue>“Uncovering the Potential of Materials Data using Matminer and Pymatgen”</font></a>, I discussed the concept of materials tetrahedron — the basic framework for developing materials for various technological usage. The vital parameters occupying the vertices of the tetrahedron are process, structure, property, and performance.</p>
+
+<p>Structures are characterized based on a characteristic length scale that can vary from a few angstroms (1 Angstrom = 10⁻¹⁰ m) to hundreds of micrometers (1 micrometer = 10⁻⁶ m). The length scales are used to discern features under a microscope. With very powerful high-resolution microscopes such as this one, one can identify features as small as atoms or even smaller.</p>
+
+<p>Micron and submicron-sized features, known as microstructures, are captured as images or micrographs using different types of microscopes. These microstructures store a wealth of information essential to the understanding of properties and performance of materials. We can use machine learning/deep learning to mine important features from these images. A typical microstructure contains features that are distinguishable based on pixel intensity or contrast. Some of the important features are boundaries or interfaces that separate different domains (also termed as particles or grains). These domains can vary in shape, size, orientation, size distribution and spatial arrangement (collectively termed as morphology). These features affect the properties of materials.</p>
+                    <p><center><img src="assets/img/Graphical.jpg" width=50%></center><span class="caption text-muted"> Image by author: Schematic of a microstructure</span></p>
+                    
+<p>Even though these features can be studied using other materials characterization techniques, the advantage of microscopy is visualization. Since ‘seeing is believing’, micrographs provide more credible explanation for the behavior of materials. Processing of micrographs reveal qualitative and quantitative features. Say, for example, if we want to go for quantitative particle size and morphology measurement, precise identification of edges becomes necessary. Moreover, edge detection also helps in investigating the interface structure between particles. In some materials (especially alloys), some elements might segregate at interfaces affecting properties such as strength, conductivity.</p>
+
+                    <p>Edge detection by manual observation is a tedious task and involves various human errors. To minimize such errors, one needs to automate such a process. Automation of the process requires implementation of robust digital image processing and data mining algorithms. Now that I have highlighted the importance of digital image analysis of micrographs, let me walk you through some of the basic processing steps. I have used the open-source python-based library, <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a> for demonstration. You can also explore OpenCV, PIL for the same purpose.</p>
+
+<h3>Viewing the image and obtaining shape</h3>
+
+<p>The code snippet below shows how to read an image and find its dimensions or ‘shape’. The shape attribute yields the dimensions of the image in the form of a tuple. In this current micrograph, it is (1800, 1500) — the height and width being 1800 and 1500 pixels, respectively. Note that it is a grayscale image since the third item in the tuple is not mentioned and takes the default value of 1.</p>
+<pre style='background-color: gainsboro'><code><b> p = io.imread("Particles.jpg")
+ p.shape</b></code></pre>
+                    <p><b><i>General processing steps: Denoising, Sharpening and brightness adjustment of image</i></b></p>
+        <center><img src ='assets/img/vadim-bogulov-cZveUvrezvY-unsplash.jpg' width=50%></center>
+                            <span class="caption text-muted"><a href="https://unsplash.com/photos/cZveUvrezvY"> Photo by Vadim Bogulov on Unsplash</a></span> 
+                    <p>Refinement of an image matrix for denoising, sharpening, edge detection mostly involves convolution operation with a filter/kernel matrix. The <a href="http://www.songho.ca/dsp/convolution/convolution2d_example.html"><font color=blue>convolution operation</font></a> involves first flipping of the 2D filter (kernel) horizontally and vertically followed by element-wise multiplication and addition of the image matrix . Note that in case of symmetric kernel matrix, flipping is not necessary.</p>
+                    <center><img src ="assets/img/kernel1.jpg" width="75%"></center> 
+                    <span class="caption text-muted"> Image by author</span>
+<p>Here, I am going to consider two filters -Gaussian and Median for showing the noise reduction in images associated with and without convolution respectively.</p>
+
+<p>The linear Gaussian filter operates on the image matrix by convolution. The attribute ‘sigma’ is the standard deviation in the Gaussian filter. A higher value of sigma leads to more blurriness.</p>
+            <center><img src ="assets/img/GaussianBlur.jpg" width="100%"></center> 
+            <span class="caption text-muted"> Gaussian blur increases with sigma</span>
+<p>Median filtering is a nonlinear process. When a filter window slides along the image matrix, the median pixel value of the said matrix is taken as the output signal. A graphical representation is shown for better understanding.</p>
+            <center><img src ="assets/img/Median.jpg" width="100%"></center> 
+            <span class="caption text-muted"> Image by author: Graphical representation of Median filter</span>
+<p>This filter is preferred over the Gaussian filter while removing electronic noises such as salt and pepper type. While Gaussian smoothing causes blurring of edges, median smoothing preserves them.</p>
+
+<p>In contrast to denoising, we can <b>sharpen a defocussed or blurred image</b> to identify the features in it accurately using the ‘unsharp_mask’ function of the ‘filters module’ of skimage. The code snippet along with input (defocussed image) and output (sharpened) images are displayed below for comparison.</p>
+                    
+                    <!--CODE-->
+<pre style="background-color:gainsboro"><code class ="language-python">Sharpimg = filters.unsharp_mask(p, radius = 20.0, amount = 1.0)
+fig, ax = plt.subplots(nrows =1, ncols =2, sharex = True, figsize =(15,15))
+ax[0].imshow(p, cmap = 'gray')
+ax[0].set_title("Original", fontsize = 10)
+ax[1].imshow(Sharpimg, cmap ='gray')
+ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
+                    
+    <center><img src ="assets/img/Sharpened.png" width="100%"></center> 
+            <span class="caption text-muted"> Code output</span> 
+                    <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function ‘adjust_gamma’ of the ‘exposure module’ of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
+        <center><img src ="assets/img/gamma1.jpg" width="100%"></center> 
+        <span class="caption text-muted"> Gamma-corrected micrograph</span> 
+                    <h3>Thresholding for image segmentation: Creating Binary image</h3>
+
+                    <p>Thresholding is required when we need to separate the image background from the foreground based on pixel intensity. For example, in the case of <a href="https://matmatch.com/learn/material/superalloys"><font color=blue>superalloy</font></a> (material for jet engines of airplanes, gas turbines) microstructures, the background is the base metal, and the foreground is comprised of precipitates which imparts super strength to this type of material. Sometimes, the background can be just the sample holder used to load the sample for investigation under microscopes. The image used for thresholding, in this case, shows four-corned particles on a transmission electron microscope (TEM) grid/ holder. Different types of thresholding methods are applied to distinguish the background (TEM grid) from the particles. For the given micrograph, we find the mean thresholding is doing a better job than the other methods by clearly forming a binary image as shown in the code output snippet.</p>
+                    
+      <center><img src ="assets/img/thresholding.png" width="65%"></center> 
+        <span class="caption text-muted"> Code output showing different thresholding methods</span>
+                    
+<p>The above methods are some of the preliminary steps to obtain a noise-free image before subjecting it to further processing for extraction of meaningful features both qualitative and quantitative. As mentioned at the beginning of this post, particle size is one of the vital parameters/ features controlling the properties of a material. To estimate the particle size from an image, we need to detect the edges of the particles vividly. And this task becomes easy using various edge-detection filters. Here, I will be discussing a few of them.</p>
+
+<h3>Edge Detection using Roberts, Sobel, Canny filters</h3>
+
+                    <p><a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.roberts"><font color = blue>Roberts</font></a> and <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.sobel"><font color=blue> Sobel</font></a> filters are 2 x 2 and 3 x 3 convolution kernels respectively. Both filters have x and y components for horizontal and vertical edge detection. Code snippets for the Sobel kernel operations along with the corresponding outputs are displayed below.</p>
+                    
+                    <!--CODE-->
+<pre style='background-color: gainsboro'><code class="language-python">from skimage.filters import sobel,sobel_v, sobel_h
+p_sobel = sobel(p_g, mode='reflect')
+p_sobel_v=sobel_v(p_g)
+p_sobel_h=sobel_h(p_g)</code></pre>
+                    
+        <center><img src ="assets/img/SobelImages.jpg" width="100%"></center> 
+        <span class="caption text-muted"> Sobel filter: Code output snippet</span>
+                    
+                    <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function ‘canny’ has parameters such as sigma for the Gaussian smoothing and low and high threshold.
+
+<h3>Gabor Filter for detecting Edge orientations</h3>
+
+                    <p>This linear filter captures the <b>texture or orientation distribution</b> of features in the microstructure. Orientation distribution determines the uniformity of materials property. Random orientation of particles/grains leads to uniform/ isotropic properties while orientation in a particular direction, technically termed as <i>preferred orientation</i>, gives rise to anisotropic properties. The complex sinusoid component of the Gabor filter provides information related to orientation. The output of the said filter has both real and imaginary components. To know more about Gabor filters, please click <a href="http://ttsuchi.github.io/2015/08/26/gaborfilters.html"><font color=blue>here</font></a>.</p>
+
+                    <p>Let’s try to generate a bank of <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gabor"><font color=blue>Gabor filters</font></a> with 0°, 60°, 90°, and 120° orientations and apply them to an original transmission electron micrograph showing particles at different orientations . I am sharing the code snippet along with the output filtered images below. We can clearly see the orientations <i>(highlighted in yellow dotted line coinciding with particle edges)</i> in the respective filtered images. Please note that the real components of the filtered images are displayed.</p>
+                    
+<!--CODE-->
+ <pre style='background-color: gainsboro'><code class="language-python">p_gabor =[]for degree in (0, 60, 90, 120):
+    real,imag = filters.gabor(p, frequency=0.05, theta =(degree* (np.pi)/180))
+p_gabor.append(real)</code></pre>
+                 
+<center><img src ="assets/img/Gabor.jpg" width="100%"></center> 
+<span class="caption text-muted"> Gabor filtered images capturing orientations of particles</span>
+                    
+<p>We can also apply the Gabor kernel for extracting information on orientations. A bunch of Gabor kernels of different orientations is generated and then they are allowed to interact with the image matrix to resolve the edges in the corresponding directions, as shown in the below snapshot.</p>
+<center><img src ="assets/img/GaborKernel.jpg" width="100%"></center> 
+<span class="caption text-muted"> Original image by author subjected to Gabor kernel processing</span>
+                    
+                    <p>Click <a href='https://github.com/Bjoyita/ImageProcessing'><b><font color=blue>here</font></b></a> to get the entire code for the basic image processing from my GitHub repository.</p>
+
+<h3>Summary</h3>
+
+                    <p><mark>Mining qualitative and quantitative features is the key to understanding the microstructure-informed properties of materials.</mark> Besides, data from biological imaging is the backbone to healthcare industry. Hence, judicious processing of these micrographs is crucial.</p>
+
+<p>Despite the availability of several commercial image processing software, generating your own algorithms for the same purpose is cost-effective plus flexible. And, most importantly, opens the gate for automation via machine learning.</p>
+
+<p>In this post, I have explained some basic processing steps for extracting information qualitatively, such as detecting particle edges and orientations. However, complete data extraction from micrographs also entails a quantitative assessment of relevant features, which I will be discussing in my next post.</p>
+
+<p>Until then, happy image processing!!</p>
+                     <!-- Footer-->
+        <footer class="border-top">
+           
+                        <!--LIKE AND SHARE BUTTONS-->
+    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1 ;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+<body>
+   
+    <button class="likeBTN"><i class='far fa-thumbs-up' ></i>
+      (<span class="totalLikes">0</span>)
+</button>
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body> </center>  
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                        
+                       <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
+                    
+               
+                    
+                    
+                    
+                    
+                    
+                    
+              
+    

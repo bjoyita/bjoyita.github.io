@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+          
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index_edited.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="Subscribe_mdxp.html">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <img src ="assets/img/logo_mdxp.png" width=8%> 
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                      
+                         </header>
+                    
+<!--Title of the blog-->
+                    <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+<p><h1 align = center><font face ="verdana", color = "maroon"> Microstructure Analysis: Comparison of Image Filters for Edge Detection </font></h1>
+                        <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
+                    <hr size =4 > </p>
+              
+              
+                                   
+                        <!--CONTENT-->
+<p>Measurement and identification of particle size and morphology from the microstructure of materials play an essential role in determining materials’ properties. A precise measurement of these parameters involves resolving the edges/ boundaries of particles from the captured images, also known as microstructure. Thanks to different image processing tools, the task is more straightforward for crisp images. However, the complexity of such analysis becomes more challenging with blurred or distorted images. 
+Let us <mark style="background-color: antiquewhite">evaluate the outcome of edge detection on a blurry image subjected to different image processing filters.</mark> <i>Here, <b>blurry microstructure</b> implies no sharp gradient between objects (features) and matrix (background); instead, it seems diffuse.</i></p> 
+<p>Hence, we aim to identify the right edges of the features. </p>
+<p>First, we will apply standard edge-identifying filters such as Sobel, Roberts, and Canny and a sharpening image function (unsharp masking) from the scikit-image.
+</p>
+<p>I will display the python codes and the corresponding output for the above activity stepwise.</p>
+                        
+<p><b><u>Step 1: Import the relevant Python libraries</u></b></p>
+                        <!--CODE-->
+                        <pre style="background-color: gainsboro"><code>import numpy as np
+import matplotlib.pyplot as plt
+from skimage import io, color
+from skimage.filters import difference_of_gaussians, window
+from scipy.fft import fftn, fftshift
+from skimage import filters
+from skimage.filters import sobel,sobel_v, sobel_h, roberts
+from skimage.feature import canny
+</code></pre>
+
+<p><b><u>Step 2: Load the image (microstructure)</u></b></p>
+                         <!--CODE-->
+                        <pre style="background-color: gainsboro"><code>im = io.imread('im1_blur.jpg')
+plt.imshow(im, cmap = 'gray')</code></pre>
+                        <p><center><img src='assets/img/im1_blur.jpg'><span class="caption text-muted" >Defocussed microstructure (simulated)</span></center></p>
+                        
+                        <p><b><u>Step 3: Apply the different filter operators on the image matrix and compare their outputs</u></b></p>
+                        <p> We will be comparing different filters for edge dectection in this defocussed image. Let us try to sharpen the features of the image using unsharp masking filter of scikit-image.</p>
+                        <h5>Unsharp Masking filter</h5>
+                        
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>
+Sharpimg = filters.unsharp_mask(im, radius = 50.0, amount = 1.0) 
+plt.imshow(Sharpimg, cmap ='gray')</code></pre>
+                        
+<p><center><img src='assets/img/tut2/Sharp_img.png'><span class="caption text-muted" >Unsharp masking filtered image </span></center></p>
+<h5>Sobel filter</h5>
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>im1_sobel = sobel(im)
+plt.imshow(im1_sobel, cmap='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/Sobel_im.png'><span class="caption text-muted" >Image after applying Sobel filter </span></center></p>
+<h5>Roberts filter</h5>
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>im1_roberts = roberts(im)
+plt.imshow(im1_roberts, cmap='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/Roberts_im.png'><span class="caption text-muted" >Image after applying Roberts filter </span></center></p>
+                        
+<h5>Canny filter</h5>
+    <!--CODE-->
+<pre style="background-color: gainsboro"><code>im1_canny= canny(im)
+plt.imshow(im1_canny, cmap ='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/Canny_img.png'><span class="caption text-muted" >Image after applying Canny filter </span></center></p>
+                        
+<h5>Fourier Transform of the Image</h5>
+                        
+<p><mark style="background-color: antiquewhite"> Please read my blog on <a href="blog1.html"><font color=blue>Fourier Transform </font></a>to understand the coding steps. </mark></p>
+                        
+                        <p> <ul> &#10003 We first apply the <b>Fast Fourier Transform (fft)</b> on the image followed by <b>fftshift function to bring back the origin of the spectrum</b> to the center which is otherwise off-centered' and located on the top leftmost corner of the fft spectrum.</ul> </p>
+    <!--CODE-->
+<pre style="background-color: gainsboro"><code>im1_F = np.fft.fft2(im)
+im1_F_02 = np.fft.fftshift(im1_F)
+plt.imshow(np.log(abs(im1_F_02)), cmap ='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/t2_fftshift.png'><span class="caption text-muted" >Spectrum in Fourier space after shifting the origin to the center </span></center></p>
+                        
+                        <p><ul> &#10003Generate a <b>high frquency mask</b> to allow high frequency components to detect edges. Block the center with the mask</ul></p>                       
+        
+<pre style="background-color: gainsboro"><code>mask_h = np.ones((nx,ny), np.uint8) # mask should have the same dimension as that of the image
+center_x = nx/2
+center_y = ny/2
+
+# OPEN GRID
+x, y = np.ogrid[:nx, :ny]
+circle_mask = (x-center_x)**2 + (y-center_y)**2 <= 2.5**2
+mask_h[circle_mask] = 0
+plt.imshow(mask_h, cmap ='gray')
+im1_F_02_c= im1_F_02.copy()
+
+#black out the center by applying high frequency mask
+im1_F_02_h = im1_F_02_c* mask_h 
+
+#show the image
+plt.imshow(abs(im1_F_02_h), cmap ='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/image_mask_h.png'><span class="caption text-muted" >Masked Spectrum </span></center></p>
+<p><ul> &#10003<b>Shifting the origin back </b>to its original location using ifftshift function of NumPy followed by <b>inverse Fourier Transform</b> to retrieve the original image.</ul></p>
+<pre style="background-color: gainsboro"><code>im1_F_02_originBack = np.fft.ifftshift(im1_F_02_h)
+originalImage = np.fft.ifft2(im1_F_02_originBack)
+plt.imshow(np.log(abs(originalImage)), cmap ='gray')
+</code></pre>
+                        
+<p><center><img src='assets/img/tut2/FT_image.png'><span class="caption text-muted" >Image after Fourier Transform </span></center></p>
+                      
+<h5>Comparison of different image filters for edge detection</h5>
+<pre style="background-color: gainsboro"><code>fig, ax = plt.subplots(1, 5, figsize =(15,15))
+
+ax[0].imshow(im, cmap ='gray')
+ax[0].set_title("original", fontsize = 10)
+ax[1].imshow(np.log(abs(originalImage)), cmap ='gray')
+ax[1].set_title("Fourier Transformed", fontsize = 10)
+ax[2].imshow(im1_sobel, cmap ='gray')
+ax[2].set_title("Sobel filter", fontsize = 10)
+ax[3].imshow(im1_roberts, cmap ='gray')
+ax[3].set_title("Roberts filter", fontsize = 10)
+ax[4].imshow(im1_canny, cmap ='gray')
+ax[4].set_title("Canny filter", fontsize = 10)
+</code></pre>
+                        
+<img style=float:center src='assets/img/tut2/Compare_im.png' width=100%><span class="caption text-muted" >Comparison: Filtered Image </span>
+<p>Fourier transformed image shows sharper edges compared to other filtered images.  </p>
+                    <p>Click <a href="#!"><b><font color=blue>here</font></b></a> to view the entire code on Github.</p>
+
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                       <!-- LikeBtn.com BEGIN -->
+   <center>                   <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+<body>
+   
+    <button class="likeBTN"><i class='far fa-thumbs-up' ></i>
+      (<span class="totalLikes">0</span>)
+</button>
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body> </center>  
+ <!-- LikeBtn.com BEGIN --> 
+                      <!-- ShareThis BEGIN -->
+                        <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                       <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            </body></html>
+                        
+                        
+                        
+                        
+                        

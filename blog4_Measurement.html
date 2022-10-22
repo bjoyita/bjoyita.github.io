@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index_edited.html">Home</a></li>
+                                                               
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="Subscribe_mdxp.html">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <img src ="assets/img/logo_mdxp.png" width=8%> 
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+     
+                         </header>
+                    
+                    <!--Title of the blog-->
+                    
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+<p><center><h1><font face ="verdana", color = "maroon"> Materials Data Mining via Image Processing of Micrographs -II
+    </font></h1></center> </p>
+                    <center><subtitle><i>Measurement of materials characteristics from images</i></subtitle></center>
+                        <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
+                    <hr size =4 > 
+            
+                                
+                        <center><img src ='assets/img/sven-mieke-fteR0e2BzKo-unsplash.jpg' width=100%></center>
+                        <span class="caption text-muted"><a href='https://unsplash.com/photos/fteR0e2BzKo'>Photo by Sven Mieke on Unsplash </a></span>
+                        
+ <!--BLOGPOSRT-->
+   <p> <subheading><i>“One picture is worth a thousand words.” — Albert Einstein</i></subheading></p>
+                        
+    <h2> Background</font></h2>
+                    <p>My previous post <a href='blog2_materials.html'>“Materials Data Mining via Image Processing of Micrographs-I”</a> explained some of the basic and crucial steps of micrograph processing for the identification of features. As stated earlier, micrographs capture fine micron/sub-micron sized features of materials that can significantly impact their properties. Here, I will be discussing the quantitative assessment of one such feature — ‘particle size’ using <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a>.
+
+<h3>Measurement of parameters</h3>
+                     
+<p><b>Case Study 1: Retrieving individual particle size from clusters applying Watershed algorithm</b></p>
+                    <center><img src ='assets/img/boris-baldinger-k7Hn0GBiN-o-unsplash.jpg' width=100%></center>
+                            <span class="caption text-muted"><a href='https://unsplash.com/photos/k7Hn0GBiN-o'>Photo by Boris Baldinger on Unsplash</a></span>
+                    <p>Let me start by showing a synthetic micrograph with overlapping particles of different shapes and sizes. We first separate individual particles from clusters/ agglomerates. Then we measure the size of these separated particles. De-agglomeration of particles is achieved with the aid of a watershed algorithm — a type of image segmentation method. I am sharing a step-by-step guide for the said activity.</p>
+
+                    <p><b><i>Step 1: Importing necessary libraries and loading image</i></b></p>
+                    
+                    <!--CODE-->
+                    <pre style="background-color: gainsboro"><code  class="language-python"># IMPORTING LIBRARIES
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import ndimage as ndi
+from skimage import io, color
+from skimage.segmentation import watershed
+from skimage.feature import peak_local_max
+
+# LOADING IMAGE
+im1 = io.imread("O3.jpg")
+plt.imshow(im1, cmap ='gray')</code></pre>
+                <!---->
+                    
+                    <center><img src ="assets/img/watershedImage.jpg" width=50%></center>
+                            <span class="caption text-muted">Image by author: Synthetic micrograph showing clusters</span>
+<p>The image has several clusters of particles, and its dimension is represented by a tuple (1254, 1313, 3). While the first two elements of the tuple indicate height and width, the third one tells us the number of channels (number of colors). This image is an RGB image having three channels/colors.</p>
+
+<p><b><i>Step 2: Converting to grayscale image</i></b></p>
+
+<p>I have applied the function rgb2gray imported from the color module of skimage to convert the RGB image to grayscale.</p>
+
+<p><b><i>Step 3: Thresholding to get a binary image</i></b></p>
+
+<p>The mean thresholding method is found to be most suitable for this image after it is subjected to other thresholding methods using the try_all_threshold function.</p>
+
+<p><b><i>Step 4: Computing the Euclidean distance transform</i></b></p>
+
+                    <p>The <a href="https://en.wikipedia.org/wiki/Euclidean_distance"><font color=blue>Euclidean distance </font></a>is a measure of the closest distance between any two pixels in the image. Each pixel of the image is categorized as either a source/background pixel (with zero intensity) or an object pixel (with non-zero intensity). We observe a descending gradient in Euclidean distances from the center of any object to the background. This is beautifully captured in the distance map obtained from the image:</p>
+               
+<center><img src ="assets/img/DistanceMap.jpg" width=75%></center>
+<span class="caption text-muted">Distance Map</span>
+                    
+<p><b><i>Step 5: Finding local peaks and watershed line</i></b></p>
+
+<p>A watershed, geographically speaking, is a highland that separates drainage basins. We apply the same concept to image segmentation for clusters of particles/objects. In this case, the pixel intensities of the boundaries of an individual object in the cluster constitute the watershed divide, separating them from one another.</p>
+
+<p>We first locate the coordinates of the peaks (local maxima) of the particles by applying the function peak_local_max. We use the output of this function as markers in the <a href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.watershed"><font color=blue>watershed function</font></a>. We label these markers for each particle in the image. These markers constitute the watershed line that separates individual particles from an agglomeration. The code snippet for the task is shown below.</p>
+                    
+                    <!--CODE-->
+                    <pre style="background-color:gainsboro"><code class="language-python>">coords = peak_local_max(distance, min_distance =100)
+mask = np.zeros(distance.shape, dtype=bool)
+mask[tuple(coords.T)] = True
+markers,_= ndi.label(mask)</code></pre>
+                    <!---->
+<p><b><i>Step 6: Image segmentation applying watershed algorithm</i></b></p>
+
+<p>Finally, applying the watershed algorithm with parameters such as inverse distance transform image, markers, and mask (binary image), we obtain separate particles. The individuality of these particles in clusters is displayed in different colors by applying the matplotlib colormap.</p>
+                        <!--CODE-->
+                    <pre style="background-color:gainsboro"><code class="language-python"> individual_particles = watershed(-distance, markers, mask=binary)</code></pre>
+                    <!---->
+                    
+<center><img src ="assets/img/image_dist_segmented.jpg" width=100%></center>
+<span class="caption text-muted">Code output displaying original image, distance map, and segmented image (after applying watershed function)</span>
+                    
+                    
+<p><b>Case Study 2: Measurement of properties – Particle Size and Particle size distribution</b></p>
+
+<p>Let us continue with the above image where we applied the watershed algorithm to separate particles from clusters. We now proceed with the measurement of particle size.</p>
+
+<p><b>Role of scale factor in an image</b><p>
+
+<p>Before going through the details of the computation of values of features/ parameters, we need to understand the concept of <b>‘scale’</b> in an image. Scale factor in any image gives an idea of the measure of the objects/features. A digital image is comprised of tiny dots called pixels. The size of the pixel defines the resolution of the instrument used to take the pictures.</p>
+
+<p>A scale-line or bar of a few pixels representing a certain value in terms of kilometers/centimeters/millimeters/micrometers/nanometers is provided on any image depending on the sizes of actual physical objects captured in the image. For instance, a Google map has a scale bar either in miles or kilometers. Conversely, micrographs have scale bars in micrometers/ nanometers as they capture small length-scale features of materials.</p>
+
+<p>It is impossible to measure the features of an image without a scale bar. Thus, an image with quantifiable features should always contain a scale bar.</p>
+
+                    <p><b><i>Size measurement using <a href="https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops"><font color=blue>regionprops</font></a> function of skimage.measure module</i></b></p>
+
+<p>The code for measurement applying regionprops function to the labeled image regions is presented below.</p>
+                    
+                    <!--CODE-->
+<pre style="background-color:gainsboro"><code class="language-python>">from skimage.measure import label, regionprops, regionprops_table
+label_img = label(individual_particles, connectivity = im2.ndim)
+props=regionprops(label_img, im2)
+
+for p in props:
+display('label: {} area: {}'.format(p.label, p.area))
+props_t = regionprops_table(label_img, im2, properties='label','area', 'equivalent_diameter','solidity'])
+
+df = pd.DataFrame(props_t)</code></pre>
+<p>The properties, such as area, equivalent diameter, and solidity, are tabulated as a pandas-compatible table using the regionprops_table function. A scale of 0.005 microns per pixel is considered to calculate the size of particles.</p>
+<center><img src ="assets/img/table_watershed.jpg" width=100%></center>
+<span class="caption text-muted">Code output showing particle size</span>
+
+                    <p>The parameter ‘particle size distribution’ becomes significant when there are particles of varied sizes in a micrograph. All real-world materials contain innumerable particles (such as <a href="https://en.wikipedia.org/wiki/Crystallite"><font color=blue>polycrystalline</font></a> metals). Micrographs capture only a small representative region of the material. Particle size, as mentioned at the beginning of this post, dictates several important properties of a material.</p>
+
+                    <p>Now, the question arises as to whether one should consider the mean particle size or the entire <a href="https://www.horiba.com/int/scientific/products/particle-characterization/particle-education/particle-size-distribution-calculations/"><font color=blue>particle size distribution </font></a>(PSD). Mean particle size is reported for materials having uniformity in particle size, while PSD becomes a vital parameter for materials with particle sizes varying over a range.</p>
+
+<p>The distribution plot of particle size showing D10, D50, and D90 percentile becomes informative and is used as a guidance to understand the behavior of materials. Additionally, it tells us about the uniformity of the parameter by calculating the ‘Span’ defined as follows.</p>
+<center><img src ="assets/img/percentile.jpg" width=50%></center>
+                    
+<p>A smaller span value signifies more consistency in particle size. On the other hand, a larger span value implies heterogeneity in the distribution.</p>
+
+<p>I have taken a simulated image below to show the calculation of particle size distribution.</p>
+                    
+                    
+<center><img src ="assets/img/simulated.jpg" width=50%></center>
+<span class="caption text-muted">Image by author: Simulated Image</span>              
+ 
+<p>This image shows a considerable number of well-separated individual particles with varying sizes. Since there are no clusters of particles in this image, the step of applying the watershed function is irrelevant. First, we convert this image to grayscale followed by thresholding. We then apply the label function to the binary image to generate a labeled image ( as shown below) displaying particles of different sizes with distinct colors.</p>
+
+    <center><img src ="assets/img/Simulated_overlay.jpg" width=50%></center>
+<span class="caption text-muted">Labeled image</span> 
+                    
+
+<p>A scale of 4 nanometers per pixel is applied to calculate the <b>equivalent diameter representing the particle size</b>. <i>Note that an equivalent diameter is the diameter of a circle with the same area as the region</i>. We directly compute and tabulate the required properties using regionprops and regionprops_table. The table is then exported as a spreadsheet file. Using the percentile function of Numpy, we obtain the statistical parameters — D10, D50, and D90 percentiles. Accordingly, a span approximately equal to unity is estimated which indicates non-uniformity of particle size for the simulated image. Note that a span closer to zero denotes a more consistent PSD.</p>
+
+<p><b><i>Visualization of particle size distribution</i></b></p>
+
+                    <p>I have used <a href="https://seaborn.pydata.org/"><font color=blue>Seaborn</font></a> — a statistical data visualization library to plot the particle size distribution using distplot function. This function combines the histogram and kernel density estimation (KDE) functions. The figure below shows the particle size distribution plot of the simulated image.</p>
+ <center><img src ="assets/img/PSD.jpg" width=50%></center>
+<span class="caption text-muted">Particle Size Distribution plot</span> 
+
+
+                   <mark style='background-color: lightcyan'> <b>CODE:</b> Please click <a href="https://github.com/Bjoyita/ImageProcessing"><font color=blue>here</font></a> to get the code from my Github repository.</mark>
+
+        <p><b>Summary</b></p>
+
+<p>Quantitative estimation is an essential part of image data processing as it assists in decision-making. <mark style="background-color:lightcyan">Defining a scale bar in an image is mandatory for the quantification of features.</mark> Furthermore, an image needs to undergo a set of refinement steps prior to the quantitative analysis.</p>
+
+                    <p>In this post, I have illustrated the above point by taking two images with the objective of mining particle size data. I demonstrated the necessity of an additional pre-processing step of applying <mark style="background-color:lightcyan">the watershed function to separate the particles for size calculation in the first image with overlapping particles.</mark> We would have otherwise landed up with sizes of clusters of particles. This would have been utterly misleading for interpretation of the same vis-à-vis materials property.</p>
+
+<p>The other highlight of this post describes the <b>significance of particle size distribution</b>, rather than a single mean value, for systems (image) containing <b>particles of varied sizes. PSD is an important quantifier</b> for materials with structural heterogeneity (e.g., polycrystalline materials).</p>
+
+<p>I hope this post will help in the calculation of measurable parameters from images that can be incorporated as input for predictive algorithms.</p>
+
+                    <p>Thanks for reading!</p>
+                     <!-- Footer-->
+        <footer class="border-top">
+            
+            <!--LIKE AND SHARE BUTTONS-->
+    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+<body>
+   
+    <button class="likeBTN"><i class='far fa-thumbs-up' ></i>
+      (<span class="totalLikes">0</span>)
+</button>
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body> </center>  
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                        
+                                               <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved. </div></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>
+
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    

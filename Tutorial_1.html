@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index_edited.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="Subscribe_mdxp.html">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                      <img src ="assets/img/logo_mdxp.png" width=15%>
+                         </header>
+                    
+<!--Title of the blog-->
+<p><h1 align = center><font face ="verdana", color = "maroon">Generation of Simulated Images</font></h1>
+                    <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
+                    <hr size =4 > </p>
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                
+                        <center><img style="float:bottom" src='assets/img/Simulated_overlay.jpg'></center><span class="caption text-muted" style = 'float:bottom'>Simulated image</span>
+<i>
+
+    This is a tutorial post where I will show the steps to simulate simple images both from scratch and predefined functions using Python.</i></p>
+
+                        <p>Akin to other coding activities, <mark style= background-color: yellow>the first step is to import all the relevant libraries such as NumPy, Matplotlib after installing Python.</mark></p> <p>You can use <mark style= background-color: yellow>either Jupyter notebook or Google Colab notebook </mark>for running the code. Running in Google Colab is relatively easy as it has pre-installed Python libraries.</i></p>
+<!--Examples-->
+                    
+    <p><b>Example 1: Generation of an image with circles forming a horizontal line at the center</b></p>
+    <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed at its center.
+</p>
+<!--TABLE-->
+<TABLE border="1" width=100%  >
+<TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+<TR>
+
+<TR> <TH><pre><code>Micro1 = np.zeros((400,400), np.uint8) 
+center_x = 400/2
+center_y = 400/2
+
+x, y = np.ogrid[:400, :400]
+for j in range(0, 401, 20):
+  circles_w = (x-center_x)**2 + (y-j)**2 <= 10**2
+  Micro1[circles_w]=1
+  plt.imshow(Micro1, cmap ='gray')</code></pre></pre></TH> <TH> <img src = 'assets/img/micro1.png'</TH>
+                        </TR> 
+                        </TABLE>
+                    <p><b>Fourier Transform </b></p>
+                            <p> The output of the Fourier Transform of the image is shown below. A vertical streak at the center is observed which represents the horizontal circles in the real space. The codelines for Fourier trasform and the corresponding transformed image is displayed below. </p>
+                                    <TABLE border="1" >
+                        <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+                        <TR>
+
+                    <TR> <TH><pre><code>Micro1_f = np.fft.fft2(Micro1)
+Micro1_f_shift = np.fft.fftshift(Micro1_f)
+Micro1_shift=plt.imshow((abs(Micro1_f_shift)), cmap ='gray')
+plt.colorbar(Micro1_shift)
+plt.show()</code></pre></pre></TH> <TH> <img src = 'assets/img/F_micro1.png'</TH>
+                        </TR> 
+                        </TABLE>
+<p> Please  <a href="blog1.html"><font color=blue>click this link</font></a> to read about Fourier transform in details.</p>
+                                        
+<! -- Examples -->
+                                        
+<p><b>Example 2: Generation of an image with circles forming square grid pattern</b></p>
+    <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed horizontally and vertically witha spacing of 100-unit forming square grid pattern.</p>
+                                        
+<! --Table -->
+                                        
+<TABLE border="1" width=100% >
+<TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+            
+                <TR> <TH><pre><code>Box1 = np.zeros((400,400)) 
+
+x, y = np.ogrid[:400, :400]
+
+for i in range(0,420,100):
+    for j in range(0,420,100):
+        circles = (x-i)**2 + (y-j)**2 <= 5**2
+        Box1[circles] = 1.0
+plt.imshow(Box1, cmap ='gray')</code></pre></TH>
+<TH> <img src = 'assets/img/micro2.png'</TH></TR>
+                    </TABLE>
+<p> This image in the inverse or Fourier space looks like this &#128071:</p>
+                    <center><img src="assets/img/F_micro2.png" > </center>
+<p> Note the narrow spacings between the circles in the Fourier space which is the inverse of that displayed in the real space image. </p>
+                    
+<!--Function and Image-->
+                    
+ <h3>Functions and Images</h3>                   
+<p> Now I will demsonstate the simulation of 2D images from periodic functions. Additionally, I will also show how to generate their 3D counterparts.</p>
+                    
+<p><b><u>Periodic function 1</u></b></p>
+<p>Consider the below periodic function:
+<img src ='assets/img/eq7.jpg' height="50" width = "700">   
+    Here is the code and the output for simulating 2D image.</p> 
+                    
+         <TABLE border="1" width=100% >
+<TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+            
+                <TR> <TH><pre><code>x= np.linspace(0, 6*np.pi, 50)
+y= np.linspace(0, 6*np.pi, 50)
+X,Y = np.meshgrid(x,y)
+f = np.ones([50, 50])
+f = np.sin(4*np.pi*X) + np.cos(6*np.pi*Y)
+plt.imshow(f)
+</code></pre></TH>
+<TH> <img src = 'assets/img/p1.png'</TH></TR>
+                    </TABLE> 
+             
+<p>The code for generating the 3D version of the above image is displayed below: </p>
+<TABLE border="1" width=100% >
+<TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+            
+<TR> <TH><pre><code>fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+# Plot the surface.
+f_surf = ax.plot_surface(X, Y, f, cmap='jet')
+                       
+ax.view_init(60,120)
+fig.colorbar(f_surf)
+
+plt.show()
+</code></pre></TH>
+<TH> <img src = 'assets/img/p1_3D.png'</TH></TR>
+                    </TABLE> 
+<p> <mark style= background-color: yellow> The 3D version distinctly depicts the sinusoidal characteristics of the image.</mark></p>  
+    
+    <p><i>You can visit <b><a href='https://github.com/Bjoyita/ImageSimulation'><font color =blue>my GitHub link</font></a></b> to see more number of examples relted to image simulation.</i></p>
+    
+                     </div>
+              <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+        <!--LIKE AND SHARE BUTTONS-->
+    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+<body>
+   
+    <button class="likeBTN"><i class='far fa-thumbs-up' ></i>
+      (<span class="totalLikes">0</span>)
+</button>
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body> </center>  
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                   
+                    <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+       
+    </body>
+</html>
+
+                    
+    
