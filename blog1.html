@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
        
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -37,9 +38,8 @@
         
         <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
             <meta charset="utf-8" />
-             <img src ="assets/img/logo_mdxp.png" width=8%>
+             <img src ="assets/img/logo_mdxp.png" width=5%>
     
-<meta name="viewport" content="width=device-width, initial-scale=1" />
             <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-left">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -60,7 +60,7 @@
                             <span class="caption text-muted"> Photo by <a href="https://unsplash.com/photos/MmpXoQjmHnY">Alice Butenko on Unsplash</a></span>
                         
  
-                        <h2> <font color ='maroon'></font>Purpose</font></h2>
+                        <h2> Purpose</h2>
                         
                         <p>
                             Fourier series and Fourier transform are important mathematical operations for analyzing different wave-like patterns. Wave-like patterns are omnipresent in nature in the electromagnetic radiations, sound waves, electrical signals, and even images. The French mathematician, Joseph Fourier, came up with the idea of such a mathematical tool while solving the problem related to heat conduction. Even though this topic of Fourier transform has been widely studied, many of us still find it challenging to grasp the basic concept.</p>
@@ -72,7 +72,7 @@ Let us start by addressing the most fundamental question:
 <p><b><I>What is a Fourier series and what is its relation to Fourier Transform? </I></b></p>
                         <p>A <u><a href='https://en.wikipedia.org/wiki/Fourier_series'>Fourier series</a>
                         </u> represents a periodic function as a sum of sine and cosine waves. Here is the equation describing the series. </p>  
-     <img src = "assets/img/Picture37.jpg" height ='300' width ='700'>             
+     <img src = "assets/img/Picture37.jpg"  width ='100%'>             
               
     
                     
@@ -93,7 +93,7 @@ Let us start by addressing the most fundamental question:
 The equation denotes the <b>continuous Fourier transform </b>since the frequency and time variables are continuous-valued, varying from -∞ to +∞.
 Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                 
-            <img src = "assets/img/Euler.jpg" height="100" width="800">
+            <img src = "assets/img/Euler.jpg" width=100% >
             
                         <p>cos(kt) and -jsin(kt) are the real and imaginary component of the complex exponential (exp(-jkt)) respectively. In a nutshell, <b>this transform operator projects the real space components onto the Fourier or frequency space</b>.</p>
             
@@ -103,17 +103,17 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                         <p>Images contain <b>spatial information instead of time</b>. A digital image is composed of basic units called pixels, and each pixel is assigned a particular value of intensity varying between 0 and 255. An image's spatial domain houses information on pixel intensity variation with spatial coordinates. We apply the transform operator over fixed points or pixels on the image to retrieve frequencies and phase spectra. This operation is called <b>Discrete Fourier Transform (DFT)</b>.</p>
                         <p><b>Understanding the process in the spatial domain</b></p>
                 <p>🗸Consider a simple periodic 1D sine function with eight evenly spaced points/ samples (N).</p>
-               <center><img src ="assets/img/eq3.jpg" height="80" width="400"></center> 
+                        <center><img src ="assets/img/eq3.jpg" width=40%></center> 
                 
                 <p>🗸Apply DFT</p>
 <p>We will now apply DFT to f(x) to convert it to the frequency domain.</p>
-                <center><img src ="assets/img/eq4.jpg" height="80" width="800"></center>
+                <center><img src ="assets/img/eq4.jpg"  width="80%"></center>
             <p>Hence, we need to multiply the real space function f(x) with the exponential term to get the frequency values (k) in the Fourier space. The mathematical steps are as follows:</p>
                         <p>🗸Replace f(x) with sin (π/4 x),</p>
                         
-                        <center><img src ="assets/img/eq5_1.jpg" height="60" width="720"></center>
+                        <center><img src ="assets/img/eq5_1.jpg"  width="80%"></center>
                          <p>🗸 Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1 = 8–1 =7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
-               <img src ="assets/img/eq6.jpg" height="80" width="800">
+               <center><img src ="assets/img/eq6.jpg"  width=80%></center>
             <p>Similarly, we calculate the other frequency terms in Fourier space. The table below shows their complex values and absolute values.</p>
              <img src ="assets/img/table.jpg" height="600" width="600">
             <p>The symmetry or folding is observed at Nyquist frequency, defined as half of the sampling rate (highlighted in yellow in the above table). The sampling rate is the number of points/ samples in one cycle. In the given example, the sampling rate is 8, and the <a href='https://en.wikipedia.org/wiki/Nyquist_frequency'>Nyquist frequency</a> 4.
@@ -123,18 +123,18 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                 
                 <p>We apply the <b>inverse Fourier transform</b> algorithm if we want to obtain the original signal (real space) from the frequency domain. Here is the mathematical equation defining the operation for a 1D function.</p>
                 
-                 <center><img src ="assets/img/inverseFFTEq.jpg" width=120% height=120%></center>
+                 <center><img src ="assets/img/inverseFFTEq.jpg" width=100% ></center>
                 
                         <p>Hence, F(k) and f(x) are a Fourier transform pair represented as:</p>
-                  <center><img src ="assets/img/transformPair.jpg"  width="100%"></center>
+                  <center><img src ="assets/img/transformPair.jpg"  width="80%"></center>
                 
                 <p>Now that we are comfortable with the math behind Fourier transform, I will focus on the coding part of the operation in the subsequent section. </p>
                 
                           <h3>Algorithm for Discrete Fourier transform: Fast Fourier Transform (FFT)</h3>
             <p>I have used Python for coding, and I will demonstrate each step of the process considering a 2D periodic function:
-                    <p><center><img src="assets/img/eq7.jpg" width=100%></center></p>
+                    <p><center><img src="assets/img/eq7.jpg" width=80%></center></p>
             
-            <img src ="assets/img/2D3D.jpg" height="400" width="800">
+            <img src ="assets/img/2D3D.jpg"  width="100%">
             <span class="caption text-muted" align = centre>Simulated images by author: 2D and 3D representations of f(x,y)</span>
                 <p>The 2D and 3D representations of the image are displayed. The 3D version distinctly depicts the sinusoidal characteristics of the image.</p>
                         <a href="blog2.html">
@@ -144,7 +144,7 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
             <h2>Spatial domain to Frequency domain: Fourier Transform of image</h2>
             
                 <p>Here is the Fourier transform equation applied to the above image (50 x 50; N= 50).</p>
-                <center><img src ='assets/img/DFT.jpg' height ='150' width ='900'></center>
+                <center><img src ='assets/img/DFT.jpg'  width ='100%'></center>
              
             
             <p>Since Fast Fourier Transform (FFT) significantly reduces the computational time, we employ this algorithm to compute discrete Fourier transform (DFT). In general, for a 1D FFT of size N, the <a href="https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Introductory_Electrical_Engineering/Electrical_Engineering_(Johnson)/05%3A_Digital_Signal_Processing/5.08%3A_DFT_-_Computational_Complexity">computational complexity </a>is proportional to O(Nlog₂N) [O stands for order] as compared to O(N²) in DFT. Note that 'complexity' here indicates <i>the number of computational steps required for processing.</i></p>
@@ -161,7 +161,7 @@ plt.show()</code></pre>
             <span class="caption text-muted" align = center>Output after Fourier transform</span></center>
             
                     <p></p>Please note that the output is the <b>amplitude/ magnitude </b>spectrum obtained by multiplying the image function with the absolute value of the complex number. Interestingly, we observe that this amplitude spectrum has four off-centered bright spots located at the edges. I have used the term 'off-centered' since the spectrum's origin (0) lies on the top leftmost corner with positive kₓ, rightward, and positive kᵧ downward, as shown in the spectrum. These four spots are the four positive Fourier transform values F(kₓ, kᵧ) of the input function. Due to the conjugate symmetry, every positive value in the Fourier space will have a negative counterpart.</p>
-           <center><img src='assets/img/conjugate.jpg'height="50" width="800"></center>
+           <center><img src='assets/img/conjugate.jpg' width="100%"></center>
             
             
             <p>The bright spots in Fourier space represent the high amplitude and low frequency, while the dark regions denote the low amplitude and high-frequency area.</p>
@@ -242,10 +242,13 @@ let likes = 0;
 <!-- ShareThis END -->
                                       
                         <p>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
-                    </div>
-                </div>
-            </div>
+            <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div>
+                                    
         </footer>
+<!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script></article>
+        
             </body>
 </html>
