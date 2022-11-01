@@ -2,7 +2,20 @@
 <html lang="en">
     <head>
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
-         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+                
         <meta name="description" content="Tutorial article on generation of microstructure." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Simulated Images, Python, Canny, Sobel, Roberts, Fourier Transform, Fourier space, Real space, peeriodic functions"/>
@@ -14,12 +27,14 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">             
             <div class="container px-4 px-lg-5">
-                
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                    Content
                     <i class="fas fa-bars"></i>
