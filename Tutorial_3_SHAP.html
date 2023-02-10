@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+               <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        
+              <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+        <meta name="description" content="Blog post on materials design." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, randon forest regression, Tree SHAP, TreeExplainer, summary plot" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+             <img src ="assets/img/logo_mdxp.png" width=5%>
+    
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                      </header>
+                    
+                    <!--Title of the blog-->
+<p><h1 align = center><font face ="verdana", color = "maroon">SHAP Analysis for Multiple Targets in Machine Learning </font></h1> 
+                    
+                    
+                    <hr size =4 > 
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                        <center><img src ='assets/img/tut3/Dice.jpg' width=80% ></center>
+                            <span class="caption text-muted">   Photo by <a href="https://unsplash.com/@grizzlybear?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" style="color: darkblue">Jonathan Petersson</a> on <a href="https://unsplash.com/photos/W8V3G-Nk8FE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" style="color: darkblue">Unsplash</a>
+  </a> </span>
+                        
+ 
+<p><b><font size= 6
+            >B</font>ackground</b></p>
+                        
+    <p><b>SHAP</b> – the acronym for ‘SHapley Additive explanations’ API can help explore novel materials with desired properties and performance. This concept unveils the contributions of each input parameter to the final output in the machine learning algorithm. 
+
+  Thus the interpretability factor is infused into the machine learning algorithm, which, otherwise, is treated as a black box.  </p>
+                    
+                    <p><i><mark style="background-color:azure">Please refer to my <b><a href="https://bjoyita.github.io/Blog5_SHAP.html" style="color: darkblue">blog</a></b> to know about SHAP in detail.</mark></i></p>
+    <p>In this tutorial, I will walk you through each step of SHAP-aided machine learning for identifying elemental combinations for a potential thermoelectric with an ideal combination of high power factor (PF) and low thermal conductivity (𝜅 or kappa).</p>
+                    <p><b><font size= 6>
+                        C</font>ase study:</b> Finding potential thermoelectric compositions with <b>multioutput ML algorithm and SHAP analysis </b></p>
+                    <p><b>Data:</b> I have compiled room temperature PF and kappa values of <b>204 thermoelectric compositions (formulae)</b> in an <b><a href="ms-excel:ofe|u|file:///C:/Users/saswa/Documents/Joyita_2021/Data_ML/TE/csv/Pf_kappa_RT_2.csv" style="color: darkblue">excel sheet</a></b>. Click <b><a href=" https://www.nature.com/articles/s41524-021-00564-y." style="color: darkblue">here</a></b> to see the reference for this dataset. </p>
+                    <p><b><u>Step 1: Import and Install relevant Python libraries</u> </b></p>
+                    <p> A snapshot of the libraries imported is shown below:</p>
+                    
+                     <pre style="background-color: gainsboro"><code>import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from matplotlib.pyplot import figure
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+</code></pre>
+                    <p><b>Install the materials libraries – <a href="https://hackingmaterials.lbl.gov/matminer/index.html"style="color:darkblue">Matminer</a> and 
+                        <a href="https://pymatgen.org/" style="color:darkblue"> Pymatgen</a></b></p>
+                    <pre style="background-color: gainsboro"><code>pip install pymatgen</code></pre>
+                    
+                    <pre style="background-color: gainsboro"><code>pip install matminer</code></pre>
+                    
+                    <p><b><u>Step 2: Loading data</u></b></p>
+                    
+                    <pre style="background-color: gainsboro"><code>ds_RT = pd.read_csv('Pf_kappa_RT_2.csv')
+ds_RT</code></pre>
+                    <center><img src="assets/img/tut3/DataFile.jpg" width=70%></center>
+                    <p><b><u>Step 3: Prepossessing data for machine learning</u></b></p>
+                    <p><i>Why preprocessing step is a must activity in this case?</i></p>
+<p>The original data file contains only three variables – Formula, PF and kappa where the latter two are targets/ responses. However, to come up with new composition we need to do a permutation of elements comprising these formulae and incorporate them as input variables/ features. Moreover,  we also need the data (amount or elemental fraction) of each element present in a composition.</p> 
+<p>Therefore, we extract individual element and their elemental fraction from a given formula 
+    using the <b>“Composition”</b> and <b>“Element fraction”</b> <b>modules</b> of <b>Pymatgen</b> and <b>Matminer</b> respectively.</p>
+<p>Here is the snippet of code blocks displaying the breaking down of a formula into its constituent elements and their 
+corresponding element fraction.</p>
+                    <p><b>Importing Composition and ElementFraction</b></p>
+                    <pre style="background-color: gainsboro"><code>from pymatgen.core.composition import Composition
+from matminer.featurizers.composition import ElementFraction
+ef = ElementFraction()
+element_fraction_labels = ef.feature_labels()
+print(element_fraction_labels)</code></pre>
+                    <pre style="background-color:aquamarine"><code>[H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr']</code></pre>
+                    <pre style="background-color: gainsboro"><code>ds_RT['Formula']
+Comp = []
+for value in ds_RT['Formula']:
+  Comp.append(Composition(value))
+Comp</code></pre>
+                    <pre style="background-color:aquamarine"><code>[Comp: Ca0.98 Mn0.98 Nb0.02 Bi0.02 O3,
+ Comp: Ca0.96 Mn0.96 Nb0.04 Bi0.04 O3,
+ Comp: Ca1 Mn0.98 Nb0.02 O3,
+ .
+ .
+ .
+ .
+ .
+ Comp: Fe0.998 Co0.002 Si2,
+ Comp: Y0.04 Fe0.978 Co0.00196 Si1.96 O0.06,
+ Comp: Y0.12 Fe0.978 Co0.00196 Si1.9]</code></pre>
+                    <p> Addition of <b>"Composition"</b> column to the original dataset</p>
+                    
+<pre style="background-color: gainsboro"> <code>ds_RT['Composition'] = Comp
+ ds_RT</code></pre>
+                    <center><img src="assets/img/tut3/DataFile_comp.jpg" width=70%></center>
+                    
+<p>Incorporating <b>individual element and the corresponding element fraction</b> present in a formula using <b>ElementFraction (ef) class of matminer.featurizers.composition module</b> to the dataframe</p>
+<pre style="background-color: gainsboro"> <code>ds_RT = ef.featurize_dataframe(ds_RT,'Composition')
+ ds_RT</code></pre>
+
+                
+                    <p>The final refined data, ready for ML, shows a total of <b>51 columns</b> and <b>204 rows</b>. Out of 51 variables, <b>49</b> are <b>input variables/features</b> and the last two columns representing <b>PF and kappa</b>, are <b>targets</b>.  </p>
+                    <center><img src="assets/img/tut3/Data_gist.jpg" width=100%></center>
+                    
+                    <center><img src="assets/img/tut3/FinalData.jpg" width=100%></center>
+            <p><i><mark style="background-color:azure">Preprocessing of data is explicitly discussed <b><a href= "https://bjoyita.github.io/blog2_Matminer.html" style="color: darkblue">here</b></a>.</mark></i></p>
+                    <p><b><u> Step 4: Defining X and y</u></b></p>
+                    <pre style="background-color: gainsboro"> <code>X = ds_RT.iloc[:, 1: 50]</code></pre>
+                    <pre style="background-color: gainsboro"> <code>y = ds_RT.iloc[:, 50:]</code></pre>
+                    <p><b><u>Step 5: Splitting data into training and test sets (80:20) </u></b></p>
+                    
+                    <pre style="background-color: gainsboro"> <code>from sklearn.model_selection import train_test_split
+ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)</code></pre>
+                        <p><b><u>Step 6: Scaling of target variables</u></b></p>
+                    <p>This is again a critical step in this case study as the <b> two targets (PF and kappa )</b> have a <b>
+                        varied range of values</b>. <b>Normalization</b> of their values will ensure uniformity leading to better model fitting and prediction. We will use the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html" style="color: darkblue">MinMaxScalar</a></b> function to scale and translate each target variable so that their values are in the range between zero and one.  Scaling is a part of data preprocessing data, and it can be applied either before or after splitting the whole dataset into training and test data.  Note that in this example, we need to only normalize the target variables as the values of input features, being element fractions, are already scaled. </p>
+
+<pre style="background-color: gainsboro"> <code>from sklearn.preprocessing import MinMaxScaler
+ sc = MinMaxScaler()
+ y_train = sc.fit_transform(y_train)
+ y_test = sc.transform(y_test)</code></pre>
+        
+        <p><b><u>Step 7: Fitting ML model</u></b></p>
+                    <p>We now fit the training set to the <b><a href ="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor" style="color: darkblue">random forest regressor</a></b> algorithm. An ensemble regressor algorithm provides better accuracy in predicting numerical targets. The code snippet for the same is shown below:</p>
+                    
+<pre style="background-color: gainsboro"> <code>regr_rf = RandomForestRegressor(n_estimators=100, max_depth=max_depth, random_state=0)
+ regr_rf.fit(X_train, y_train)</code></pre>
+                    <p><b><u>Step 8: Unleashing Feature Importance through SHAP</u></b></p>
+                    
+  <p>After fitting the model, we proceed to study the contribution of each feature toward outputs using SHAP analysis which adds the explainability factor to the outcomes of the ensemble tree ML model. <b>Tree SHAP algorithm</b> is used to compute SHAP values for tree models.  </p> 
+<p>The coding</p>
+                    <pre style="background-color: gainsboro"> <code>pip install shap</code></pre>
+<pre style="background-color: gainsboro"> <code>import shap
+ e_rf = shap.TreeExplainer(regr_rf)
+ shap_values_rf = e_rf.shap_values(X_train)</code></pre>
+                    <p><mark style="background-color: azure">The Shap values imply the influence of features on targets and this can be vividly understood using visual representations.</mark></p>
+
+<p><b><u>Step 9: Visualization of feature importance </u></b></p>
+                    <p><u>Reading <b>Multi-Target Summary Plot </b></u></p>
+                    <p>Color code for two targets</p>
+                    <p><b><font color=red>Red</font></b>- kappa (thermal conductivity)                      
+                    <b><font color=blue>Blue</font></b>- PF(Power factor)</p>
+                    <p><b>X-axis:</b>  Features (Elements)            <b>y axis: </b> Absolute Shap values</p> 
+                    <p><i>We can immediately get an overview of the extent of the contribution of each feature to the two targets from this bar plot.</i></p>
+                    <pre style="background-color: gainsboro"><code>class_names = y.columns
+shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre>
+<img src = 'assets/img/tut3/SumPlot_2T.png' width=80%>
+
+   <p>The bars’ width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
+ 
+    <p>However, to understand the nature of the contribution of features on the final target, we need a <b>summary plot for a single target illustrating both the intensity and direction of impact</b>, i.e. whether the feature is favorably or adversely affecting the said target. Let me illustrate this point.</p>
+    <p><u>Reading <b>Single Target Summary Plot</b></u></p>
+    <p>Here are the plots showing the influence of features (elements) on kappa and PF, taken individually.</p>
+                    <p><u>Index 0 represents kappa</u></p>
+        <pre style="background-color: gainsboro"><code>shap.summary_plot(shap_values_rf[0], X_train)</code></pre>
+                    
+                    <p><u>Index 1 represents PF</u></p>
+        <pre style="background-color: gainsboro"><code>shap.summary_plot(shap_values_rf[1], X_train)</code></pre>
+                    
+                    <img src="assets/img/tut3/SumPlot_k_PF.png" width=100%>
+                    <p>The <b>strength of contributions</b> is color-coded red and blue where, <b><font color=red>red is strong,</font></b> and <b><font color=blue>blue is weak</font></b>. Plus, the sign of SHAP values of a feature tells whether it has a positive or negative impact on the target.</p>
+                    <p>For example</p>
+                    <p><li>Zn has more positive correlations with kappa than that with PF.</li></p>
+                    <p><li>Sb has a high positive correlation with PF and a high negative correlation with kappa.</li></p>
+<p>Thus, SHAP summary plots help select elements that can enhance PF and decrease kappa – a combination for an ideal thermoelectric composition. </p>
+                    <table border="2" bgcolor=beige width=100%><tr><td colspan=1><i>Note: 
+                       If you choose to apply an <b>artificial neural network (ANN)</b> for fitting the dataset and building an appropriate model, a <b>KernelExplainer function</b> should be used for the <b>SHAP analysis</b>.
+                        <p><i>Please click this <b><a href="https://medium.com/towards-data-science/accelerated-materials-design-using-multi-target-regression-neural-network-and-shapley-values-e3172027bf57" style="color: darkblue">link</a></b> to read about it in detail.</i></p></i></td></tr></table>
+                    
+                    
+                   
+                    <p><b><a href="https://github.com/bjoyita/SHAP_Tutorial/blob/main/MultiOutputRegressor_RF_Norm_k_PF_2.ipynb" style="color: darkblue">Click</a></b> to avail the entire code.</p>
+        <!-- Footer-->
+                  
+        <footer class="border-top">
+          
+   <!--LIKE AND SHARE BUTTONS-->
+
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                                      
+                        <p>
+            <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div>    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+                                    
+        </footer>
+<!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script></article>
+        
+            </body>
+</html>
