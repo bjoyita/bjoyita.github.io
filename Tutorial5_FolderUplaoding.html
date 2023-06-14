@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+          
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+       
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on uploading folders in Google Colab." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Folders, Uploading, Google Colab, Zipped file, Google Drive"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                                          
+                         </header>
+            
+                    
+<!--Title of the blog-->
+                    <h1 align="center"><font face ="verdana", color = "maroon">How to Upload Image Folders in Google Colab  </font></h1>
+                    <center><p> <font face="monospace"><b> by Joyita Bhattacharya</b></font> | <font face="monospace"> posted on June 14, 2023</font></p></center>                                          
+                    <hr size =4 > </p>
+                 <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                    <div class="container position-relative px-2 px-lg-2">
+                          
+              
+                                   
+                        <!--CONTENT-->
+    <p><b>Step 1: Locate and zip the folder/ folders to be loaded on your computer</b></p>
+    <center><img src="assets/Tut5_im/zipfile.jpg" width=100%></center>
+    <p><b>Step 2: Upload the zipped file/ files to your Google Drive</b></p>
+    <p>Click the ‘New’ button on the top-left corner of the drive page and upload the zipped file.</p>
+                    
+                    <center><img src="assets/Tut5_im/drivePg.jpg" width=100%></center>
+                    <p><b>Step 3: Open Google Colab</b></p>
+   
+ <p>Import relevant libraries</p>
+    
+    <pre style="background-color: gainsboro"><code>import tensorflow as tf
+from tensorflow import keras
+from keras.preprocessing.image import ImageDataGenerator</code></pre>
+    <p><b>Step 4: Mount Google Drive </b></p>
+<p>This is required so that Colab can access the required zipped file from Drive.</p>
+
+                        <p><pre style="background-color: gainsboro"><code>from google.colab import drive
+drive.mount('/content/drive')</code></pre>
+                        <p>Once you run the above code, Google Colab will ask for permission to access your Google Drive files. Click on the connect/ allow button to grant access. </p>
+                   
+                        <center><img src="assets/Tut5_im/Connect.jpg" width="100%"></center>
+                    <p>After authorization, you will find ‘My Drive’ mounted on the Colab file system, displayed on the file-explorer pane on the left.</p>
+                    <center><img src="assets/Tut5_im/MyDrive.jpg" width="100%"></center>
+                    <p><b>Step 5: Load and extract the zipped file </b></p>
+                    <p>Import the inbuilt python module called zipfile.</p>
+                    <p><pre style="background-color: gainsboro"><code>import zipfile
+import os</code></pre>
+                    
+                        <p>To load the zipped file, copy the path. A screenshot for the same is shown below.</p>
+                    <center><img src="assets/Tut5_im/Drive_train_path.jpg" width="100%"></center>
+                    <p>Now, extract all files into the /tmp folder of the Google Colab.</p>
+                     <center><img src="assets/Tut5_im/tmp_train_1.jpg" width="100%"></center>
+                    <p><b>Step 6: Load the image folder for the machine learning project</b></p>
+<p>Load the image folder for training using the ImageDataGenerator of Keras.</p>
+                    <center><img src="assets/Tut5_im/LoadImage_ML.jpg" width="100%"></center>
+                        <p><b>Click <a href="https://github.com/bjoyita/Classification_CNN/blob/main/UploadingImageFolders_ML.ipynb"><b><font color=blue>here</font></b></a> to get the code.</b></p>
+
+
+                        
+                        
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                      <!-- ShareThis BEGIN -->
+                        <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                       <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+            
+        </footer>
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+            </body></html>
+                        
+                        
+                        
+                        
+                        

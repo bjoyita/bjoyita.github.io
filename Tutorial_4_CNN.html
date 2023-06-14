@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+          
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+       
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on building CNN model for microstructure classification." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Images, Classification, ultra-high carbon steel, Microstructure, Pearlite, Martensite, Peralite-Spheroidite, Network microstructure, Keras, Convolutional Neural Network (CNN), Convolution layer, Max pooling layer, Parameters, Epoch, Batch size, Prediction"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                                          
+                         </header>
+            
+                    
+<!--Title of the blog-->
+                     <h1 align="center"><font face ="verdana", color = "maroon">Image Classification for Microstructures using Convolutional Neural Network   </font></h1>
+                    <center><p> <font face="monospace"><b> by Joyita Bhattacharya</b></font> | <font face="monospace"> posted on June 14, 2023</font></p></center>                                          
+                    <hr size =4 > </p>
+                 <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+              
+                                   
+                        <!--CONTENT-->
+<p><b>Aim of the tutorial:</b> To demonstrate the coding steps for microstructure (image) classification using Convolutional Neural Network (CNN) – a deep learning algorithm.
+                    <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel. Please find the reference for the dataset <a href="https://materialsdata.nist.gov/handle/11256/940"><b><font color=blue>here</font></b></a>.</p>
+                    <p>I am providing a schematic diagram of the basic framework for machine learning for ease of learning.</p>
+                    
+                    <p><center><img src='assets/T4_Im/ML_overview.jpg' width="100%"><span class="caption text-muted" >Schematic Diagram of a basic ML framework</span></center></p>
+                    <p>I will now walk you through the process of building a deep learning model for image classification.</p>
+                    <p><b>❶ Assigning labels (phase) to the collected microstructures</b>
+                    <p>The given dataset contains four types of microstructures:</p>
+                    <ul>&#10003 Network</ul>
+                    <ul>&#10003 Pearlite_Spheroidite </ul>
+                    <ul>&#10003 Martensite  </ul>
+                    <ul>&#10003 Pearlite   </ul>
+                    <p><b>❷  Identifying the microstructure and splitting the dataset into training and test data  (~80:20)</b>
+                        <p>First, the four types of microstructures of steel, namely network, pearlite-spheroidite, martensite and pearlite, are manually identified from the image dataset. Further, they are grouped and stored in four folders and split into training and test data. A folder structure diagram is shown below for clarity.</p>
+                    <center><img src="assets/T4_Im/Train_test_1.jpg" width=100%></center>
+                    <p><b>❸ Loading the image dataset in Python</b></p>
+                    <p>Begin with <b>importing the relevant Python libraries</b>.</p>
+                        <pre style="background-color: gainsboro"><code>import tensorflow as tf
+from tensorflow import keras
+from keras.preprocessing.image import ImageDataGenerator</code></pre>
+                        
+                    <p>We now need to load the above four folders containing images in Python. For that, I used <a href="https://keras.io/"><b><font color=blue>Keras </font></b></a>, written in Python and used mostly in neural networks.</p>
+                    <p><mark style="background-color: antiquewhite">To load the folders, apply keras.preprocessing.image.ImageDataGenerator class.</mark></p>
+                    <p><b>Training set</b></p>
+                    <!--CODE-->
+                    <pre style="background-color: gainsboro"><code>train_datagen = ImageDataGenerator(rescale = 1./255)
+                                  
+train_set = train_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/MDXp_content/Tutorail4_UHCSD/UHCSD_ML/Data_steel/Train_set/', 
+                                               class_mode='categorical',
+                                               classes = ['Network','Pearlite_Spheroidite','Martensite', 'Pearlite'],
+                                                 target_size = (64, 64),
+                                                 batch_size = 32,
+                                                 color_mode ='grayscale')
+train_set.class_indices
+                            </code></pre>
+                    <p><i>Did you notice the option ‘rescale’ in ImageDataGenerator? <b>‘Rescale’</b> helps in the normalization of image pixels ranging from 0-255 to 0-1 to ease the processing of models. </i></p>
+                    <p><b>Output</b></p>
+                    <pre style="background-color: greenyellow"><code>Found 383 images belonging to 4 classes.
+
+{'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</code></pre>
+                    
+                    <p><b>Test set</b></p>
+                    <pre style="background-color: gainsboro"><code>test_datagen = ImageDataGenerator(rescale = 1./255)
+test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/MDXp_content/Tutorail4_UHCSD/UHCSD_ML/Data_steel/Test_set/',class_mode='categorical',
+                                            classes = ['Network','Pearlite_Spheroidite','Martensite', 'Pearlite'],
+                                            target_size = (64, 64),
+                                            batch_size = 32, color_mode ='grayscale')</code></pre>
+                    <p><b>Output</b></p>
+                    <pre style="background-color: greenyellow"><code>Found 102 images belonging to 4 classes.
+                    </code></pre>
+                    <p><b>❹ Building Convolutional Neural Network (CNN) </b></p>
+                    <p>Aim of the model is to identify or, more appropriately in ML language, <b>‘classify’</b> the micrographs.</p>
+<p>CNN is a deep learning algorithm used for images, and it consists of multiple layers arranged sequentially.</p>
+                    <p><b>Code</b></p>
+                    <pre style="background-color: gainsboro"><code>cnn = tf.keras.models.Sequential()</code></pre>
+                    <p>A graphical representation of a typical CNN architecture will help you understand the coding steps for building the same.</p>
+                    <center><img src="assets/T4_Im/CNN_model_h.jpg" width=80%></center>
+                    <p><b>Layer 1: 2D Convolution layer </b></p>
+<p>Let us begin with a convolution operation on the image matrix (64 x 64) with 3 x 3 filter and reLU (rectified linear unit) activation function.  The convolution of the image matrix with the filter matrix will generate a <b>convolved matrix</b> also known as <b>feature map or activation map
+</b>. As the name suggests, feature map reveals the characteristic features of an image which can be used to demarcate or ‘classify’ different images.</p> 
+<p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p> 
+
+                    <center><img src="assets/T4_Im/Conv2D_math.jpg" width=100%></center>
+                    <p><b>Code</b></p>
+                    <p><pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Conv2D(filters = 64, kernel_size =3, activation = 'relu', input_shape = [64, 64,1]))</code></pre></p>
+                        <p><b>Layer 2: Max Pooling layer</b></p>
+                        <p>Convolution layer is followed by a max pooling layer, where the maximum value of the feature map region coinciding with the kernel/ filter is considered. A graphical representation will help to visulaize this statement more clearly. As we can see, this operation further downsizes  the input matrix.  </p>
+<center><img src="assets/T4_Im/maxpool.jpg" width=75%></center>
+                        <p><b>Code</b></p>
+                        <p><pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.MaxPool2D(pool_size = 2, strides =2))</code></pre>
+                        <p><b>Layer 3 & 4</b></p>
+<p>In a similar way, I introduced the second convolution layer followed by a max pool layer. </p>
+    <p><b>Code</b></p>                    
+<pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Conv2D(filters=64, kernel_size=3, activation='relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))</code></pre>
+                        <p><b>Layer 5: Flatten layer</b></p>
+<p>Inserting this layer converts the max pooled feature maps into a single linear vector.</p>
+                        <pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Flatten())</code></pre>
+                        <p><b>Layer 6 & 7: Dense layers</b></p>
+                        <p>Dense layers are required to classify images. The input of the flattened layer is fed into the dense layers to give the final output.</p> 
+<p>I have arranged two dense or the fully connected layers. The final layer has four output neurons for four classes with softmax activation function which will give the output probability.</p> 
+                        <pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Dense(units = 128, activation ='relu'))
+cnn.add(tf.keras.layers.Dense(units=4, activation='softmax'))</code></pre>
+                        <p><b>Set the optimization algorithm and loss function</b></p>
+                        <p>There are several optimization algorithms in machine learning and deep learning determining the model performance. I have employed the <b>ADAptive Moment</b> estimation algorithm <b>(ADAM)</b> for optimization of the current CNN and the <b>loss function</b> is calculated using <b>cross-entropy loss function</b>. </p>
+                        <p>The loss function is based on the <a href="https://en.wikipedia.org/wiki/Softmax_function" ><b><font color=blue>softmax activation function</font></b></a>, which converts the input vector into a probability distribution. The cross-entropy function evaluates these probabilities by comparing them with their ground truths.</p>
+                        <pre style="background-color: gainsboro"><code>loss_fn = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
+optimizer = tf.keras.optimizers.Adam()</code></pre>
+                        <p><b>Model Summary</b></p>
+                        <p>To view the summary of the constructed CNN model, use <a href="https://keras.io/api/models/model/"><b><font color=blue>summary method</font></b></a> of the model class of Keras.</p>
+                        <pre style="background-color: gainsboro"><code>cnn.summary()</code></pre>
+                        And the corresponding output:
+                        <center><img src="assets/T4_Im/SumTable_1.jpg" width="80%"></center>
+                        
+                        <p>We can get the following information from the model summary table:</p>
+<li>Type of layer</li>
+<li>Total parameters in the constructed CNN model</li> 
+                        <p><i>The calculations for the trainable parameters and output shape of each layer are elucidated in this <a href="file:///C:/Users/saswa/Documents/Joyita_2022/MyWebsiteMDXP/bjoyita.github.io/Tut6_params.html"><font color=blue><b>link</b></font></a>.</i></p>
+                       
+                        <p><b>❺ Fitting and training CNN with training data</b></p>
+<p>The model is finally trained using the training dataset and validated with test data to check for the accuracy of the model and calculate the loss accordingly.</p> 
+                        <p>Here is the coding for the same:</p>
+<pre style="background-color: gainsboro"><code>cnn.fit(x = train_set, validation_data = test_set, epochs = 50)</code></pre>
+                        <b>Snippet of the output</b>
+                        <pre style="background-color: greenyellow"><code>Epoch 1/50
+12/12 [==============================] - 3s 203ms/step - loss: 1.3413 - accuracy: 0.3922 - val_loss: 1.2195 - val_accuracy: 0.4216
+Epoch 2/50
+12/12 [==============================] - 1s 107ms/step - loss: 1.1126 - accuracy: 0.5332 - val_loss: 1.1015 - val_accuracy: 0.5196
+Epoch 3/50
+12/12 [==============================] - 1s 108ms/step - loss: 0.9976 - accuracy: 0.5755 - val_loss: 1.1248 - val_accuracy: 0.4608
+Epoch 4/50
+12/12 [==============================] - 1s 109ms/step - loss: 0.9533 - accuracy: 0.6044 - val_loss: 1.1439 - val_accuracy: 0.5196
+Epoch 5/50
+12/12 [==============================] - 1s 106ms/step - loss: 0.9095 - accuracy: 0.6343 - val_loss: 1.0869 - val_accuracy: 0.5000
+Epoch 6/50
+12/12 [==============================] - 1s 110ms/step - loss: 0.8433 - accuracy: 0.6880 - val_loss: 0.9997 - val_accuracy: 0.5392</code></pre>
+                        <p><b>Understanding important coding terms </b></p>
+<p>You will notice that I used 50 epochs during training the model. The question which immediately pops into our mind is <b>what is an epoch?</b></p>
+                        <p>In simple words, an epoch is dataset iterations. <mark style="background-color: antiquewhite">In one epoch, the entire dataset is passed forward and backward through the neural network for updating weights and biases required for minimization of error and thereby enhancing the accuracy of the predictive model.</mark></p>
+<p>In this particular case, we observe that the whole training dataset is being run <b>12 times (iterations) in each epoch</b>. Let me explain why the model has taken 12 repetitions.</p>
+                        <p>We have seen that the training dataset consists of 383 images or data points. I assigned a value of 32 to the <b>“batch_size”</b> while loading the dataset. This means only 32 out of 383 data will be passed at a time through the neural network. In this way, the whole dataset set is divided into 12 batches (383 ÷ 32). This calculation justifies 12 iterations in one epoch in the discussed model.</p>
+                        <p>Below is the schematic diagram portraying the concept of an epoch, batch size, and iteration for understanding.  </p>
+                        <p><center><img src='assets/T4_Im/Epoch.jpg' width='80%'></center></p>
+                        <p>Validation data is used to evaluate the loss at the end of each epoch.</p>
+                        
+                        <p><b>❻ Making Predictions</b></p>
+<p>Finally, we use the predict method to make prediction for an unknown data. Let’s try to predict an untrained network microstructure using the above trained CNN model. 
+    <p><center><img src='assets/T4_Im/unknown.jpg' width='60%'><span class="caption text-muted" >Untrained network microstructure</span></center></p>
+    
+    
+    <p>The snapshot of coding for loading an unknown image data and predicting its class is displayed below:</p>
+                        
+                        <pre style="background-color: gainsboro"><code>import numpy as np
+from keras.preprocessing import image
+from keras_preprocessing.image import load_img
+from keras_preprocessing.image import img_to_array
+#from tensorflow.keras.utils import load_img
+#from tensorflow.keras.utils import img_to_array
+test_image = load_img('/Users/saswa/Documents/Joyita_2023/MDXp_content/Tutorail4_UHCSD/UHCSD_ML/Data_steel/single_prediction/net.tif', target_size = (64, 64),color_mode = 'grayscale')
+test_image = img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)                  
+result = (cnn.predict(test_image) > 0.3).astype('int')
+print(result)
+train_set.class_indices
+
+# >0.3 is the decision threshold of predictions</code></pre>
+                        <p><b>Output</b></p>
+                        <pre style="background-color: greenyellow"><code>[[1 0 0 0]]
+
+{'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</code></pre>
+                        <p><i><u>Explaining the prediction output  </u></i></p>
+<p>The <b>entire image dataset is divided into four classes</b> stored as a python dictionary with key-value pair. </p>
+
+<p><b>{'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</b></p>
+
+<p><b>The prediction output is [[1 0 0 0]].</b>I converted the <b>prediction probability</b> into a <b>crisp binary prediction</b> by applying <b>astype(int) method of pandas</b> where <b>1</b> and <b>0</b> represents <b>true</b> and <b>false</b> repectively. So you can read the result as [true false false false].</p>
+<p>The <b>first class</b> in the dictionary is <b>‘Network’</b> and the <b>prediction of 1 indicates correct</b> output unlike the other three classes where the prediction output is 0 indicating their absence or non-occurance. Thus, the model could correctly classify the unknown microstructure as network.  </p>
+
+
+                        <p><b>Wrapping up</b></p>
+                        <p> Click <a href="https://github.com/bjoyita/Classification_CNN/blob/main/Classification_UHCSD.ipynb"><b><font color=blue>here</font></b></a> to avail the entire code.</p>
+                            <p>Links to get the training and test images:</p>
+                            <p><a href="https://drive.google.com/file/d/1niyqEXH4KpRtMv4Nd0-sVmyYRL8Rkq7F/view?usp=sharing"><b><font color = blue>Training set</font></b></a></p>
+                            <p><a href="https://drive.google.com/file/d/1xYNdmcpHlvcg4w1nvo4HAyE97Akh1eh3/view?usp=sharing"><b><font color = blue>Test set</font></b></a></p>
+                      
+                            <p><i><font color=maroon>Note that I used Jupyter Notebook to run this code. The same code can be run in Google Colab.  However, in the latter environment, loading image folders require a few more lines of code. Please take a look at my <a href="file:///C:/Users/saswa/Documents/Joyita_2022/MyWebsiteMDXP/bjoyita.github.io/Tutorial5_FolderUplaoding.html"><b><font color=blue>tutorial </font></b></a> on the same.
+                            </font></i></p>
+
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                      <!-- ShareThis BEGIN -->
+                        <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                       <p>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div></p>
+                    </div>
+            
+        </footer>
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+            </body></html>
+                        
+                        
+                        
+                        
+                        
