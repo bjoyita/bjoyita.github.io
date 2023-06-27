@@ -3,17 +3,20 @@
     <head>
         <meta charset="utf-8" />
       
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--MEDIA-->          
 <style>
         .column {
   width:100%;
 }
 
-@media  (min-width: 1000px) {
+@media (min-width: 400px) {
   .text {
      font-size: 12 px;
   }
+    .column{
+        width: 50%;
+    }
 }
         </style>
 
@@ -42,18 +45,22 @@
     </head>
     
         <!-- Navigation-->
-         <body>
+        <body>
         <nav class="navbar navbar-expand-lg navbar-light " id="mainNav">
-                                                             
-            <top><img src ="assets/img/logo_mdxp.png" width="8%"></top>
-           <div class="container px-4 px-lg-5">
+                                                   
+                <top><img src ="assets/img/logo_mdxp.png" width="8%"></top>
+            
+            <div class="container px-12 px-lg-12">      
+           
                                   
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars">Content</i>
-                </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Content
+                
+        
+        <i class="fas fa-bars"></i></button>
                
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
                                              
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a></li>
@@ -66,9 +73,11 @@
     
         <!-- Page Header-->
         <header class="masthead" style="background-image: url('assets/img/Myhome_bg.jpg')">
-            <div class="container position-relative px-12 px-lg-12">
+           
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-12 gx-lg-12 justify-content-center">
-                    <div class="col-sm-12 col-md-8 col-lg-9 col-xl-7">
+                    <div class="col-xs-12 col-md-8 col-lg-9 col-xl-7">
                         
                         <div class="site-heading">
                             <h1>Materials Data Expl&#128270;rer </h1>
@@ -85,7 +94,8 @@
         </header>
             
                 <!-- Main Content-->
-           <style>
+         
+    <style>
 * {
   box-sizing:border-box;
 }
@@ -230,22 +240,21 @@ input[type=submit]:hover {
   opacity: 0.8;
 }
 </style>
-<div class="container" style="align-content:space-around"><div class="row">
-                          
+
+       <div class="container">                   
                                                    
-                        <center><h4><u>Join my Newsletter</u></h4></center>
-                              <center><h5><font color="darkgreen" type='Times'><i>To stay tuned for the latest posts</i></font></h5></center>
-                              <p><form action="/action_page.php">
+    <center><h4><u>Join my Newsletter</u></h4></center>
+    <center><h5><font color="darkgreen" type='Times'><i>To stay tuned for the latest posts</i></font></h5></center>
+           
+    <p><form action="/action_page.php">
   
-                             <div class="container"><font size=4>
-                                 <input type="text" placeholder="First name" name="Name" required></font></div>
+    <font size=4>
+    <input type="text" placeholder="First name" name="Name" required></font>
           
-                              <div class="container"><font size=4><input type="text" placeholder="Email address" name="mail" required></font></div>
-      <div class="container"><b><input type="submit" value="Subscribe"></b></div>
-                             
-                          </form>
-    </div></div></div></div></div>
-                                 
+           <font size=4><input type="text" placeholder="Email address" name="mail" required></font>
+           <b><input type="submit" value="Subscribe"></b>                         </form></div></div></div></div>
+
+                              
                  
           
                            
