@@ -4,7 +4,8 @@
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
         
              <!--MEDIA-->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes"  />
+        <meta name="viewport" content="width=device-width, initial-scale=1"  />
+<!--
         <style>
         .column {
   width: 50%;
@@ -16,6 +17,7 @@
   }
 }
         </style>
+-->
        <meta name="description" content="Blog post explaining Fourier transform of images in details." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Fourier Transform, Deconvolving, Fourier series, Digital image, Discrete Fourier transform, Inverse Fourier transform, Fast Fourier transform, Amplitude, sinusoidal, signal, Nyquist frequency, Fourier space, real space" />
@@ -59,14 +61,30 @@
                 <div class="row gx-4 gx-lg-5 justify-content-left">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         
-                      </header>
+                    </div></div></div></header>
                     
                     <!--Title of the blog-->
+        <style>
+        .column {
+  width:100%;
+}
+@media only screen 
+  and (min-device-width: 280px)
+  and (min-device-width: 340px) 
+  and (max-device-width: 1170px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) 
+  and (orientation: landscape)
+  {
+    }
+        </style>
 <p><h1 align = center><font face ="verdana", color = "maroon">Fourier Transforms Made Easy</font></h1> 
                     <p><center><subtitle><i>Deconvolving Fourier transform of images into explainable steps</i></subtitle></center></p>
                     <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
                     
-                    <hr size =4 > </p>
+                    <hr size =4 > 
+        
+                          
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -183,11 +201,11 @@ plt.show()</code></pre>
             
 <p>We then employ the <i>fft. fftshift</i> function of numpy to modify the spectrum now spanning from -N/2 to + N/2 in both x (kₓ) and y (kᵧ) directions with F(0,0) or the DC (direct current) component at the center.</p>
    
-          <center><img src='assets/img/fftshift1.jpg' height="300" width="400" > <span class="caption text-muted" align = center>Code output</span></center>  
+          <center><img src='assets/img/fftshift1.jpg' width=60% > <span class="caption text-muted" align = center>Code output</span></center>  
                
             <p>For better clarity and visual understanding, I have illustrated the centering of the F(0,0) process in this diagram.</p>
              
-            <center><img src='assets/img/fftshift_m.jpg' height="400" width="700"> <span class="caption text-muted" align = center>Illustration by author displaying the shifting of the center of the spectrum</span></center>
+            <center><img src='assets/img/fftshift_m.jpg' width=80%> <span class="caption text-muted" align = center>Illustration by author displaying the shifting of the center of the spectrum</span></center>
              
             <p>The red dots are the corresponding negative values of F(kₓ, kᵧ). Since the image function is periodic, it repeats itself in all directions generating pairs of symmetrically positioned Fourier values in the frequency (Fourier) domain. This example shows two sets of F(kₓ, kᵧ) values symmetrically placed around F(0,0).</p>
                     
