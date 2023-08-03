@@ -261,8 +261,39 @@ input[type=submit]:hover {
                                                    
                               <p><center><h4><font color="darkgreen">Join my Newsletter </font></h4></center></p>
                               
-           <center><p><i><font size=4>Subscription option coming soon! </font></i></p></center></div></div></div></div></div>                                          
-    
+<!--           <center><p><i><font size=4>Subscription option coming soon! </font></i></p></center></div></div></div></div></div>                                          -->
+  
+            
+<!--            SUBSCRIPTION FOR NEWSLETTER-->
+            
+            <form name='submit-to-google-sheet'>
+<div class="container"><font size=3>
+ <input type="text" placeholder="Name" name="Name" required></font></div>
+<div class="container"><font size=3><input type="text" placeholder="Email" name="Email" required></font></div>
+    <div class="container"><font size=3><b><input type="submit" value="Subscribe"></b></font></div>
+        </form>
+   <center><b><font color='darkblue' face=monospace><i><span id="msg"></span></i></font></b></center></div></div></div>
+          
+               <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx4hCXvDOlEFwNWjj7U69BknbFQQ3HcnJMYV0y0T_VpST3HFtgqMXXPMiXAm7xqMCex3Q/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg") 
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {msg.innerHTML="Thank you for subscribing!"
+                         setTimeout(function(){
+                             msg.innerHTML=""
+                         },6000)
+                         form.reset()
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+            
+            
 <!--     <form action="/action_page.php">-->
   
 <!--    <font size=4>-->
