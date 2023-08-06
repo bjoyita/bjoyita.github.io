@@ -135,17 +135,17 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
             
                         <p>Images contain <b>spatial information instead of time</b>. A digital image is composed of basic units called pixels, and each pixel is assigned a particular value of intensity varying between 0 and 255. An image's spatial domain houses information on pixel intensity variation with spatial coordinates. We apply the transform operator over fixed points or pixels on the image to retrieve frequencies and phase spectra. This operation is called <b>Discrete Fourier Transform (DFT)</b>.</p>
                         <p><b>Understanding the process in the spatial domain</b></p>
-                <p>🗸Consider a simple periodic 1D sine function with eight evenly spaced points/ samples (N).</p>
+                <p>&check;Consider a simple periodic 1D sine function with eight evenly spaced points/ samples (N).</p>
                         <center><img src ="assets/img/eq3.jpg" width=40%></center> 
                 
                 <p>&check; Apply DFT</p>
 <p>We will now apply DFT to f(x) to convert it to the frequency domain.</p>
                 <center><img src ="assets/img/eq4.jpg"  width="80%"></center>
             <p>Hence, we need to multiply the real space function f(x) with the exponential term to get the frequency values (k) in the Fourier space. The mathematical steps are as follows:</p>
-                        <p>🗸Replace f(x) with sin (π/4 x),</p>
+                        <p>&check;Replace f(x) with sin (π/4 x),</p>
                         
                         <center><img src ="assets/img/eq5_1.jpg"  width="80%"></center>
-                         <p>🗸 Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1 = 8–1 =7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
+                         <p>&check; Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1 = 8–1 =7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
                <center><img src ="assets/img/eq6.jpg"  width=80%></center>
             <p>Similarly, we calculate the other frequency terms in Fourier space. The table below shows their complex values and absolute values.</p>
              <left><img src ="assets/img/table.jpg"  width="80%"></left>
