@@ -16,10 +16,10 @@
   }
 }
         </style>
-          <meta name="description" content="Blog post on extraction of materials data usig Matminer and Pymatgen." />
+          <meta name="description" content="Blog post on extraction of materials data usig Matminer and Pymatgen."/>
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Materials Data, mining, PSPP linkages, Materials Tetrahedron, Python libraries, machine learning, Matminer, Pymatgen, Processing, structural, physical, mechanical, Composition, Reduction, Dimensionality, featurizers, ElementFraction "/>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.icon" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -27,7 +27,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
+                                                    </head>
     <body>
         <!-- Navigation-->
         
@@ -82,7 +82,7 @@
     <h2> Introduction</h2>
     <p>The usage of different types of devices is an integral part of our everyday life. And these devices are made of myriad combinations of elements forming materials for daily applications. Materials scientists are engaged with the processing of these materials and studying their structures and properties. For example, to develop a new semiconductor, a materials scientist requires to choose the most optimized combination of ingredients from the palette of elements in the Periodic table so that the new semiconductor has the right set of properties.</p>
 
-                        <p>Moreover, performance of a material depends on the trinity of Processing conditions, Structure that spans from electronic scale to macro-scale, and its various structural and functional Properties . Thus, materials scientists have come up with the concept of <a href="https://www.e-education.psu.edu/matse81/node/2094"><font color=blue>“Materials Tetrahedron” </font></a>where the vertices represent Processing, Structure, Properties and Performance, and the lines connecting these vertices denote interrelations between them. These interconnections are also termed as <a href="https://aip.scitation.org/doi/10.1063/1.4946894"><font color=blue>PSPP linkages</font></a>.</p>
+                        <p>Moreover, performance of a material depends on the trinity of Processing conditions, Structure that spans from electronic scale to macro-scale, and its various structural and functional Properties . Thus, materials scientists have come up with the concept of <a href="https://www.e-education.psu.edu/matse81/node/2094"><font color=blue>'Materials Tetrahedron' </font></a>where the vertices represent Processing, Structure, Properties and Performance, and the lines connecting these vertices denote interrelations between them. These interconnections are also termed as <a href="https://aip.scitation.org/doi/10.1063/1.4946894"><font color=blue>PSPP linkages</font></a>.</p>
 
 <p>A comprehensive library of discovered materials with their PSPP linkages will immensely benefit the materials scientists and engineers who aim to design the next super materials such as a battery more efficient than the existing lithium ion battery or a car lighter and stronger than the new Tesla cars.</p>
 
@@ -96,7 +96,7 @@
     <p>Materials data comprise a wide spectrum of descriptors. These include<ul>
 
         <li><b>Processing conditions</b>: <i>Compositions with constituent elements, Temperature, Pressure, Heating and Cooling Rates, Relative Humidity, etc.</i></li>
-                        <li><b>Structural information</b>: <i>Arrangement of atoms or crystal structure, Microstructural and Textural patterns across length scales spanning between few <a href="https://en.wikipedia.org/wiki/Angstrom"><font color=blue>Angstroms</font></a> (1 Angstrom = 10⁻¹⁰ m) and few hundreds of <a href="https://en.wikipedia.org/wiki/Micrometre"><font color=blue>microns</font></a>  (1 micron = 10⁻⁶ m).</i></li>
+                        <li><b>Structural information</b>: <i>Arrangement of atoms or crystal structure, Microstructural and Textural patterns across length scales spanning between few <a href="https://en.wikipedia.org/wiki/Angstrom"><font color=blue>Angstroms</font></a> (1 Angstrom = 10<sup>-10</sup> m) and few hundreds of <a href="https://en.wikipedia.org/wiki/Micrometre"><font color=blue>microns</font></a>  (1 micron = 10<sup>-6</sup> m).</i></li>
         <li><b>Physical properties</b>: <i>Density, Viscosity, Refractive index, Thermal and Electrical conductivity and so on.</i></li>
         <li><b>Mechanical properties</b>: <i>Toughness, Hardness, Yield strength, Elastic Stiffness, Fracture toughness, Ductility, Hardness and others.</i></li>
                         </ul>
@@ -104,9 +104,9 @@
 <p>The target or the response is usually the property dictating the overall performance of the material.</p>
 
                         <p>Mining important features from a given dataset is the most critical and challenging step for developing a robust data-driven model. Otherwise, the model will follow the <a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out"><font color=blue>GIGO (Garbage-In-Garbage-Out)</font></a> rule.</p>
-<p>We can show the importance of featurization in materials datasets using a very simple example. Let us consider a dataset containing chemical formulae of several materials and their densities. A chemical formula is represented by a combination of elements and their atomic proportions. For example, the chemical formula (AᵢBⱼCₖDₗ) contains four elements A, B, C and D where their corresponding subscripts i, j, k and l represent the number of atoms of each element. For instance, the formula of water is H₂O which implies 2 atoms of hydrogen (H is the element symbol) and 1 atom of oxygen (denoted by the symbol O).</p>
+<p>We can show the importance of featurization in materials datasets using a very simple example. Let us consider a dataset containing chemical formulae of several materials and their densities. A chemical formula is represented by a combination of elements and their atomic proportions. For example, the chemical formula (A<sub>i</sub>B<sub>j</sub>C<sub>k</sub>D<sub>l</sub>) contains four elements A, B, C and D where their corresponding subscripts i, j, k and l represent the number of atoms of each element. For instance, the formula of water is H<sub>2</sub>O which implies 2 atoms of hydrogen (H is the element symbol) and 1 atom of oxygen (denoted by the symbol O).</p>
 
-<p>Now, to understand the correlations between features and design a super-dense material from such data, we need to unearth the contribution of each element on density. These individual elemental contributions become features (descriptors) for the prediction of the target variable — density in this example. Hence, it is required to split the formula into its individual constituents (or elements) along with their corresponding amount. There is no direct way to achieve this task in the conventional ML technique such as encoding. However, thanks to the <b>Python-based materials libraries, Pymatgen and Matminer</b>, which helps in reaching this goal.</p>
+<p>Now, to understand the correlations between features and design a super-dense material from such data, we need to unearth the contribution of each element on density. These individual elemental contributions become features (descriptors) for the prediction of the target variable-density in this example. Hence, it is required to split the formula into its individual constituents (or elements) along with their corresponding amount. There is no direct way to achieve this task in the conventional ML technique such as encoding. However, thanks to the <b>Python-based materials libraries, Pymatgen and Matminer</b>, which helps in reaching this goal.</p>
 
 <p>In this article, I will demonstrate how to import constituent elements and their amount from formulae with the aid of the mentioned materials libraries.</p>
                         <h3>A Step-by-Step Guide to Preprocessing</h3>
@@ -154,7 +154,7 @@ pip install matminer</code></pre>
 
 <b>Step 4: Mapping elements and their amount using Pymatgen</b>
 
-<p>Composition class of pymatgen splits each and every formula, in the given dataset, into constituent elements and their amount. Let’s take the first formula, Ca0.98Bi0.02Mn0.98Nb0.02O3.0, in column 1, row 1 :</p>
+<p>Composition class of pymatgen splits each and every formula, in the given dataset, into constituent elements and their amount. Let's take the first formula, Ca0.98Bi0.02Mn0.98Nb0.02O3.0, in column 1, row 1 :</p>
 <center><img src ='assets/img/formulaExample.jpg' width=100%></center>
 <span class="caption text-muted"> Mapping of each element and its amount</span> 
                         
@@ -180,7 +180,7 @@ ds_PF_ZT</code></pre>
      <span class="caption text-muted">Output snippet </span></p>
      <p><b>Step 5: Calculation of atomic fraction using ElementFraction class</b></p>
 
-<p>We now need to add the individual element along with its atomic fraction in the Dataframe to be subjected to machine learning. A class in matminer.featurizers.composition named “ElementFraction” serves the said intent.</p>
+<p>We now need to add the individual element along with its atomic fraction in the Dataframe to be subjected to machine learning. A class in matminer.featurizers.composition named 'ElementFraction' serves the said intent.</p>
 
 <!--CODE-->
 <pre style="background-color:gainsboro"><code class="language-python">from matminer.featurizers.composition import ElementFraction
@@ -191,7 +191,7 @@ ef = ElementFraction()</code></pre>
 ds_PF_ZT</code></pre>
 <p><center><img src ='assets/img/InkedMoreColumns_1_LI.jpg' width=100%></center>
 <span class="caption text-muted">Output snippet </span></p>
-<p>Let me elaborate on element fraction calculation. Let’s consider the very first composition (in the formula column of the given dataset). The composition,Ca0.98Bi0.02Mn0.98Nb0.02O3.0, has five elements: Ca (calcium), Bi (bismuth), Mn (manganese), Nb (niobium), and O (oxygen). The amount of Ca present in the formula is 0.98, and the element fraction of Ca is calculated by taking into account the amount of other elements present in the formula. Hence, element fraction of Ca is 0.196 ((0⋅98)/(0.98+0.02+0.98+0.02+3.0) ). Similarly, element fractions of Bi, Mn, Nb, and O are 0.004, 0.196, 0.004, and 0.6 respectively. The element fraction of the rest of the elements, for this formula, in the periodic table remains zero.</p>
+<p>Let me elaborate on element fraction calculation. Let's consider the very first composition (in the formula column of the given dataset). The composition,Ca0.98Bi0.02Mn0.98Nb0.02O3.0, has five elements: Ca (calcium), Bi (bismuth), Mn (manganese), Nb (niobium), and O (oxygen). The amount of Ca present in the formula is 0.98, and the element fraction of Ca is calculated by taking into account the amount of other elements present in the formula. Hence, element fraction of Ca is 0.196 ((0⋅98)/(0.98+0.02+0.98+0.02+3.0) ). Similarly, element fractions of Bi, Mn, Nb, and O are 0.004, 0.196, 0.004, and 0.6 respectively. The element fraction of the rest of the elements, for this formula, in the periodic table remains zero.</p>
 
 <b>Step 6: Reduction in Dimensionality and display of final, clean, preprocessed data</b>
             
@@ -211,11 +211,12 @@ ds_PF_ZT</code></pre>
 
 <b>Concluding Remarks</b>
 
-<p>In the contemporary world, “data is the new oil” — a phrase coined by a British mathematician Clive Humby. Hence, mining this treasure to get maximum useful latent information is necessary for technological advancement. From a materials science perspective, numerous materials attributes, processing parameters, and elemental contributions form a complete dataset. These details constitute a part of materials informatics which play an enormous role in the discovery of new high-performance materials. Uncovering the role of constituent elements on material properties is a crucial but tricky job. Matminer and Pymatgen have made this task easier. Here I described the usage of a few relevant modules of these materials libraries to gather elemental information from the original dataset. I hope this article is informative, especially for engineers and scientists working on the design and discovery of new materials.</p>
+<p>In the contemporary world, 'data is the new oil' — a phrase coined by a British mathematician Clive Humby. Hence, mining this treasure to get maximum useful latent information is necessary for technological advancement. From a materials science perspective, numerous materials attributes, processing parameters, and elemental contributions form a complete dataset. These details constitute a part of materials informatics which play an enormous role in the discovery of new high-performance materials. Uncovering the role of constituent elements on material properties is a crucial but tricky job. Matminer and Pymatgen have made this task easier. Here I described the usage of a few relevant modules of these materials libraries to gather elemental information from the original dataset. I hope this article is informative, especially for engineers and scientists working on the design and discovery of new materials.</p>
 
-Please feel free to connect if you need any clarifications and do share your feedback and suggestions.
+<p>Please feel free to connect if you need any clarifications and do share your feedback and suggestions.</p>
 
 <p>Thank you for reading!</p>
+                                                                                                                      
                          <!-- Footer-->
         <footer class="border-top">
          
