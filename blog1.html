@@ -117,13 +117,13 @@ Let us start by addressing the most fundamental question:
         <center><img src = "assets/img/SineWave.jpg">
                 <span class="caption text-muted" >Periodic sine wave</span></center>
                         </p>   
-                    <p>As shown graphically, this function repeats at an interval of 2π. This time interval is termed a <b>'period or cycle.'</b> <b>Frequency</b> is the inverse of a period. We encounter such time-dependent periodic functions as electrical, audio, and radio signals in our daily lives. Moreover, signals can also be space-dependent, for example, an image.</p>
+                    <p>As shown graphically, this function repeats at an interval of 2&pi;. This time interval is termed a <b>'period or cycle.'</b> <b>Frequency</b> is the inverse of a period. We encounter such time-dependent periodic functions as electrical, audio, and radio signals in our daily lives. Moreover, signals can also be space-dependent, for example, an image.</p>
              
 <p>The <b>Fourier transform</b> is applied to the series to extract the frequency, amplitude, and phase information of these signals. In other words, this operation transforms a <b>signal in the time domain into the frequency domain.</b> The below equation represents the 1D Fourier transform of time-dependent function f(t):</p>
                         <center><img src = "assets/img/e1.png" width=50%></center> 
 
             <p>Where F(k) is a function of frequency, k; j is the imaginary number.
-The equation denotes the <b>continuous Fourier transform </b>since the frequency and time variables are continuous-valued, varying from -∞ to +∞.
+The equation denotes the <b>continuous Fourier transform </b>since the frequency and time variables are continuous-valued, varying from -&infin;to +&infin;.
 Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                 
                         <center><img src = "assets/img/Euler.jpg" width=100%></center>
@@ -199,7 +199,7 @@ plt.show()</code></pre>
             
             <p>The bright spots in Fourier space represent the high amplitude and low frequency, while the dark regions denote the low amplitude and high-frequency area.</p>
             
-<p>We then employ the <i>fft. fftshift</i> function of numpy to modify the spectrum now spanning from -N/2 to + N/2 in both x (kₓ) and y (kᵧ) directions with F(0,0) or the DC (direct current) component at the center.</p>
+<p>We then employ the <i>fft. fftshift</i> function of numpy to modify the spectrum now spanning from -N/2 to + N/2 in both x (k<sub></sub>) and y (k<sub>y</sub>) directions with F(0,0) or the DC (direct current) component at the center.</p>
    
           <center><img src='assets/img/fftshift1.jpg' width=60% > <span class="caption text-muted" align = center>Code output</span></center>  
                
