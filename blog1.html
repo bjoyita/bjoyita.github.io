@@ -145,7 +145,7 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                         <p>&check;Replace f(x) with sin (π/4 x),</p>
                         
                         <center><img src ="assets/img/eq5_1.jpg"  width="80%"></center>
-                         <p>&check; Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1 = 8–1 =7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
+                         <p>&check; Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1=8-1=7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
                <center><img src ="assets/img/eq6.jpg"  width=80%></center>
             <p>Similarly, we calculate the other frequency terms in Fourier space. The table below shows their complex values and absolute values.</p>
              <left><img src ="assets/img/table.jpg"  width="80%"></left>
@@ -180,7 +180,7 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
                 <center><img src ='assets/img/DFT.jpg'  width ='100%'></center>
              
             
-            <p>Since Fast Fourier Transform (FFT) significantly reduces the computational time, we employ this algorithm to compute discrete Fourier transform (DFT). In general, for a 1D FFT of size N, the <a href="https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Introductory_Electrical_Engineering/Electrical_Engineering_(Johnson)/05%3A_Digital_Signal_Processing/5.08%3A_DFT_-_Computational_Complexity">computational complexity </a>is proportional to O(Nlog₂N) [O stands for order] as compared to O(N²) in DFT. Note that 'complexity' here indicates <i>the number of computational steps required for processing.</i></p>
+            <p>Since Fast Fourier Transform (FFT) significantly reduces the computational time, we employ this algorithm to compute discrete Fourier transform (DFT). In general, for a 1D FFT of size N, the <a href="https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Introductory_Electrical_Engineering/Electrical_Engineering_(Johnson)/05%3A_Digital_Signal_Processing/5.08%3A_DFT_-_Computational_Complexity">computational complexity </a>is proportional to O(Nlog<sub>2</sub>N) [O stands for order] as compared to O(N<sup>2</sup>) in DFT. Note that 'complexity' here indicates <i>the number of computational steps required for processing.</i></p>
             
                 <p>The code block and the output are displayed.</p>
                     
@@ -193,7 +193,7 @@ plt.show()</code></pre>
 <center><img src ="assets/img/fft_im_resized.jpg" width=60% >
             <span class="caption text-muted" align = center>Output after Fourier transform</span></center>
             
-                    <p></p>Please note that the output is the <b>amplitude/ magnitude </b>spectrum obtained by multiplying the image function with the absolute value of the complex number. Interestingly, we observe that this amplitude spectrum has four off-centered bright spots located at the edges. I have used the term 'off-centered' since the spectrum's origin (0) lies on the top leftmost corner with positive kₓ, rightward, and positive kᵧ downward, as shown in the spectrum. These four spots are the four positive Fourier transform values F(kₓ, kᵧ) of the input function. Due to the conjugate symmetry, every positive value in the Fourier space will have a negative counterpart.</p>
+                    <p></p>Please note that the output is the <b>amplitude/ magnitude </b>spectrum obtained by multiplying the image function with the absolute value of the complex number. Interestingly, we observe that this amplitude spectrum has four off-centered bright spots located at the edges. I have used the term 'off-centered' since the spectrum's origin (0) lies on the top leftmost corner with positive k<sub>x</sub>, rightward, and positive k<sub>y</sub> downward, as shown in the spectrum. These four spots are the four positive Fourier transform values F(k<sub>x</sub>, k<sub>y</sub>) of the input function. Due to the conjugate symmetry, every positive value in the Fourier space will have a negative counterpart.</p>
            <center><img src='assets/img/conjugate.jpg' width="100%"></center>
             
             
@@ -207,7 +207,7 @@ plt.show()</code></pre>
              
             <center><img src='assets/img/fftshift_m.jpg' width=80%> <span class="caption text-muted" align = center>Illustration by author displaying the shifting of the center of the spectrum</span></center>
              
-            <p>The red dots are the corresponding negative values of F(kₓ, kᵧ). Since the image function is periodic, it repeats itself in all directions generating pairs of symmetrically positioned Fourier values in the frequency (Fourier) domain. This example shows two sets of F(kₓ, kᵧ) values symmetrically placed around F(0,0).</p>
+            <p>The red dots are the corresponding negative values of F(k<sub>x</sub>, k<sub>y</sub>). Since the image function is periodic, it repeats itself in all directions generating pairs of symmetrically positioned Fourier values in the frequency (Fourier) domain. This example shows two sets of F(k<sub>x</sub>, k<sub>y</sub>) values symmetrically placed around F(0,0).</p>
                     
                     
         
@@ -216,13 +216,13 @@ plt.show()</code></pre>
                     
            <h2 class='section-heading'>Key points to remember</h2>
 <p>
-                <ul>🗸Any <b>signal</b>, including image, has wave-like characteristics comprising <b>umpteen sinusoidal components</b>.</ul>
-                <ul>🗸 One can extract <b>frequencies, amplitude, and phase information</b> by deconvoluting these components using Fourier transform operation.</ul>
-                <ul>🗸 Information gathered from this operation is widely used in <b>signal analysis, image processing,</b> and <b>image compression</b>, to quote a few.</ul>
+                <ul>&check; Any <b>signal</b>, including image, has wave-like characteristics comprising <b>umpteen sinusoidal components</b>.</ul>
+                <ul>&check; One can extract <b>frequencies, amplitude, and phase information</b> by deconvoluting these components using Fourier transform operation.</ul>
+                <ul>&check; Information gathered from this operation is widely used in <b>signal analysis, image processing,</b> and <b>image compression</b>, to quote a few.</ul>
 <ul>🗸Fourier transform projects a periodic function from real space to frequency space.</ul>
-                <ul>🗸 In the case of time-dependent signals, we convert the signal <b>from the time domain into the frequency domain</b>. While in an <b>image</b>, this operation is from the <b>spatial domain</b>, associated with pixel location and intensity values, to the corresponding <b>frequency or Fourier domain</b>.</ul>
-                <ul>🗸The calculated Fourier transform values are <b>complex numbers</b>. Hence, we obtain the absolute values to generate the <b>amplitude spectrum</b> of the corresponding function. Moreover, with the inverse tangent of the complex number, one can plot the phase spectrum.</ul>
-                <ul>🗸 <b>Inverse Fourier transform</b> operation recovers the original signal from the frequency space.</ul>
+                <ul>&check; In the case of time-dependent signals, we convert the signal <b>from the time domain into the frequency domain</b>. While in an <b>image</b>, this operation is from the <b>spatial domain</b>, associated with pixel location and intensity values, to the corresponding <b>frequency or Fourier domain</b>.</ul>
+                <ul>&check;The calculated Fourier transform values are <b>complex numbers</b>. Hence, we obtain the absolute values to generate the <b>amplitude spectrum</b> of the corresponding function. Moreover, with the inverse tangent of the complex number, one can plot the phase spectrum.</ul>
+                <ul>&check; <b>Inverse Fourier transform</b> operation recovers the original signal from the frequency space.</ul>
                 </p>
                 </section>
 <p><i>Knowing a concept is the first step toward productivity. Fourier transform is one such complex topic where understanding each step is necessary when it comes to coding or otherwise. This post aimed to clarify each step of the transform, and I sincerely hope readers find it helpful and understandable.</i></p>
