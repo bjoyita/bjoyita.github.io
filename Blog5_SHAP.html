@@ -113,9 +113,9 @@
                         '>previous article</a></b>. A snippet of the refined dataset, ready for training, is shown below. </p>
                     <center><img src="assets/img/DATASET.jpeg" width = 100%></center><span class="caption text-muted"> Preprocessed dataset</span>
                     <p><h5>Defining Xs (Features/ Descriptors) and y (Response/ Target)</h5>
-                    <p>Here, 49 features/ descriptors** are designated as X which are individual elements constituting the formulae. Note that this dataset involves two responses/targets-&sigma; and &kappa;  designated as y_sigma and y_kappa respectively. The said targets are the determiners of the performance of thermoelectrics, as highlighted in the ‘About Thermoelectrics’ section. I have conducted two separate trainings with the same input parameters (X) but different targets (y_sigma and y_kappa). </p>
+                    <p>Here, 49 features/ descriptors** are designated as X which are individual elements constituting the formulae. Note that this dataset involves two responses/targets-&sigma; and &kappa;  designated as y_sigma and y_kappa respectively. The said targets are the determiners of the performance of thermoelectrics, as highlighted in the 'About Thermoelectrics' section. I have conducted two separate trainings with the same input parameters (X) but different targets (y_sigma and y_kappa). </p>
                     <p><i><font size=4>**Note that in the real-world dataset for materials exploration, the inclusion of process variables is a must for optimization. </font></i></p>
-<p><h5>Training 1 with target – Electrical conductivity (&sigma;)</h5> 
+<p><h5>Training 1 with target-Electrical conductivity (&sigma;)</h5> 
                     <p><h6><ul>&check; <b>	Splitting dataset into train and test batches</b></ul></h6>
                     <p>The preprocessed dataset is split in the ratio of 80:20 as training and test batches as seen in the code snippet below.  </p>
                     
@@ -146,7 +146,7 @@ shap.summary_plot(shap_values_s, X_train_s)
                         <center><img src="assets/img/SHAP_sigma.jpeg"><span class="caption text-muted">SHAP summary plot showing the contributions of different elements toward electrical conductivity (&sigma;)</span></center>
                         <p>Elements such as iron (Fe), sodium (Na), tellurium (Te), Lead (Pb), Titanium (Ti), Zirconium (Zr), Silicon (Si) and antimony (Sb) displayed strong contributions to &sigma; and are coded red as per the colorbar.</p>
                     <p><i>However, a novel thermoelectric material also requires elements with low thermal conductivity (&kappa;). This prompted the training of the same features to come up with a model which can identify elements with low &kappa; value as the response.</i></p>
-                    <p><h5>Training 2 with target – Thermal conductivity (&kappa;)</h5>
+                    <p><h5>Training 2 with target-Thermal conductivity (&kappa;)</h5>
                     <p>The machine is now trained with a regressor algorithm on the same features (Xs) used in training 1 and &kappa; as the target in lieu of &sigma;.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to &kappa;. We could identify only a few elements such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) exhibiting a strong adverse effect on &kappa;.</p>
                     <p><h5>Designing Strategy and Real-World Examples </h5>
                     <p>After the two SHAP summary plots are generated, we proceed to the core and most intriguing part of this article: <b>materials design</b>. </p>
