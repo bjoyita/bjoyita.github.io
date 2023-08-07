@@ -125,7 +125,7 @@ ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
                     
     <center><img src ="assets/img/Sharpened.png" width="100%"></center> 
             <span class="caption text-muted"> Code output</span> 
-                    <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function ‘adjust_gamma’ of the ‘exposure module’ of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
+                    <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function 'adjust_gamma' of the 'exposure module' of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
         <center><img src ="assets/img/gamma1.jpg" width="100%"></center> 
         <span class="caption text-muted"> Gamma-corrected micrograph</span> 
                     <h3>Thresholding for image segmentation: Creating Binary image</h3>
@@ -150,13 +150,13 @@ p_sobel_h=sobel_h(p_g)</code></pre>
         <center><img src ="assets/img/SobelImages.jpg" width="100%"></center> 
         <span class="caption text-muted"> Sobel filter: Code output snippet</span>
                     
-                    <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function ‘canny’ has parameters such as sigma for the Gaussian smoothing and low and high threshold.
+                    <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function 'canny' has parameters such as sigma for the Gaussian smoothing and low and high threshold.
 
 <h3>Gabor Filter for detecting Edge orientations</h3>
 
                     <p>This linear filter captures the <b>texture or orientation distribution</b> of features in the microstructure. Orientation distribution determines the uniformity of materials property. Random orientation of particles/grains leads to uniform/ isotropic properties while orientation in a particular direction, technically termed as <i>preferred orientation</i>, gives rise to anisotropic properties. The complex sinusoid component of the Gabor filter provides information related to orientation. The output of the said filter has both real and imaginary components. To know more about Gabor filters, please click <a href="http://ttsuchi.github.io/2015/08/26/gaborfilters.html"><font color=blue>here</font></a>.</p>
 
-                    <p>Let’s try to generate a bank of <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gabor"><font color=blue>Gabor filters</font></a> with 0°, 60°, 90°, and 120° orientations and apply them to an original transmission electron micrograph showing particles at different orientations . I am sharing the code snippet along with the output filtered images below. We can clearly see the orientations <i>(highlighted in yellow dotted line coinciding with particle edges)</i> in the respective filtered images. Please note that the real components of the filtered images are displayed.</p>
+                    <p>Let's try to generate a bank of <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gabor"><font color=blue>Gabor filters</font></a> with 0&deg;, 60&deg;, 90&deg;, and 120&deg; orientations and apply them to an original transmission electron micrograph showing particles at different orientations . I am sharing the code snippet along with the output filtered images below. We can clearly see the orientations <i>(highlighted in yellow dotted line coinciding with particle edges)</i> in the respective filtered images. Please note that the real components of the filtered images are displayed.</p>
                     
 <!--CODE-->
  <pre style='background-color: gainsboro'><code class="language-python">p_gabor =[]for degree in (0, 60, 90, 120):

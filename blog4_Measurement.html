@@ -4,7 +4,7 @@
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
         
             <!--MEDIA-->
-        <meta name="viewport" content="width=device-width, initial-scale=1/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
         .column {
   width: 100%;
@@ -18,7 +18,7 @@
         </style>
         <meta name="description" content="Blog post on image processing and materials data mining." />
         <meta name="author" content="Joyita Bhattacharya" />
-        <meta name="keywords" content="Materials Data, mining, measurement, quantitative, watershed algorithm, particle size distribution, scale, span, Euclidean distance, iamge segmentation, regionprops, scikit-image, Seaborn, kernel density estimation "/>
+        <meta name="keywords" content="Materials Data, mining, measurement, quantitative, watershed algorithm, clusters, particle size distribution, scale factor, span, Euclidean distance, iamge segmentation, regionprops, scikit-image, Seaborn, kernel density estimation "/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -82,14 +82,14 @@
    <p> <subheading><i>“One picture is worth a thousand words.” — Albert Einstein</i></subheading></p>
                         
     <h2> Background</font></h2>
-                    <p>My previous post <a href='blog2_materials.html'>“Materials Data Mining via Image Processing of Micrographs-I”</a> explained some of the basic and crucial steps of micrograph processing for the identification of features. As stated earlier, micrographs capture fine micron/sub-micron sized features of materials that can significantly impact their properties. Here, I will be discussing the quantitative assessment of one such feature — ‘particle size’ using <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a>.
+                    <p>My previous post <a href='blog2_materials.html'>'Materials Data Mining via Image Processing of Micrographs-I'</a> explained some of the basic and crucial steps of micrograph processing for the identification of features. As stated earlier, micrographs capture fine micron/sub-micron sized features of materials that can significantly impact their properties. Here, I will be discussing the quantitative assessment of one such feature-'particle size' using <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a>.
 
 <h3>Measurement of parameters</h3>
                      
 <p><b>Case Study 1: Retrieving individual particle size from clusters applying Watershed algorithm</b></p>
                     <center><img src ='assets/img/boris-baldinger-k7Hn0GBiN-o-unsplash.jpg' width=100%></center>
                             <span class="caption text-muted"><a href='https://unsplash.com/photos/k7Hn0GBiN-o'>Photo by Boris Baldinger on Unsplash</a></span>
-                    <p>Let me start by showing a synthetic micrograph with overlapping particles of different shapes and sizes. We first separate individual particles from clusters/ agglomerates. Then we measure the size of these separated particles. De-agglomeration of particles is achieved with the aid of a watershed algorithm — a type of image segmentation method. I am sharing a step-by-step guide for the said activity.</p>
+                    <p>Let me start by showing a synthetic micrograph with overlapping particles of different shapes and sizes. We first separate individual particles from clusters/ agglomerates. Then we measure the size of these separated particles. De-agglomeration of particles is achieved with the aid of a watershed algorithm-a type of image segmentation method. I am sharing a step-by-step guide for the said activity.</p>
 
                     <p><b><i>Step 1: Importing necessary libraries and loading image</i></b></p>
                     
@@ -156,7 +156,7 @@ markers,_= ndi.label(mask)</code></pre>
 
 <p><b>Role of scale factor in an image</b><p>
 
-<p>Before going through the details of the computation of values of features/ parameters, we need to understand the concept of <b>‘scale’</b> in an image. Scale factor in any image gives an idea of the measure of the objects/features. A digital image is comprised of tiny dots called pixels. The size of the pixel defines the resolution of the instrument used to take the pictures.</p>
+<p>Before going through the details of the computation of values of features/ parameters, we need to understand the concept of <b>'scale'</b> in an image. Scale factor in any image gives an idea of the measure of the objects/features. A digital image is comprised of tiny dots called pixels. The size of the pixel defines the resolution of the instrument used to take the pictures.</p>
 
 <p>A scale-line or bar of a few pixels representing a certain value in terms of kilometers/centimeters/millimeters/micrometers/nanometers is provided on any image depending on the sizes of actual physical objects captured in the image. For instance, a Google map has a scale bar either in miles or kilometers. Conversely, micrographs have scale bars in micrometers/ nanometers as they capture small length-scale features of materials.</p>
 
@@ -180,11 +180,11 @@ df = pd.DataFrame(props_t)</code></pre>
 <center><img src ="assets/img/table_watershed.jpg" width=100%></center>
 <span class="caption text-muted">Code output showing particle size</span>
 
-                    <p>The parameter ‘particle size distribution’ becomes significant when there are particles of varied sizes in a micrograph. All real-world materials contain innumerable particles (such as <a href="https://en.wikipedia.org/wiki/Crystallite"><font color=blue>polycrystalline</font></a> metals). Micrographs capture only a small representative region of the material. Particle size, as mentioned at the beginning of this post, dictates several important properties of a material.</p>
+                    <p>The parameter 'particle size distribution' becomes significant when there are particles of varied sizes in a micrograph. All real-world materials contain innumerable particles (such as <a href="https://en.wikipedia.org/wiki/Crystallite"><font color=blue>polycrystalline</font></a> metals). Micrographs capture only a small representative region of the material. Particle size, as mentioned at the beginning of this post, dictates several important properties of a material.</p>
 
                     <p>Now, the question arises as to whether one should consider the mean particle size or the entire <a href="https://www.horiba.com/int/scientific/products/particle-characterization/particle-education/particle-size-distribution-calculations/"><font color=blue>particle size distribution </font></a>(PSD). Mean particle size is reported for materials having uniformity in particle size, while PSD becomes a vital parameter for materials with particle sizes varying over a range.</p>
 
-<p>The distribution plot of particle size showing D10, D50, and D90 percentile becomes informative and is used as a guidance to understand the behavior of materials. Additionally, it tells us about the uniformity of the parameter by calculating the ‘Span’ defined as follows.</p>
+<p>The distribution plot of particle size showing D10, D50, and D90 percentile becomes informative and is used as a guidance to understand the behavior of materials. Additionally, it tells us about the uniformity of the parameter by calculating the 'Span' defined as follows.</p>
 <center><img src ="assets/img/percentile.jpg" width=50%></center>
                     
 <p>A smaller span value signifies more consistency in particle size. On the other hand, a larger span value implies heterogeneity in the distribution.</p>
@@ -201,11 +201,11 @@ df = pd.DataFrame(props_t)</code></pre>
 <span class="caption text-muted">Labeled image</span> 
                     
 
-<p>A scale of 4 nanometers per pixel is applied to calculate the <b>equivalent diameter representing the particle size</b>. <i>Note that an equivalent diameter is the diameter of a circle with the same area as the region</i>. We directly compute and tabulate the required properties using regionprops and regionprops_table. The table is then exported as a spreadsheet file. Using the percentile function of Numpy, we obtain the statistical parameters — D10, D50, and D90 percentiles. Accordingly, a span approximately equal to unity is estimated which indicates non-uniformity of particle size for the simulated image. Note that a span closer to zero denotes a more consistent PSD.</p>
+<p>A scale of 4 nanometers per pixel is applied to calculate the <b>equivalent diameter representing the particle size</b>. <i>Note that an equivalent diameter is the diameter of a circle with the same area as the region</i>. We directly compute and tabulate the required properties using regionprops and regionprops_table. The table is then exported as a spreadsheet file. Using the percentile function of Numpy, we obtain the statistical parameters-D10, D50, and D90 percentiles. Accordingly, a span approximately equal to unity is estimated which indicates non-uniformity of particle size for the simulated image. Note that a span closer to zero denotes a more consistent PSD.</p>
 
 <p><b><i>Visualization of particle size distribution</i></b></p>
 
-                    <p>I have used <a href="https://seaborn.pydata.org/"><font color=blue>Seaborn</font></a> — a statistical data visualization library to plot the particle size distribution using distplot function. This function combines the histogram and kernel density estimation (KDE) functions. The figure below shows the particle size distribution plot of the simulated image.</p>
+                    <p>I have used <a href="https://seaborn.pydata.org/"><font color=blue>Seaborn</font></a>-a statistical data visualization library to plot the particle size distribution using distplot function. This function combines the histogram and kernel density estimation (KDE) functions. The figure below shows the particle size distribution plot of the simulated image.</p>
  <center><img src ="assets/img/PSD.jpg" width=50%></center>
 <span class="caption text-muted">Particle Size Distribution plot</span> 
 
@@ -216,7 +216,7 @@ df = pd.DataFrame(props_t)</code></pre>
 
 <p>Quantitative estimation is an essential part of image data processing as it assists in decision-making. <mark style="background-color:lightcyan">Defining a scale bar in an image is mandatory for the quantification of features.</mark> Furthermore, an image needs to undergo a set of refinement steps prior to the quantitative analysis.</p>
 
-                    <p>In this post, I have illustrated the above point by taking two images with the objective of mining particle size data. I demonstrated the necessity of an additional pre-processing step of applying <mark style="background-color:lightcyan">the watershed function to separate the particles for size calculation in the first image with overlapping particles.</mark> We would have otherwise landed up with sizes of clusters of particles. This would have been utterly misleading for interpretation of the same vis-à-vis materials property.</p>
+                    <p>In this post, I have illustrated the above point by taking two images with the objective of mining particle size data. I demonstrated the necessity of an additional pre-processing step of applying <mark style="background-color:lightcyan">the watershed function to separate the particles for size calculation in the first image with overlapping particles.</mark> We would have otherwise landed up with sizes of clusters of particles. This would have been utterly misleading for interpretation of the same vis-&agrave;-vis materials property.</p>
 
 <p>The other highlight of this post describes the <b>significance of particle size distribution</b>, rather than a single mean value, for systems (image) containing <b>particles of varied sizes. PSD is an important quantifier</b> for materials with structural heterogeneity (e.g., polycrystalline materials).</p>
 
