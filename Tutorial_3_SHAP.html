@@ -3,8 +3,12 @@
     <head>
                <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
         
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
               <!--MEDIA-->
-        <meta name="viewport" content="width=device-width, initial-scale=1 />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
         .column {
   width: 100%;
@@ -20,6 +24,8 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, randon forest regression, Tree SHAP, TreeExplainer, summary plot" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
+        
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -78,12 +84,12 @@
 <p><b><font size= 6
             >B</font>ackground</b></p>
                         
-    <p><b>SHAP</b> – the acronym for ‘SHapley Additive explanations’ API can help explore novel materials with desired properties and performance. This concept unveils the contributions of each input parameter to the final output in the machine learning algorithm. 
+    <p><b>SHAP</b>-the acronym for 'SHapley Additive explanations' API can help explore novel materials with desired properties and performance. This concept unveils the contributions of each input parameter to the final output in the machine learning algorithm. 
 
   Thus the interpretability factor is infused into the machine learning algorithm, which, otherwise, is treated as a black box.  </p>
                     
                     <p><i><mark style="background-color:azure">Please refer to my <b><a href="https://bjoyita.github.io/Blog5_SHAP.html" style="color: darkblue">blog</a></b> to know about SHAP in detail.</mark></i></p>
-    <p>In this tutorial, I will walk you through each step of SHAP-aided machine learning for identifying elemental combinations for a potential thermoelectric with an ideal combination of high power factor (PF) and low thermal conductivity (𝜅 or kappa).</p>
+    <p>In this tutorial, I will walk you through each step of SHAP-aided machine learning for identifying elemental combinations for a potential thermoelectric with an ideal combination of high power factor (PF) and low thermal conductivity (&kappa; or kappa).</p>
                     <p><b><font size= 6>
                         C</font>ase study:</b> Finding potential thermoelectric compositions with <b>multioutput ML algorithm and SHAP analysis </b></p>
                     <p><b>Data:</b> I have compiled room temperature PF and kappa values of <b>204 thermoelectric compositions (formulae)</b> in an excel sheet. Click <b><a href=" https://www.nature.com/articles/s41524-021-00564-y." style="color: darkblue">here</a></b> to see the reference for this dataset. </p>
@@ -110,9 +116,9 @@ ds_RT</code></pre>
                     <center><img src="assets/img/tut3/DataFile.jpg" width=70%></center>
                     <p><b><u>Step 3: Prepossessing data for machine learning</u></b></p>
                     <p><i>Why preprocessing step is a must activity in this case?</i></p>
-<p>The original data file contains only three variables – Formula, PF and kappa where the latter two are targets/ responses. However, to come up with new composition we need to do a permutation of elements comprising these formulae and incorporate them as input variables/ features. Moreover,  we also need the data (amount or elemental fraction) of each element present in a composition.</p> 
+<p>The original data file contains only three variables-Formula, PF and kappa where the latter two are targets/ responses. However, to come up with new composition we need to do a permutation of elements comprising these formulae and incorporate them as input variables/ features. Moreover,  we also need the data (amount or elemental fraction) of each element present in a composition.</p> 
 <p>Therefore, we extract individual element and their elemental fraction from a given formula 
-    using the <b>“Composition”</b> and <b>“Element fraction”</b> <b>modules</b> of <b>Pymatgen</b> and <b>Matminer</b> respectively.</p>
+    using the <b>'Composition'</b> and <b>'Element fraction'</b> <b>modules</b> of <b>Pymatgen</b> and <b>Matminer</b> respectively.</p>
 <p>Here is the snippet of code blocks displaying the breaking down of a formula into its constituent elements and their 
 corresponding element fraction.</p>
                     <p><b>Importing Composition and ElementFraction</b></p>
@@ -196,7 +202,7 @@ Comp</code></pre>
 shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre>
 <img src = 'assets/img/tut3/SumPlot_2T.png' width=80%>
 
-   <p>The bars’ width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
+   <p>The bars' width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
  
     <p>However, to understand the nature of the contribution of features on the final target, we need a <b>summary plot for a single target illustrating both the intensity and direction of impact</b>, i.e. whether the feature is favorably or adversely affecting the said target. Let me illustrate this point.</p>
     <p><u>Reading <b>Single Target Summary Plot</b></u></p>
@@ -212,7 +218,7 @@ shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre
                     <p>For example</p>
                     <p><li>Zn has more positive correlations with kappa than that with PF.</li></p>
                     <p><li>Sb has a high positive correlation with PF and a high negative correlation with kappa.</li></p>
-<p>Thus, SHAP summary plots help select elements that can enhance PF and decrease kappa – a combination for an ideal thermoelectric composition. </p>
+<p>Thus, SHAP summary plots help select elements that can enhance PF and decrease kappa-a combination for an ideal thermoelectric composition. </p>
                     <table border="2" bgcolor=beige width=100%><tr><td colspan=1><i>Note: 
                        If you choose to apply an <b>artificial neural network (ANN)</b> for fitting the dataset and building an appropriate model, a <b>KernelExplainer function</b> should be used for the <b>SHAP analysis</b>.
                         <p><i>Please click this <b><a href="https://medium.com/towards-data-science/accelerated-materials-design-using-multi-target-regression-neural-network-and-shapley-values-e3172027bf57" style="color: darkblue">link</a></b> to read about it in detail.</i></p></i></td></tr></table>

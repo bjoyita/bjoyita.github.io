@@ -3,8 +3,12 @@
     <head>
             <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
         
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
               <!--MEDIA-->
-        <meta name="viewport" content="width=device-width, initial-scale=1 />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
         .column {
   width: 100%;
@@ -81,20 +85,20 @@
  <!--BLOGPOST-->
     <h2> Background</font></h2>
                         
-                    <p>In my post <a href="https://towardsdatascience.com/uncovering-the-potential-of-materials-data-using-matminer-and-pymatgen-83126fadde1c"><font color=blue>“Uncovering the Potential of Materials Data using Matminer and Pymatgen”</font></a>, I discussed the concept of materials tetrahedron — the basic framework for developing materials for various technological usage. The vital parameters occupying the vertices of the tetrahedron are process, structure, property, and performance.</p>
+                    <p>In my post <a href="https://towardsdatascience.com/uncovering-the-potential-of-materials-data-using-matminer-and-pymatgen-83126fadde1c"><font color=blue>'Uncovering the Potential of Materials Data using Matminer and Pymatgen'</font></a>, I discussed the concept of materials tetrahedron-the basic framework for developing materials for various technological usage. The vital parameters occupying the vertices of the tetrahedron are process, structure, property, and performance.</p>
 
-<p>Structures are characterized based on a characteristic length scale that can vary from a few angstroms (1 Angstrom = 10⁻¹⁰ m) to hundreds of micrometers (1 micrometer = 10⁻⁶ m). The length scales are used to discern features under a microscope. With very powerful high-resolution microscopes such as this one, one can identify features as small as atoms or even smaller.</p>
+<p>Structures are characterized based on a characteristic length scale that can vary from a few angstroms (1 Angstrom = 10<sup>-10</sup> m) to hundreds of micrometers (1 micrometer = 10<sup>-6</sup> m). The length scales are used to discern features under a microscope. With very powerful high-resolution microscopes such as this one, one can identify features as small as atoms or even smaller.</p>
 
 <p>Micron and submicron-sized features, known as microstructures, are captured as images or micrographs using different types of microscopes. These microstructures store a wealth of information essential to the understanding of properties and performance of materials. We can use machine learning/deep learning to mine important features from these images. A typical microstructure contains features that are distinguishable based on pixel intensity or contrast. Some of the important features are boundaries or interfaces that separate different domains (also termed as particles or grains). These domains can vary in shape, size, orientation, size distribution and spatial arrangement (collectively termed as morphology). These features affect the properties of materials.</p>
                     <p><center><img src="assets/img/Graphical.jpg" width=50%></center><span class="caption text-muted"> Image by author: Schematic of a microstructure</span></p>
                     
-<p>Even though these features can be studied using other materials characterization techniques, the advantage of microscopy is visualization. Since ‘seeing is believing’, micrographs provide more credible explanation for the behavior of materials. Processing of micrographs reveal qualitative and quantitative features. Say, for example, if we want to go for quantitative particle size and morphology measurement, precise identification of edges becomes necessary. Moreover, edge detection also helps in investigating the interface structure between particles. In some materials (especially alloys), some elements might segregate at interfaces affecting properties such as strength, conductivity.</p>
+<p>Even though these features can be studied using other materials characterization techniques, the advantage of microscopy is visualization. Since 'seeing is believing', micrographs provide more credible explanation for the behavior of materials. Processing of micrographs reveal qualitative and quantitative features. Say, for example, if we want to go for quantitative particle size and morphology measurement, precise identification of edges becomes necessary. Moreover, edge detection also helps in investigating the interface structure between particles. In some materials (especially alloys), some elements might segregate at interfaces affecting properties such as strength, conductivity.</p>
 
                     <p>Edge detection by manual observation is a tedious task and involves various human errors. To minimize such errors, one needs to automate such a process. Automation of the process requires implementation of robust digital image processing and data mining algorithms. Now that I have highlighted the importance of digital image analysis of micrographs, let me walk you through some of the basic processing steps. I have used the open-source python-based library, <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a> for demonstration. You can also explore OpenCV, PIL for the same purpose.</p>
 
 <h3>Viewing the image and obtaining shape</h3>
 
-<p>The code snippet below shows how to read an image and find its dimensions or ‘shape’. The shape attribute yields the dimensions of the image in the form of a tuple. In this current micrograph, it is (1800, 1500) — the height and width being 1800 and 1500 pixels, respectively. Note that it is a grayscale image since the third item in the tuple is not mentioned and takes the default value of 1.</p>
+<p>The code snippet below shows how to read an image and find its dimensions or 'shape'. The shape attribute yields the dimensions of the image in the form of a tuple. In this current micrograph, it is (1800, 1500)-the height and width being 1800 and 1500 pixels, respectively. Note that it is a grayscale image since the third item in the tuple is not mentioned and takes the default value of 1.</p>
 <pre style='background-color: gainsboro'><code><b> p = io.imread("Particles.jpg")
  p.shape</b></code></pre>
                     <p><b><i>General processing steps: Denoising, Sharpening and brightness adjustment of image</i></b></p>
@@ -103,9 +107,9 @@
                     <p>Refinement of an image matrix for denoising, sharpening, edge detection mostly involves convolution operation with a filter/kernel matrix. The <a href="http://www.songho.ca/dsp/convolution/convolution2d_example.html"><font color=blue>convolution operation</font></a> involves first flipping of the 2D filter (kernel) horizontally and vertically followed by element-wise multiplication and addition of the image matrix . Note that in case of symmetric kernel matrix, flipping is not necessary.</p>
                     <center><img src ="assets/img/kernel1.jpg" width="75%"></center> 
                     <span class="caption text-muted"> Image by author</span>
-<p>Here, I am going to consider two filters -Gaussian and Median for showing the noise reduction in images associated with and without convolution respectively.</p>
+<p>Here, I am going to consider two filters-Gaussian and Median for showing the noise reduction in images associated with and without convolution respectively.</p>
 
-<p>The linear Gaussian filter operates on the image matrix by convolution. The attribute ‘sigma’ is the standard deviation in the Gaussian filter. A higher value of sigma leads to more blurriness.</p>
+<p>The linear Gaussian filter operates on the image matrix by convolution. The attribute 'sigma' is the standard deviation in the Gaussian filter. A higher value of sigma leads to more blurriness.</p>
             <center><img src ="assets/img/GaussianBlur.jpg" width="100%"></center> 
             <span class="caption text-muted"> Gaussian blur increases with sigma</span>
 <p>Median filtering is a nonlinear process. When a filter window slides along the image matrix, the median pixel value of the said matrix is taken as the output signal. A graphical representation is shown for better understanding.</p>
@@ -113,7 +117,7 @@
             <span class="caption text-muted"> Image by author: Graphical representation of Median filter</span>
 <p>This filter is preferred over the Gaussian filter while removing electronic noises such as salt and pepper type. While Gaussian smoothing causes blurring of edges, median smoothing preserves them.</p>
 
-<p>In contrast to denoising, we can <b>sharpen a defocussed or blurred image</b> to identify the features in it accurately using the ‘unsharp_mask’ function of the ‘filters module’ of skimage. The code snippet along with input (defocussed image) and output (sharpened) images are displayed below for comparison.</p>
+<p>In contrast to denoising, we can <b>sharpen a defocussed or blurred image</b> to identify the features in it accurately using the 'unsharp_mask' function of the 'filters module' of skimage. The code snippet along with input (defocussed image) and output (sharpened) images are displayed below for comparison.</p>
                     
                     <!--CODE-->
 <pre style="background-color:gainsboro"><code class ="language-python">Sharpimg = filters.unsharp_mask(p, radius = 20.0, amount = 1.0)
@@ -125,7 +129,7 @@ ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
                     
     <center><img src ="assets/img/Sharpened.png" width="100%"></center> 
             <span class="caption text-muted"> Code output</span> 
-                    <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function ‘adjust_gamma’ of the ‘exposure module’ of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
+                    <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function 'adjust_gamma' of the 'exposure module' of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
         <center><img src ="assets/img/gamma1.jpg" width="100%"></center> 
         <span class="caption text-muted"> Gamma-corrected micrograph</span> 
                     <h3>Thresholding for image segmentation: Creating Binary image</h3>
@@ -150,13 +154,13 @@ p_sobel_h=sobel_h(p_g)</code></pre>
         <center><img src ="assets/img/SobelImages.jpg" width="100%"></center> 
         <span class="caption text-muted"> Sobel filter: Code output snippet</span>
                     
-                    <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function ‘canny’ has parameters such as sigma for the Gaussian smoothing and low and high threshold.
+                    <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function 'canny' has parameters such as sigma for the Gaussian smoothing and low and high threshold.
 
 <h3>Gabor Filter for detecting Edge orientations</h3>
 
                     <p>This linear filter captures the <b>texture or orientation distribution</b> of features in the microstructure. Orientation distribution determines the uniformity of materials property. Random orientation of particles/grains leads to uniform/ isotropic properties while orientation in a particular direction, technically termed as <i>preferred orientation</i>, gives rise to anisotropic properties. The complex sinusoid component of the Gabor filter provides information related to orientation. The output of the said filter has both real and imaginary components. To know more about Gabor filters, please click <a href="http://ttsuchi.github.io/2015/08/26/gaborfilters.html"><font color=blue>here</font></a>.</p>
 
-                    <p>Let’s try to generate a bank of <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gabor"><font color=blue>Gabor filters</font></a> with 0°, 60°, 90°, and 120° orientations and apply them to an original transmission electron micrograph showing particles at different orientations . I am sharing the code snippet along with the output filtered images below. We can clearly see the orientations <i>(highlighted in yellow dotted line coinciding with particle edges)</i> in the respective filtered images. Please note that the real components of the filtered images are displayed.</p>
+                    <p>Let's try to generate a bank of <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gabor"><font color=blue>Gabor filters</font></a> with 0&deg;, 60&deg;, 90&deg;, and 120&deg; orientations and apply them to an original transmission electron micrograph showing particles at different orientations . I am sharing the code snippet along with the output filtered images below. We can clearly see the orientations <i>(highlighted in yellow dotted line coinciding with particle edges)</i> in the respective filtered images. Please note that the real components of the filtered images are displayed.</p>
                     
 <!--CODE-->
  <pre style='background-color: gainsboro'><code class="language-python">p_gabor =[]for degree in (0, 60, 90, 120):

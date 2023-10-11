@@ -4,15 +4,22 @@
         <meta charset="utf-8" />
       
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+<!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
         <!--MEDIA-->          
-<!--
+
 <style>
         .column {
-  width:100%;
+  width:50%;
 }
+    
 @media only screen 
-  and (min-device-width: 340px) 
-  and (max-device-width: 1170px) 
+  and (min-device-width: 340px) */
+  and (max-device-width: 375px)*/
+  and (max-device-width: 1080px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) 
   and (orientation: landscape)
@@ -28,7 +35,6 @@
 /*    }*/
 /*   }*/
         </style>
--->
 
                                    
     <meta name="description" content="This Website is about Materials Informatics." />
@@ -37,7 +43,7 @@
 
             <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         
-        
+                
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         
@@ -231,18 +237,17 @@ My goal for this website is to help those interested in using data analytics too
                     <a href = "mailto: bjoyita@gmail.com"> <font color=blue><i>bjoyita@gmail.com</i></font></a></p></div>
                      
 <!--Subscribe BOX-->
-
-<div class="column4" style="background-color: #d5f5e3 ;">
+<div class="column4" style="background-color: #d5f5e3;">
            
     <style>
 
 input[type=text], input[type=submit] {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
+  margin: 8px auto;
   display: inline-block;
   border: 1px solid #083b23;
-  box-sizing: border-box;
+/*  box-sizing: border-box;*/
 }
 
 input[type=submit] {
@@ -255,14 +260,45 @@ input[type=submit]:hover {
   opacity: 0.8;
 }
 </style>
-<div class="container">
+<div class="container" style=align-content:space-around >
                   
-       <div class="justify-content-center">
+<!--       <div class="justify-content-center">-->
                                                    
                               <p><center><h4><font color="darkgreen">Join my Newsletter </font></h4></center></p>
                               
-           <center><p><i><font size=4>Subscription option coming soon! </font></i></p></center></div></div></div></div></div>                                          
-    
+<!--           <center><p><i><font size=4>Subscription option coming soon! </font></i></p></center></div></div></div></div></div>                                          -->
+  
+            
+<!--            SUBSCRIPTION FOR NEWSLETTER-->
+            
+            <form name='submit-to-google-sheet'>
+<div class="container"><font size=3>
+ <input type="text" placeholder="Name" name="Name" required></font></div>
+<div class="container"><font size=3><input type="text" placeholder="Email" name="Email" required></font></div>
+    <div class="container"><font size=3><b><input type="submit" value="Subscribe"></b></font></div>
+        </form>
+   <center><b><font color='darkblue' face=monospace><i><span id="msg"></span></i></font></b></center></div></div></div>
+          
+               <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx4hCXvDOlEFwNWjj7U69BknbFQQ3HcnJMYV0y0T_VpST3HFtgqMXXPMiXAm7xqMCex3Q/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg") 
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {msg.innerHTML="Thank you for subscribing!"
+                         setTimeout(function(){
+                             msg.innerHTML=""
+                         },6000)
+                         form.reset()
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+    </script></div>
+
+            
+            
 <!--     <form action="/action_page.php">-->
   
 <!--    <font size=4>-->

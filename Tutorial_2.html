@@ -3,6 +3,10 @@
     <head>
           
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
        
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -21,6 +25,7 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Image filters, Edge Detection, Canny, Sobel, Roberts, Fourier Transform, defocussed image"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+         
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -80,7 +85,7 @@
               
                                    
                         <!--CONTENT-->
-<p>Measurement and identification of particle size and morphology from the microstructure of materials play an essential role in determining materials’ properties. A precise measurement of these parameters involves resolving the edges/ boundaries of particles from the captured images, also known as microstructure. Thanks to different image processing tools, the task is more straightforward for crisp images. However, the complexity of such analysis becomes more challenging with blurred or distorted images. 
+<p>Measurement and identification of particle size and morphology from the microstructure of materials play an essential role in determining materials' properties. A precise measurement of these parameters involves resolving the edges/ boundaries of particles from the captured images, also known as microstructure. Thanks to different image processing tools, the task is more straightforward for crisp images. However, the complexity of such analysis becomes more challenging with blurred or distorted images. 
 Let us <mark style="background-color: antiquewhite">evaluate the outcome of edge detection on a blurry image subjected to different image processing filters.</mark> <i>Here, <b>blurry microstructure</b> implies no sharp gradient between objects (features) and matrix (background); instead, it seems diffuse.</i></p> 
 <p>Hence, we aim to identify the right edges of the features. </p>
 <p>First, we will apply standard edge-identifying filters such as Sobel, Roberts, and Canny and a sharpening image function (unsharp masking) from the scikit-image.
@@ -142,7 +147,7 @@ plt.imshow(im1_canny, cmap ='gray')
                         
 <p><mark style="background-color: antiquewhite"> Please read my blog on <a href="blog1.html"><font color=blue>Fourier Transform </font></a>to understand the coding steps. </mark></p>
                         
-                        <p> <ul> &#10003 We first apply the <b>Fast Fourier Transform (fft)</b> on the image followed by <b>fftshift function to bring back the origin of the spectrum</b> to the center which is otherwise off-centered' and located on the top leftmost corner of the fft spectrum.</ul> </p>
+                        <p> <ul> &check; We first apply the <b>Fast Fourier Transform (fft)</b> on the image followed by <b>fftshift function to bring back the origin of the spectrum</b> to the center which is otherwise off-centered' and located on the top leftmost corner of the fft spectrum.</ul> </p>
     <!--CODE-->
 <pre style="background-color: gainsboro"><code>im1_F = np.fft.fft2(im)
 im1_F_02 = np.fft.fftshift(im1_F)
@@ -151,7 +156,7 @@ plt.imshow(np.log(abs(im1_F_02)), cmap ='gray')
                         
 <p><center><img src='assets/img/tut2/t2_fftshift.png'><span class="caption text-muted" >Spectrum in Fourier space after shifting the origin to the center </span></center></p>
                         
-                        <p><ul> &#10003Generate a <b>high frquency mask</b> to allow high frequency components to detect edges. Block the center with the mask</ul></p>                       
+                        <p><ul> &check;Generate a <b>high frquency mask</b> to allow high frequency components to detect edges. Block the center with the mask</ul></p>                       
         
 <pre style="background-color: gainsboro"><code>mask_h = np.ones((nx,ny), np.uint8) # mask should have the same dimension as that of the image
 center_x = nx/2
@@ -172,7 +177,7 @@ plt.imshow(abs(im1_F_02_h), cmap ='gray')
 </code></pre>
                         
 <p><center><img src='assets/img/tut2/image_mask_h.png'><span class="caption text-muted" >Masked Spectrum </span></center></p>
-<p><ul> &#10003<b>Shifting the origin back </b>to its original location using ifftshift function of NumPy followed by <b>inverse Fourier Transform</b> to retrieve the original image.</ul></p>
+<p><ul> &check;<b>Shifting the origin back </b>to its original location using ifftshift function of NumPy followed by <b>inverse Fourier Transform</b> to retrieve the original image.</ul></p>
 <pre style="background-color: gainsboro"><code>im1_F_02_originBack = np.fft.ifftshift(im1_F_02_h)
 originalImage = np.fft.ifft2(im1_F_02_originBack)
 plt.imshow(np.log(abs(originalImage)), cmap ='gray')

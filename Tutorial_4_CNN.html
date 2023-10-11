@@ -3,6 +3,10 @@
     <head>
           
        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
        
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +25,7 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Images, Classification, ultra-high carbon steel, Microstructure, Pearlite, Martensite, Peralite-Spheroidite, Network microstructure, Keras, Convolutional Neural Network (CNN), Convolution layer, Max pooling layer, Parameters, Epoch, Batch size, Prediction"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -81,22 +86,22 @@
               <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<p><b>Aim of the tutorial:</b> To demonstrate the coding steps for microstructure (image) classification using Convolutional Neural Network (CNN) – a deep learning algorithm.
+<p><b>Aim of the tutorial:</b> To demonstrate the coding steps for microstructure (image) classification using Convolutional Neural Network (CNN)-a deep learning algorithm.
                     <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel. Please find the reference for the dataset <a href="https://materialsdata.nist.gov/handle/11256/940"><b><font color=blue>here</font></b></a>.</p>
                     <p>I am providing a schematic diagram of the basic framework for machine learning for ease of learning.</p>
                     
                     <p><center><img src='assets/T4_Im/ML_overview.jpg' width="100%"><span class="caption text-muted" >Schematic Diagram of a basic ML framework</span></center></p>
                     <p>I will now walk you through the process of building a deep learning model for image classification.</p>
-                    <p><b>❶ Assigning labels (phase) to the collected microstructures</b>
+                    <p><b>&#10102;Assigning labels (phase) to the collected microstructures</b>
                     <p>The given dataset contains four types of microstructures:</p>
-                    <ul>&#10003 Network</ul>
-                    <ul>&#10003 Pearlite_Spheroidite </ul>
-                    <ul>&#10003 Martensite  </ul>
-                    <ul>&#10003 Pearlite   </ul>
-                    <p><b>❷  Identifying the microstructure and splitting the dataset into training and test data  (~80:20)</b>
+                    <ul>&check; Network</ul>
+                    <ul>&check; Pearlite_Spheroidite </ul>
+                    <ul>&check; Martensite  </ul>
+                    <ul>&check; Pearlite   </ul>
+                    <p><b>&#10103;  Identifying the microstructure and splitting the dataset into training and test data  (~80:20)</b>
                         <p>First, the four types of microstructures of steel, namely network, pearlite-spheroidite, martensite and pearlite, are manually identified from the image dataset. Further, they are grouped and stored in four folders and split into training and test data. A folder structure diagram is shown below for clarity.</p>
                     <center><img src="assets/T4_Im/Train_test_1.jpg" width=100%></center>
-                    <p><b>❸ Loading the image dataset in Python</b></p>
+                    <p><b>&#10104; Loading the image dataset in Python</b></p>
                     <p>Begin with <b>importing the relevant Python libraries</b>.</p>
                         <pre style="background-color: gainsboro"><code>import tensorflow as tf
 from tensorflow import keras
@@ -116,7 +121,7 @@ train_set = train_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_202
                                                  color_mode ='grayscale')
 train_set.class_indices
                             </code></pre>
-                    <p><i>Did you notice the option ‘rescale’ in ImageDataGenerator? <b>‘Rescale’</b> helps in the normalization of image pixels ranging from 0-255 to 0-1 to ease the processing of models. </i></p>
+                    <p><i>Did you notice the option 'rescale' in ImageDataGenerator? <b>'Rescale'</b> helps in the normalization of image pixels ranging from 0-255 to 0-1 to ease the processing of models. </i></p>
                     <p><b>Output</b></p>
                     <pre style="background-color: greenyellow"><code>Found 383 images belonging to 4 classes.
 
@@ -131,8 +136,8 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <p><b>Output</b></p>
                     <pre style="background-color: greenyellow"><code>Found 102 images belonging to 4 classes.
                     </code></pre>
-                    <p><b>❹ Building Convolutional Neural Network (CNN) </b></p>
-                    <p>Aim of the model is to identify or, more appropriately in ML language, <b>‘classify’</b> the micrographs.</p>
+                    <p><b>&#10105; Building Convolutional Neural Network (CNN) </b></p>
+                    <p>Aim of the model is to identify or, more appropriately in ML language, <b>'classify'</b> the micrographs.</p>
 <p>CNN is a deep learning algorithm used for images, and it consists of multiple layers arranged sequentially.</p>
                     <p><b>Code</b></p>
                     <pre style="background-color: gainsboro"><code>cnn = tf.keras.models.Sequential()</code></pre>
@@ -140,7 +145,7 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <center><img src="assets/T4_Im/CNN_model_h.jpg" width=80%></center>
                     <p><b>Layer 1: 2D Convolution layer </b></p>
 <p>Let us begin with a convolution operation on the image matrix (64 x 64) with 3 x 3 filter and reLU (rectified linear unit) activation function.  The convolution of the image matrix with the filter matrix will generate a <b>convolved matrix</b> also known as <b>feature map or activation map
-</b>. As the name suggests, feature map reveals the characteristic features of an image which can be used to demarcate or ‘classify’ different images.</p> 
+</b>. As the name suggests, feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p> 
 <p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p> 
 
                     <center><img src="assets/T4_Im/Conv2D_math.jpg" width=100%></center>
@@ -180,7 +185,7 @@ optimizer = tf.keras.optimizers.Adam()</code></pre>
 <li>Total parameters in the constructed CNN model</li> 
                         <p><i>The calculations for the trainable parameters and output shape of each layer are elucidated in this <a href="Tut6_params.html"><font color=blue><b>link</b></font></a>.</i></p>
                        
-                        <p><b>❺ Fitting and training CNN with training data</b></p>
+                        <p><b>&#10106; Fitting and training CNN with training data</b></p>
 <p>The model is finally trained using the training dataset and validated with test data to check for the accuracy of the model and calculate the loss accordingly.</p> 
                         <p>Here is the coding for the same:</p>
 <pre style="background-color: gainsboro"><code>cnn.fit(x = train_set, validation_data = test_set, epochs = 50)</code></pre>
@@ -201,12 +206,12 @@ Epoch 6/50
 <p>You will notice that I used 50 epochs during training the model. The question which immediately pops into our mind is <b>what is an epoch?</b></p>
                         <p>In simple words, an epoch is dataset iterations. <mark style="background-color: antiquewhite">In one epoch, the entire dataset is passed forward and backward through the neural network for updating weights and biases required for minimization of error and thereby enhancing the accuracy of the predictive model.</mark></p>
 <p>In this particular case, we observe that the whole training dataset is being run <b>12 times (iterations) in each epoch</b>. Let me explain why the model has taken 12 repetitions.</p>
-                        <p>We have seen that the training dataset consists of 383 images or data points. I assigned a value of 32 to the <b>“batch_size”</b> while loading the dataset. This means only 32 out of 383 data will be passed at a time through the neural network. In this way, the whole dataset set is divided into 12 batches (383 ÷ 32). This calculation justifies 12 iterations in one epoch in the discussed model.</p>
+                        <p>We have seen that the training dataset consists of 383 images or data points. I assigned a value of 32 to the <b>'batch_size'</b> while loading the dataset. This means only 32 out of 383 data will be passed at a time through the neural network. In this way, the whole dataset set is divided into 12 batches (383 &divide; 32). This calculation justifies 12 iterations in one epoch in the discussed model.</p>
                         <p>Below is the schematic diagram portraying the concept of an epoch, batch size, and iteration for understanding.  </p>
                         <p><center><img src='assets/T4_Im/Epoch.jpg' width='80%'></center></p>
                         <p>Validation data is used to evaluate the loss at the end of each epoch.</p>
                         
-                        <p><b>❻ Making Predictions</b></p>
+                        <p><b>&#10107; Making Predictions</b></p>
 <p>Finally, we use the predict method to make prediction for an unknown data. Let’s try to predict an untrained network microstructure using the above trained CNN model. 
     <p><center><img src='assets/T4_Im/unknown.jpg' width='60%'><span class="caption text-muted" >Untrained network microstructure</span></center></p>
     
@@ -237,7 +242,7 @@ train_set.class_indices
 <p><b>{'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</b></p>
 
 <p><b>The prediction output is [[1 0 0 0]].</b>I converted the <b>prediction probability</b> into a <b>crisp binary prediction</b> by applying <b>astype(int) method of pandas</b> where <b>1</b> and <b>0</b> represents <b>true</b> and <b>false</b> repectively. So you can read the result as [true false false false].</p>
-<p>The <b>first class</b> in the dictionary is <b>‘Network’</b> and the <b>prediction of 1 indicates correct</b> output unlike the other three classes where the prediction output is 0 indicating their absence or non-occurance. Thus, the model could correctly classify the unknown microstructure as network.  </p>
+<p>The <b>first class</b> in the dictionary is <b>'Network'</b> and the <b>prediction of 1 indicates correct</b> output unlike the other three classes where the prediction output is 0 indicating their absence or non-occurance. Thus, the model could correctly classify the unknown microstructure as network.  </p>
 
 
                         <p><b>Wrapping up</b></p>

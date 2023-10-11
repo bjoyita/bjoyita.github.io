@@ -3,8 +3,12 @@
     <head>
             <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
         
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
               <!--MEDIA-->
-        <meta name="viewport" content="width=device-width, initial-scale=1 />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
         .column {
   width: 100%;
@@ -19,7 +23,9 @@
         <meta name="description" content="Blog post on materials design." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Materials Design, Feature importance, Machine learning, Shapley, SHAP, thermoelectrics, ZT, thermal conductivity, electrical conductivity" />
+        
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+               
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -78,7 +84,7 @@
     <p>Materials play a significant role in developing various technologies from electronics to food. For instance, the evolution of television (TV) picture quality. Over the past few decades, stunning advancement in the TV industry has been achieved by introducing improved materials in image sensors and displays leading to enhanced image resolution from standard to ultra-high definition. </p>
     <p>Fabricating new materials with desired functionality calls for choosing and combining elements in different proportions from the palette of 94 naturally occurring elements listed in the <a href="https://en.wikipedia.org/wiki/Periodic_table">Periodic Table</a>. <i>The success of materials design depends on the confluence of the right elemental combinations, and the process variables leading to required property and performance. </i></p>
     <p>In my post <b><a href='https://towardsdatascience.com/uncovering-the-potential-of-materials-data-using-matminer-and-pymatgen-83126fadde1c
-        '>“Uncovering the Potential of Materials Data using Matminer and Pymatgen”</a></b>, I explained data preprocessing stepwise with an emphasis on the extraction of individual elemental information and their incorporation as descriptors/ features in the original dataset. All these features may not have equal contributions to achieving the target. Hence, an appropriate machine learning (ML) model needs to be deployed which recognizes the contribution of these features. I will thus focus on the <b>“feature importance”</b> aspect and show how it plays a crucial role in designing materials with improved properties. We need predictive as well as explainable ML algorithms to do this task. The ‘explainability factor’ is associated with the ‘feature importance’ of the descriptors. One such <b>explainable AI (XAI)</b> is based on the <b>Shapley value concept</b> which can be very effective in the pursuit of novel materials. 
+        '>'Uncovering the Potential of Materials Data using Matminer and Pymatgen'</a></b>, I explained data preprocessing stepwise with an emphasis on the extraction of individual elemental information and their incorporation as descriptors/ features in the original dataset. All these features may not have equal contributions to achieving the target. Hence, an appropriate machine learning (ML) model needs to be deployed which recognizes the contribution of these features. I will thus focus on the <b>'feature importance'</b> aspect and show how it plays a crucial role in designing materials with improved properties. We need predictive as well as explainable ML algorithms to do this task. The 'explainability factor' is associated with the 'feature importance' of the descriptors. One such <b>explainable AI (XAI)</b> is based on the <b>Shapley value concept</b> which can be very effective in the pursuit of novel materials. 
 
 <p>I will give you a brief overview of the concept before delving into the machine learning analysis and insights. </p>
                         
@@ -96,16 +102,16 @@
     <p>I will now proceed to demonstrate the usefulness of SHAP value in designing a high-performance <b><a href ="https://www.frontiersin.org/articles/10.3389/femat.2021.677845/full">thermoelectric material</a></b> from the available experimental database of several compositions. I have used Google Colab to run the entire code.</p>
                         <h4>PROJECT: A systematic SHAP-based approach in search of efficient thermoelectric materials</h4>
                         <p><h5>About Thermoelectrics</h5>
-                        <p>Thermoelectric materials generate electricity from heat and vice versa and are considered as ‘green energy’. Since heat and electricity are involved with this type of materials, the thermal conductivity (𝜅) and electrical conductivity (σ) parameters are intensely associated to calculate the performance metrics – ZT or the figure of merit. Moreover, for ZT calculation, there is one more vital parameter involved called the Seebeck coefficient (S) – a conversion factor controlling the conversion of thermal and electrical energy. The relation of ZT with all these three parameters, S, σ and 𝜅 at an absolute temperature, T is:</p>
+                        <p>Thermoelectric materials generate electricity from heat and vice versa and are considered as 'green energy'. Since heat and electricity are involved with this type of materials, the thermal conductivity (&kappa;) and electrical conductivity (&sigma;) parameters are intensely associated to calculate the performance metrics-ZT or the figure of merit. Moreover, for ZT calculation, there is one more vital parameter involved called the Seebeck coefficient (S)-a conversion factor controlling the conversion of thermal and electrical energy. The relation of ZT with all these three parameters, S, &sigma; and &kappa; at an absolute temperature, T is:</p>
                         <center><img src='assets/img/zt.jpg' width = 25%></center>
-        <p>The product S²σ is coined as the power factor (PF). It is clear from the relation that a potential thermoelectric material should possess</p>
-                        <ul> &#10003 <b>Low 𝜅</b></ul> 
-                        <ul> &#10003 <b>High σ</b></ul> 
-                        <ul> &#10003 <b>High power factor-S²σ</b></ul>
+        <p>The product S²&sigma; is coined as the power factor (PF). It is clear from the relation that a potential thermoelectric material should possess</p>
+                        <ul> &check; <b>Low &kappa;</b></ul> 
+                        <ul> &check; <b>High &sigma;</b></ul> 
+                        <ul> &check; <b>High power factor-S<sup>2</sup>&sigma;</b></ul>
                         <h5>Aim of the ML project</h5>
-                        <p>Building a machine learning model to identify possible combinations of elements, with the desirable characteristics of high σ and low 𝜅 . Here I will showcase the correlations of various elements with σ and 𝜅 independently, and then compute their SHAP values, which will eventually assist in designing a new improved material.  </p>
+                        <p>Building a machine learning model to identify possible combinations of elements, with the desirable characteristics of high &sigma; and low &kappa; . Here I will showcase the correlations of various elements with &sigma; and &kappa; independently, and then compute their SHAP values, which will eventually assist in designing a new improved material.  </p>
                         <h5>Database of materials</h5>
-                        <p>	I have amassed a dataset of 204 compositions/ materials (shown in the formula column), and their room temperature properties (σ and 𝜅). <b><a href="https://www.nature.com/articles/s41524-021-00564-y">Here</a></b> is the reference of the dataset.</p>
+                        <p>	I have amassed a dataset of 204 compositions/ materials (shown in the formula column), and their room temperature properties (&sigma; and &kappa;). <b><a href="https://www.nature.com/articles/s41524-021-00564-y">Here</a></b> is the reference of the dataset.</p>
                         <h5>Stepwise Implementation of ML </h5>  
                         <p><h5>Importing relevant libraries and loading preprocessed dataset </h5></p>
                     <p>One of the important ground rules before running any machine learning algorithm is to import all the required libraries. In this case, besides importing the standard Python libraries such as NumPy, Pandas, and Matplotlib, additional materials-based Python packages such as <b><a href="https://hackingmaterials.lbl.gov/matminer/">Matminer</a></b>, <b><a href="https://pymatgen.org/">Pymatgen</a></b> along with <b><a href="https://shap-lrjball.readthedocs.io/en/latest/">SHAP</a></b> are also installed. </p>
@@ -113,26 +119,26 @@
                         '>previous article</a></b>. A snippet of the refined dataset, ready for training, is shown below. </p>
                     <center><img src="assets/img/DATASET.jpeg" width = 100%></center><span class="caption text-muted"> Preprocessed dataset</span>
                     <p><h5>Defining Xs (Features/ Descriptors) and y (Response/ Target)</h5>
-                    <p>Here, 49 features/ descriptors** are designated as X which are individual elements constituting the formulae. Note that this dataset involves two responses/targets – σ and 𝜅  designated as y_sigma and y_kappa respectively. The said targets are the determiners of the performance of thermoelectrics, as highlighted in the ‘About Thermoelectrics’ section. I have conducted two separate trainings with the same input parameters (X) but different targets (y_sigma and y_kappa). </p>
+                    <p>Here, 49 features/ descriptors** are designated as X which are individual elements constituting the formulae. Note that this dataset involves two responses/targets-&sigma; and &kappa;  designated as y_sigma and y_kappa respectively. The said targets are the determiners of the performance of thermoelectrics, as highlighted in the 'About Thermoelectrics' section. I have conducted two separate trainings with the same input parameters (X) but different targets (y_sigma and y_kappa). </p>
                     <p><i><font size=4>**Note that in the real-world dataset for materials exploration, the inclusion of process variables is a must for optimization. </font></i></p>
-<p><h5>Training 1 with target – Electrical conductivity (σ)</h5> 
-                    <p><h6><ul>&#10003 <b>	Splitting dataset into train and test batches</b></ul></h6>
+<p><h5>Training 1 with target-Electrical conductivity (&sigma;)</h5> 
+                    <p><h6><ul>&check; <b>	Splitting dataset into train and test batches</b></ul></h6>
                     <p>The preprocessed dataset is split in the ratio of 80:20 as training and test batches as seen in the code snippet below.  </p>
                     
 <!--CODE-->
                     <pre style="background-color:gainsboro"><code>from sklearn.model_selection import train_test_split
 X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(X_sigma, y_sigma, test_size = 0.2, random_state = 0) </code></pre>
-                    <p><h6><ul>&#10003 <b>	Fitting into a machine learning algorithm</b></ul></h6>
+                    <p><h6><ul>&check; <b>	Fitting into a machine learning algorithm</b></ul></h6>
              <!--CODE-->
                     <pre style="background-color:gainsboro"><code>from sklearn.ensemble import RandomForestRegressor
 regr_rf = RandomForestRegressor(n_estimators=100, random_state=0)
 rf_s=regr_rf.fit(X_train_s, y_train_s)</code></pre>
                     <p>The training batch, X_train_s and y_train_s, is fitted with a random forest regressor algorithm. </p>
-                   <p><h6><ul>&#10003 <b> Computing SHAP values to elucidate the contribution of each feature</b></ul></h6>
-                    <p>SHAP values of elements impacting σ are obtained using TreeExplainer(). This analysis is more reliable compared to the feature importance class of the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest algorithm</a></b>. The latter class does not distinguish closely correlated variables and projects the importance of one while ignoring the other. On the contrary, the SHAP method <b>meticulously highlights every feature's contribution 
+                   <p><h6><ul>&check; <b> Computing SHAP values to elucidate the contribution of each feature</b></ul></h6>
+                    <p>SHAP values of elements impacting &sigma; are obtained using TreeExplainer(). This analysis is more reliable compared to the feature importance class of the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest algorithm</a></b>. The latter class does not distinguish closely correlated variables and projects the importance of one while ignoring the other. On the contrary, the SHAP method <b>meticulously highlights every feature's contribution 
 </b>along with the <b>direction and degree of impact </b>on the <b>target variable</b>.</p>
                     
-                    <p><h6><ul>&#10003Interpretation of the model outcome using SHAP values </ul></h6> 
+                    <p><h6><ul>&check;Interpretation of the model outcome using SHAP values </ul></h6> 
                     <p>SHAP values are obtained using the shap.TreeExplainer class. These values signify the strong and weak contributions, color-coded with red and blue respectively, of each feature on the target which is displayed in the <b>SHAP summary plot</b>. </p>
                     <!--CODE-->
                     
@@ -142,21 +148,21 @@ shap_values_s = explainer.shap_values(X_train_s)
 shap.summary_plot(shap_values_s, X_train_s)
 </code></pre> 
                     <p> <h5>How SHAP plot is instrumental in materials design?</h5>
-                    <p>The plot with the X-axis as SHAP values and the Y-axis representing the features gives a picture of the elements directly enhancing σ with high positive contribution. Each point on the plot denotes a row in the dataset. A quick glance at the SHAP summary plot helps to identify the probable elements possessing a strong positive impact on σ-one of the criteria for potential thermoelectrics. 
-                        <center><img src="assets/img/SHAP_sigma.jpeg"><span class="caption text-muted">SHAP summary plot showing the contributions of different elements toward electrical conductivity (σ)</span></center>
-                        <p>Elements such as iron (Fe), sodium (Na), tellurium (Te), Lead (Pb), Titanium (Ti), Zirconium (Zr), Silicon (Si) and antimony (Sb) displayed strong contributions to σ and are coded red as per the colorbar.</p>
-                    <p><i>However, a novel thermoelectric material also requires elements with low thermal conductivity (𝜅). This prompted the training of the same features to come up with a model which can identify elements with low 𝜅 value as the response.</i></p>
-                    <p><h5>Training 2 with target – Thermal conductivity (𝜅)</h5>
-                    <p>The machine is now trained with a regressor algorithm on the same features (Xs) used in training 1 and 𝜅 as the target in lieu of σ.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to 𝜅. We could identify only a few elements such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) exhibiting a strong adverse effect on 𝜅.</p>
+                    <p>The plot with the X-axis as SHAP values and the Y-axis representing the features gives a picture of the elements directly enhancing &sigma; with high positive contribution. Each point on the plot denotes a row in the dataset. A quick glance at the SHAP summary plot helps to identify the probable elements possessing a strong positive impact on &sigma;-one of the criteria for potential thermoelectrics. 
+                        <center><img src="assets/img/SHAP_sigma.jpeg"><span class="caption text-muted">SHAP summary plot showing the contributions of different elements toward electrical conductivity (&sigma;)</span></center>
+                        <p>Elements such as iron (Fe), sodium (Na), tellurium (Te), Lead (Pb), Titanium (Ti), Zirconium (Zr), Silicon (Si) and antimony (Sb) displayed strong contributions to &sigma; and are coded red as per the colorbar.</p>
+                    <p><i>However, a novel thermoelectric material also requires elements with low thermal conductivity (&kappa;). This prompted the training of the same features to come up with a model which can identify elements with low &kappa; value as the response.</i></p>
+                    <p><h5>Training 2 with target-Thermal conductivity (&kappa;)</h5>
+                    <p>The machine is now trained with a regressor algorithm on the same features (Xs) used in training 1 and &kappa; as the target in lieu of &sigma;.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to &kappa;. We could identify only a few elements such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) exhibiting a strong adverse effect on &kappa;.</p>
                     <p><h5>Designing Strategy and Real-World Examples </h5>
                     <p>After the two SHAP summary plots are generated, we proceed to the core and most intriguing part of this article: <b>materials design</b>. </p>
-                    <p>Let us look at the two plots carefully to choose the permutation of constituent elements which can lead to a potential thermoelectric composition. Remember we need combinations of elements with a high positive SHAP value for σ and a high negative SHAP value for 𝜅 to achieve the desired goal.</p>
+                    <p>Let us look at the two plots carefully to choose the permutation of constituent elements which can lead to a potential thermoelectric composition. Remember we need combinations of elements with a high positive SHAP value for &sigma; and a high negative SHAP value for &kappa; to achieve the desired goal.</p>
                     <center><img src="assets/img/SPlots.jpg" width=100%><span class="caption text-muted">SHAP summary plots</span></center>
                     
                                         
-                    <p>These plots show that Fe, Na, Pb, Te, Si, Ti, Zr, and Sb have large positive SHAP values for σ while Ge, Hf, and Sb possess high negative SHAP values for 𝜅. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for σ and 𝜅 respectively. A Venn diagram beautifully illustrates the intersection area with Sb indicating its dual role of increasing σ and decreasing 𝜅.
+                    <p>These plots show that Fe, Na, Pb, Te, Si, Ti, Zr, and Sb have large positive SHAP values for &sigma; while Ge, Hf, and Sb possess high negative SHAP values for &kappa;. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for &sigma; and &kappa; respectively. A Venn diagram beautifully illustrates the intersection area with Sb indicating its dual role of increasing &sigma; and decreasing &kappa;.
                         <center><img src="assets/img/venn.jpg" width=60%><span class="caption text-muted">Venn diagram showing Sb as the only element to possess high electrcial conductivity and low thermal conductivity simultaneously</span></center>
-                        <p>This finding narrowed our search for ideal combinations where  Sb can be chosen as one of the constituent elements. The other element/ elements for new compositions can be judiciously selected from the range of elements contributing favorably and adversely toward σ and 𝜅 respectively.</p> 
+                        <p>This finding narrowed our search for ideal combinations where  Sb can be chosen as one of the constituent elements. The other element/ elements for new compositions can be judiciously selected from the range of elements contributing favorably and adversely toward &sigma; and &kappa; respectively.</p> 
                     
         <p>I conducted a literature survey to verify the accuracy of thermoelectric compositions identified through SHAP value analysis. I was thrilled to find out that indeed there are compositions reported in the literature with a mix and match of elements identified from the above SHAP summary plots. </p>
                     <p>According to our SHAP value-guided ML findings, a blend of transition metals (Fe, Hf) and p-block elements (Sb, Te, Ge) could form prospective compositions for thermoelectric applications. And such combinations are found in a class of materials (compositions), known as <b><a href="https://en.wikipedia.org/wiki/Heusler_compound">Heusler alloys
