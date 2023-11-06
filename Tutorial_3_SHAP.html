@@ -23,7 +23,7 @@
         </style>
         <meta name="description" content="Blog post on materials design." />
         <meta name="author" content="Joyita Bhattacharya" />
-        <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, randon forest regression, Tree SHAP, TreeExplainer, summary plot" />
+        <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, random forest regression, Tree SHAP, TreeExplainer, summary plot" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         
         
@@ -203,7 +203,7 @@ Comp</code></pre>
 shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre>
 <img src = 'assets/img/tut3/SumPlot_2T.png' width=80%>
 
-   <p>The bars' width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
+   <p>The bars' width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar, indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
  
     <p>However, to understand the nature of the contribution of features on the final target, we need a <b>summary plot for a single target illustrating both the intensity and direction of impact</b>, i.e. whether the feature is favorably or adversely affecting the said target. Let me illustrate this point.</p>
     <p><u>Reading <b>Single Target Summary Plot</b></u></p>
