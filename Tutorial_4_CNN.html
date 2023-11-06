@@ -145,14 +145,14 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <center><img src="assets/T4_Im/CNN_model_h.jpg" width=80%></center>
                     <p><b>Layer 1: 2D Convolution layer </b></p>
 <p>Let us begin with a convolution operation on the image matrix (64 x 64) with 3 x 3 filter and reLU (rectified linear unit) activation function.  The convolution of the image matrix with the filter matrix will generate a <b>convolved matrix</b> also known as <b>feature map or activation map
-</b>. As the name suggests, feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p> 
+</b>. As the name suggests, a feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p> 
 <p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p> 
 
                     <center><img src="assets/T4_Im/Conv2D_math.jpg" width=100%></center>
                     <p><b>Code</b></p>
                     <p><pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Conv2D(filters = 64, kernel_size =3, activation = 'relu', input_shape = [64, 64,1]))</code></pre></p>
                         <p><b>Layer 2: Max Pooling layer</b></p>
-                        <p>Convolution layer is followed by a max pooling layer, where the maximum value of the feature map region coinciding with the kernel/ filter is considered. A graphical representation will help to visulaize this statement more clearly. As we can see, this operation further downsizes  the input matrix.  </p>
+                        <p> The Convolution layer is followed by a max pooling layer, where the maximum value of the feature map region coinciding with the kernel/ filter is considered. A graphical representation will help to visualize this statement more clearly. As we can see, this operation further downsizes  the input matrix.  </p>
 <center><img src="assets/T4_Im/maxpool.jpg" width=75%></center>
                         <p><b>Code</b></p>
                         <p><pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.MaxPool2D(pool_size = 2, strides =2))</code></pre>
@@ -242,7 +242,7 @@ train_set.class_indices
 <p><b>{'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</b></p>
 
 <p><b>The prediction output is [[1 0 0 0]].</b>I converted the <b>prediction probability</b> into a <b>crisp binary prediction</b> by applying <b>astype(int) method of pandas</b> where <b>1</b> and <b>0</b> represents <b>true</b> and <b>false</b> repectively. So you can read the result as [true false false false].</p>
-<p>The <b>first class</b> in the dictionary is <b>'Network'</b> and the <b>prediction of 1 indicates correct</b> output unlike the other three classes where the prediction output is 0 indicating their absence or non-occurance. Thus, the model could correctly classify the unknown microstructure as network.  </p>
+<p>The <b>first class</b> in the dictionary is <b>'Network'</b> and the <b>prediction of 1 indicates correct</b> output unlike the other three classes where the prediction output is 0 indicating their absence or non-occurrence. Thus, the model could correctly classify the unknown microstructure as network.  </p>
 
 
                         <p><b>Wrapping up</b></p>
