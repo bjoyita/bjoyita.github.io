@@ -22,7 +22,7 @@
         </style>
         <meta name="description" content="Blog post on materials design." />
         <meta name="author" content="Joyita Bhattacharya" />
-        <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, randon forest regression, Tree SHAP, TreeExplainer, summary plot" />
+        <meta name="keywords" content="Feature importance, Machine learning, Shapley, SHAP, thermoelectrics,  thermal conductivity, Power factor, Matminer, Pymatgen, multioutput, Muti-target, random forest regression, Tree SHAP, TreeExplainer, summary plot" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         
         
@@ -202,7 +202,7 @@ Comp</code></pre>
 shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre>
 <img src = 'assets/img/tut3/SumPlot_2T.png' width=80%>
 
-   <p>The bars' width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
+   <p>The bars' width implies the extent (magnitude) of the impact of features on the targets and displays absolute values. For instance,  Zn displays a wider red bar than a blue bar, indicating it plays a stronger role in terms of thermal conductivity than PF. </p>  
  
     <p>However, to understand the nature of the contribution of features on the final target, we need a <b>summary plot for a single target illustrating both the intensity and direction of impact</b>, i.e. whether the feature is favorably or adversely affecting the said target. Let me illustrate this point.</p>
     <p><u>Reading <b>Single Target Summary Plot</b></u></p>
@@ -238,7 +238,7 @@ shap.summary_plot(shap_values_rf, X_train, class_names= class_names)</code></pre
 <!-- ShareThis END -->
                                       
                         <p>
-            <div class="small text-center text-muted fst-italic">Copyright &copy; 2022 Joyita Bhattacharya. All rights reserved.</div>    <head>                  
+            <div class="small text-center text-muted fst-italic"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>    <head>                  
    <center>                   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       
