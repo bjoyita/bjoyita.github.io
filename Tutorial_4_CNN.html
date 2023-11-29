@@ -10,11 +10,6 @@
        
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        <!--        Google ADSENSE-->
-       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
-     crossorigin="anonymous"></script>
-        
         <style>
         .column {
   width: 100%;
@@ -92,7 +87,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
 <p><b>Aim of the tutorial:</b> To demonstrate the coding steps for microstructure (image) classification using Convolutional Neural Network (CNN)-a deep learning algorithm.
-                    <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel.  I've included the reference for the dataset in the link given at the end of this tutorial.</p>
+                    <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel. I've included the reference for the dataset in the link given at the end of this tutorial. 
                     <p>I am providing a schematic diagram of the basic framework for machine learning for ease of learning.</p>
                     
                     <p><center><img src='assets/T4_Im/ML_overview.jpg' width="100%"><span class="caption text-muted" >Schematic Diagram of a basic ML framework</span></center></p>
@@ -150,7 +145,7 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <center><img src="assets/T4_Im/CNN_model_h.jpg" width=80%></center>
                     <p><b>Layer 1: 2D Convolution layer </b></p>
 <p>Let us begin with a convolution operation on the image matrix (64 x 64) with 3 x 3 filter and reLU (rectified linear unit) activation function.  The convolution of the image matrix with the filter matrix will generate a <b>convolved matrix</b> also known as <b>feature map or activation map
-</b>. As the name suggests, a feature map reveals the characteristic features of an image, which can be used to demarcate or 'classify' different images.</p> 
+</b>. As the name suggests, a feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p> 
 <p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p> 
 
                     <center><img src="assets/T4_Im/Conv2D_math.jpg" width=100%></center>
@@ -251,7 +246,7 @@ train_set.class_indices
 
 
                         <p><b>Wrapping up</b></p>
-                        <p> Click <a href="https://github.com/bjoyita/Classification_CNN/blob/main/Classification_UHCSD.ipynb"><b><font color=blue>here</font></b></a> to avail the entire code.</p>
+                        <p> Click <a href="https://github.com/bjoyita/Classification_CNN/blob/main/Classification_UHCSD.ipynb"><b><font color=blue>here</font></b></a> to avail the entire code and references for the used dataset.</p>
                             <p>Links to get the training and test images:</p>
                             <p><a href="https://drive.google.com/file/d/1niyqEXH4KpRtMv4Nd0-sVmyYRL8Rkq7F/view?usp=sharing"><b><font color = blue>Training set</font></b></a></p>
                             <p><a href="https://drive.google.com/file/d/1xYNdmcpHlvcg4w1nvo4HAyE97Akh1eh3/view?usp=sharing"><b><font color = blue>Test set</font></b></a></p>
