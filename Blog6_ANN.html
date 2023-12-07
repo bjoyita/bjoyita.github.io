@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
+              <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+        <meta name="description" content="Using ANN for multi target reponses accelerating materials development and design." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Accelerated Materials Design, Feature importance, Regression, Artificial Neural Network, ANN, Multi target, predictors, correlations, Shapley, SHAP, thermoelectrics, ZT, thermal conductivity, electrical conductivity" />
+        
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+               
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                                                               
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+             <img src ="assets/img/logo_mdxp.png" width=5%>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                    </div></div></div> </header>
+                    
+
+                    
+                    <!--Title of the blog-->
+        <p><center><h1><font face ="verdana", color = "maroon">Accelerated Materials Design Using Multi-Target Regression Neural Network and Shapley Values</font></h1></center></p> 
+                    
+                    
+                    <hr size =4 > 
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+                        <center><img src ='assets/ANN_SHAP/Pic_blog6.jpg' width=100% ></center>
+                        <span class="caption text-muted">Photo by author </span>
+                                                
+ 
+   <p><h2>Introduction</h2></p> 
+                        
+    <p>This article is an extension of my previous post <a href="https://bjoyita.github.io/Blog5_SHAP.html"><b>“Shapley Value aided Recipe for Materials Design” </b></a>which explains the usage of Shapley values for extracting feature importance and their impact on individual target variables leading to drafting a blueprint for materials design. However, to innovate and fabricate new materials, we need to consider the synergistic effect of several properties determining the performance.</p>
+                        <p>For instance, Corning’s Gorilla glass, used in smartphones and tablets, possesses the right balance of properties such as hardness, lightness, and scratch-resistance. There are umpteen number of such examples showing materials with combination of properties for the specified areas of applications. Thus comes the necessity of building predictive models with multiple closely knitted targets.</p>
+
+                        
+<h3>A case study</h3>
+<p>Let me illustrate the above point with an artificial neural network (ANN) modeled to project the extent of the importance of two interdependent targets. Here, I am going to use the same dataset, used in my last two posts, comprising of 204 thermoelectric materials, their elemental compositions, and their two significant properties — thermal conductivity (kappa) and power factor (PF) associated with electrical conductivity. The right combination of kappa and PF determines the performance. These materials are poor thermal but good electrical conductors at the same time which is quite challenging as per the laws of physics. They find applications in power generation and refrigeration. One noteworthy application of these thermoelectric materials is its use as a power source for the Mars Rover vehicles, -‘Curiosity’, ‘Perseverance’.</p>
+                        <p>The question is how we find the best one with an optimum set of properties. The answer lies in building a robust regression model that can connect all necessary parameters and identify the most significant combination of features. Here, we discuss the process to build such a model.</p>
+                        
+                        <h3>Building the ANN Regression Model with two outputs</h3>
+                        <p>After preprocessing of materials data using the python libraries such as Matminer and Pymatgen, described in my post <a href='https://bjoyita.github.io/blog2_Matminer.html'><b>“Uncovering the Potential of Materials Data using Matminer and Pymatgen”,</b></a> the refined dataset looks like this:</p> 
+
+                        <p><img src="assets/ANN_SHAP/FinalDataSet.jpg" width = 100%></p>
+                        
+                       <span class="caption text-muted">Clean dataset for deep learning </span> 
+<p>This clean dataset contains 49 predictors or X and 2 targets or y. The predictors are all individual elements of the material compositions. While ‘kappa’ and ‘PF’ are the two targets (y).</p>
+                        
+                        <h4>Identifying X and y</h4>
+                         <pre style="background-color:gainsboro"><code>X = ds_RT.iloc[:, 1: 50]
+y = ds_RT.iloc[:,50:]
+</code></pre>
+
+          <p>Let us now go ahead and split the data into training and test sets.</p>  
+                        <h4>Splitting data</h4>
+                        <pre style="background-color:gainsboro"><code>from sklearn.model_selection import train_test_split 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)</code></pre>
+                        
+                    <h4>Scaling data</h4>
+            <p>Generally, descriptors or predictors (X’s) are scaled due to their broad ranges of values. However, in this case, all the predictors are elements of the periodic table, and their data represents elemental fractions from 0 to 1.</p>  
+                        <p>On the contrary, the scaling of y, applying MinMaxScaler function of Sklearn, is needed as the range of these target variables spreads widely.</p>
+                        
+                        
+                    <pre style="background-color:gainsboro"><code>from sklearn.preprocessing import MinMaxScaler
+sc = MinMaxScaler()
+y_train = sc.fit_transform(y_train)
+y_test = sc.transform(y_test
+</code></pre>
+                    <p>It’s time to build the ANN layers.</p>
+                        <h4>Sequential Layers and Optimization of ANN Model</h4>
+                        
+                        <p>I have arranged three dense or the fully connected layers with the first one having the input dimension of 49 representing the number of predictors and the last layer with 2 output neurons for 2 targets. The code snippet below displays the layers and their attributes.</p>
+             
+        <pre style="background-color:gainsboro"><code>from keras.models import Sequential
+from keras.layers import Dense
+model = Sequential()model.add(Dense(25, input_dim=49, kernel_initializer='he_uniform', activation='relu'))model.add(Dense(25, kernel_initializer='he_uniform', activation='relu'))model.add(Dense(2))
+</code></pre> 
+                        <p>The adaptive moment estimation algorithm, ADAM, based on stochastic gradient descent is employed for optimization of the model and the loss function is estimated by mean absolute error. After compilation of the model, the training dataset is fitted, and the loss function is calculated accordingly.</p>
+                    <pre style="background-color:gainsboro"><code>model.compile(loss ='mae', optimizer = 'adam')
+model.summary()
+history = model.fit(X_train, y_train, verbose = 'auto',epochs = 400)from sklearn.metrics import mean_absolute_error
+mae = mean_absolute_error
+mae(y_test, y_pred)</code></pre>
+                        <h4>Analyzing the extent of influence of predictors on target variables</h4>
+
+                        <p>Let us dive deep into the impact of predictors on these target variables with the aid of Shapley values. This impact analysis is vital for every dataset to understand and interpret any machine learning model which is otherwise impenetrable.</p>
+                    <p>With the advent of several XAI (Explainable Artificial Intelligence) algorithms, we can more accurately gauge the tuning of hyperparameters leading to more meaningful predictions.</p>
+                        
+                        <p>Let us now see the role of Shapley values in this example of thermoelectric dataset. The whole idea of subjecting this data to a deep learning algorithm and calculating the contributions (in the form of Shapley values) of the predictors on the targets is to extract the useful correlations between them. These correlations matter immensely when the interrelations between parameters become more and more complex.</p>
+                        <p>After installation of the SHAP (SHapley Additive exPlanations) package, the KernelExplainer function is used in this case to calculate the contributions of the features/ predictors. I am sharing the code snippet for the same.</p>
+                        
+                        <pre style="background-color:gainsboro"><code>pip install shap
+import shapexplainer = shap.KernelExplainer(model = model, data = X_train,link = 'identity' )
+shap_values = explainer.shap_values(X_train)</code></pre>
+                        
+                        <h4>Plotting and interpreting Shap values based on the training data</h4>
+                        
+                        <pre style="background-color:gainsboro"><code>class_names = y.columns
+shap.summary_plot(shap_values, feature_names = X_train.columns)</code></pre>
+                        
+                        <p>The two target variables, kappa and PF, are color-coded by red and blue, respectively. The Shap plot has features on the X-axis and absolute Shap values or contributions as Y-axis. We can immediately get an overview on the extent of contribution of each feature on individual target variables from this bar plot.</p>
+
+              
+                                        <center><img src="assets/ANN_SHAP/ShapPlot_2targets_train.png" width=100%><span class="caption text-muted">Bar plot showing contributions from two targets</span></center>
+                        <h4>Interpreting correlations between features and specific target</h4>
+                        <p>To untangle the correlations of kappa and PF with the features, I plotted the summary plots taking one target at a time.</p>
+                        
+                    <img src="assets/ANN_SHAP/SumPlot_trainData.jpg" width=100%><span class="caption text-muted">Shapley summary plots showing effect of elemental contributions on kappa and PF</span>
+                        <p>These plots reveal the signs of correlations: positive, negative or zero. The <font color='red'>red color</font> indicates <font color='red'>high impact</font> while <font color='blue'>‘blue’</font> depicts <font color='blue'>low</font>. Taking the same example of Zn and Sb, following can be inferred:</p>
+                        <ul>- Zn has more positive correlations with kappa than that with PF.</ul>
+<ul>- Sb has high positive correlation with PF and high negative correlation with kappa.
+</ul>
+                    
+                                        
+                    <p>The class of material, in this study, requires a co-existence of positive and negative correlations of features with PF and kappa respectively. Sb, for instance, showed such an ideal combination. Prior knowledge of the direction of impact of features on targets is truly conducive in proposing design ideas for any types of materials for desired applications.</p> 
+                        <p>You can get the entire code <b><a href="https://github.com/bjoyita/SHAP_MaterialsDesign/blob/main/ANN_PF_kappa_multitarget_GH.ipynb">here</a></b>.</p>
+                        
+                        <h3>Key Takeaways</h3>
+                        <ul>- Building machine learning and deep learning models capable of juggling multiple targets simultaneously is a step towards unlocking valuable information leading to innovation and development. They help in understanding the interdependence between targets and predictors.</ul>
+                    <ul>- Benefit of considering all the target variables together is time saving and computationally less expensive compared to fitting single target one at a time.</ul>
+                        <ul>- Multi target fitting and analyzing using XAIs provides better clarity for tuning the hyperparameters of the predictors influencing the target variables.</ul>
+                        <ul>- Fitting multiple responses is possible both in regression as well as in classification algorithms. Multi-target regression is carried out when the responses are numeric, while multi-label or multi-class classification is performed in case of categorical target variables.</ul>
+                        <p>Finally, training machines to recycle and reuse data with multiple targets for a specific purpose should be encouraged as it brings out the essence of inter-relationships between the final outputs. This enhances the forecasting and reliability of any machine learning model leading to more fruitful deployment in real-world applications.</p>
+        
+                      
+                    
+        <!-- Footer-->
+                    
+        <footer class="border-top">
+          
+   <!--LIKE AND SHARE BUTTONS-->
+
+
+                <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                                      
+                        <p>
+            <div class="small text-center text-muted fst-italic"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>    <head>                  
+   <center>                   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+
+<script>
+let likes = 0;
+      $(document).ready(function () {
+        // ajax to get current likes
+        // let likes from server are 10
+        // assign the current likes to variable
+        likes = 1;
+        setLikes(likes);
+      });
+      
+      $("body").on("click", ".likeBTN", function () {
+        // ajax to post a current likes
+        // in success add increment to likes
+        likes++;
+        setLikes(likes);
+      });
+
+      function setLikes(count) {
+        $(".totalLikes").text(count);
+      }
+</script>
+</head>
+                                    
+        </footer>
+<!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script></article>
+        
+            </body>
+</html>
