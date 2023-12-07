@@ -121,8 +121,9 @@ df</code></pre>
   
  <center><img src ='assets/img/tut7/df_props.jpg' width="50%"> </center>
                     <span class="caption text-muted">Dataframe showing the room temperature values of thermoelectric properties of 204 compositions</span>
+                    <p><h4>Step 3: Generating Heatmaps</h4></p>
                     <p>I will demonstrate <b>three Python-based methods</b> for heatmap generation and visualization. </p>
-                    <p><h4>METHOD 1: Using Pandas library</h4></p>
+                    <p><h5>METHOD 1: Using Pandas library</h5></p>
                     <p>The correlation heatmap displayed is generated using Pandas's <b><a href='https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html'>corr( ) function</a></b>. The heatmap is a graphical representation of the correlation matrix.   By default, the Pearson method is used to compute <b><a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficients</a></b>.</p>
                     <pre style="background-color:gainsboro"><code>matrix= df.corr()
 matrix</code></pre>
@@ -138,7 +139,7 @@ matrix</code></pre>
                 <ul>&check;Seebeck and Kappa (second column variable), and Seebeck and Sigma (third column variable) have negative correlations;</ul>
                 <ul>&check;Seebeck has a positive correlation with ZT.</ul>
                 <p>Similarly, we can infer that ZT, or the performance factor has a positive correlation with Seebeck and a negative correlation with kappa following the equation defining it.  Further, kappa and sigma show a positive correlation, validating the <b><a href='https://en.wikipedia.org/wiki/Wiedemann%E2%80%93Franz_law'>Wiedmann Franz law</a></b>. </p>
-                <p><h4>Method 2: Using Seaborn </h4></p>
+                <p><h5>Method 2: Using Seaborn </h5></p>
             <p>We use the <b><a href='https://seaborn.pydata.org/generated/seaborn.heatmap.html'>heatmap( )</a></b> function to generate the heatmap. </p>
             
             <pre style="background-color:gainsboro"><code>heatmap_seaborn = sns.heatmap(matrix, annot=True, linewidth = 0.5, linecolor='black', cmap='rocket')</code></pre>
@@ -146,7 +147,7 @@ matrix</code></pre>
             <center><img src="assets/img/tut7/Seaborn-hm.jpg" width="70%"></center>
             
             <p>We can observe the same trend of correlation coefficients as seen in Pandas.  </p>
-            <p><h4>Method 3: Using Plotly express</h4></p>
+            <p><h5>Method 3: Using Plotly express</h5></p>
         <p>You can also generate the heatmap with coefficient values using the <b><a href='https://plotly.com/python/plotly-express/'>plotly.express module</a></b> (usually imported as px). The advantage of this module is that it can create the required figure at one go.  </p>
         <pre style="background-color:gainsboro"><code>!pip install Plotly
 import plotly.express as px
