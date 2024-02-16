@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPPQKTW0JB');
+</script>
+
+          
+       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+       
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on caluation of loss or error functions and R square for multivariate polynomial regression analysis in machine learning." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Loss functions, Goodness of fit, R-squared, mean absolute error (MAE), mean squared error (MSE), root mean squared error (RMSE), thermolectric, kappa, sigma, Seebeck, ZT, evaluation metrics, compute, input features, feature importance, multivariate, polynomial regression, polynomial features, adjusted r-squared, Prediction"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+    
+
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <meta name="viewport" content="width=device-width, initial-scale=1" />
+                            </div></div></div>                 
+                         </header>
+            
+                    
+<!--Title of the blog-->
+                    <p><h1 align="center"><font face ="verdana", color = "maroon">Assessing Evaluation Metrics for Regression Analysis with Multiple Input Variables (Part II)    </font></h1>
+                    <center><p> <font face="monospace"> February, 2024</font></p></center>                                          
+                    <hr size =4 >
+                            
+                                   
+                        <!--CONTENT-->
+                                                                                                                     
+              <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <p>Let's continue our learning journey on <a href='EvMetrics.html'><b><font color=blue>evaluation metrics</font></b></a> for regression analysis. In this tutorial, I will guide you through the coding steps for computing loss functions and R<sup>2</sup> (goodness of fit) for a multivariate polynomial regression model that has multiple input features. </p>
+                    
+                        <p>If you are a new visitor to this tutorial, please refer to my <a href="Tut8_Reg.html"><b><font color='blue'>previous tutorial</font></b></a> on evaluating loss functions and performance metrics with a single input feature for regression analysis.</p> 
+                        <p><h4><font type='sans'>Computing Loss Functions and R<sup>2</sup> with 2 Input Features using Polynomial Linear Regression</font></h4></p>
+                        <p><b>1.</b> As always, <b>start with importing relevant libraries and loading the dataset</b>.  
+                            For this task, we will use the same dataset used in Part I of the evaluation series.  You may refer to the previous tutorial to read the <a href="Tut8_Reg.html"><b><font color='blue'>technical note on the dataset</font></b></a>, which will assist you in comprehending the selection of input features/ variables that govern the target variable, resulting in an improved predictability of the model.
+</p>
+                        
+                     
+ <pre style="background-color: gainsboro"><code>dataset3 = pd.read_csv('RT_TEprop.csv')
+X3 = dataset3.iloc[:, 3:5].values
+y3 = dataset3.iloc[:, -1].values</code></pre>
+                         
+                        <p><b>Input features chosen (Xs):</b> Electrical conductivity (sigma or σ), thermal conductivity (kappa or κ); <b>Target:</b> ZT</p>
+                    <p><b>2.</b> Subjecting <b>ONLY the input features to <a href='https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html'><font color=blue>PolynomialFeatures</font></a></b> of sklearn.preprocessing module to obtain the polynomial feature matrix. I have used polynomial degree 2. Note that y remains the same. </p>
+                        
+                       <p><b>3. Fitting the transformed data: Apply the fit_transform( ) method. </b></p>
+                        <pre style="background-color: gainsboro"><code>poly = PolynomialFeatures(degree=2)
+poly_features_2 = poly.fit_transform(X3)
+poly_features_2.shape</code></pre>
+                    <p>The new <b>polynomial feature matrix has 6 columns</b> as shown below.</p>
+                        
+                        <p><center><img src="assets/Tut8_9_Reg/6cols.jpg" width=80%></center></p>
+                        
+                     
+                        
+                        <p><b>4. Splitting data into training and test sets</b></p>
+                        <pre style="background-color: gainsboro"><code>X3_train, X3_test, y3_train, y3_test = train_test_split(poly_features_2, y3, test_size=0.1, random_state=42)</code></pre>
+                        
+                        <p><b>5. Applying linear regression for fitting the training set:</b> The fit method calculates the mean and variance of each of the features present in the data.</p>
+                        <pre style="background-color: gainsboro"><code>lr = LinearRegression()
+lr.fit(X3_train, y3_train)</code></pre>
+                        
+                        <p><b>6. Prediction using the test set</b></p>
+                        <pre style="background-color: gainsboro"><code>y_pred_pr2 = lr.predict(X3_test)</code></pre>
+                        
+                        
+                             <pre style="background-color: gainsboro"><code>lr = LinearRegression()
+lr.fit(X_train, y_train)</code></pre>
+                                  
+                                              
+  <p><b>7. Computing loss/ error functions</b></p>                       
+            <pre style="background-color: gainsboro"> <code> print("MAE",mean_absolute_error(y3_test,y_pred_pr2)
+  print("Mean square error is ",mean_squared_error(y3_test,y_pred_pr2))
+  pr2_rmse = np.sqrt(mean_squared_error(y3_test, y_pred_pr2))</code></pre>
+                        
+                        <p><b>8. Computing R<sup>2</sup> or goodness of fit</b></p>
+                        <pre style="background-color: gainsboro"> <code> r2_score_pr2=r2_score(y3_test,y_pred_pr2)
+  r2_score_pr2</code></pre>
+                    <pre style="background-color: greenyellow"> <code>0.07544377816906822 
+  </code></pre>
+                        <p> <b>Adjusted R-squared:</b> This calculation aims to assess how the <b>number of input variables</b> affects the output. Here, the number of input variables acts as a <b>correction factor</b> in the calculation of R<sup>2</sup>. An <b>adjusted R-squared </b>will increase if there is <b>high input feature importance</b> towards the target variable.</p>
+                        <pre style="background-color: gainsboro"><code>#n= number of samples; p= number of input variable
+n=21
+p=2
+K2 = (n-p)/(n-p-1)
+K2
+Radj_pr2=(1-(1-r2_score_pr2)*K2)
+Radj_pr2
+                    </code></pre>
+                        <pre style="background-color: greenyellow"> <code>0.02407954362290532
+  </code></pre>
+                        R<sup>2</sup> improved by using two input features compared to that computed using a single input variable (R<sup>2</sup> of -0.015 obtained with one X as shown in the <a href="Tut8_Reg.html"><b><font color='blue'>previous tutorial</font></b></a>).
+                                                
+<!--      Feature importance and R-squared-->
+                        <p><h4><font type='sans'>Input Feature Importance and R<sup>2</sup> </font></h4>
+                        <p>Let us now explore the impact of feature importance of the input features (Xs) on R<sup>2</sup> and error functions. </p>
+                        <p><b>Number of Input features (Xs): </b>2</p>
+                        <p><b>Input features (Xs):</b> S<sup>2</sup> and sigma/ kappa ratio. As seen in the equation (ZT=S<sup>2</sup>&sigma;/&kappa;), these two parameters have a direct connection with ZT.</p>
+                        <p><b>Target (y):</b> ZT</p>
+                        
+                                                <p>Follow the same steps <i>(<b>1.</b> Loading data; 
+<b>2</b>Generating polynomial feature matrix; <b>3.</b>Applying fit_transform method; <b>4.</b> Splitting into training and test sets; <b>5. </b>Applying fit method; <b>6. </b>Prediction; <b>7. </b> Computing loss functions; <b>8. </b> R<sup>2</sup> and adjusted R<sup>2</sup>)</i> as shown above.</p>
+                        
+                    <p> Let's now <a href='https://pypi.org/project/tabulate/'><b><font color=blue>tabulate</font></b></a> the loss functions and R<sup>2</sup> (goodness of fit) along with adjusted R<sup>2</sup> obtained from two scenario discussed so far for a quick comparison.</p>                 
+                        
+                        <pre style="background-color: gainsboro"><code>MSE",0.01, 0.01], ['R-squared', 0.07, 0.32], ['Adj_Rsquared', 0.02, 0.28] ]
+print(tabulate(Eval_summary, headers=["Metrics","PolyReg (X:Sigma and kappa)", "PolyReg (X:SigmakappaRatio abd SeebeckSquare)"],  tablefmt="github",numalign='center')))
+                    </code></pre>
+                       
+                        <center><pre style="background-color: lightgreen"><code>| Metrics      |  PolyReg (X:Sigma and kappa)  |  PolyReg (X:SigmakappaRatio and SeebeckSquare)  |
+|--------------|-------------------------------|-------------------------------------------------|
+| MAE          |             0.08              |                      0.07                       |
+| MSE          |             0.01              |                      0.01                       |
+| R-squared    |             0.07              |                      0.32                       |
+| Adj_Rsquared |             0.02              |                      0.28                       |
+                    </code></pre></center>
+                        
+                        <p><b>Comments:</b> R<sup>2</sup> <b>increased to 32%</b> choosing the <b>sigma-kappa ratio and Seebeck square</b> as Xs <b>in contrast to a mere 7% when sigma and kappa were used as inputs</b> for model fitting. This <b>notable improvement</b> in the performance metrics indicates that <b>input features (Xs) that contribute significantly to the response should be appropriately chosen </b> for fitting the model and improving performance metrics.</p>  
+           
+                    <p><i>Click on <a href="https://github.com/bjoyita/Regression_ML/blob/main/RegTut_part2.ipynb"><b><font color=blue>here</font></b></a> for the code availability and working dataset.</i></p>  
+     
+
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                      <!-- ShareThis BEGIN -->
+                        <p>
+                <div class="sharethis-inline-share-buttons"></div> </p>
+<!-- ShareThis END -->
+                       <p>
+                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div></div></div></div>
+                    </div>
+            
+        </footer>
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+            </body></html>
+                        
+                        
+                        
+                        
+                        
