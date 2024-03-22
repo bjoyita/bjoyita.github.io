@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPPQKTW0JB');
+</script>
+
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+       
+             <!--MEDIA-->
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <!--        Google ADSENSE-->
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on generating hypothetical dataset." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Hypothetical dataset, Generate, Corrosion, Alloys, Compositions, DataFrame, Machine learning"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+       
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+                        <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    </div></div></div>
+                                           
+                         </header>
+        
+                    
+<!--Title of the blog-->
+        <p><h1 align="center"><font face ="verdana", color = "maroon">How to Generate Hypothetical Dataset for Machine Learning  </font></h1>
+        <center><p> <font face="monospace"><b> March, 2024</b></font></p></center>                                          
+                    <hr size =4 >
+                 <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                                          
+              <center><img src ='assets/tut10&11/photo.jpg' width=70% ></center>
+                            <span class="caption text-muted">   Photo by <a href="https://unsplash.com/@kmuza?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Carlos Muza</a> on <a href="https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></span>
+                                   
+                        <!--CONTENT-->
+                                    
+       <h4 style='font-family: cursive'>Hypothetical dataset on corrosion properties of materials.</h4>
+                        <p><b> Step 1: Import the relevant libraries </b></p>
+
+    <pre style="background-color: gainsboro"><code>import tensorflow as tf
+from tensorflow import keras
+from keras.preprocessing.image import ImageDataGenerator</code></pre>
+    <p><b>Step 2: Set the Number of metals/ alloys and their elemental compositions. </b></p>
+
+                        <p><pre style="background-color: gainsboro"><code><font color=blue># Set a random seed for reproducibility; random seed ensures that the result of the random operations is reproducible</font>
+np.random.seed(42)
+
+<font color=blue># Define base metals and alloying elements</font>
+base_metals = ['Cu', 'Fe', 'Al']
+alloying_elements = ['Zn', 'C', 'Mg']
+
+<font color=blue># Number of compositions to generate</font>
+n_compositions = 150</code></pre>
+                    
+    <p><b> Step 3: Let's generate 150 alloys/ compositions hypothetically. Consider Base metal % between 60 and 90 and the remaining % for the alloy element.</b> <mark style='background-color: cornsilk'>Sum of base_element and alloy _element should be 100.</mark></p>
+                    
+                        <p><pre style="background-color: gainsboro"><code><font color=blue># create an empty list</font>
+
+compositions = []
+for _ in range(n_compositions):
+    base_metal = np.random.choice(base_metals)
+    alloy_element = np.random.choice(alloying_elements)
+<font color=blue># Randomly generate the percentage for the base metal and alloy element</font>
+    base_percentage = np.random.randint(60, 91)
+    alloy_percentage = 100 - base_percentage
+    composition = f"{base_metal}-{base_percentage}%, {alloy_element}-{alloy_percentage}%"
+    compositions.append(composition)
+<font color=blue># Example output</font>
+for i in range(5):
+    print(compositions[i])</code></pre>
+                        <p><b>Output</b></p>
+                        
+<p><pre style="background-color: greenyellow"><code>Al-74%, Zn-26%
+Al-80%, Zn-20%
+Al-78%, C-22%
+Al-70%, Mg-30%
+Cu-81%, Mg-19%</code></pre>
+                        <p><b>Step 4: Define Xs or Input features attributing to corrosion behaviour of 150 materials/ compositions</b></p>
+                        <p><pre style="background-color: gainsboro"><code><font color=blue> #Input variables considered are corrosion rate, corrosion density current, polarization resistance and media</font>
+np.random.seed(42)
+metals_and_alloys = ['Metal/Alloy {}'.format(i) for i in range(1, n_compositions + 1)]
+corrosion_rates = np.random.uniform(0.01, 0.5, size=n_compositions).round(3)
+corrosion_density_currents = np.random.uniform(0.1, 10, size=n_compositions).round(2)
+polarization_resistance = np.random.uniform(10, 10000, size=n_compositions).round(2)
+
+media_options = ["Seawater", "Acidic Solution", "Alkaline Solution", "Sulfide Solution", "Atmospheric", "Oil & Gas Environment"]
+media = np.random.choice(media_options, size=n_compositions)</code></pre>
+                        <p><b>Step 5: Define target variable (y): Here we take corrosion resistance to categorize whether the metal/ alloys exhibits 'excellent', 'fair' or 'poor' corrosion property</b></p>
+        <p><pre style="background-color: gainsboro"><code><font color=blue># Define corrosion resistance based on corrosion rate</font>
+                       
+<font color=blue>#Excellent: <= 0.15 mpy, Fair: > 0.15 and <= 0.3 mpy, Poor: > 0.3 mpy (mpy: mils per year)</font>
+
+corrosion_resistance = np.select( [corrosion_rates <= 0.15, corrosion_rates <= 0.3], ['Excellent', 'Fair'], default='Poor')</code></pre> 
+                        <p><b>Step 6: Create a Dataframe containing Xs and y</b></p>
+                        <p><pre style="background-color: gainsboro"><code>dataset = pd.DataFrame({ 'Metal/Alloy Name': compositions, 'Corrosion Rate (mpy)': corrosion_rates, 'Corrosion Density Current (µA/cm²)': corrosion_density_currents, 'Polarization Resistance (ohms)': polarization_resistance, 'Media': media, 'Corrosion Resistance': corrosion_resistance})</code></pre>
+                        <p><b>Step 7: View the hypothetical dataset</b></p>
+                        <p><pre style="background-color: gainsboro"><code>dataset</code></pre>
+                        <p><b> Snippet of the generated dataset</b></p>
+                        <center><p><img src='assets/tut10&11/dataset_h.jpg' width=100%></p></center></code></pre>
+                        <p> <u style='text-decoration-color: blueviolet'>Export dataframe to csv and download the saved file to local computer.</u></p>
+                        <p><pre style="background-color: gainsboro"><code>dataset.to_csv('file1.csv')</code></pre>
+            
+    
+                        
+  <!-- Footer-->
+        <footer class="border-top">
+      
+<!--!--SHARE BUTTON -->
+
+                       <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
+<!--
+            <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>
+                        <div class="sharethis-inline-share-buttons"></div></div></div></div>
+-->
+           
+            
+                       <p>
+    <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div></footer></div></div>
+                     </div>
+            
+         <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+            </body></html>
+                        
+                    
+                        
+                        
+                        
