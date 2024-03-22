@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPPQKTW0JB');
+</script>
+
+          
+<!--       <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6347dbd6c2af2800193d4f2f&product=inline-share-buttons' async='async'></script>-->
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+       
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        
+        <!--        Google ADSENSE-->
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on the application of binary logistic regression for predeicting materials properties qualitatively." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Binary logistic regression, Linear regression, Logit function, Materials, Properties, Corrosion Resistance, Qualtitavely, Hypothetical Dataset, Seaborn, Confusion matrix, sklearn.preprocessing, Label encoding, Categorical, Numeric."/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+         
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+                                  
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        
+                    </div></div></div>
+                         </header>
+                    
+<!--Title of the blog-->
+                    <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5  justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+<p><h1 align = center><font face ="verdana", color = "maroon"> How to Apply Binary Logistic Regression Analysis for Prediction of Materials Properties </font></h1>
+                        <center><p> <font face="monospace"><b>March, 2024</b></font></p></center>
+                    <hr size =4>
+              
+              
+                                   
+                        <!--CONTENT-->
+<p>In this tutorial, I will demonstrate how logistic regression analysis through machine learning can be instrumental in qualitatively predicting the properties of materials. The term 'qualitatively' indicates that the target or output variable is categorical. For instance, whether a given material (composition) is exhibiting a certain property or not. The output of binary logistic regression is binary/ dichotomous, offering only two possible results, such as yes or no, true or false, success or failure.</p> 
+    <p><mark style="background-color: antiquewhite">Here is a quick overview of <b>linear regression</b> and <b>logistic regression</b> in tabular form. This will help to understand the coding steps shown in the next section.</mark></p>
+ 
+<center><img src='assets/tut10&11/reg_table_m.jpg' width=80%></center>
+                        <p><i>Click this <a href='https://en.wikipedia.org/wiki/Logistic_regression'><b><font color='blue'>link</font></b></a>  for further reading on logistic regression. </i></p>                       
+                        <p><b>The Coding</b></p>
+                        <p><b>Dataset: </b>I have generated a <b><a href='Tut_dataset.html'>hypothetical dataset</a></b> comprising 150 unique compositions (materials) alongside their respective corrosion rates, density currents, polarization resistance, and corrosion resistance. The dataset encompasses a broad spectrum of metals, alloys, and composites, each assigned fictional corrosion-related properties to simulate diverse corrosion behaviors in different media. </p>
+                        <p><b>Aim:</b> To <b>predict corrosion behaviour of materials qualitatively</b> using machine learning and applying binary logistic regression.</p>
+<p><b>Task 1: Import necessary Python libraries</b></p>
+
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, accuracy_score </code></pre>
+
+<p><b></b></p>
+                         <!--CODE-->
+                        
+                        <p><b>Task 2: Load Dataset, Define X, y. </b></p>
+                        
+                        <pre style="background-color: gainsboro"><code>data = pd.read_csv('SyntheticCorrData3.csv', encoding='latin') 
+
+# Create a DataFrame
+df = pd.DataFrame(data)</code></pre>
+                        <p>Below is the screenshot of the dataset.</p>
+                        
+                        <p><center><img src='assets/tut10&11/dataframe.jpg' width= '100%'><span class="caption text-muted" >Screenshot of the dataframe showing corrosion properties of materials</span></center></p>
+                           <p> The aim of this activity is to learn <b>binary logistic regression</b>. Hence we will choose only those <b>rows containing 'poor' and 'excellent' as target/ output</b>. The code to make the refined dataset with the said targets is shown below.</p>
+                       <pre style="background-color: gainsboro"><code> # filtering the rows with 'poor' and 'excellent' corrosion resistance 
+df_binary = df[df['Corrosion Resistance'].str.contains('Poor|Excellent')]</code></pre>
+                        <p><b>Output</b></p>
+                        <p><center><img src='assets/tut10&11/df_binary.jpg' width= '100%'><span class="caption text-muted" >Screenshot of the dataframe showing corrosion resistance 'poor' and 'excellent'.</span></center></p>
+                        
+                        <p>Let me now define the input features and the output/ target variable.</p> 
+                            <p><b>4 Input variables (Xs):</b>  Corrosion rate, Corrosion density current, Polarization resistance, Media. Note that three input variables have <b>numerical data</b> and variable 'Media' has <b>categorial data</b>.</p>
+                            <p><b>Target (y):</b> Corrosion Resistance (categorical data) </p>
+                        
+                 
+                    
+                                               <!--CODE-->
+<pre style="background-color: gainsboro"><code>X = df.iloc[:, 1:5].values
+y = df.iloc[:, -1].values</code></pre>
+                        
+                         
+                 
+                        <p><b>Task 3: Encoding Categorical Data</b></p>
+                        <p>Input variables have both numeric and categorical data. I<b>converted the categorical data to numeric by encoding</b> by using <b>label encoder</b> from sklearn.preprocessing. </p>
+                      
+                                               <!--CODE-->
+<pre style="background-color: gainsboro"><code>from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['Media'] = le.fit_transform(df['Media'])</code></pre>
+                        <p> Each label or category in 'Media' variable is now designated by a number. Run the below code to check the labels and their corresponding number.</p>
+                        
+                        <pre style="background-color: gainsboro"><code>list(le.inverse_transform([0,1,2,3,4,5]))</code></pre>
+                        <p>Output</p> 
+                        <pre style="background-color: greenyellow"><code>['Acidic Solution', 'Alkaline Solution',
+ 'Atmospheric', 'Oil & Gas Environment', 'Seawater', 'Sulfide Solution']</code></pre>
+                        <p> Similarly, the categorical target variable is also encoded with label encoder.</p> 
+
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>df_binary['Corrosion Resistance'] = le.fit_transform(y)
+y=df_binary['Corrosion Resistance']
+</code></pre>
+                            <pre style="background-color: gainsboro"><code>list(le.classes_)</code></pre>                 
+
+                        <p><b>The encoded output are 0 and 1 representing 'Excellent' and 'Poor' respectively. </b></p>
+                        
+                           <pre style="background-color: gainsboro"><code> list(le.inverse_transform([0,1]))</code></pre>
+                        <b>Output</b>
+                        
+                        <pre style="background-color: greenyellow"><code> ['Excellent', 'Poor']</code></pre>
+
+                        <p><b> Task 4: Training the data: Splitting it into Training set and Test set (90:10)</b></p>
+                        <!--CODE-->
+<pre style="background-color: gainsboro"><code>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, random_state = 0)
+</code></pre>
+  <p><b> Task 5: Fitting data with <a href='https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html'><font color='blue'>Logistic Regression Model</font></a></b></p>                      
+
+    <!--CODE-->
+<pre style="background-color: gainsboro"><code>classifier = LogisticRegression(random_state = 0)
+classifier.fit(X_train, y_train)
+</code></pre>
+                        
+   <p><b> Task 6: Prediction with test set</b></p>  
+        <!--CODE-->
+<pre style="background-color: gainsboro"><code>y_pred = classifier.predict(X_test)
+</code></pre>                
+
+                          <p><b> Task 7: Checking the performance of the model with <a href='https://www.geeksforgeeks.org/confusion-matrix-machine-learning/'><font color='blue'>Confusion Matrix</font></a></b></p> 
+                        <p>A <b>confusion matrix</b> in machine learning is a table that visualizes the performance of a classification algorithm. It compares the predicted classes of a model with the actual classes from the dataset (see the graphical representation below).</p>
+                        <p><center><img src='assets/tut10&11/CM.jpg' width= '70%'><span class="caption text-muted" >Graphical representation of Confusion Matrix.</span></center></p> 
+                        
+        <!--CODE-->
+<pre style="background-color: gainsboro"><code>cm = confusion_matrix(y_test, y_pred)
+print(cm)
+accuracy_score(y_test, y_pred)
+</code></pre>                
+<p>Output</p>
+  <pre style="background-color: greenyellow"><code>[[6 0]
+ [0 5]]
+ 1.0 </code></pre> 
+                         <p><b> Task 8: Visual representation of the performance of the model with <a href='https://seaborn.pydata.org/'><font color='blue'>Seaborn</font></a></b></p>  
+                        
+        <!--CODE-->
+<pre style="background-color: gainsboro"><code>import seaborn as sns
+sns.heatmap(cm, annot=True)
+</code></pre> 
+  <p><center><img src='assets/tut10&11/BinaryLogReg_1.jpg' width= '60%'><span class="caption text-muted" >Confusion matrix</span></center></p>                      
+                        
+  <p> Representation in percentage  </p>                 
+<pre style="background-color: gainsboro"><code>sns.heatmap(cm/np.sum(cm), annot=True,
+            fmt='.2%', cmap='GnBu')
+</code></pre>
+                        
+                        <p><center><img src='assets/tut10&11/BinaryLogReg_2.jpg' width= '60%'><span class="caption text-muted" >Confusion matrix in percentage.</span></center></p>
+<h5 style='background-color:lightskyblue'><a href='https://github.com/bjoyita/Regression_ML/blob/main/BinaryLogReg_CorrData.ipynb'>Click to view the entire code.</a></h5>
+                        
+                        <p>In this guide, I demonstrated how to perform <b>binary logistic regression</b> by focusing exclusively on <b>two categories (poor and excellent)</b> of corrosion resistance behavior from the initial dataset.</p>
+                        <p>Nonetheless, it's possible to train the complete dataset that includes <b>multiple categorical outcomes</b> using logistic regression. For such scenarios, <b>ordinal logistic regression paired with an ordinal encoder</b> is required.</p>
+                        <p> Stay tuned for my upcoming tutorial on coding with ordinal regression in detail!</p>
+                        
+                        
+    
+
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                      <!-- ShareThis BEGIN -->
+                       
+<!-- ShareThis END -->
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
+            
+                       <p>
+            <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div></footer>
+                    </div></div></div>
+         
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+            </body></html>
+                        
+                        
+                        
+                        
+                        
