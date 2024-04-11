@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPPQKTW0JB');
+</script>
+
+          
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+       
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+         <meta name="description" content="Tutorial on ordinal logistic regression and its application in materials science." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="How to, apply, Ordinal logistic regression, Encoding, Ordinal encoder, Materials properties, corrosion, metal and alloys, confusion matrix, multi-class classification, accuracy, mean absolute error (MAE), dataset, MORD, OrdinalRidge method, Prediction"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
+        
+        <!-- Navigation-->
+        
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
+    
+
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <meta name="viewport" content="width=device-width, initial-scale=1" />
+                            </div></div></div>                 
+                         </header>
+            
+                    
+<!--Title of the blog-->
+                    <p><h1 align="center"><font face ="verdana", color = "maroon">How to Apply Ordinal Logistic Regression for prediction of Materials Properties   </font></h1>
+                    <center><p> <font face="monospace"> April, 2024</font></p></center>                                          
+                    <hr size =4 >
+                            
+                                   
+                        <!--CONTENT-->
+                                                                                                                     
+              <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <p><center><img src='assets/tut10&11/theme.jpg' width="100%"><span class="caption text-muted" >Photo by <a href="https://unsplash.com/@ro_ka?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Robert Katzki</a> on <a href="https://unsplash.com/photos/multicolored-wall-in-shallow-focus-photography-jbtfM0XBeRc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  </span></center></p>
+                        <p>This tutorial serves as a follow-up to the previous one on <a href='https://bjoyita.github.io/Tut10_LogReg.html'><b style='color:darkblue'>binary logistic regression</b></a>, wherein I provided a comprehensive explanation of the coding steps involved in predicting binary outcomes for corrosion properties of materials.</p>
+                        
+                        <p><i>Now, the question is: <u style='text-decoration-color: gold'>How do we apply the logistic regression method if there are more than two categories?</u></i></p> 
+                        
+                        <p>Here comes the role of <b><u style='text-decoration-color: gold'>ordinal logistic regression</u></b>. The word <i>‘ordinal’</i> means sequence or order. Hence, ordinal regression is a type of logistic regression used for modeling and predicting ordinal variables, where the categories have a natural order in a meaningful way. For instance, the <a href='https://www.scribbr.com/methodology/likert-scale/'><b style='color:darkblue'>Likert scale</b></a>, or customer satisfaction surveys - the response variable in all of these falls into <b>ordered categories</b>.</p>
+<p>In this tutorial, we'll explore how to apply ordinal regression in coding to predict material properties with more than two categories. By the end, you'll gain the skills to model and interpret such data for your own projects effectively. Let's get started!</p>
+                    
+<h4>The Dataset</h4>
+<p>Data is the precursor to building efficient models in machine learning. Hence, amassing sufficient and necessary data is the very first step. I have used a <a href='https://bjoyita.github.io/Tut_dataset.html'><b style='color: darkblue'>hypothetically generated dataset</b></a> on the corrosion properties of <b>150 metals and alloys</b>.</p> 
+                        <p></p>There are <b><u style='text-decoration-color: gold'>four independent variables (Xs)</u></b> namely corrosion rate, corrosion current density, polarization resistance, and media. 
+                        <p>The <b>target variable (y)</b> is corrosion property categorized as <u style='text-decoration-color: gold'><b>'poor'</b>, <b>'fair'</b>, and <b>excellent</b>.</u></p>
+                        
+                        <h4>The Coding</h4>
+                        <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step1: Importing relevant libaries and loading the dataset</h5>
+       
+                                            <p><pre style="background-color: gainsboro"><code>import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.preprocessing import OrdinalEncoder
+from sklearn.model_selection import train_test_split
+
+<b style='color:blue'># Performance metrics</b> 
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error</code></pre>
+                        
+                         <pre style="background-color: gainsboro"><code> <b style='color:blue'>#Loading data</b> 
+data = pd.read_csv('SyntheticCorrData2.csv', encoding='latin') <b style='color:blue'>
+# Create a DataFrame</b>
+df = pd.DataFrame(data)</code></pre>
+                       <p> Here is a glimpse of the data loaded for machine learning.</p> 
+                        <p><img src='assets/tut10&11/data_ordReg.jpg' width=100%></p>
+                        <p><h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 2: Defining Xs and y</h5>
+                       <p><pre style="background-color: gainsboro"><code>X = df[['Corrosion Rate (mpy)', 'Corrosion Density Current (µA/cm²)', 'Polarization Resistance (ohms)']]
+y = df['Corrosion Resistance']</code></pre>
+                       <p><h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 3: Ordinal Encoding of the target variable</h5> 
+                        <p><pre style="background-color: gainsboro"><code>ordinal_encoder = OrdinalEncoder(categories=[["Poor", "Fair", "Excellent"]])
+y_encoded = ordinal_encoder.fit_transform(y.values.reshape(-1, 1)).ravel()</code></pre>
+                        <p><i>The <b>y_encoded</b> variable is the result of applying <b> <u style='text-decoration-color: gold'>fit_transform() to the target variable y</u></b> after reshaping it to a 2-dimensional array with one column using y.values.reshape(-1, 1). This transformation changes the orientation of the array from horizontal to vertical.</i></p>
+                        <p><i><b>ravel( )</b>: Flattens 2D array into a 1D array. This <b><u style='text-decoration-color: gold'>flattened array </u></b>is then used as the <b><u style='text-decoration-color: gold'>encoded target variable</u></b> for training the machine learning model.</i></p>
+                        <p> To recheck the categories after encoding, simply type:</p>
+                        <p><pre style="font:monospace; border-style: outset"><code>categories = ordinal_encoder.categories_</code></pre>
+                        <p>To view the encoded values of 'y', type:</p>
+                         <p><pre style="font:monospace; border-style: outset"><code>y_encoded</code></pre>
+                        <p> The corresponding output:</p>
+                        <p><pre style="background-color: greenyellow"><code>array([1., 1., 0., 0., 2., 1., 1., 1., 0., 2., 2., 1., 2., 1., 0., 0., 1.,
+       1., 1., 0., 2., 1., 0., 1., 0., 1., 1., 0., 0., 0., 2., 1., 1., 0.,
+       2., 0., 1., 2., 0., 0., 0., 1., 1., 1., 0., 2., 1., 2., 2., 1., 1.,
+       1., 0., 0., 2., 2., 0., 1., 2., 1., 1., 0., 2., 0., 1., 1., 1., 2.,
+       0., 2., 2., 0., 2., 2., 1., 2., 0., 2., 1., 1., 0., 1., 2., 0., 0.,
+       0., 2., 2., 1., 1., 1., 0., 2., 0., 1., 0., 2., 1., 0., 2., 2., 0.,
+       0., 2., 1., 1., 0., 2., 2., 2., 1., 0., 2., 0., 1., 2., 2., 2., 0.,
+       0., 1., 0., 1., 0., 2., 1., 2., 2., 1., 2., 2., 1., 0., 2., 2., 0.,
+       0., 1., 1., 0., 2., 0., 0., 2., 2., 0., 1., 1., 0., 0.])</code></pre>
+                        <p><b>To view the labels mapped to their corresponding encoded numbers:</b> </p> 
+                            <ul><li>Convert 1D array of y_encoded to 2D Dataframe.</li> 
+                        <p><pre style="background-color: gainsboro"><code>df_y_encoded= pd.DataFrame(y_encoded)</code></pre>
+                                <li>Apply inverse_transform() function to retrieve the names of the labels followed by conversion of the same to 2D DataFrame structure.</li>
+                               <p><pre style="background-color: gainsboro"><code>  y_names=ordinal_encoder.inverse_transform(y_encoded.reshape(-1,1))
+  df_y_names =pd.DataFrame(y_names)</code></pre>
+                                <li>Concatenate the two datadrames using concat() function.</li>
+                                
+         <p><pre style="background-color: gainsboro"><code> map_data = [df_y_names, df_y_encoded]
+result = pd.concat(map_data, axis=1)
+result</code></pre>
+            <p><center><img src='assets/tut10&11/encoded.jpg' width=60%></center></p>
+                                <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 4: Split data ino training and test set</h5>
+                                
+ <pre style="background-color: gainsboro"><code>X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42)
+</code></pre>
+                                <p><h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 5: Install <a href='https://pythonhosted.org/mord/'><b style='color:darkblue'>MORD</b></a> for Ordinal Regression</h5>
+                                <p><pre style="background-color: gainsboro"><code> pip install mord
+ from mord import OrdinalRidge</code></pre>
+                                <p>MORD is a Python package that implements ordinal regression methods. The package  includes different models suitable for ordinal regression tasks, and it categorizes them into threshold-based, regression-based, and classification-based models. We will implement the <b>OrdinalRidge regression-based model</b> for predicting an ordinal variable, meaning that the variable has a clear ordering or ranking.</p>
+                                    
+                                    <p>The mathematics behind ordinal ridge regression involves a <b>regularization technique applied to the standard linear regression model</b> to handle multicollinearity, prevent overfitting, and enhance prediction accuracy, especially when dealing with ordinal data.</p>
+                                
+ <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 6: Data fitting with OrdinalRidge method</h5>
+                        
+                                      
+                    <pre style="background-color: gainsboro"><code>ord_reg = OrdinalRidge()
+ord_reg.fit(X_train, y_train)</code></pre>
+                                <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 7: Prediction</h5>
+                 
+                        
+                                        <pre style="background-color: gainsboro"><code>y_pred =ord_reg.predict(X_test)</code></pre>
+                       
+                        
+<!--      ERRORS & Rsquared-->
+                        
+                                <p><h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive">Step 8: Evaluation of the model</h5>
+                        
+                        <pre style="background-color: gainsboro"><code><b style='color: blue'>#Computing accuracy, mean absolute error</b>
+accuracy = accuracy_score(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)</code></pre>
+                                <p><p><h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive">Step 9: Visualization of the performance of the model with Confusion Matrix</h5>
+                           
+                                
+                        <pre style="background-color: gainsboro"><code>cm = confusion_matrix(y_test, y_pred)
+print(cm) </code></pre>
+                        <pre style="background-color: greenyellow"><code>[[ 6  3  0]
+ [ 0 10  0]
+ [ 0  5  6]]</code></pre>
+                        
+                        <p><pre style="background-color: gainsboro"><code>import seaborn as sns
+sns.heatmap(cm/np.sum(cm), annot=True,fmt='.2%', cmap='GnBu')</code></pre></p>
+                       
+                     
+
+                    <center><img src="assets/tut10&11/cm_ord.jpg" width=60%></center>
+                    <center><img src="assets/tut10&11/CM_TP.jpg" width=40%></center>
+     <span class="caption text-muted">Confusion matrix in percentage for multi-class classification<sup>**</sup> and table showing the percentage of true positive (TP) for each class/ category namely 'poor', 'fair', and 'excellent'.</span>
+                        <h7 style='font-size: 3'> <i>** Please check out for the <b>next tutorial on reading confusion matrix</b> for <b>multi-class classification</b>.</i></h7>  
+                  <p><mark style='text-decoration-line: underline'><i>Finally, here is the <a href="https://github.com/bjoyita/Regression_ML/blob/main/OrdReg_tut.ipynb"><b><font color=blue>link</font></b></a> to the entire code and dataset.</i></mark></p>
+ <!-- Footer-->
+        <footer class="border-top">
+      
+                      <!-- ShareThis BEGIN -->
+
+                        <p>
+                <div class="sharethis-inline-share-buttons"></div>
+<!-- ShareThis END -->
+<!--
+            !--SHARE BUTTON 
+<div>
+                       <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
+                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
+-->
+                       <p>
+                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>
+                    </div>
+            
+                  </footer></div>
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+                  </div></div></body></html>
+                        
+                        
+                        
+                        
+                        
