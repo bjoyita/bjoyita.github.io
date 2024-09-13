@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPPQKTW0JB');
+</script>
+
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
+        
+        <!--        Google ADSENSE-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
+     crossorigin="anonymous"></script>
+        
+             <!--MEDIA-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+        .column {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+        </style>
+                
+        <meta name="description" content="Tutorial on how to code 2 point statistics to find out correlations from a microstructure of a material." />
+        <meta name="author" content="Joyita Bhattacharya" />
+        <meta name="keywords" content="Hierarchical materials, 2-point statistics, 2-point correlation, N-point statistics, auto correlation, cross correlation, structure, property, materials, performance metrics, PyMKS, How to, Code, Materials Design, Simulated microstructure, volume fraction, pixel, spatial, voxel, sample axis, phase axis, one hot encoding, SEM, Pearlite, Ferrite, Cementite, micrograph"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!--        <link rel="canonical" href="https://bjoyita.github.io/Tut7_heatmap.html" />-->
+        
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+    </head>
+    <body>
+        <!-- Navigation-->
+
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">             
+            <div class="container px-4 px-lg-5">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                   Content
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        
+        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
+            <meta charset="utf-8" />
+            
+      
+    
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <img src ="assets/img/logo_mdxp.png" width=5%>
+            <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                      
+                    </div></div></div> </header>
+                    
+<!--Title of the blog-->
+<p><h1 align = center><font face ="verdana", color = "maroon">How to Code 2-Point Spatial  Correlations for Materials Microstructures
+</font></h1>
+        <center><p> <font face="monospace"><b>September 13, 2024</b></font></p></center>
+                    <hr size =4 > </p>
+                    
+                <div class="container position-relative px-2 px-lg-2">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p><center><img src="assets/img/Tut14_1.jpg" width ="80%" alt='Lego pieces joined together to form a pyramid-like structure'></center>
+                            <span class="caption text-muted">Photo by author</span>
+                
+                        <p>Observe in the above photo how different-sized Lego pieces are joined together to make the pyramid-like structure. Similarly, materials are also made up of micro and macro structures. Each of these features is interlinked to various properties of materials. I have discussed this structural hierarchy of materials in my blog post, <a href='https://bjoyita.github.io/Blog7_HRmat.html' style="color: blue">'Exploring Hierarchical Materials'</a>. Materials hierarchy is not only limited to organising but also to correlating different length-scaled structures impacting the materials properties and subsequently the performance metrics. In other words, the structural properties govern the functional properties of materials. We can view the structural features of materials using different types of microscopes. Also, it is crucial to understand the spatial distributions of these features mathematically using <a href='https://en.wikipedia.org/wiki/Correlation_function_(statistical_mechanics)' style="color: blue">correlation functions</a>. </p>
+                        <p>This tutorial provides a comprehensive coding guidance to compute 2-point correlation functions.</p>
+                        <h4 style="font-family: cursive"> Coding 2-Point correlations using <a href='https://pymks.readthedocs.io/en/stable/rst/README.html' style="color: blue">PyMKS</a></h4>
+                        <p><i>Before diving into the coding activity, it is important to get aquainted with a few terms associated with correlation functions.</i> </p>
+   
+                        <p><li><b>1-point correlation function (1-point statistics):</b>Denotes the probability of finding a stucture or feature at one particular point. 1-point statistics compute the volume fractions of the local states in the microstructure</li>
+                            <p><li> <b>2-point correlation function (2-point statistics)</b>: This function describes the probability of finding pairs of points, separated by a certain distance, both belonging to a specific phase or feature. By analyzing 2-point correlations, one can identify patterns such as periodicity, alignment, or randomness in the microstructure.</li></p>
+                        <p><li>When the 2 local states are the same, it is referred to as a <b>auto correlation</b>. And if the 2 local states are different, it is called <b>cross correlation</b>.</li></p>
+                            <p><i> Note that 2-point correlations also serve as the foundation for <b>higher order N-point statistics</b>, which can capture even more complex spatial relationships within a material.</i></p>
+                        <h4> Example 1: Demonstration with simulated microstructure </h4> 
+                        <p><h5>Step 1: Install PyMKS and the necessary packages </h5> 
+                        
+  <pre style="background-color:gainsboro"><code>pip install pymks
+from pymks import (generate_multiphase, plot_microstructures,
+PrimitiveTransformer, TwoPointCorrelation,FlattenTransformer )
+</code></pre><p>
+                        
+  <p><pre style="background-color:gainsboro"><code>import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+from skimage import io, color
+from skimage.color import rgb2gray
+from sklearn.pipeline import Pipeline
+</code></pre></p>
+                        <p><h5>Step 2: Generating simulated image </h5>
+                        
+                        
+<pre style="background-color:gainsboro"><code>Box = np.zeros((400,400))
+
+# OPEN GRID
+x, y = np.ogrid[:400, :400]
+
+for i in range(0,420,50):
+    for j in range(0,420,50):
+        circles = (x-i)**2 + (y-j)**2 <= 10**2
+        Box[circles] = 1.0
+plt.imshow(Box, cmap ='gray')
+
+#Histogram generation
+plt.hist(Box.ravel(), bins=100)
+plt.show()</code></pre>
+
+  
+ <center><img src ='assets/img/Sim_hist.jpg' width="80%"> </center>
+ 
+                    <span class="caption text-muted">Simulated Binary image with 2 phases (Phase 1: Black matrix; Phase 2: White circles)  </span>
+                    <p><h5>Step 3: Adding Sample and Phase axes to image shape</h5>
+                    <p><mark style="background-color: beige">PyMKS requires certain data shapes for 2-point spatial correlation calculations. To compute 2-point correlations for <b>two-dimensional microstructure, PyMKS requires a 4-dimensional array</b>.</mark></p>
+                    <center><img src='assets/img/4Dim.jpg' width=100% alt='table showing 4 axes'></center>
+                    <p> <i>In the phase axis, the specific phase is encoded as '1's and the rest of the image gets '0's-analogous to one-hot encoding in image analysis.</i></p>
+                    <p> <b>Adding sample axis</b></p>
+                    <pre style="background-color:gainsboro"><code>Box.shape</code></pre>
+                    <p><mark style='background-color: greenyellow; font-family: monospace'>Output:(400, 400)</mark></p>
+                    <pre style="background-color:gainsboro"><code>Box_a=np.expand_dims(Box, axis=0)
+                    Box_a.shape</code></pre>
+                    <p><mark style='background-color: greenyellow; font-family: monospace'>Output:(1, 400, 400)</mark></p>
+                    
+            
+            <p><b>Adding phase axis</b></p>
+            <pre style="background-color:gainsboro"><code>d1 = PrimitiveTransformer(n_state=2, min_=0.0, max_=1.0).transform(Box_a)
+            d1.shape</code></pre>
+                    <p><mark style='background-color: greenyellow; font-family: monospace'>Output:(1, 400, 400, 2)</mark></p>
+                    <p> <i>The PrimitiveTransformer of PyMKS generates the inverted version of the orginal image.</i></p>
+            
+         <p><b>One-hot encoding of the phases</b></p>
+        <pre style="background-color:gainsboro"><code># first phase and second phase is considered 1
+plot_microstructures(
+    d1[0, :, :, 0],
+    d1[0, :, :, 1],
+    titles=['First phase matrix', 'Second phase circles'],
+    cmap='gray',
+    colorbar=False
+);</code></pre>
+                    <h5> Step 4: Computing correlations </h5>
+                    <pre style="background-color:gainsboro"><code>#<b><u>Auto correlations (matrix-matrix and circle-circle)</u></b>
+                    
+    d1_corr = TwoPointCorrelation( periodic_boundary=True,cutoff=201,
+    correlations=[(0, 0), (1, 1)]).transform(d1)
+    
+    plot_microstructures(
+    d1_corr[0,:, :, 0],
+    d1_corr[0,:, :, 1],
+    titles=['Correlation [0, 0]', 'Correlation [1, 1]']
+);
+
+
+<center><img src='assets/img/Sim_autoCorr.jpg' width=80% alt='Auto correlation maps of simulated microstructure'></center>
+</code></pre>
+<code style="color: maroon"> First image (left): (0,0) vector corresponding to <b>volume fraction of first phase, matrix is ~ 90%.</b> Second image (right): (0,0) vector corresponding to <b>volume fraction of second phase, circles is ~ 10%</b>.</code>
+
+                    
+                     <p></p> <pre style="background-color:gainsboro"><code>#<b><u>Cross correlation</u></b>
+    d1_corr_cr = TwoPointCorrelation(
+    periodic_boundary=True,
+    cutoff=201,
+    correlations=[(0,0), (0, 1)]
+).transform(d1)
+
+    plot_microstructures(d1_corr_cr[0,:, :, 0],d1_corr_cr[0,:, :, 1],
+    titles=['Correlation [0, 0]', 'Correlation [0, 1]']
+);
+                    <center><img src ='assets/img/AutoCorr_sim.jpg' width="80%" alt='Cross correlation map of simulated microstructure'></center>
+                    
+                    </code></pre>
+                    
+                    <code style="color: maroon"> <b>(Left image)</b> Auto correlation of matrix phase, volume fraction taken at the centre is ~90%.</code> 
+                    <p><code style="color: maroon"><b>(Right image)</b>: Cross correlation between matrix and circular phase. The probability of finding <b>matrix and circular phase together is 0% at (0,0)</b>.</code></p>
+                 
+                    
+                    <h6>Double Checking volume fractions by conventional way</h6>
+                    
+                      <pre style="background-color:gainsboro"><code># matrix is black (designated as 0.0)
+#MATRIX PHASE
+count_m = 0
+xsize = Box.shape[0]
+ysize = Box.shape[1]
+print(xsize)
+print(ysize)
+for i in range(0,xsize):
+  for j in range(0,ysize):
+    if Box[i,j] == 0.0:
+      count_m += 1
+print(count_m)
+count_m/(xsize*ysize)
+</code></pre>
+                    
+                    <p>Output</p>
+                      <pre style="background-color:greenyellow"><code>400
+400
+139712
+
+0.8732</code></pre>
+                    <h6>Matrix phase: ~ 87%</h6>
+
+                      <pre style="background-color:gainsboro"><code># circle phase is white (designated as 1.0)
+
+count_c = 0
+xsize = Box.shape[0]
+ysize = Box.shape[1]
+print(xsize)
+print(ysize)
+for i in range(0,xsize):
+  for j in range(0,ysize):
+    if Box[i,j] == 1.0:
+      count_c += 1
+print(count_c)
+count_c/(xsize*ysize)</code></pre>
+                     <pre style="background-color:greenyellow"><code>400
+400
+20288
+
+0.1268</code></pre>
+        <h6>Circular phase: ~ 13%</h6>
+                           <p><h4>Example 2: Real Microstructure (Scanning electron micrograph of Pearlite)</h4></p>
+                   
+                    <p> <b>&check;</b> Load the image as shown in example 1</p>
+                    <pre style="background-color:gainsboro"><code>im_s=io.imread('test2pt.jpg')
+plt.imshow(im_s)
+</code></pre> 
+                     
+                   <center><img src ='assets/img/SEM_2pt.jpg' width="80%" alt='Scanning ELectron micrograph of Pearlite showing 2 phases of ferrite and cementite'></center>
+                    <span class="caption text-muted"> SEM of Pearlite microstructure. <a href ='https://materialscommons.org/uhcsdb/micrograph/1542' style="color: blue">Click for Reference</a></span>
+                    <p><i>The microstructure has lamellar morphology with alternating bands of cementite and ferrite. Cementite is Fe<sub>3</sub>C and has orthorhombic crystal structure. Ferrite is Fe<sub>2</sub>O<sub>3</sub> with body centered cubic (BCC) crystal structure. </i></p>
+                                        
+                    
+                    <p> Unlike the first image, this is a RGB image as computed from shape function. An <b>additional step</b> is required in this case to <b>convert the image to grayscale</b>.</p>
+                         <TABLE border="1" width=100% >
+                             <TR bgcolor='lightgray' align ='left'><TH>Code</TH> <TH>Output</TH> </TR>
+                        
+            
+                <TR> <TH ><pre><code> im_s.shape</code></pre></TH>
+                    <TH>                (875, 985, 3)</TH> </TR>
+                    TR> <TH ><pre><code> im_s_g=rgb2gray(im_s)
+ im_s_g.shape
+                    </code></pre></TH>
+                    <TH>                (875, 985)</TH> </TR>
+                    </TABLE>
+                        <p> Hence, we convert this RGB image to grayscale image using rgb2gray function of skimage.color module (<a href='https://scikit-image.org/docs/stable/api/skimage.color.html#skimage.color.rgb2gray' style='color: blue'>scikit-image package). </a>The shape of the image changes from <font type='monospace'> (875, 985, 3) to (875, 985). </font></p>
+                        <p> <b>&check;</b>As before, check the histogram of the image to get an overview of the distribution of pixel values and intensities.</p>
+                     <TABLE border="1" width=100% >
+                             <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
+                                
+                <TR align='left'> <TH ><pre><code>plt.hist(im_s_g.ravel(), bins=100)
+plt.show()</code></pre></TH>
+                    <TH><img src='assets/img/hist_sem.jpg' width=80% alt='histogram of SEM' > </TH> </TR>
+                    </TABLE>
+                    <p><b>&check;</b>Repeat step 3 and 4 as demonstrated in example 1.</p>
+                    <pre style="background-color:gainsboro"><code># <u><b>Adding sample axis</b></u>
+                    
+im_s_g1=np.expand_dims(im_s_g, axis=0)
+
+#<u><b>Adding phase axis</b></u>
+
+d2=PrimitiveTransformer(n_state=2, min_=0.0, max_=1.0).transform(im_s_g1)
+-------------------------------------------------------------------------
+# <u><b>ONE HOT ENCODING:</b></u> 
+
+plot_microstructures(
+d2[0,:, :, 0],
+d2[0,:, :, 1],
+titles=['1s for Ferrite phase ', '1s for Cementite phase'],cmap = 'gray')</code></pre>
+                                        
+                    <p> The encoded images are displayed below. Left image shows the ferrite phase encoded as '1's while the right image shows cemnetite phase as bright regions.</p>
+                    <center><img src='assets/img/SEM_encoded.jpg' width=100% alt='Encoded SEM images of pearlite showing the specific phase as 1s and the rest as 0s.'></center>
+                    <p> &check; Finding the auto correlations</p>
+                    <pre style="background-color:gainsboro"><code>d2_corr = TwoPointCorrelation(
+    periodic_boundary=True,
+    cutoff=500,
+    correlations=[(0, 0), (1, 1)]
+).transform(d2)
+
+# <b><u>Auto Correlation Maps</u></b>
+
+plot_microstructures(
+    d2_corr[0,:, :, 0],
+    d2_corr[0,:, :, 1],
+    titles=['Correlation [0, 0]', 'Correlation [1, 1]']    
+);
+<center><img src='assets/img/AutoCorr_SEM.jpg' width=90% alt='Auto correlation maps of the Pearlite SEM'></center>
+
+</code></pre>
+                    <code style="color: maroon">Images show <b>auto correlation maps of first (ferrite) and second (cementite) phases</b>.</code>
+                    <code style="color: maroon; border: 1">The <b>center pixel (0,0)</b> represents the <b>volume fraction</b> which can be read from the color code.</code>
+                    <p><code style="color: maroon">Ferrite volume fraction ~ 55%; Cementite volume fraction ~ 33%</code></p>
+                    <p> &check; Cross checking the volume fractions as done in example 1</p>
+                    
+                    <pre style="background-color:gainsboro"><code>min=np.min(im_s_g)
+max=np.max(im_s_g)
+xsize = im_s_g.shape[0]
+ysize = im_s_g.shape[1]
+
+#<b>Output: (875, 985)</b>
+
+# <b><u>Voulme fraction of cementite (bright regions in original micrograph)</u></b>
+
+count_w_s = 0
+for i in range(0,xsize):
+  for j in range(0,ysize):
+    if im_s_g[i,j] > 0.9:
+      count_w_s += 1
+print(count_w_s)
+count_w_s/(xsize*ysize)
+
+#<b>volume fraction calculated for cementite ~ 31%</b>
+
+#<u><b>Volume fraction of ferrite (dark regions in the original micrrgraph) </b></u> 
+
+count_b_s = 0
+for i in range(0,xsize):
+  for j in range(0,ysize):
+    if im_s_g[i,j] < 0.1:
+      count_b_s += 1
+print(count_b_s)
+count_b_s/(xsize*ysize)
+
+# <b>volume fraction calculated for ferrite ~ 46%</b></pre></code>
+                    
+                    <p><i><font size=4>Note that in this example, the sum of two phases is not adding up to 100% as there are pixel values in between 0 and 1 as seen from the histogram.</font></i></p>
+                    
+                    <p> &check; Plotting cross correlation map</p>
+       <pre style="background-color:gainsboro"><code>d2_corr_cr = TwoPointCorrelation(
+    periodic_boundary=True,
+    cutoff=500,
+    correlations=[(0, 1)]
+).transform(d2)
+
+# <b><u>Cross Correlation Map</u></b>
+
+plot_microstructures(
+    d2_corr_cr[0,:, :, 0],
+    titles=['Cross Correlation [0, 1]']
+);
+<center><img src='assets/img/CrossCorr.jpg' width=50% alt='Cross correlation map of the Pearlite SEM'></center>
+
+</code></pre>            
+                    
+   <code style="color: maroon">Here, the (0, 0) vector has an approximate value of less than 10% implying the <b>probabilty of 2 phases co-existing is less than 10%</b> in the same spatial voxel.</code>
+                    
+                    <p>Please click<a href="https://github.com/bjoyita/Tutorials_mdxp/blob/main/2pointstats.ipynb" style="color: blue"> here </a>to access the entire code.</p>
+                       
+ 
+              <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+       
+<div class="sharethis-inline-share-buttons"></div>
+                                    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
+</footer>
+<!-- ShareThis END -->
+                   
+                    
+                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a> </div>
+         
+      <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>  
+    </body>
+</html>
+
+                    
+    
