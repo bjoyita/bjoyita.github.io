@@ -1,0 +1,4 @@
+/* I leave responsive ads free to choose their height; I do not crop them. */
+.article-ad{clear:both;display:flow-root;width:100%;margin:3rem 0;padding:1rem 0;border-top:1px solid #e1e6e5;border-bottom:1px solid #e1e6e5}
+.article-ad-label{margin:0 0 .75rem;color:#65726f;text-align:center;font:11px/1.5 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:600px){.article-ad{margin:2rem 0}}

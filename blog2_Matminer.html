@@ -42,7 +42,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-                                                    </head>
+                                                    <link rel="stylesheet" href="assets/explorer/ads.css">
+</head>
     <body>
         <!-- Navigation-->
         
@@ -159,6 +160,12 @@ ds_PF_ZT</code></pre>
 
                         <p><a href="https://hackingmaterials.lbl.gov/matminer/index.html?highlight=featurize_dataframe"><font color=blue>Matminer </font></a>helps in extracting complex materials attributes applying various featurizers. There are almost more than 70 featurizers (matminer.featurizers) that convert materials attributes into numerical descriptors or vectors. We will focus on <b>Composition featurizer</b> and its <b>ElementFraction</b> class to preprocess our dataset. The said class calculates element fraction of individual elements in a composition.</p>
 
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <p><b>Step 3: Installing Pymatgen and Matminer</b></p>
                         
 <!--CODE-->
@@ -208,6 +215,12 @@ ds_PF_ZT</code></pre>
 <span class="caption text-muted">Output snippet </span></p>
 <p>Let me elaborate on element fraction calculation. Let's consider the very first composition (in the formula column of the given dataset). The composition,Ca0.98Bi0.02Mn0.98Nb0.02O3.0, has five elements: Ca (calcium), Bi (bismuth), Mn (manganese), Nb (niobium), and O (oxygen). The amount of Ca present in the formula is 0.98, and the element fraction of Ca is calculated by taking into account the amount of other elements present in the formula. Hence, element fraction of Ca is 0.196 [(0.98)/(0.98+0.02+0.98+0.02+3.0)]. Similarly, element fractions of Bi, Mn, Nb, and O are 0.004, 0.196, 0.004, and 0.6 respectively. The element fraction of the rest of the elements, for this formula, in the periodic table remains zero.</p>
 
+
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <b>Step 6: Reduction in Dimensionality and display of final, clean, preprocessed data</b>
             
 <p>                

@@ -45,7 +45,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
+    <link rel="stylesheet" href="assets/explorer/ads.css">
+</head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -126,6 +127,12 @@ from sklearn.model_selection import train_test_split
                     <pre style="background-color: gainsboro"><code>ds_RT = pd.read_csv('Pf_kappa_RT_2.csv')
 ds_RT</code></pre>
                     <center><img src="assets/img/tut3/DataFile.jpg" width=70%></center>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                     <p><b><u>Step 3: Prepossessing data for machine learning</u></b></p>
                     <p><i>Why preprocessing step is a must activity in this case?</i></p>
 <p>The original data file contains only three variables-Formula, PF and kappa where the latter two are targets/ responses. However, to come up with new composition we need to do a permutation of elements comprising these formulae and incorporate them as input variables/ features. Moreover,  we also need the data (amount or elemental fraction) of each element present in a composition.</p> 
@@ -193,6 +200,12 @@ Comp</code></pre>
                     
 <pre style="background-color: gainsboro"> <code>regr_rf = RandomForestRegressor(n_estimators=100, max_depth=max_depth, random_state=0)
  regr_rf.fit(X_train, y_train)</code></pre>
+
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                     <p><b><u>Step 8: Unleashing Feature Importance through SHAP</u></b></p>
                     
   <p>After fitting the model, we proceed to study the contribution of each feature toward outputs using SHAP analysis which adds the explainability factor to the outcomes of the ensemble tree ML model. <b>Tree SHAP algorithm</b> is used to compute SHAP values for tree models.  </p> 

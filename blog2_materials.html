@@ -42,7 +42,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
+    <link rel="stylesheet" href="assets/explorer/ads.css">
+</head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -143,6 +144,12 @@ ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
                     <p>Sometimes, <b>adjusting the brightness</b> also brings out the clarity in an image for feature detection and this can be done using the function 'adjust_gamma' of the 'exposure module' of skimage. The gamma-corrected output image is obtained by applying the power-law transform.</p>
         <center><img src ="assets/img/gamma1.jpg" width="100%"></center> 
         <span class="caption text-muted"> Gamma-corrected micrograph</span> 
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                     <h3>Thresholding for image segmentation: Creating Binary image</h3>
 
                     <p>Thresholding is required when we need to separate the image background from the foreground based on pixel intensity. For example, in the case of <a href="https://matmatch.com/learn/material/superalloys"><font color=blue>superalloy</font></a> (material for jet engines of airplanes, gas turbines) microstructures, the background is the base metal, and the foreground is comprised of precipitates which imparts super strength to this type of material. Sometimes, the background can be just the sample holder used to load the sample for investigation under microscopes. The image used for thresholding, in this case, shows four-corned particles on a transmission electron microscope (TEM) grid/ holder. Different types of thresholding methods are applied to distinguish the background (TEM grid) from the particles. For the given micrograph, we find the mean thresholding is doing a better job than the other methods by clearly forming a binary image as shown in the code output snippet.</p>
@@ -167,6 +174,12 @@ p_sobel_h=sobel_h(p_g)</code></pre>
                     
                     <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function 'canny' has parameters such as sigma for the Gaussian smoothing and low and high threshold.
 
+
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h3>Gabor Filter for detecting Edge orientations</h3>
 
                     <p>This linear filter captures the <b>texture or orientation distribution</b> of features in the microstructure. Orientation distribution determines the uniformity of materials property. Random orientation of particles/grains leads to uniform/ isotropic properties while orientation in a particular direction, technically termed as <i>preferred orientation</i>, gives rise to anisotropic properties. The complex sinusoid component of the Gabor filter provides information related to orientation. The output of the said filter has both real and imaginary components. To know more about Gabor filters, please click <a href="http://ttsuchi.github.io/2015/08/26/gaborfilters.html"><font color=blue>here</font></a>.</p>

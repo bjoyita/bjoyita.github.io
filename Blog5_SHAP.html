@@ -44,7 +44,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
+    <link rel="stylesheet" href="assets/explorer/ads.css">
+</head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -118,6 +119,12 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
 <p>The SHAP (SHapley Additive exPlanations) API, developed by <b><a href ="https://arxiv.org/pdf/1705.07874.pdf">Lundberg and Lee</a></b>, is an explainable AI (XAI)that can be used with any machine learning (ML) system: tree and non-tree-based, and deep learning systems. It has two functions - TreeExplainer() for tree-based ML and KernelExplainer() for non-tree-based ML. These functions help identify the contribution of each feature in the final prediction.
 </p>
     <p>I will now proceed to demonstrate the usefulness of SHAP value in designing a high-performance <b><a href ="https://www.frontiersin.org/articles/10.3389/femat.2021.677845/full">thermoelectric material</a></b> from the available experimental database of several compositions. I have used Google Colab to run the entire code.</p>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                         <h4>Case study: A SHAP-based approach in search of efficient thermoelectric materials </h4>
                         <p><h5>About Thermoelectrics</h5>
                         <p>Thermoelectric materials have the ability to generate electricity from heat and vice versa, making them a significant component of 'green energy' initiatives. Given the interplay between heat and electricity in these materials, the parameters of thermal conductivity (&kappa;) and electrical conductivity (&sigma;) are closely intertwined for calculating performance metrics such as ZT or the figure of merit. Additionally, the calculation of ZT involves another crucial parameter known as the Seebeck coefficient (S), which acts as a conversion factor governing the transformation of thermal and electrical energy. The relationship of ZT with these three parameters, S, &sigma;, and &kappa;, at an absolute temperature, T, is as follows:
@@ -167,6 +174,12 @@ explainer = shap.TreeExplainer(rf)
 shap_values_s = explainer.shap_values(X_train_s)
 shap.summary_plot(shap_values_s, X_train_s)
 </code></pre> 
+
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                     <p> <h5>
 Understanding the role of SHAP plots in materials design
 </h5>
