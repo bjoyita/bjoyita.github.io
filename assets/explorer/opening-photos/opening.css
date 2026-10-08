@@ -1,0 +1,4 @@
+.mdx-opening-photo {width:100%;max-width:480px;margin:1.5rem auto 2rem;clear:both;}
+.mdx-opening-photo img {display:block;width:100%;height:auto;max-height:320px;object-fit:contain;border-radius:8px;}
+.mdx-opening-photo figcaption {margin-top:.6rem;color:#52676b;font-size:.85rem;line-height:1.6;text-align:center;}
+.mdx-opening-photo a {color:#286a68;text-decoration:underline;}

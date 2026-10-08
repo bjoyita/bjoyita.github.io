@@ -1,0 +1,168 @@
+[
+  {
+    "page": "Blog5_SHAP.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "Blog6_ANN.html",
+    "action": "Added Unsplash opening image",
+    "photo": "cloud",
+    "source": "https://unsplash.com/photos/3k9PGKWt7ik",
+    "photographer": "Pawel Czerwinski"
+  },
+  {
+    "page": "Blog7_HRmat.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "EvMetrics.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut10_LogReg.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut11_OrdReg.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "Tut13_CM.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut14_2PtCorr.html",
+    "action": "Added Unsplash opening image",
+    "photo": "tiles",
+    "source": "https://unsplash.com/photos/MmpXoQjmHnY",
+    "photographer": "Alice Butenko"
+  },
+  {
+    "page": "Tut6_params.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut7_heatmap.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "Tut8_Reg.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut9_Reg.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tut_dataset.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "Tutorial5_FolderUplaoding.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "Tutorial_1.html",
+    "action": "Added Unsplash opening image",
+    "photo": "cloud",
+    "source": "https://unsplash.com/photos/3k9PGKWt7ik",
+    "photographer": "Pawel Czerwinski"
+  },
+  {
+    "page": "Tutorial_2.html",
+    "action": "Added Unsplash opening image",
+    "photo": "tiles",
+    "source": "https://unsplash.com/photos/MmpXoQjmHnY",
+    "photographer": "Alice Butenko"
+  },
+  {
+    "page": "Tutorial_3_SHAP.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "Tutorial_4_CNN.html",
+    "action": "Added Unsplash opening image",
+    "photo": "color",
+    "source": "https://unsplash.com/photos/multicolored-wall-in-shallow-focus-photography-jbtfM0XBeRc",
+    "photographer": "Robert Katzki"
+  },
+  {
+    "page": "blog1.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "blog2_Matminer.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "blog2_materials.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "blog4_Measurement.html",
+    "action": "Kept existing Unsplash image and credit"
+  },
+  {
+    "page": "posts/fit-and-predict.html",
+    "action": "Added Unsplash opening image",
+    "photo": "data",
+    "source": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+    "photographer": "Carlos Muza"
+  },
+  {
+    "page": "posts/materials-design-space.html",
+    "action": "Added Unsplash opening image",
+    "photo": "color",
+    "source": "https://unsplash.com/photos/multicolored-wall-in-shallow-focus-photography-jbtfM0XBeRc",
+    "photographer": "Robert Katzki"
+  },
+  {
+    "page": "posts/pca-materials.html",
+    "action": "Added Unsplash opening image",
+    "photo": "cloud",
+    "source": "https://unsplash.com/photos/3k9PGKWt7ik",
+    "photographer": "Pawel Czerwinski"
+  },
+  {
+    "page": "posts/svd-small-picture.html",
+    "action": "Added Unsplash opening image",
+    "photo": "tiles",
+    "source": "https://unsplash.com/photos/MmpXoQjmHnY",
+    "photographer": "Alice Butenko"
+  },
+  {
+    "page": "tutorials/microstructure-pca-game.html",
+    "action": "Added Unsplash opening image",
+    "photo": "color",
+    "source": "https://unsplash.com/photos/multicolored-wall-in-shallow-focus-photography-jbtfM0XBeRc",
+    "photographer": "Robert Katzki"
+  },
+  {
+    "page": "tutorials/pca-pixel-images.html",
+    "action": "Added Unsplash opening image",
+    "photo": "tiles",
+    "source": "https://unsplash.com/photos/MmpXoQjmHnY",
+    "photographer": "Alice Butenko"
+  }
+]
