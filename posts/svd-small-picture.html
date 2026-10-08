@@ -53,5 +53,28 @@
 <p>SVD is then a way to calculate those PCA directions. SVD itself is a matrix decomposition; PCA asks which directions explain the variation in a collection of observations. Their connection depends on centering the data and on what the matrix rows and columns represent.</p>
 <p>There is also an important difference in the zero-component result. The SVD picture above starts from zero. In the centered PCA tutorial, reconstruction adds the mean image back, so zero principal components gives the mean image.</p>
 <p><a href="../tutorials/pca-pixel-images.html"><strong>Next: build PCA with small pixel images</strong></a></p>
-<details><summary>Run the small picture example in Python</summary><p><a href="../assets/explorer/svd/svd-picture.py" download>Download the tested Python example</a>. Install NumPy and Matplotlib with <code>python -m pip install numpy matplotlib</code>, then run <code>python svd-picture.py</code>. It prints the error for each layer count and displays the reconstructions. No image downloads are needed.</p></details>
+<details><summary>Run the small picture example in Python</summary><p>I work through the calculation in six small steps below. Run them in order, or download the complete <a href="../assets/explorer/svd/svd-picture.ipynb" download>notebook</a> or <a href="../assets/explorer/svd/svd-picture.py" download>Python script</a>. Install NumPy and Matplotlib with <code>python -m pip install numpy matplotlib</code>. No image downloads are needed.</p><h3>1. Import the libraries</h3><p>NumPy performs the array calculations. Matplotlib displays the images. I use the short names np and plt so the later lines are easier to read. Install them with python -m pip install numpy matplotlib.</p><pre><code>import numpy as np
+import matplotlib.pyplot as plt</code></pre><h3>2. Create the small picture</h3><p>I start with an 8 × 8 array whose brightness is 0.10. The following assignments draw the roof, walls, windows and door. In image[1, 3:5], 1 selects the second row; 3:5 selects columns 3 and 4 because the stopping index is excluded. Brightness is dimensionless, with 0 for black and 1 for white.</p><pre><code>image = np.full((8, 8), 0.10)
+image[1, 3:5] = 0.75
+image[2, 2:6] = 0.75
+image[3, 1:7] = 0.75
+image[4:7, 2:6] = 0.50
+image[4, 2] = image[4, 5] = 0.80
+image[5:7, 3:5] = 0.20</code></pre><h3>3. Calculate the SVD</h3><p>The calculation returns three arrays. U has eight rows and eight columns. strengths contains eight singular values. Vt has eight rows and eight columns. A column of U describes variation down the image rows, and the matching row of Vt describes variation across its columns. The matching singular value sets the strength. Only four layers are needed for this constructed picture.</p><pre><code>U, strengths, Vt = np.linalg.svd(image, full_matrices=False)</code></pre><h3>4. Add the layers and calculate the error</h3><p>range(5) gives 0, 1, 2, 3 and 4. The slice U[:, :count] keeps every row and the first count columns. strengths[:count] keeps the corresponding strengths. Multiplication scales each retained column by its strength. The operator @ then performs matrix multiplication with the matching rows of Vt. With count = 0, the product is a zero image. I store each result in reconstructions. The RMSE compares corresponding pixels, squares their differences, averages them and takes the square root.</p><pre><code>reconstructions = []
+for count in range(5):
+    rebuilt = (U[:, :count] * strengths[:count]) @ Vt[:count]
+    reconstructions.append(rebuilt)
+    rmse = np.sqrt(np.mean((image - rebuilt)**2))
+    print(f&quot;Layers: {count}, brightness RMSE: {rmse:.6f}&quot;)</code></pre><h3>5. Check the result</h3><p>np.allclose checks agreement while allowing small floating-point rounding differences. I check that four layers recover the original image. The list named errors contains mean squared errors for all five reconstructions. The next check confirms that adding a retained SVD layer does not increase this error. These checks concern this particular example.</p><pre><code>assert np.allclose(reconstructions[4], image)
+errors = [np.mean((image - rebuilt)**2) for rebuilt in reconstructions]
+assert all(errors[i + 1] &lt;= errors[i] for i in range(4))</code></pre><h3>6. Display the pictures</h3><p>plt.subplots(1, 5) creates one row of five plotting areas. enumerate supplies both a layer count and a plotting area. I keep vmin = 0 and vmax = 1 in every panel so their brightness values can be compared. interpolation = nearest keeps pixel edges sharp. Removing the tick labels makes this small comparison easier to see. tight_layout adjusts the spacing; show opens the figure. When running the script in a desktop window, close the figure to reach the final confirmation message.</p><pre><code>fig, axes = plt.subplots(1, 5, figsize=(12, 3))
+for count, ax in enumerate(axes):
+    ax.imshow(reconstructions[count], cmap=&quot;gray&quot;, vmin=0, vmax=1,
+              interpolation=&quot;nearest&quot;)
+    ax.set_title(f&quot;{count} layers&quot;)
+    ax.set_xticks([])
+    ax.set_yticks([])
+plt.tight_layout()
+plt.show()
+print(&quot;All picture checks passed.&quot;)</code></pre><p class="readout"><strong>Expected output:</strong> RMSE decreases from about 0.397060 with zero layers to below 10⁻¹² with four layers. The final message is “All picture checks passed.”</p></details>
 </article><footer class="mdx-footer"><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="../PrivacyPolicy.html">Privacy</a><a href="../CookiePolicy.html">Cookies</a><a href="../TermsofUse.html">Terms of use</a><a href="../Disclaimer.html">Disclaimer</a><a href="../Copyright.html">Copyright and licensing</a></div></footer></main></body></html>
