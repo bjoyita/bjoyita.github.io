@@ -1,11 +1,5 @@
 [
   {
-    "page": "Blog5_SHAP.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/colors.jpg",
-    "license": "Existing Unsplash terms"
-  },
-  {
     "page": "Blog6_ANN.html",
     "asset": "assets/explorer/opening-photos/unique/fern.jpg",
     "title": "Unfurling Spiral Fiddlehead Fern Frond.JPG",
@@ -16,14 +10,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "A fern frond beginning to unfold.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "Blog7_HRmat.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/pic1_b7.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "A fern frond beginning to unfold."
   },
   {
     "page": "EvMetrics.html",
@@ -36,8 +23,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Arrows grouped on an archery target.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Arrows grouped on an archery target."
   },
   {
     "page": "Tut10_LogReg.html",
@@ -50,14 +36,7 @@
     "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "A ladybug on a green leaf.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "Tut11_OrdReg.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/tut10&11/theme.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "A ladybug on a green leaf."
   },
   {
     "page": "Tut13_CM.html",
@@ -70,8 +49,7 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Distinct areas of color in a flower garden.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Distinct areas of color in a flower garden."
   },
   {
     "page": "Tut14_2PtCorr.html",
@@ -84,8 +62,7 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "A honeybee on a repeating honeycomb structure.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "A honeybee on a repeating honeycomb structure."
   },
   {
     "page": "Tut6_params.html",
@@ -98,14 +75,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Components and connections on a circuit board.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "Tut7_heatmap.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/tut7/nature_heatmap.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "Components and connections on a circuit board."
   },
   {
     "page": "Tut8_Reg.html",
@@ -118,8 +88,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Growth rings in a tree cross-section.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Growth rings in a tree cross-section."
   },
   {
     "page": "Tut9_Reg.html",
@@ -132,14 +101,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Crystals in a mineral collection.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "Tut_dataset.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/tut10&11/photo.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "Crystals in a mineral collection."
   },
   {
     "page": "Tutorial5_FolderUplaoding.html",
@@ -152,8 +114,7 @@
     "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Books arranged on library shelves.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Books arranged on library shelves."
   },
   {
     "page": "Tutorial_1.html",
@@ -166,8 +127,7 @@
     "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "A mosaic built from repeating geometric patterns.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "A mosaic built from repeating geometric patterns."
   },
   {
     "page": "Tutorial_2.html",
@@ -180,14 +140,7 @@
     "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "The branching veins of a skeleton leaf.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "Tutorial_3_SHAP.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/tut3/Dice.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "The branching veins of a skeleton leaf."
   },
   {
     "page": "Tutorial_4_CNN.html",
@@ -200,32 +153,7 @@
     "license_url": "https://creativecommons.org/licenses/by/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Butterfly specimens with different wing patterns.",
-    "action": "Distinct Creative Commons replacement"
-  },
-  {
-    "page": "blog1.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/periodic.jpg",
-    "license": "Existing Unsplash terms"
-  },
-  {
-    "page": "blog2_Matminer.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/TETRA3.jpg",
-    "license": "Existing Unsplash terms"
-  },
-  {
-    "page": "blog2_materials.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/Ridge.jpg",
-    "license": "Existing Unsplash terms"
-  },
-  {
-    "page": "blog4_Measurement.html",
-    "action": "Kept existing Unsplash image and credit",
-    "asset": "assets/img/sven-mieke-fteR0e2BzKo-unsplash.jpg",
-    "license": "Existing Unsplash terms"
+    "description": "Butterfly specimens with different wing patterns."
   },
   {
     "page": "posts/fit-and-predict.html",
@@ -238,8 +166,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "A stone arch and its reflection in water.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "A stone arch and its reflection in water."
   },
   {
     "page": "posts/materials-design-space.html",
@@ -252,8 +179,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "The stepped shapes and colors of bismuth crystals.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "The stepped shapes and colors of bismuth crystals."
   },
   {
     "page": "posts/pca-materials.html",
@@ -266,8 +192,7 @@
     "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "An aerial view of trees with different autumn colors.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "An aerial view of trees with different autumn colors."
   },
   {
     "page": "posts/svd-small-picture.html",
@@ -280,8 +205,7 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Layers visible in sedimentary rock.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Layers visible in sedimentary rock."
   },
   {
     "page": "tutorials/microstructure-pca-game.html",
@@ -294,8 +218,7 @@
     "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "An abstract painting with contrasting patches of color.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "An abstract painting with contrasting patches of color."
   },
   {
     "page": "tutorials/pca-pixel-images.html",
@@ -308,7 +231,6 @@
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
-    "description": "Colored pieces arranged in a patterned window.",
-    "action": "Distinct Creative Commons replacement"
+    "description": "Colored pieces arranged in a patterned window."
   }
 ]
