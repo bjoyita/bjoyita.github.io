@@ -189,3 +189,11 @@ main,.page{padding:30px 18px}
   .mdx-home header.masthead .subheading { font-size: 1rem; }
   .mdx-home header.masthead .mdx-hero-link { font-size: .9rem; }
 }
+
+/* I keep the code-running options readable on phones and larger screens. */
+.mdx-run-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:24px 0}
+.mdx-run-options>section{padding:22px;background:#fff;border:1px solid var(--mdx-line);border-radius:10px}
+.mdx-run-options h3{font-size:1.2rem;margin:0 0 12px}
+.mdx-run-options p{font-size:1rem;line-height:1.65;margin:0 0 16px}
+.mdx-run-options a{font-size:1rem;font-weight:650}
+@media(max-width:850px){.mdx-run-options{grid-template-columns:1fr}}
