@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
+        <title>Shapley Value aided Recipe for Materials Design | Materials Data Explorer</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
@@ -31,7 +33,7 @@
   }
 }
         </style>
-        <meta name="description" content="Blog post on materials design." />
+        <meta name="description" content="A SHAP tutorial using thermoelectric materials to explain feature contributions, read summary plots, and identify candidates for further study." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Materials Design, Feature importance, Machine learning, Shapley, SHAP, thermoelectrics, ZT, thermal conductivity, electrical conductivity" />
 
@@ -55,7 +57,8 @@
 
 
                     <!--Title of the blog-->
-<p><h1 align = center><font face ="verdana", color = "maroon">Shapley Value aided Recipe for Materials Design</font></h1>
+<p class="eyebrow">Tutorial</p>
+<h1>Shapley Value aided Recipe for Materials Design</h1>
 
 
                     <hr size =4 >
@@ -67,6 +70,11 @@
                             <span class="caption text-muted">   Photo by Pawel Czerwinski on <a href = "https://unsplash.com/photos/3k9PGKWt7ik">Unsplash</a> </span>
 
 
+<aside class="mdx-start" id="tutorial-note" aria-labelledby="tutorial-note-heading">
+<h2 id="tutorial-note-heading">A note about this tutorial</h2>
+<p>I had been planning to publish this tutorial for a long time. AI tools such as ChatGPT have made it much easier to work on the website, find and fix bugs, and try suggestions for its appearance and layout. I appreciate that help, especially when a small change makes a tutorial easier to read.</p>
+<p>But a suggestion still needs checking. I run the relevant code, inspect the output, and check explanations against the documentation. A page that looks better is not necessarily correct, and code that runs is not necessarily giving the right answer. I want these tutorials to show both how to carry out an analysis and how to check what it tells us.</p>
+</aside>
     <h2>Introduction</h2>
 
     <p>Materials play a significant role in developing various technologies from electronics to food. For instance, the evolution of television (TV) picture quality. Over the past few decades, stunning advancement in the TV industry has been achieved by introducing improved materials in image sensors and displays leading to enhanced image resolution from standard to ultra-high definition. </p>
@@ -77,11 +85,8 @@
 <p>I will give you a brief overview of the concept before delving into the machine learning analysis and insights. </p>
 
 <h3>A short introduction to Shapley value</h3>
-<p>The <b><a href="https://christophm.github.io/interpretable-ml-book/shapley.html">Shapley value </a></b>is a concept derived from game theory by L.S. Shapley. It is calculated by taking the average sum of marginal contributions from all possible permutations or combinations of factors that influence the outcome of an event.
-Let us take an example to understand the concept clearly. Three friends, X, Y, and Z donated $1200 to an orphanage. To calculate the Shapley value, we make the following assumptions:</p>
-                        <p>The Shapley value is a concept derived from game theory by L.S. Shapley. It is calculated by taking the average sum of marginal contributions from all possible permutations or combinations of factors that influence the outcome of an event.
-Let us take an example to understand the concept clearly. Three friends, X, Y, and Z donated <b>$1200</b> to an orphanage. To <b>calculate the Shapley value</b>, we make the following <b>assumptions</b>:
-</p>
+<p>The <b><a href="https://christophm.github.io/interpretable-ml-book/shapley.html">Shapley value</a></b> is a concept from cooperative game theory developed by L. S. Shapley. I calculate a participant’s contribution by considering every possible order in which participants can join a group. For each order, I find how much the participant adds when they join, then average these marginal contributions over the orders.</p>
+<p>Let us take an example. Three friends, X, Y, and Z, donated <b>$1200</b> to an orphanage. To calculate their Shapley values, I make the following assumptions:</p>
                         <p><b>A1:</b><i>Had they donated individually, X, Y, and Z would have contributed $600, $450, and $150, respectively.</i> </p>
 <p><b>A2: </b><i>Had they donated in pairs, then:</i></p>
                         <p><img src="assets/Shap/Shap_t1.jpg", width="80%"></p>
@@ -91,8 +96,8 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
 <p><b>A4: </b><i>The sum of the contribution should amount to $1200, irrespective of the order of contribution.</i></p>
                         <center><img src ='assets/Shap/Shap_t2.jpg' width = 100%></center>
                         <p><img src="assets/Shap/Shap_t3.jpg" width = 100%></p>
-<p>Machine learning models applies the same concept for interpretations of predictions. The Shapley value is an effective tool to explain the influence of individual features on the final prediction in classification and regression models. It provides consistent and accurate insights into the role of each feature.</p>
-<p>The SHAP (SHapley Additive exPlanations) API, developed by <b><a href ="https://arxiv.org/pdf/1705.07874.pdf">Lundberg and Lee</a></b>, is an explainable AI (XAI)that can be used with any machine learning (ML) system: tree and non-tree-based, and deep learning systems. It has two functions - TreeExplainer() for tree-based ML and KernelExplainer() for non-tree-based ML. These functions help identify the contribution of each feature in the final prediction.
+<p>In machine learning, the participants are the input features. SHAP assigns each feature a contribution to the model’s prediction relative to a reference value. This explains the fitted model; it does not establish that changing a feature will cause the same change in the physical material.</p>
+<p>The SHAP (SHapley Additive exPlanations) API, developed by <b><a href ="https://arxiv.org/pdf/1705.07874.pdf">Lundberg and Lee</a></b>, is an explainable AI (XAI)that can be used with any machine learning (ML) system: tree and non-tree-based, and deep learning systems. For this tutorial, I use <code>TreeExplainer</code> to explain a random forest model. <code>KernelExplainer</code> is another option that can explain a general prediction function. These are two of the explainers available in SHAP.
 </p>
     <p>I will now proceed to demonstrate the usefulness of SHAP value in designing a high-performance <b><a href ="https://www.frontiersin.org/articles/10.3389/femat.2021.677845/full">thermoelectric material</a></b> from the available experimental database of several compositions. I have used Google Colab to run the entire code.</p>
 
@@ -115,7 +120,8 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
                         <h5>Database of materials</h5>
                         <p>	I collected room temperature properties (&sigma; and &kappa;) of 204 thermoelectric compositions (shown in the formula column of the dataset) from <b><a href="https://www.nature.com/articles/s41524-021-00564-y">this reference</a></b>.</p>
                         <h5>Stepwise Implementation of ML </h5>
-                        <p><h5>Importing relevant libraries and loading preprocessed dataset </h5></p>
+                        <p>The snippets below show selected steps, not a complete standalone program. Use the <a href="https://github.com/bjoyita/SHAP_MaterialsDesign/blob/main/RT_kappa_sigma.ipynb">full notebook</a> for the data preparation and variable definitions.</p>
+<p><h5>Importing relevant libraries and loading preprocessed dataset </h5></p>
                     <p>I have imported the standard Python libraries such as NumPy, Pandas, and Matplotlib. along with the installation of materials-based Python packages such as <b><a href="https://hackingmaterials.lbl.gov/matminer/">Matminer</a></b>, and <b><a href="https://pymatgen.org/">Pymatgen</a></b> and <b><a href="https://shap.readthedocs.io/en/latest/">SHAP</a></b>.</p>
                     <p> A snippet of the refined dataset, ready for training, is shown below. Please refer to <b><a href='https://bjoyita.github.io/blog2_Matminer.html
                         '>my article</a></b> to read about the preprocessing steps in detail.</p>
@@ -138,15 +144,14 @@ regr_rf = RandomForestRegressor(n_estimators=100, random_state=0)
 rf_s=regr_rf.fit(X_train_s, y_train_s)</code></pre>
                     <p>The training batch, X_train_s and y_train_s, is fitted with a random forest regressor algorithm. </p>
                    <p><h6><ul>&check; <b> Computing SHAP values </b></ul></h6>
-                    <p>The analysis using TreeExplainer() obtains SHAP values for elements that impact "&sigma;". This method is more reliable than the feature importance class of the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest algorithm</a></b>. The feature importance class does not consider closely correlated variables and may assign importance to one while ignoring the others. On the contrary, the SHAP method <b>meticulously highlights every feature's contribution
-</b>along with the <b>direction and degree of impact </b>on the <b>target variable</b>.</p>
+                    <p>I use <code>TreeExplainer</code> to examine how each feature contributes to the random forest’s prediction of electrical conductivity. Correlated features can make these contributions harder to interpret; SHAP does not automatically remove that difficulty. The result also depends on the explainer’s assumptions about feature dependence. See the <a href="https://shap.readthedocs.io/en/latest/generated/shap.TreeExplainer.html">TreeExplainer documentation</a>.</p>
 
                     <p><h6><ul>&check;Interpretation of SHAP values</ul></h6>
-                    <p>SHAP values are obtained using the shap.TreeExplainer class. These values signify the strong and weak contributions, color-coded with red and blue respectively, of each feature on the target which is displayed in the <b>SHAP summary plot</b>. </p>
+                    <p>In the <b>SHAP summary plot</b>, each dot represents one sample for one feature. Its horizontal position gives the SHAP value: a positive value increases the model prediction relative to its reference, while a negative value decreases it. Red indicates a higher feature value and blue a lower feature value. Color does not indicate the strength of a contribution. The rows are usually ordered by mean absolute SHAP value. See the <a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/beeswarm.html">SHAP summary-plot explanation</a>. </p>
                     <!--CODE-->
 
         <pre style="background-color:gainsboro"><code>import shap
-explainer = shap.TreeExplainer(rf)
+explainer = shap.TreeExplainer(rf_s)
 shap_values_s = explainer.shap_values(X_train_s)
 shap.summary_plot(shap_values_s, X_train_s)
 </code></pre>
@@ -159,31 +164,31 @@ shap.summary_plot(shap_values_s, X_train_s)
                     <p> <h5>
 Understanding the role of SHAP plots in materials design
 </h5>
-                    <p>The SHAP plot, with the X-axis representing SHAP values and the Y-axis representing features, provides valuable insights into materials design. By examining the plot, we can easily identify the elements that have a significant positive impact on &sigma; , which is important for thermoelectric materials. In this case, the elements iron (Fe), sodium (Na), tellurium (Te), and antimony (Sb) are identified as having a strong positive contribution to &sigma; and are highlighted in red on the plot.</p>
+                    <p>The SHAP plot, with the X-axis representing SHAP values and the Y-axis representing features, provides valuable insights into materials design. By examining the plot, we can easily identify the elements that make a positive contribution to predicted &sigma; , which is important for thermoelectric materials. In this case, the elements iron (Fe), sodium (Na), tellurium (Te), and antimony (Sb) are identified as having a strong positive contribution to &sigma; for some of the samples shown. I read this from the horizontal position of the points, not their color.</p>
                         <center><img src="assets/img/SHAP_sigma.jpeg"><span class="caption text-muted">SHAP summary plot showing the contributions of different elements toward electrical conductivity (&sigma;)</span></center>
-                        <p>Elements such as iron (Fe), sodium (Na), tellurium (Te), Lead (Pb), Titanium (Ti), Zirconium (Zr), Silicon (Si) and antimony (Sb) displayed strong contributions to &sigma; and are coded red as per the colorbar.</p>
+                        <p>For elemental descriptors, I also check how each feature was encoded. If it records presence or absence, red marks presence and blue marks absence. If it records a fraction or another numerical quantity, the color represents that quantity. I consider both the color and the SHAP value when reading a row.</p>
                     <p><i>However, a novel thermoelectric material also requires elements with low thermal conductivity (&kappa;). This prompted the training of the same features to come up with a model which can identify elements with low &kappa; value as the response.</i></p>
                     <p><h5>Training 2 with target-Thermal conductivity (&kappa;)</h5>
-                    <p>The machine is trained with a regressor algorithm on the same features (Xs) used in training 1 and &kappa; as the target in lieu of &sigma;.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to &kappa;. We could identify only a few elements, such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) exhibiting a strong adverse effect on &kappa;.</p>
+                    <p>The machine is trained with a regressor algorithm on the same features (Xs) used in training 1 and &kappa; as the target in lieu of &sigma;.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to &kappa;. We could identify only a few elements, such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) associated with lower predicted &kappa; in the samples shown.</p>
                     <p><h5>Strategy for Robust Design </h5>
                     <p>After generating two SHAP summary plots, we move on to the main part of this article:<b>materials design</b>. </p>
                     <p>We carefully analyze the two plots to select the combination of elements that can result in a promising thermoelectric composition. Keep in mind that we need combinations with a high positive SHAP value for "&sigma;" and a high negative SHAP value for "&kappa;" to achieve potential thermoelectric compositions.</p>
                     <center><img src="assets/img/SPlots.jpg" width=100%><span class="caption text-muted">SHAP summary plots</span></center>
 
 
-                    <p>These plots show that Fe, Na, Te, and Sb have large positive SHAP values for &sigma; while Ge, Hf, Ca, and Sb possess high negative SHAP values for &kappa;. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for&sigma; and &kappa; respectively. A Venn diagram illustrates the intersection area with Sb indicating its dual role of increasing &sigma; and decreasing &kappa;.
-                        <center><img src="assets/img/venn.jpg" width=60%><span class="caption text-muted">Venn diagram showing Sb as the only element to possess high electrcial conductivity and low thermal conductivity simultaneously</span></center>
+                    <p>These plots show that Fe, Na, Te, and Sb have large positive SHAP values for &sigma; while Ge, Hf, Ca, and Sb possess high negative SHAP values for &kappa;. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for&sigma; and &kappa; respectively. The Venn diagram highlights Sb as a candidate associated with higher predicted &sigma; and lower predicted &kappa; in this analysis.
+                        <center><img src="assets/img/venn.jpg" width=60%><span class="caption text-muted">Venn diagram highlighting Sb as a candidate suggested by the two model explanations</span></center>
                         <p>This finding narrowed our search for ideal combinations where  Sb can be chosen as one of the constituent elements. The other element/ elements for new compositions can be judiciously selected from the range of elements contributing favorably and adversely toward &sigma; and &kappa; respectively.</p>
 
         <p>I, then, carried out a literature survey to check the authentication of these SHAP value-based combinations with already reported experimentally valid thermoelectric compositions. I had my eureka moment when I figured out that, indeed, there are compositions reported in the literature with a mix and match of elements identified from the above SHAP summary plots. </p>
-                    <p>According to our SHAP value-guided ML findings, a blend of transition metals (Fe, Hf) and p-block elements (Sb, Te, Ge) could form prospective compositions for thermoelectric applications. And such combinations are found in a class of materials (compositions), known as <b><a href="https://en.wikipedia.org/wiki/Heusler_compound">Heusler alloys
-</a></b>, which are well-investigated as good thermoelectric candidates. This is direct evidence of the significance of SHAP value derived feature importance for preparing blueprints of novel materials. </p>
+                    <p>According to my SHAP value-guided ML findings, a blend of transition metals (Fe, Hf) and p-block elements (Sb, Te, Ge) could form prospective compositions for thermoelectric applications. And such combinations are found in a class of materials (compositions), known as <b><a href="https://en.wikipedia.org/wiki/Heusler_compound">Heusler alloys
+</a></b>, which are well-investigated as good thermoelectric candidates. I treat this agreement with known materials as a useful consistency check, rather than proof that a new combination will perform well. Candidate compositions still need checks of model accuracy, physical feasibility, and experimental performance. The <a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%20insights.html">SHAP guide to predictive and causal interpretations</a> explains this distinction. </p>
                     <p>A schematic of the entire activity is shown with the help of a circular flowchart.</p>
                     <center><img src="assets/img/ML_chart.jpg" width =100%></center><span class="caption text-muted"> Materials Design concept</span>
                     <p>Furthermore, to inch toward ideal thermoelectric compositions, it is more appropriate to choose power factor and thermal conductivity as responses (targets) and apply the above approach.</p>
                     <p><h5>Concluding Remarks</h5>
                     <p>This article emphasizes the significance of Shapley values in weaving tapestries for new materials from a huge pool of elemental data collected over time. An amalgamation of the SHAP technique and ML model is a transparent, explainable, and productive approach to designing new materials. </p>
-                    <p>Before wrapping up, <b><a href="https://github.com/bjoyita/SHAP_MaterialsDesign/blob/main/RT_kappa_sigma.ipynb">here</a></b> is the link to the entire code. </p>
+                    <p>The <a href="https://github.com/bjoyita/SHAP_MaterialsDesign/blob/main/RT_kappa_sigma.ipynb">full notebook</a> contains the analysis. If you are new to running notebooks, see <a href="tutorial_list.html#write-and-test">my guide to writing and checking code in small steps</a>. </p>
 
         <!-- Footer-->
 
