@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -13,11 +13,11 @@
 </script>
 
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-        
+
               <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
@@ -34,9 +34,9 @@
         <meta name="description" content="Blog post on materials design." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Materials Design, Feature importance, Machine learning, Shapley, SHAP, thermoelectrics, ZT, thermal conductivity, electrical conductivity" />
-        
+
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-               
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -45,61 +45,37 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                                                               
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html" aria-current="page">Articles</a><a href="tutorial_list.html">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-             <img src ="assets/img/logo_mdxp.png" width=5%>
-    
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                      </header>
-                    
+
+
+
                     <!--Title of the blog-->
-<p><h1 align = center><font face ="verdana", color = "maroon">Shapley Value aided Recipe for Materials Design</font></h1> 
-                    
-                    
-                    <hr size =4 > 
+<p><h1 align = center><font face ="verdana", color = "maroon">Shapley Value aided Recipe for Materials Design</font></h1>
+
+
+                    <hr size =4 >
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        
+
                         <center><img src ='assets/img/colors.jpg' width=80% ></center>
                             <span class="caption text-muted">   Photo by Pawel Czerwinski on <a href = "https://unsplash.com/photos/3k9PGKWt7ik">Unsplash</a> </span>
-                        
- 
+
+
     <h2>Introduction</h2>
-                        
+
     <p>Materials play a significant role in developing various technologies from electronics to food. For instance, the evolution of television (TV) picture quality. Over the past few decades, stunning advancement in the TV industry has been achieved by introducing improved materials in image sensors and displays leading to enhanced image resolution from standard to ultra-high definition. </p>
     <p>Fabricating new materials with desired functionality calls for choosing and combining elements in different proportions from the palette of 94 naturally occurring elements listed in the <a href="https://en.wikipedia.org/wiki/Periodic_table">Periodic Table</a>. <i>The success of materials design depends on the confluence of the right elemental combinations, and the process variables leading to required property and performance. </i></p>
     <p>In my post <b><a href='https://bjoyita.github.io/blog2_Matminer.html'>
-        'Uncovering the Potential of Materials Data using Matminer and Pymatgen'</a></b>, I explained data preprocessing stepwise with an emphasis on the extraction of individual elemental information and their incorporation as descriptors/ features in the original dataset. All these features may not have equal contributions to achieving the target. Hence, an appropriate machine learning (ML) model needs to be deployed which recognizes the contribution of these features. I will thus focus on the <b>'feature importance'</b> aspect and show how it plays a crucial role in designing materials with improved properties. We need predictive as well as explainable ML algorithms to do this task. The 'explainability factor' is associated with the 'feature importance' of the descriptors. One such <b>explainable AI (XAI)</b> is based on the <b>Shapley value concept</b> which can be very effective in the pursuit of novel materials. 
+        'Uncovering the Potential of Materials Data using Matminer and Pymatgen'</a></b>, I explained data preprocessing stepwise with an emphasis on the extraction of individual elemental information and their incorporation as descriptors/ features in the original dataset. All these features may not have equal contributions to achieving the target. Hence, an appropriate machine learning (ML) model needs to be deployed which recognizes the contribution of these features. I will thus focus on the <b>'feature importance'</b> aspect and show how it plays a crucial role in designing materials with improved properties. We need predictive as well as explainable ML algorithms to do this task. The 'explainability factor' is associated with the 'feature importance' of the descriptors. One such <b>explainable AI (XAI)</b> is based on the <b>Shapley value concept</b> which can be very effective in the pursuit of novel materials.
 
 <p>I will give you a brief overview of the concept before delving into the machine learning analysis and insights. </p>
-                        
+
 <h3>A short introduction to Shapley value</h3>
 <p>The <b><a href="https://christophm.github.io/interpretable-ml-book/shapley.html">Shapley value </a></b>is a concept derived from game theory by L.S. Shapley. It is calculated by taking the average sum of marginal contributions from all possible permutations or combinations of factors that influence the outcome of an event.
 Let us take an example to understand the concept clearly. Three friends, X, Y, and Z donated $1200 to an orphanage. To calculate the Shapley value, we make the following assumptions:</p>
@@ -109,8 +85,8 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
                         <p><b>A1:</b><i>Had they donated individually, X, Y, and Z would have contributed $600, $450, and $150, respectively.</i> </p>
 <p><b>A2: </b><i>Had they donated in pairs, then:</i></p>
                         <p><img src="assets/Shap/Shap_t1.jpg", width="80%"></p>
-<p><b>A3: </b><i>If all three friends decide to donate a total amount of $1200, then six possible combinations in order are possible:</i></p> 
-<p>(X Y Z); (X Z Y); (Y Z X); (Y X Z); (Z X Y) and (Z Y X).</p> 
+<p><b>A3: </b><i>If all three friends decide to donate a total amount of $1200, then six possible combinations in order are possible:</i></p>
+<p>(X Y Z); (X Z Y); (Y Z X); (Y X Z); (Z X Y) and (Z Y X).</p>
 
 <p><b>A4: </b><i>The sum of the contribution should amount to $1200, irrespective of the order of contribution.</i></p>
                         <center><img src ='assets/Shap/Shap_t2.jpg' width = 100%></center>
@@ -131,14 +107,14 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
                             </p>
                         <center><img src='assets/img/zt.jpg' width = 25%></center>
         <p>The product S²&sigma; is coined as the power factor (PF). It is clear from the relation that a potential thermoelectric material should possess</p>
-                        <ul> &check; <b>Low &kappa;</b></ul> 
-                        <ul> &check; <b>High &sigma;</b></ul> 
+                        <ul> &check; <b>Low &kappa;</b></ul>
+                        <ul> &check; <b>High &sigma;</b></ul>
                         <ul> &check; <b>High power factor-S<sup>2</sup>&sigma;</b></ul>
                         <h5>Aim of the ML project</h5>
                         <p>Building a machine learning model to identify possible combinations of elements, with the desirable characteristics of high &sigma; and low &kappa; . Here, I will showcase the correlations of various elements with &sigma; and &kappa; independently, and then compute their SHAP values, which will eventually assist in designing a new improved material.  </p>
                         <h5>Database of materials</h5>
-                        <p>	I collected room temperature properties (&sigma; and &kappa;) of 204 thermoelectric compositions (shown in the formula column of the dataset) from <b><a href="https://www.nature.com/articles/s41524-021-00564-y">this reference</a></b>.</p> 
-                        <h5>Stepwise Implementation of ML </h5>  
+                        <p>	I collected room temperature properties (&sigma; and &kappa;) of 204 thermoelectric compositions (shown in the formula column of the dataset) from <b><a href="https://www.nature.com/articles/s41524-021-00564-y">this reference</a></b>.</p>
+                        <h5>Stepwise Implementation of ML </h5>
                         <p><h5>Importing relevant libraries and loading preprocessed dataset </h5></p>
                     <p>I have imported the standard Python libraries such as NumPy, Pandas, and Matplotlib. along with the installation of materials-based Python packages such as <b><a href="https://hackingmaterials.lbl.gov/matminer/">Matminer</a></b>, and <b><a href="https://pymatgen.org/">Pymatgen</a></b> and <b><a href="https://shap.readthedocs.io/en/latest/">SHAP</a></b>.</p>
                     <p> A snippet of the refined dataset, ready for training, is shown below. Please refer to <b><a href='https://bjoyita.github.io/blog2_Matminer.html
@@ -148,10 +124,10 @@ Let us take an example to understand the concept clearly. Three friends, X, Y, a
                     <p><h5>Defining Xs (Features/ Descriptors) and y (Response/ Target)</h5>
                     <p>The dataset has 49 features/ descriptors**, which are designated as X and are individual elements constituting the formulae. Note that this dataset involves two responses/targets-&sigma; and &kappa;  designated as y_sigma and y_kappa respectively. The said targets are the determiners of the performance of thermoelectrics, as highlighted in the 'About Thermoelectrics' section. I have conducted two separate trainings with the same input parameters (X) but different targets (y_sigma and y_kappa). </p>
                     <p><i><font size=4>It is essential to note that in real-world datasets for materials exploration, the incorporation of process variables is imperative for the purpose of optimization.</font></i></p>
-<p><h5>Training 1 with target-Electrical conductivity (&sigma;)</h5> 
+<p><h5>Training 1 with target-Electrical conductivity (&sigma;)</h5>
                     <p><h6><ul>&check; <b>	Splitting dataset into train and test batches</b></ul></h6>
                     <p>The preprocessed dataset is split in the ratio of 80:20 as training and test batches as seen in the code snippet below.  </p>
-                    
+
 <!--CODE-->
                     <pre style="background-color:gainsboro"><code>from sklearn.model_selection import train_test_split
 X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(X_sigma, y_sigma, test_size = 0.2, random_state = 0) </code></pre>
@@ -162,18 +138,18 @@ regr_rf = RandomForestRegressor(n_estimators=100, random_state=0)
 rf_s=regr_rf.fit(X_train_s, y_train_s)</code></pre>
                     <p>The training batch, X_train_s and y_train_s, is fitted with a random forest regressor algorithm. </p>
                    <p><h6><ul>&check; <b> Computing SHAP values </b></ul></h6>
-                    <p>The analysis using TreeExplainer() obtains SHAP values for elements that impact "&sigma;". This method is more reliable than the feature importance class of the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest algorithm</a></b>. The feature importance class does not consider closely correlated variables and may assign importance to one while ignoring the others. On the contrary, the SHAP method <b>meticulously highlights every feature's contribution 
+                    <p>The analysis using TreeExplainer() obtains SHAP values for elements that impact "&sigma;". This method is more reliable than the feature importance class of the <b><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest algorithm</a></b>. The feature importance class does not consider closely correlated variables and may assign importance to one while ignoring the others. On the contrary, the SHAP method <b>meticulously highlights every feature's contribution
 </b>along with the <b>direction and degree of impact </b>on the <b>target variable</b>.</p>
-                    
-                    <p><h6><ul>&check;Interpretation of SHAP values</ul></h6> 
+
+                    <p><h6><ul>&check;Interpretation of SHAP values</ul></h6>
                     <p>SHAP values are obtained using the shap.TreeExplainer class. These values signify the strong and weak contributions, color-coded with red and blue respectively, of each feature on the target which is displayed in the <b>SHAP summary plot</b>. </p>
                     <!--CODE-->
-                    
+
         <pre style="background-color:gainsboro"><code>import shap
 explainer = shap.TreeExplainer(rf)
 shap_values_s = explainer.shap_values(X_train_s)
 shap.summary_plot(shap_values_s, X_train_s)
-</code></pre> 
+</code></pre>
 
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -193,12 +169,12 @@ Understanding the role of SHAP plots in materials design
                     <p>After generating two SHAP summary plots, we move on to the main part of this article:<b>materials design</b>. </p>
                     <p>We carefully analyze the two plots to select the combination of elements that can result in a promising thermoelectric composition. Keep in mind that we need combinations with a high positive SHAP value for "&sigma;" and a high negative SHAP value for "&kappa;" to achieve potential thermoelectric compositions.</p>
                     <center><img src="assets/img/SPlots.jpg" width=100%><span class="caption text-muted">SHAP summary plots</span></center>
-                    
-                                        
-                    <p>These plots show that Fe, Na, Te, and Sb have large positive SHAP values for &sigma; while Ge, Hf, Ca, and Sb possess high negative SHAP values for &kappa;. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for&sigma; and &kappa; respectively. A Venn diagram illustrates the intersection area with Sb indicating its dual role of increasing &sigma; and decreasing &kappa;. 
+
+
+                    <p>These plots show that Fe, Na, Te, and Sb have large positive SHAP values for &sigma; while Ge, Hf, Ca, and Sb possess high negative SHAP values for &kappa;. Interestingly, Sb is the only element that concurrently exhibits high positive and high negative SHAP values for&sigma; and &kappa; respectively. A Venn diagram illustrates the intersection area with Sb indicating its dual role of increasing &sigma; and decreasing &kappa;.
                         <center><img src="assets/img/venn.jpg" width=60%><span class="caption text-muted">Venn diagram showing Sb as the only element to possess high electrcial conductivity and low thermal conductivity simultaneously</span></center>
-                        <p>This finding narrowed our search for ideal combinations where  Sb can be chosen as one of the constituent elements. The other element/ elements for new compositions can be judiciously selected from the range of elements contributing favorably and adversely toward &sigma; and &kappa; respectively.</p> 
-                    
+                        <p>This finding narrowed our search for ideal combinations where  Sb can be chosen as one of the constituent elements. The other element/ elements for new compositions can be judiciously selected from the range of elements contributing favorably and adversely toward &sigma; and &kappa; respectively.</p>
+
         <p>I, then, carried out a literature survey to check the authentication of these SHAP value-based combinations with already reported experimentally valid thermoelectric compositions. I had my eureka moment when I figured out that, indeed, there are compositions reported in the literature with a mix and match of elements identified from the above SHAP summary plots. </p>
                     <p>According to our SHAP value-guided ML findings, a blend of transition metals (Fe, Hf) and p-block elements (Sb, Te, Ge) could form prospective compositions for thermoelectric applications. And such combinations are found in a class of materials (compositions), known as <b><a href="https://en.wikipedia.org/wiki/Heusler_compound">Heusler alloys
 </a></b>, which are well-investigated as good thermoelectric candidates. This is direct evidence of the significance of SHAP value derived feature importance for preparing blueprints of novel materials. </p>
@@ -208,47 +184,22 @@ Understanding the role of SHAP plots in materials design
                     <p><h5>Concluding Remarks</h5>
                     <p>This article emphasizes the significance of Shapley values in weaving tapestries for new materials from a huge pool of elemental data collected over time. An amalgamation of the SHAP technique and ML model is a transparent, explainable, and productive approach to designing new materials. </p>
                     <p>Before wrapping up, <b><a href="https://github.com/bjoyita/SHAP_MaterialsDesign/blob/main/RT_kappa_sigma.ipynb">here</a></b> is the link to the entire code. </p>
-                    
+
         <!-- Footer-->
-                    
-        <footer class="border-top">
-          
-   <!--LIKE AND SHARE BUTTONS-->
 
-
-                <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END -->
-            <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>-->
-                    
-                        <div class="small text-center text-muted">
-  <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </header>
-                        
-                        
+
+
                         <!--
-                                      
+
                         <p>
-            <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>    <head>                  
+            <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>    <head>
 -->
 <!--
-   <center>                   
+   <center>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      
+
 
 <script>
 let likes = 0;
@@ -259,7 +210,7 @@ let likes = 0;
         likes = 1;
         setLikes(likes);
       });
-      
+
       $("body").on("click", ".likeBTN", function () {
         // ajax to post a current likes
         // in success add increment to likes
@@ -273,12 +224,12 @@ let likes = 0;
 </script>
 -->
 </head>
-                                    
+
     </head></div></footer></div></div></div></div>
 <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        
+
+
             </body>
 </html>

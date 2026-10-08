@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -12,13 +12,13 @@
   gtag('config', 'G-SPPQKTW0JB');
 </script>
 
-          
+
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-       
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
@@ -36,72 +36,45 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Images, Classification, ultra-high carbon steel, Microstructure, Pearlite, Martensite, Peralite-Spheroidite, Network microstructure, Keras, Convolutional Neural Network (CNN), Convolution layer, Max pooling layer, Parameters, Epoch, Batch size, Prediction"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
-        
-        <!-- Navigation-->
-        
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
-    
 
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-                        <meta name="viewport" content="width=device-width, initial-scale=1" />
-                            </div></div></div>                 
-                         </header>
-            
-                    
+        <!-- Navigation-->
+
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html">Articles</a><a href="tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main class="mdx-legacy-reading">
+        <!-- Page Header-->
+
+
+
+
 <!--Title of the blog-->
                     <p><h1 align="center"><font face ="verdana", color = "maroon"> Classification of Microstructures using Convolutional Neural Network   </font></h1>
-                    <center><p> <font face="monospace"><b> by Joyita Bhattacharya</b></font> | <font face="monospace"> posted on June 14, 2023</font></p></center>                                          
+                    <center><p> <font face="monospace"><b> by Joyita Bhattacharya</b></font> | <font face="monospace"> posted on June 14, 2023</font></p></center>
                     <hr size =4 >
-                            
-                                   
+
+
                         <!--CONTENT-->
-                                                                                                                     
+
               <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
 <p><b>Aim of the tutorial:</b> To demonstrate the coding steps for microstructure (image) classification using Convolutional Neural Network (CNN)-a deep learning algorithm.
-                    <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel. I've included the reference for the dataset in the link given at the end of this tutorial. 
+                    <p><b>DATASET: 485 Scanning Electron Micrographs</b> of ultra-high carbon steel. I've included the reference for the dataset in the link given at the end of this tutorial.
                     <p>I am providing a schematic diagram of the basic framework for machine learning for ease of learning.</p>
-                    
+
                     <p><center><img src='assets/T4_Im/ML_overview.jpg' width="100%"><span class="caption text-muted" >Schematic Diagram of a basic ML framework</span></center></p>
                     <p>I will now walk you through the process of building a deep learning model for image classification.</p>
                     <p><b>&#10102;Assigning labels (phase) to the collected microstructures</b>
@@ -118,7 +91,7 @@
                         <pre style="background-color: gainsboro"><code>import tensorflow as tf
 from tensorflow import keras
 from keras.preprocessing.image import ImageDataGenerator</code></pre>
-                        
+
                     <p>We now need to load the above four folders containing images in Python. For that, I used <a href="https://keras.io/"><b><font color=blue>Keras </font></b></a>, written in Python and used mostly in neural networks.</p>
                     <p><mark style="background-color: antiquewhite">To load the folders, apply keras.preprocessing.image.ImageDataGenerator class.</mark></p>
                     <p><b>Training set</b></p>
@@ -138,7 +111,7 @@ train_set.class_indices
                     <pre style="background-color: greenyellow"><code>Found 383 images belonging to 4 classes.
 
 {'Network': 0, 'Pearlite_Spheroidite': 1, 'Martensite': 2, 'Pearlite': 3}</code></pre>
-                    
+
                     <p><b>Test set</b></p>
                     <pre style="background-color: gainsboro"><code>test_datagen = ImageDataGenerator(rescale = 1./255)
 test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/MDXp_content/Tutorail4_UHCSD/UHCSD_ML/Data_steel/Test_set/',class_mode='categorical',
@@ -163,8 +136,8 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <center><img src="assets/T4_Im/CNN_model_h.jpg" width=80%></center>
                     <p><b>Layer 1: 2D Convolution layer </b></p>
 <p>Let us begin with a convolution operation on the image matrix (64 x 64) with 3 x 3 filter and reLU (rectified linear unit) activation function.  The convolution of the image matrix with the filter matrix will generate a <b>convolved matrix</b> also known as <b>feature map or activation map
-</b>. As the name suggests, a feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p> 
-<p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p> 
+</b>. As the name suggests, a feature map reveals the characteristic features of an image which can be used to demarcate or 'classify' different images.</p>
+<p>I am sharing a schematic diagram of the convolution operation on an image matrix and a filter matrix for understanding the math followed by the code.</p>
 
                     <center><img src="assets/T4_Im/Conv2D_math.jpg" width=100%></center>
                     <p><b>Code</b></p>
@@ -176,15 +149,15 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                         <p><pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.MaxPool2D(pool_size = 2, strides =2))</code></pre>
                         <p><b>Layer 3 & 4</b></p>
 <p>In a similar way, I introduced the second convolution layer followed by a max pool layer. </p>
-    <p><b>Code</b></p>                    
+    <p><b>Code</b></p>
 <pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Conv2D(filters=64, kernel_size=3, activation='relu'))
 cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))</code></pre>
                         <p><b>Layer 5: Flatten layer</b></p>
 <p>Inserting this layer converts the max pooled feature maps into a single linear vector.</p>
                         <pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Flatten())</code></pre>
                         <p><b>Layer 6 & 7: Dense layers</b></p>
-                        <p>Dense layers are required to classify images. The input of the flattened layer is fed into the dense layers to give the final output.</p> 
-<p>I have arranged two dense or the fully connected layers. The final layer has four output neurons for four classes with softmax activation function which will give the output probability.</p> 
+                        <p>Dense layers are required to classify images. The input of the flattened layer is fed into the dense layers to give the final output.</p>
+<p>I have arranged two dense or the fully connected layers. The final layer has four output neurons for four classes with softmax activation function which will give the output probability.</p>
                         <pre style="background-color: gainsboro"><code>cnn.add(tf.keras.layers.Dense(units = 128, activation ='relu'))
 cnn.add(tf.keras.layers.Dense(units=4, activation='softmax'))</code></pre>
                         <p><b>Set the optimization algorithm and loss function</b></p>
@@ -197,14 +170,14 @@ optimizer = tf.keras.optimizers.Adam()</code></pre>
                         <pre style="background-color: gainsboro"><code>cnn.summary()</code></pre>
                         And the corresponding output:
                         <center><img src="assets/T4_Im/SumTable_1.jpg" width="80%"></center>
-                        
+
                         <p>We can get the following information from the model summary table:</p>
 <li>Type of layer</li>
-<li>Total parameters in the constructed CNN model</li> 
+<li>Total parameters in the constructed CNN model</li>
                         <p><i>The calculations for the trainable parameters and output shape of each layer are elucidated in this <a href="Tut6_params.html"><font color=blue><b>link</b></font></a>.</i></p>
-                       
+
                         <p><b>&#10106; Fitting and training CNN with training data</b></p>
-<p>The model is finally trained using the training dataset and validated with test data to check for the accuracy of the model and calculate the loss accordingly.</p> 
+<p>The model is finally trained using the training dataset and validated with test data to check for the accuracy of the model and calculate the loss accordingly.</p>
                         <p>Here is the coding for the same:</p>
 <pre style="background-color: gainsboro"><code>cnn.fit(x = train_set, validation_data = test_set, epochs = 50)</code></pre>
                         <b>Snippet of the output</b>
@@ -228,7 +201,7 @@ Epoch 6/50
                         <p>Below is the schematic diagram portraying the concept of an epoch, batch size, and iteration for understanding.  </p>
                         <p><center><img src='assets/T4_Im/Epoch.jpg' width='80%'></center></p>
                         <p>Validation data is used to evaluate the loss at the end of each epoch.</p>
-                        
+
 
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -236,12 +209,12 @@ Epoch 6/50
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
                         <p><b>&#10107; Making Predictions</b></p>
-<p>Finally, we use the predict method to make prediction for an unknown data. Let’s try to predict an untrained network microstructure using the above trained CNN model. 
+<p>Finally, we use the predict method to make prediction for an unknown data. Let’s try to predict an untrained network microstructure using the above trained CNN model.
     <p><center><img src='assets/T4_Im/unknown.jpg' width='60%'><span class="caption text-muted" >Untrained network microstructure</span></center></p>
-    
-    
+
+
     <p>The snapshot of coding for loading an unknown image data and predicting its class is displayed below:</p>
-                        
+
                         <pre style="background-color: gainsboro"><code>import numpy as np
 from keras.preprocessing import image
 from keras_preprocessing.image import load_img
@@ -274,49 +247,20 @@ train_set.class_indices
                             <p>Links to get the training and test images:</p>
                             <p><a href="https://drive.google.com/file/d/1niyqEXH4KpRtMv4Nd0-sVmyYRL8Rkq7F/view?usp=sharing"><b><font color = blue>Training set</font></b></a></p>
                             <p><a href="https://drive.google.com/file/d/1xYNdmcpHlvcg4w1nvo4HAyE97Akh1eh3/view?usp=sharing"><b><font color = blue>Test set</font></b></a></p>
-                      
+
                             <p><i><font color=maroon>Note that I used Jupyter Notebook to run this code. The same code can be run in Google Colab.  However, in the latter environment, loading image folders requires a few more lines of code. Please take a look at my <a href="Tutorial5_FolderUplaoding.html"><b><font color=blue>tutorial </font></b></a> on the same.
                             </font></i></p>
                             </div></div></div>
 
  <!-- Footer-->
-        <footer class="border-top">
-      
-                      <!-- ShareThis BEGIN -->
-                        <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END -->
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                        <p>
-                        <div class="small text-center text-muted">
-                            < <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </div></div></div></div></footer></html>
-                        
+
 <!--
                        <p>
-                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>           
+                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>
         </footer>
 -->
  <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-            
-                        
-                        
-                        
-                        
-                        

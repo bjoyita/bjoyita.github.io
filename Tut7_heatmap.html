@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -13,11 +13,11 @@
 </script>
 
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-        
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
@@ -31,14 +31,14 @@
   }
 }
         </style>
-                
+
         <meta name="description" content="Tutorial on generation of heatmap and correlation matrix." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Materials Design, Heatmap, Correlation matrix, Covariance, Thermoelectric properties, ZT, data visualization, Seaborn, Pandas, Plotly express, generate, How to"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!--        <link rel="canonical" href="https://bjoyita.github.io/Tut7_heatmap.html" />-->
-        
-        
+
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -48,59 +48,31 @@
         <link href="css/styles.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <!-- Navigation-->
 
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">             
-            <div class="container px-4 px-lg-5">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html">Articles</a><a href="tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      
-    
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <img src ="assets/img/logo_mdxp.png" width=5%>
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                      
-                    </div></div></div> </header>
-                    
+
+
+
 <!--Title of the blog-->
-<p><h1 align = center><font face ="verdana", color = "maroon">How to generate heatmaps to correlate materials properties 
+<p><h1 align = center><font face ="verdana", color = "maroon">How to generate heatmaps to correlate materials properties
 </font></h1>
-                    
+
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <p><center><img src="assets/img/tut7/nature_heatmap.jpg" width ="80%"></center>
                             <span class="caption text-muted">Photo by <a href="https://unsplash.com/@olena2552?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">olena ivanova</a> on <a href="https://unsplash.com/photos/yellow-red-and-green-fallen-leaves-jKb0EfemiLk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></span>
-                
+
                         <p>The key to materials development and design is to study the interdependence of the factors (processing, structure, properties, performance) connecting the vertices of the materials tetrahedron. These parameters are measured/calculated, and the corresponding data are usually represented using tables/ graphs/ plots. But what is more important for materials scientists and engineers is to view the degree of dependence of these data in one frame for the development and designing of materials for various applications.</p>
                         <p><i>Here comes the <b>role of heatmap</b>, exemplifying the effectiveness in serving the purpose. Heatmaps are color-coded based on values, <b>providing an overview at a glance</b>.</i> </p>
 
    <p>I will demonstrate the coding steps to generate such heatmaps using Python libraries along with the interpretation of the relations between variables with an example. But before that let us get acquainted with two important terminologies closely associated with the activity on heatmaps. </p>
-                        
+
                         <h3>Covariance and Correlation </h3>
 
                         <p><b>Covariance</b> gives the direction of the relationship between variables, and its value is unbounded ranging from <b>-∞ to +∞</b>. On the other hand, <b>correlation </b>provides both direction and normalized magnitude of the strength of relationships between the variables. The values of correlation are bounded between <b>-1 and +1</b>.</p>
@@ -118,7 +90,7 @@
                         <ul>• ZT is <b>inversely proportional</b> to κ and thus has a <b>negative correlation</b>. </ul>
                     <p>Knowing the dataset and relations between the variables, we now proceed to load the same after importing the relevant libraries.</p>
                         <p><h4>Step 1:Importing and loading the dataset</h4></p>
-                        
+
   <pre style="background-color:gainsboro"><code>import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -126,12 +98,12 @@ from matplotlib.pyplot import figure
 import seaborn as sns
 </code></pre>
                         <p><h4>Step 2: Converting to Dataframe</h4></p>
-                        
-                        
+
+
 <pre style="background-color:gainsboro"><code>ds = pd.read_csv('TE_props_correlation1.csv')
 df=pd.DataFrame(ds)
 df</code></pre>
-  
+
  <center><img src ='assets/img/tut7/df_props.jpg' width="50%"> </center>
                     <span class="caption text-muted">Dataframe showing the room temperature values of thermoelectric properties of 204 compositions</span>
                     <p><h4>Step 3: Generating Heatmaps</h4></p>
@@ -141,13 +113,13 @@ df</code></pre>
                     <pre style="background-color:gainsboro"><code>matrix= df.corr()
 matrix</code></pre>
                     <p><b><mark style='background-color: greenyellow'>Output:The heatmap</mark></b></p>
-                    
+
 <center><img src ='assets/img/tut7/Pandas-hm.jpg' width="70%"> </center>
                     <p><h5>Analysis: Reading the color-coded heatmap</h5></p>
                 <p>Now, let us interpret the correlation matrix obtained. </p>
                 <p>As mentioned previously, the values of the coefficients lie between -1 and +1. Coefficients with positive values imply direct proportionality between the variables. Conversely, negative values of coefficients indicate inverse proportionality between variables. I made a qualitative representation of the above map for a quick overview of the trend in pairwise relations between variables (properties, and ZT in this case).</p>
                 <center><img src ='assets/img/tut7/HM_values.jpg' width="70%"> </center>
-                <p>Take a row and correlate the row variable (shown on the left) with each column variable. For instance, in the first row, </p> 
+                <p>Take a row and correlate the row variable (shown on the left) with each column variable. For instance, in the first row, </p>
                 <ul>&check;  Seebeck has a perfect positive correlation with itself (Seebeck-the first column variable);</ul>
                 <ul>&check;Seebeck and Kappa (second column variable), and Seebeck and Sigma (third column variable) have negative correlations;</ul>
                 <ul>&check;Seebeck has a positive correlation with ZT.</ul>
@@ -160,11 +132,11 @@ matrix</code></pre>
 </aside>
                 <p><h5>Method 2: Using Seaborn </h5></p>
             <p>We use the <b><a href='https://seaborn.pydata.org/generated/seaborn.heatmap.html'>heatmap( )</a></b> function to generate the heatmap. </p>
-            
+
             <pre style="background-color:gainsboro"><code>heatmap_seaborn = sns.heatmap(matrix, annot=True, linewidth = 0.5, linecolor='black', cmap='rocket')</code></pre>
-            
+
             <center><img src="assets/img/tut7/Seaborn-hm.jpg" width="70%"></center>
-            
+
             <p>We can observe the same trend of correlation coefficients as seen in Pandas.  </p>
             <p><h5>Method 3: Using Plotly express</h5></p>
         <p>You can also generate the heatmap with coefficient values using the <b><a href='https://plotly.com/python/plotly-express/'>plotly.express module</a></b> (usually imported as px). The advantage of this module is that it can create the required figure at one go.  </p>
@@ -175,49 +147,25 @@ fig.show()</code></pre>
         <center><img src="assets/img/tut7/Plotly-hm.jpg" width="70%"></center>
         <p><h3>Wrapping up</h3></p>
     <p>Color-coded heatmaps displaying the correlation coefficients between variables provide quick insight and help in decision-making. Materials scientists and engineers can discern the trends and patterns between different properties and parameters, accelerating materials design and development.</p>
-            
-    <p><i><mark style='background-color: antiquewhite'> Access the reference for the dataset and the entire code <b><a href='https://github.com/bjoyita/DataVisualization'>here.</a></b> 
-    
+
+    <p><i><mark style='background-color: antiquewhite'> Access the reference for the dataset and the entire code <b><a href='https://github.com/bjoyita/DataVisualization'>here.</a></b>
+
         </mark></i></p>
               <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-       
-<div class="sharethis-inline-share-buttons"></div>
-<!--
-                                    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-
--->
-<!-- ShareThis END -->
-                   
-                    
-                        <div class="small text-center text-muted">
-                           <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </div></div></div></div></footer>
 
 
-                            
-                            
-                            
+
+
+
 <!--
                             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a> </div>
-         
+
 -->
       <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script> 
+
     </body>
 </html>
-
-                    
-    

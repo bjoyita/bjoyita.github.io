@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -13,11 +13,11 @@
 </script>
 
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-        
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
@@ -31,13 +31,13 @@
   }
 }
         </style>
-                
+
         <meta name="description" content="Tutorial article on generation of microstructure." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Simulated Images, Python, Canny, Sobel, Roberts, Fourier Transform, Fourier space, Real space, periodic functions"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
-        
+
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -46,44 +46,16 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-    </head>
-    <body>
+    <link rel="stylesheet" href="assets/explorer/site.css">
+</head>
+    <body class="mdx-legacy">
         <!-- Navigation-->
 
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">             
-            <div class="container px-4 px-lg-5">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html">Articles</a><a href="tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      
-    
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <img src ="assets/img/logo_mdxp.png" width=5%>
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                      
-                         </header>
-                    
+
+
+
 <!--Title of the blog-->
 <p><h1 align = center><font face ="verdana", color = "maroon">Generation of Simulated Images</font></h1>
                     <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
@@ -91,8 +63,8 @@
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                
+
+
                         <center><img style="float:bottom" src='assets/img/Simulated_overlay.jpg'></center><span class="caption text-muted" style = 'float:bottom'>Simulated image</span>
 <i>
 
@@ -100,7 +72,7 @@
 
                         <p>Akin to other coding activities, <mark style= background-color: yellow>the first step is to import all the relevant libraries such as NumPy, Matplotlib after installing Python.</mark></p> <p>You can use <mark style= background-color: yellow>either Jupyter notebook or Google Colab notebook </mark>for running the code. Running in Google Colab is relatively easy as it has pre-installed Python libraries.</i></p>
 <!--Examples-->
-                    
+
     <p><b>Example 1: Generation of an image with circles forming a horizontal line at the center</b></p>
     <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed at its center.
 </p>
@@ -118,7 +90,7 @@ for j in range(0, 401, 20):
   circles_w = (x-center_x)**2 + (y-j)**2 <= 10**2
   Micro1[circles_w]=1
   plt.imshow(Micro1, cmap ='gray')</code></pre></pre></TH> <TH> <img src = 'assets/img/micro1.png'</TH>
-                        </TR> 
+                        </TR>
                         </TABLE>
                     <p><b>Fourier Transform </b></p>
                             <p> The output of the Fourier Transform of the image is shown below. A vertical streak at the center is observed which represents the horizontal circles in the real space. The codelines for Fourier trasform and the corresponding transformed image is displayed below. </p>
@@ -131,20 +103,20 @@ Micro1_f_shift = np.fft.fftshift(Micro1_f)
 Micro1_shift=plt.imshow((abs(Micro1_f_shift)), cmap ='gray')
 plt.colorbar(Micro1_shift)
 plt.show()</code></pre></pre></TH> <TH> <img src = 'assets/img/F_micro1.png'</TH>
-                        </TR> 
+                        </TR>
                         </TABLE>
 <p> Please  <a href="blog1.html"><font color=blue>click this link</font></a> to read about Fourier transform in details.</p>
-                                        
+
 <! -- Examples -->
-                                        
+
 <p><b>Example 2: Generation of an image with circles forming square grid pattern</b></p>
     <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed horizontally and vertically witha spacing of 100-unit forming square grid pattern.</p>
-                                        
+
 <! --Table -->
-                                        
+
 <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
-            
+
                 <TR> <TH><pre><code>Box1 = np.zeros((400,400)) 
 
 x, y = np.ogrid[:400, :400]
@@ -159,20 +131,20 @@ plt.imshow(Box1, cmap ='gray')</code></pre></TH>
 <p> This image in the inverse or Fourier space looks like this &#128071:</p>
                     <center><img src="assets/img/F_micro2.png" > </center>
 <p> Note the narrow spacings between the circles in the Fourier space which is the inverse of that displayed in the real space image. </p>
-                    
+
 <!--Function and Image-->
-                    
- <h3>Functions and Images</h3>                   
+
+ <h3>Functions and Images</h3>
 <p> Now I will demsonstate the simulation of 2D images from periodic functions. Additionally, I will also show how to generate their 3D counterparts.</p>
-                    
+
 <p><b><u>Periodic function 1</u></b></p>
 <p>Consider the below periodic function:
-<img src ='assets/img/eq7.jpg' height="50" width = "700">   
-    Here is the code and the output for simulating 2D image.</p> 
-                    
+<img src ='assets/img/eq7.jpg' height="50" width = "700">
+    Here is the code and the output for simulating 2D image.</p>
+
          <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
-            
+
                 <TR> <TH><pre><code>x= np.linspace(0, 6*np.pi, 50)
 y= np.linspace(0, 6*np.pi, 50)
 X,Y = np.meshgrid(x,y)
@@ -181,12 +153,12 @@ f = np.sin(4*np.pi*X) + np.cos(6*np.pi*Y)
 plt.imshow(f)
 </code></pre></TH>
 <TH> <img src = 'assets/img/p1.png'</TH></TR>
-                    </TABLE> 
-             
+                    </TABLE>
+
 <p>The code for generating the 3D version of the above image is displayed below: </p>
 <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
-            
+
 <TR> <TH><pre><code>fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
 # Plot the surface.
@@ -198,55 +170,18 @@ fig.colorbar(f_surf)
 plt.show()
 </code></pre></TH>
 <TH> <img src = 'assets/img/p1_3D.png'</TH></TR>
-                    </TABLE> 
-<p> <mark style= background-color: yellow> The 3D version distinctly depicts the sinusoidal characteristics of the image.</mark></p>  
-    
+                    </TABLE>
+<p> <mark style= background-color: yellow> The 3D version distinctly depicts the sinusoidal characteristics of the image.</mark></p>
+
     <p><i>You can visit <b><a href='https://github.com/Bjoyita/ImageSimulation'><font color =blue>my GitHub link</font></a></b> to see more number of examples related to image simulation.</i></p>
-    
+
                      </div>
               <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-       
-
-                <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END 
-                        <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                       <p>
-                        <div class="small text-center text-muted">
-                            <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p>
-                      
-                   
-<!--
-                    <p>
-                        <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>
-                    </div>
-                </div>
-                </div></div>
-             </footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href="PrivacyPolicy.html">Privacy policy</a>| <a href="https://bjoyita.github.io/" property="dct:title" rel="cc:attributionURL">Materials Data Explorer</a> by <a href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b" property="cc:attributionName" rel="cc:attributionURL dct:creator">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" rel="license noopener noreferrer" style="display:inline-block;" target="_blank">CC BY-SA 4.0<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a></p><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 -->
       <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>  
+
             </div></footer></TABLE></TR></TABLE></TABLE></TR></TABLE></div></header></body>
 </html>
-
-                    
-    

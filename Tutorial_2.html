@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -12,18 +12,18 @@
   gtag('config', 'G-SPPQKTW0JB');
 </script>
 
-          
+
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-       
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        
+
         <!--        Google ADSENSE-->
-        
+
         <style>
         .column {
   width: 100%;
@@ -39,56 +39,29 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Image filters, Edge Detection, Canny, Sobel, Roberts, Fourier Transform, defocussed image"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-         
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
-        
+
         <!-- Navigation-->
-        
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html">Articles</a><a href="tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
-    
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                      
-                         </header>
-                    
+
+
+
 <!--Title of the blog-->
                     <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -96,17 +69,17 @@
 <p><h1 align = center><font face ="verdana", color = "maroon"> Microstructure Analysis: Comparison of Image Filters for Edge Detection </font></h1>
                         <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
                     <hr size =4 > </p>
-              
-              
-                                   
+
+
+
                         <!--CONTENT-->
-<p>Measurement and identification of particle size and morphology from the microstructure of materials play an essential role in determining materials' properties. A precise measurement of these parameters involves resolving the edges/ boundaries of particles from the captured images, also known as microstructure. Thanks to different image processing tools, the task is more straightforward for crisp images. However, the complexity of such analysis becomes more challenging with blurred or distorted images. 
-Let us <mark style="background-color: antiquewhite">evaluate the outcome of edge detection on a blurry image subjected to different image processing filters.</mark> <i>Here, <b>blurry microstructure</b> implies no sharp gradient between objects (features) and matrix (background); instead, it seems diffuse.</i></p> 
+<p>Measurement and identification of particle size and morphology from the microstructure of materials play an essential role in determining materials' properties. A precise measurement of these parameters involves resolving the edges/ boundaries of particles from the captured images, also known as microstructure. Thanks to different image processing tools, the task is more straightforward for crisp images. However, the complexity of such analysis becomes more challenging with blurred or distorted images.
+Let us <mark style="background-color: antiquewhite">evaluate the outcome of edge detection on a blurry image subjected to different image processing filters.</mark> <i>Here, <b>blurry microstructure</b> implies no sharp gradient between objects (features) and matrix (background); instead, it seems diffuse.</i></p>
 <p>Hence, we aim to identify the right edges of the features. </p>
 <p>First, we will apply standard edge-identifying filters such as Sobel, Roberts, and Canny and a sharpening image function (unsharp masking) from the scikit-image.
 </p>
 <p>I will display the python codes and the corresponding output for the above activity stepwise.</p>
-                        
+
 <p><b><u>Step 1: Import the relevant Python libraries</u></b></p>
                         <!--CODE-->
                         <pre style="background-color: gainsboro"><code>import numpy as np
@@ -124,55 +97,55 @@ from skimage.feature import canny
                         <pre style="background-color: gainsboro"><code>im = io.imread('im1_blur.jpg')
 plt.imshow(im, cmap = 'gray')</code></pre>
                         <p><center><img src='assets/img/im1_blur.jpg'><span class="caption text-muted" >Defocussed microstructure (simulated)</span></center></p>
-                        
+
                         <p><b><u>Step 3: Apply the different filter operators on the image matrix and compare their outputs</u></b></p>
                         <p> We will be comparing different filters for edge detection in this defocussed image. Let us try to sharpen the features of the image using unsharp masking filter of scikit-image.</p>
                         <h5>Unsharp Masking filter</h5>
-                        
+
                         <!--CODE-->
 <pre style="background-color: gainsboro"><code>
 Sharpimg = filters.unsharp_mask(im, radius = 50.0, amount = 1.0) 
 plt.imshow(Sharpimg, cmap ='gray')</code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/Sharp_img.png'><span class="caption text-muted" >Unsharp masking filtered image </span></center></p>
 <h5>Sobel filter</h5>
                         <!--CODE-->
 <pre style="background-color: gainsboro"><code>im1_sobel = sobel(im)
 plt.imshow(im1_sobel, cmap='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/Sobel_im.png'><span class="caption text-muted" >Image after applying Sobel filter </span></center></p>
 <h5>Roberts filter</h5>
                         <!--CODE-->
 <pre style="background-color: gainsboro"><code>im1_roberts = roberts(im)
 plt.imshow(im1_roberts, cmap='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/Roberts_im.png'><span class="caption text-muted" >Image after applying Roberts filter </span></center></p>
-                        
+
 <h5>Canny filter</h5>
     <!--CODE-->
 <pre style="background-color: gainsboro"><code>im1_canny= canny(im)
 plt.imshow(im1_canny, cmap ='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/Canny_img.png'><span class="caption text-muted" >Image after applying Canny filter </span></center></p>
-                        
+
 <h5>Fourier Transform of the Image</h5>
-                        
+
 <p><mark style="background-color: antiquewhite"> Please read my blog on <a href="blog1.html"><font color=blue>Fourier Transform </font></a>to understand the coding steps. </mark></p>
-                        
+
                         <p> <ul> &check; We first apply the <b>Fast Fourier Transform (fft)</b> on the image followed by <b>fftshift function to bring back the origin of the spectrum</b> to the center which is otherwise off-centered' and located on the top leftmost corner of the fft spectrum.</ul> </p>
     <!--CODE-->
 <pre style="background-color: gainsboro"><code>im1_F = np.fft.fft2(im)
 im1_F_02 = np.fft.fftshift(im1_F)
 plt.imshow(np.log(abs(im1_F_02)), cmap ='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/t2_fftshift.png'><span class="caption text-muted" >Spectrum in Fourier space after shifting the origin to the center </span></center></p>
-                        
-                        <p><ul> &check;Generate a <b>high frquency mask</b> to allow high frequency components to detect edges. Block the center with the mask</ul></p>                       
-        
+
+                        <p><ul> &check;Generate a <b>high frquency mask</b> to allow high frequency components to detect edges. Block the center with the mask</ul></p>
+
 <pre style="background-color: gainsboro"><code>mask_h = np.ones((nx,ny), np.uint8) # mask should have the same dimension as that of the image
 center_x = nx/2
 center_y = ny/2
@@ -190,16 +163,16 @@ im1_F_02_h = im1_F_02_c* mask_h
 #show the image
 plt.imshow(abs(im1_F_02_h), cmap ='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/image_mask_h.png'><span class="caption text-muted" >Masked Spectrum </span></center></p>
 <p><ul> &check;<b>Shifting the origin back </b>to its original location using ifftshift function of NumPy followed by <b>inverse Fourier Transform</b> to retrieve the original image.</ul></p>
 <pre style="background-color: gainsboro"><code>im1_F_02_originBack = np.fft.ifftshift(im1_F_02_h)
 originalImage = np.fft.ifft2(im1_F_02_originBack)
 plt.imshow(np.log(abs(originalImage)), cmap ='gray')
 </code></pre>
-                        
+
 <p><center><img src='assets/img/tut2/FT_image.png'><span class="caption text-muted" >Image after Fourier Transform </span></center></p>
-                      
+
 
 <aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -220,53 +193,23 @@ ax[3].set_title("Roberts filter", fontsize = 10)
 ax[4].imshow(im1_canny, cmap ='gray')
 ax[4].set_title("Canny filter", fontsize = 10)
 </code></pre>
-                        
+
 <img style=float:center src='assets/img/tut2/Compare_im.png' width=100%><span class="caption text-muted" >Comparison: Filtered Image </span>
 <p>Fourier transformed image shows sharper edges compared to other filtered images.  </p>
                     <p>Click <a href="https://github.com/bjoyita/ImageFilters"><b><font color=blue>here</font></b></a> to view the entire code on Github.</p>
 
  <!-- Footer-->
-        <footer class="border-top">
-      
-                      <!-- ShareThis BEGIN -->
-                        <p>
-                <div class="sharethis-inline-share-buttons"></div>
-<!-- ShareThis END -->
-            <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                        
-                        <p>
-                        <div class="small text-center text-muted">
-                             <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </div></div></header>
 <!--
                        <p>
                         <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>
                     </div>
-            
+
                     </footer></div></div></header>
 -->
  <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+
             </body></html>
-                        
-                        
-                        
-                        
-                        

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -12,13 +12,13 @@
   gtag('config', 'G-SPPQKTW0JB');
 </script>
 
-          
+
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-       
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
@@ -36,81 +36,53 @@
         <meta name="Joyita Bhattacharya" content="Joyita Bhattacharya"/>
         <meta name="keywords" content="Parameters, CNN, Trainable, Model parameters, Non-trainable, Hyperparameters, Weights, Biases, Convolution, Max pooling, Flatten, Dense layers, Feed forward network, Summary"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-       
-        
+
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lora:500,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="A5brOO1e"></script>
-        
+
         <!-- Navigation-->
-        
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html">Articles</a><a href="tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      <top><img src ="assets/img/logo_mdxp.png" width=5%></top>
-    
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                                                                                       </div></div></div>
-                                                                    
-                                          
-                         </header>
-            
-                    
+
+
+
+
 <!--Title of the blog-->
-                    
+
                        <p><h1 align="center"><font face ="verdana", color = "maroon"> How to Calculate parameters in Convolutional Neural Network (CNN)  </font></h1>
                     <center><p> <font face="monospace"><b> by Joyita Bhattacharya</b></font> | <font face="monospace"> posted on June 14, 2023</font></p></center>
                                         <hr size =4 >
-              
-              
+
+
                         <!--CONTENT-->
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
                     <p>A CNN is a <a href="https://en.wikipedia.org/wiki/Feedforward_neural_network"><font color=blue>feedforward neural network</font></a>, and has the following layers sequentially arranged. </p>
     <center><img src="assets/img/tut6_params/CNN_model_h.jpg" width=80%></center>
-    <p>Mathematical calculations of parameters can be better understood by taking a case study.</p> 
-<p>Let us take a dataset containing grayscale micrographs (images) of 64 by 64 dimensions and build a CNN model for image classification using APIs of Keras and TensorFlow (tf).</p> 
+    <p>Mathematical calculations of parameters can be better understood by taking a case study.</p>
+<p>Let us take a dataset containing grayscale micrographs (images) of 64 by 64 dimensions and build a CNN model for image classification using APIs of Keras and TensorFlow (tf).</p>
 
-    
+
                     <center><img src="assets/img/tut6_params/CNNmodel_param.jpg" width=100%></center>
                     <p>After building the CNN architecture, we can view the number of parameters for training in a summary table. </p>
    <center><img src="assets/img/tut6_params/SumTable.jpg" width=80%></center>
- 
-    
+
+
     <p>We see there are three columns: <b>layer type</b>, <b>output shape</b> and <b>number of parameters</b>. </p>
 <p>Before probing deeper into the calculation of parameters, let us get acquainted with certain terminologies.
                         <p><b>What are the parameters in CNN?</b></p>
@@ -119,7 +91,7 @@
                         <p><i>Weights measure the significance of each input/ feature governing the prediction of the final output.</i> </p>
                     <p><i>Bias is a constant term added to the sum of weighted inputs. Or simply, it is a  value that helps the model to get the best fit for a given dataset.</i></p>
                     <center><img src="assets/img/tut6_params/wt_bias_eq.jpg" width=60%></center>
-                    
+
                     <p><li><b>Hyperparameters:</b> These parameters are set manually, and they control the model parameters such as weights and biases impacting the outcome. Examples: <i><u>Filter size, activation functions, number of hidden layers, number of epochs, batch size</u></i>.</li></p>
                     <p><li><b>Non-trainable parameters: </b>These parameters are neither updated nor optimized and remain constant throughout the training. Example: <i><u>Weights in the max-pooling layers</u></i>, <i><u>parameters used in <a href="https://blogs.nvidia.com/blog/2022/12/08/what-is-a-pretrained-ai-model"><font color=blue>pre-trained models</font></a></u></i>, and <i><u><a href="https://blogs.nvidia.com/blog/2019/02/07/what-is-transfer-learning/"><font color=blue>transfer learning</font></a></u></i>.</li></p>
                     <h4>The Calculations</h4>
@@ -127,11 +99,11 @@
                     <p><b>First Convolution layer or conv2D</b></p>
                     <center><img src="assets/img/tut6_params/conv2d_1_1.jpg" width="100%"></center>
 
-                
+
                         <p><b>Max Pooling layer</b> </p>
-                    <p>Here, there are no parameters to be trained. This layer is introduced for dimensionality reduction and also to extract the most important features. Please go through my tutorial titled <a href="Tutorial_4_CNN.html"><font color=blue>"Classification of Microstructures using Convolutional Neural Network"</font></a> to understand the mathematical operation of the max pooling layer.</p> 
+                    <p>Here, there are no parameters to be trained. This layer is introduced for dimensionality reduction and also to extract the most important features. Please go through my tutorial titled <a href="Tutorial_4_CNN.html"><font color=blue>"Classification of Microstructures using Convolutional Neural Network"</font></a> to understand the mathematical operation of the max pooling layer.</p>
                     <p>However, the calculation for the output shape follows the same formula applied in the convolution layer.</p>
-                   
+
                         <center><img src="assets/img/tut6_params/Maxpooling_1.jpg" width="100%"></center>
                     <p>The subsequent convolution layers will follow the same mathematical operations to obtain the total number of trainable parameters.</p>
 <p>Hence, for the second convolution layer in this model, we get a total of 36928 learnable parameters.
@@ -139,8 +111,8 @@
                     <center><img src="assets/img/tut6_params/conv2d_2.jpg" width="100%"></center>
                     <p>The succeeding max pooling layer will have zero trainable parameters. And so is the flatten layer which simply flattens the data into a 1-D array. </p>
                     <center><img src="assets/img/tut6_params/flatten.jpg" width="80%"></center>
-                    
-                    
+
+
                         <p><b>The dense layers </b></p>
 <p>Total trainable parameters = [(number of output channel x number of input channel) + number of output channel]
 </p>
@@ -155,51 +127,21 @@
                     <p>I have collated all our findings and learnings from this tutorial in the below summary table to see the whole picture at a glance.</p>
                <center><img src="assets/img/tut6_params/SumTable2.jpg" width="100%"></center>
                                                                                    </div></div></div>
-      
+
 
  <!-- Footer-->
-        <footer class="border-top">
-      
-                      <!-- ShareThis BEGIN -->
-                        <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END -->
-            <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                       <p>
-                        <div class="small text-center text-muted ">
-                            
-                              <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </div></div></div></div>
-                            
+
 <!--
-                            
+
                             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> </div>
 -->
                     </div>
-            
+
     </footer>
  <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+
 </body></html>
-                        
-                        
-                        
-                        
-                        

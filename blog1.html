@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -13,14 +13,14 @@
 </script>
 
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
              <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1"  />
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-        
+
 <!--
         <style>
         .column {
@@ -38,9 +38,9 @@
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Fourier Transform, Deconvolving, Fourier series, Digital image, Discrete Fourier transform, Inverse Fourier transform, Fast Fourier transform, Amplitude, sinusoidal, signal, Nyquist frequency, Fourier space, real space" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
-        
-        
+
+
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -49,72 +49,47 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html" aria-current="page">Articles</a><a href="tutorial_list.html">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-             <img src ="assets/img/logo_mdxp.png" width=5%>
-    
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                    </div></div></div></header>
-                    
+
+
+
                     <!--Title of the blog-->
         <style>
         .column {
   width:100%;
 }
-@media only screen 
+@media only screen
   and (min-device-width: 280px)
-  and (min-device-width: 340px) 
-  and (max-device-width: 1170px) 
+  and (min-device-width: 340px)
+  and (max-device-width: 1170px)
   and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) 
+  and (orientation: portrait)
   and (orientation: landscape)
   {
     }
         </style>
-<p><h1 align = center><font face ="verdana", color = "maroon">Fourier Transforms Made Easy</font></h1> 
+<p><h1 align = center><font face ="verdana", color = "maroon">Fourier Transforms Made Easy</font></h1>
                     <p><center><subtitle><i>Deconvolving Fourier transform of images into explainable steps</i></subtitle></center></p>
                     <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
-                    
-                    <hr size =4 > 
-        
-                          
+
+                    <hr size =4 >
+
+
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        
+
                         <center><img src ='assets/img/periodic.jpg' width=60%></center>
                             <span class="caption text-muted"> Photo by <a href="https://unsplash.com/photos/MmpXoQjmHnY">Alice Butenko on Unsplash</a></span>
-                        
- 
+
+
                         <h2> Purpose</h2>
-                        
+
                         <p>
                             Fourier series and Fourier transform are important mathematical operations for analyzing different wave-like patterns. Wave-like patterns are omnipresent in nature in the electromagnetic radiations, sound waves, electrical signals, and even images. The French mathematician, Joseph Fourier, came up with the idea of such a mathematical tool while solving the problem related to heat conduction. Even though this topic of Fourier transform has been widely studied, many of us still find it challenging to grasp the basic concept.</p>
                            <p>
@@ -124,46 +99,46 @@
 Let us start by addressing the most fundamental question:
 <p><b><I>What is a Fourier series and what is its relation to Fourier Transform? </I></b></p>
                         <p>A <u><a href='https://en.wikipedia.org/wiki/Fourier_series'>Fourier series</a>
-                        </u> represents a periodic function as a sum of sine and cosine waves. Here is the equation describing the series. </p>  
-     <img src = "assets/img/Picture37.jpg"  width ='100%'>             
-              
-    
-                    
-             
+                        </u> represents a periodic function as a sum of sine and cosine waves. Here is the equation describing the series. </p>
+     <img src = "assets/img/Picture37.jpg"  width ='100%'>
+
+
+
+
                    <p>A periodic function repeats at regular intervals, exemplified by the following function:</p>
-                                    
+
 <center><b>f(x) = sin(x)</b></center>
                     <p>
         <center><img src = "assets/img/SineWave.jpg">
                 <span class="caption text-muted" >Periodic sine wave</span></center>
-                        </p>   
+                        </p>
                     <p>As shown graphically, this function repeats at an interval of 2&pi;. This time interval is termed a <b>'period or cycle.'</b> <b>Frequency</b> is the inverse of a period. We encounter such time-dependent periodic functions as electrical, audio, and radio signals in our daily lives. Moreover, signals can also be space-dependent, for example, an image.</p>
-             
+
 <p>The <b>Fourier transform</b> is applied to the series to extract the frequency, amplitude, and phase information of these signals. In other words, this operation transforms a <b>signal in the time domain into the frequency domain.</b> The below equation represents the 1D Fourier transform of time-dependent function f(t):</p>
-                        <center><img src = "assets/img/e1.png" width=50%></center> 
+                        <center><img src = "assets/img/e1.png" width=50%></center>
 
             <p>Where F(k) is a function of frequency, k; j is the imaginary number.
 The equation denotes the <b>continuous Fourier transform </b>since the frequency and time variables are continuous-valued, varying from -&infin;to +&infin;.
 Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
-                
+
                         <center><img src = "assets/img/Euler.jpg" width=100%></center>
-            
+
                         <p>cos(kt) and -jsin(kt) are the real and imaginary component of the complex exponential (exp(-jkt)) respectively. In a nutshell, <b>this transform operator projects the real space components onto the Fourier or frequency space</b>.</p>
-            
+
             <p>Having explained the math of Fourier transform with time-dependent function, we will now concentrate on applying this tool to images.</p>
                         <h2 class="section-heading">Digital Image and Fourier Transform (FT)</h2>
-            
+
                         <p>Images contain <b>spatial information instead of time</b>. A digital image is composed of basic units called pixels, and each pixel is assigned a particular value of intensity varying between 0 and 255. An image's spatial domain houses information on pixel intensity variation with spatial coordinates. We apply the transform operator over fixed points or pixels on the image to retrieve frequencies and phase spectra. This operation is called <b>Discrete Fourier Transform (DFT)</b>.</p>
                         <p><b>Understanding the process in the spatial domain</b></p>
                 <p>&check;Consider a simple periodic 1D sine function with eight evenly spaced points/ samples (N).</p>
-                        <center><img src ="assets/img/eq3.jpg" width=40%></center> 
-                
+                        <center><img src ="assets/img/eq3.jpg" width=40%></center>
+
                 <p>&check; Apply DFT</p>
 <p>We will now apply DFT to f(x) to convert it to the frequency domain.</p>
                 <center><img src ="assets/img/eq4.jpg"  width="80%"></center>
             <p>Hence, we need to multiply the real space function f(x) with the exponential term to get the frequency values (k) in the Fourier space. The mathematical steps are as follows:</p>
                         <p>&check;Replace f(x) with sin (π/4 x),</p>
-                        
+
                         <center><img src ="assets/img/eq5_1.jpg"  width="80%"></center>
                          <p>&check; Summation over spatial domain samples, xₙ, ranging from n =0 to n = 7 (N-1=8-1=7) and k ranging from 0 to 7 such that we get eight F(k) values.</p>
                <center><img src ="assets/img/eq6.jpg"  width=80%></center>
@@ -171,7 +146,7 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
              <left><img src ="assets/img/table.jpg"  width="80%"></left>
             <p>The symmetry or folding is observed at Nyquist frequency, defined as half of the sampling rate (highlighted in yellow in the above table). The sampling rate is the number of points/ samples in one cycle. In the given example, the sampling rate is 8, and the <a href='https://en.wikipedia.org/wiki/Nyquist_frequency'>Nyquist frequency</a> 4.
                 <p>We then plot the absolute value (amplitude) for each frequency. Similarly, any N-dimensional periodic function follows the same procedure.</p>
-                
+
 
 <aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -179,27 +154,27 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
                         <h3><b>Frequency domain to Spatial domain: Inverse Fourier transform</b></h3>
-                
+
                 <p>We apply the <b>inverse Fourier transform</b> algorithm if we want to obtain the original signal (real space) from the frequency domain. Here is the mathematical equation defining the operation for a 1D function.</p>
-                
+
                  <center><img src ="assets/img/inverseFFTEq.jpg" width=100% ></center>
-                
+
                         <p>Hence, F(k) and f(x) are a Fourier transform pair represented as:</p>
                   <center><img src ="assets/img/transformPair.jpg"  width="80%"></center>
-                
+
                 <p>Now that we are comfortable with the math behind Fourier transform, I will focus on the coding part of the operation in the subsequent section. </p>
-                
+
                           <h3>Algorithm for Discrete Fourier transform: Fast Fourier Transform (FFT)</h3>
             <p>I have used Python for coding, and I will demonstrate each step of the process considering a 2D periodic function:
                     <p><center><img src="assets/img/eq7.jpg" width=80%></center></p>
-            
+
             <img src ="assets/img/2D3D.jpg"  width="100%">
             <span class="caption text-muted" align = centre>Simulated images by author: 2D and 3D representations of f(x,y)</span>
                 <p>The 2D and 3D representations of the image are displayed. The 3D version distinctly depicts the sinusoidal characteristics of the image.</p>
-                       
+
                             <p><a href='Tutorial_1.html'><i> <font color = 'blue'> Click here to know about simulaion of images from periodic functions.</font></i></a></p>
-                        
-            
+
+
 
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -207,45 +182,45 @@ Following Euler's theorem, the term exp(-jkt) is expanded as follows:</p>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
             <h2>Spatial domain to Frequency domain: Fourier Transform of image</h2>
-            
+
                 <p>Here is the Fourier transform equation applied to the above image (50 x 50; N= 50).</p>
                 <center><img src ='assets/img/DFT.jpg'  width ='100%'></center>
-             
-            
+
+
             <p>Since Fast Fourier Transform (FFT) significantly reduces the computational time, we employ this algorithm to compute discrete Fourier transform (DFT). In general, for a 1D FFT of size N, the <a href="https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Introductory_Electrical_Engineering/Electrical_Engineering_(Johnson)/05%3A_Digital_Signal_Processing/5.08%3A_DFT_-_Computational_Complexity">computational complexity </a>is proportional to O(Nlog<sub>2</sub>N) [O stands for order] as compared to O(N<sup>2</sup>) in DFT. Note that 'complexity' here indicates <i>the number of computational steps required for processing.</i></p>
-            
+
                 <p>The code block and the output are displayed.</p>
-                    
+
          <pre style="background-color:gainsboro"><code>f_f = np.fft.fft2(f)
 f_f001=plt.imshow(abs(f_f), cmap ='gray')
 plt.colorbar(f_f001)
 plt.show()</code></pre>
-        
+
 
 <center><img src ="assets/img/fft_im_resized.jpg" width=60% >
             <span class="caption text-muted" align = center>Output after Fourier transform</span></center>
-            
+
                     <p></p>Please note that the output is the <b>amplitude/ magnitude </b>spectrum obtained by multiplying the image function with the absolute value of the complex number. Interestingly, we observe that this amplitude spectrum has four off-centered bright spots located at the edges. I have used the term 'off-centered' since the spectrum's origin (0) lies on the top leftmost corner with positive k<sub>x</sub>, rightward, and positive k<sub>y</sub> downward, as shown in the spectrum. These four spots are the four positive Fourier transform values F(k<sub>x</sub>, k<sub>y</sub>) of the input function. Due to the conjugate symmetry, every positive value in the Fourier space will have a negative counterpart.</p>
            <center><img src='assets/img/conjugate.jpg' width="100%"></center>
-            
-            
+
+
             <p>The bright spots in Fourier space represent the high amplitude and low frequency, while the dark regions denote the low amplitude and high-frequency area.</p>
-            
+
 <p>We then employ the <i>fft. fftshift</i> function of numpy to modify the spectrum now spanning from -N/2 to + N/2 in both x (k<sub></sub>) and y (k<sub>y</sub>) directions with F(0,0) or the DC (direct current) component at the center.</p>
-   
-          <center><img src='assets/img/fftshift1.jpg' width=60% > <span class="caption text-muted" align = center>Code output</span></center>  
-               
+
+          <center><img src='assets/img/fftshift1.jpg' width=60% > <span class="caption text-muted" align = center>Code output</span></center>
+
             <p>For better clarity and visual understanding, I have illustrated the centering of the F(0,0) process in this diagram.</p>
-             
+
             <center><img src='assets/img/fftshift_m.jpg' width=80%> <span class="caption text-muted" align = center>Illustration by author displaying the shifting of the center of the spectrum</span></center>
-             
+
             <p>The red dots are the corresponding negative values of F(k<sub>x</sub>, k<sub>y</sub>). Since the image function is periodic, it repeats itself in all directions generating pairs of symmetrically positioned Fourier values in the frequency (Fourier) domain. This example shows two sets of F(k<sub>x</sub>, k<sub>y</sub>) values symmetrically placed around F(0,0).</p>
-                    
-                    
-        
+
+
+
         <p><b>Code Availability: </b><a href='https://github.com/Bjoyita/FourierTransform_Images'><font color =blue>my GitHub link</font></a></p>
-                    
-                    
+
+
            <h2 class='section-heading'>Key points to remember</h2>
 <p>
                 <ul>&check; Any <b>signal</b>, including image, has wave-like characteristics comprising <b>umpteen sinusoidal components</b>.</ul>
@@ -258,43 +233,21 @@ plt.show()</code></pre>
                 </p>
                 </section>
 <p><i>Knowing a concept is the first step toward productivity. Fourier transform is one such complex topic where understanding each step is necessary when it comes to coding or otherwise. This post aimed to clarify each step of the transform, and I sincerely hope readers find it helpful and understandable.</i></p>
-   
-                </article>
-                             
-        <!-- Footer-->
-        <footer class="border-top">
-          
-                <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END -->
-                      <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                        <div class="small text-center text-muted">
-                             <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
 
-                                      
+                </article>
+
+        <!-- Footer-->
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
+
+
                         <!--<p>
 <div class="small text-center text-muted"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/">Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> --></div></div></div></div></div>
-                                    
+
     </footer>
 <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-        
+
+
 </body>
 </html>

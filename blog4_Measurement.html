@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
 <script>
@@ -13,11 +13,11 @@
 </script>
 
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
-        
+
         <!--        Google ADSENSE-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
      crossorigin="anonymous"></script>
-        
+
             <!--MEDIA-->
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
@@ -43,44 +43,17 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/explorer/ads.css">
+<link rel="stylesheet" href="assets/explorer/site.css">
 </head>
-    <body>
+    <body class="mdx-legacy">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   Content
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                                                               
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="blog_list.html">Blogs</a>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tutorial_list.html">Tutorials</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="index.html"><img src="assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="index.html">Home</a><a href="blog_list.html" aria-current="page">Articles</a><a href="tutorial_list.html">Tutorials</a></div></nav><main class="mdx-legacy-reading">
         <!-- Page Header-->
-        
-        <header class="home_header" style="background-image: linear-gradient(to left,black,teal, yellow,orange)">
-            <meta charset="utf-8" />
-            
-      <img src ="assets/img/logo_mdxp.png" width=5%>
-    
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-left">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-     
-                         </header>
-                    
+
+
+
                     <!--Title of the blog-->
-                    
+
                 <div class="container position-relative px-2 px-lg-2">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -88,27 +61,27 @@
     </font></h1></center> </p>
                     <center><subtitle><i>Measurement of materials characteristics from images</i></subtitle></center>
                         <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
-                    <hr size =4 > 
-            
-                                
+                    <hr size =4 >
+
+
                         <center><img src ='assets/img/sven-mieke-fteR0e2BzKo-unsplash.jpg' width=100%></center>
                         <span class="caption text-muted"><a href='https://unsplash.com/photos/fteR0e2BzKo'>Photo by Sven Mieke on Unsplash </a></span>
-                        
+
  <!--BLOGPOSRT-->
    <p> <subheading><i>'One picture is worth a thousand words.'-Albert Einstein</i></subheading></p>
-                        
+
     <h2> Background</font></h2>
                     <p>My previous post <a href='blog2_materials.html'>'Materials Data Mining via Image Processing of Micrographs-I'</a> explained some of the basic and crucial steps of micrograph processing for the identification of features. As stated earlier, micrographs capture fine micron/sub-micron sized features of materials that can significantly impact their properties. Here, I will be discussing the quantitative assessment of one such feature-'particle size' using <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a>.
 
 <h3>Measurement of parameters</h3>
-                     
+
 <p><b>Case Study 1: Retrieving individual particle size from clusters applying Watershed algorithm</b></p>
                     <center><img src ='assets/img/boris-baldinger-k7Hn0GBiN-o-unsplash.jpg' width=100%></center>
                             <span class="caption text-muted"><a href='https://unsplash.com/photos/k7Hn0GBiN-o'>Photo by Boris Baldinger on Unsplash</a></span>
                     <p>Let me start by showing a synthetic micrograph with overlapping particles of different shapes and sizes. We first separate individual particles from clusters/ agglomerates. Then we measure the size of these separated particles. De-agglomeration of particles is achieved with the aid of a watershed algorithm-a type of image segmentation method. I am sharing a step-by-step guide for the said activity.</p>
 
                     <p><b><i>Step 1: Importing necessary libraries and loading image</i></b></p>
-                    
+
                     <!--CODE-->
                     <pre style="background-color: gainsboro"><code  class="language-python"># IMPORTING LIBRARIES
 import numpy as np
@@ -123,7 +96,7 @@ from skimage.feature import peak_local_max
 im1 = io.imread("O3.jpg")
 plt.imshow(im1, cmap ='gray')</code></pre>
                 <!---->
-                    
+
                     <center><img src ="assets/img/watershedImage.jpg" width=50%></center>
                             <span class="caption text-muted">Image by author: Synthetic micrograph showing clusters</span>
 <p>The image has several clusters of particles, and its dimension is represented by a tuple (1254, 1313, 3). While the first two elements of the tuple indicate height and width, the third one tells us the number of channels (number of colors). This image is an RGB image having three channels/colors.</p>
@@ -145,16 +118,16 @@ plt.imshow(im1, cmap ='gray')</code></pre>
 <p><b><i>Step 4: Computing the Euclidean distance transform</i></b></p>
 
                     <p>The <a href="https://en.wikipedia.org/wiki/Euclidean_distance"><font color=blue>Euclidean distance </font></a>is a measure of the closest distance between any two pixels in the image. Each pixel of the image is categorized as either a source/background pixel (with zero intensity) or an object pixel (with non-zero intensity). We observe a descending gradient in Euclidean distances from the center of any object to the background. This is beautifully captured in the distance map obtained from the image:</p>
-               
+
 <center><img src ="assets/img/DistanceMap.jpg" width=75%></center>
 <span class="caption text-muted">Distance Map</span>
-                    
+
 <p><b><i>Step 5: Finding local peaks and watershed line</i></b></p>
 
 <p>A watershed, geographically speaking, is a highland that separates drainage basins. We apply the same concept to image segmentation for clusters of particles/objects. In this case, the pixel intensities of the boundaries of an individual object in the cluster constitute the watershed divide, separating them from one another.</p>
 
 <p>We first locate the coordinates of the peaks (local maxima) of the particles by applying the function peak_local_max. We use the output of this function as markers in the <a href="https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.watershed"><font color=blue>watershed function</font></a>. We label these markers for each particle in the image. These markers constitute the watershed line that separates individual particles from an agglomeration. The code snippet for the task is shown below.</p>
-                    
+
                     <!--CODE-->
                     <pre style="background-color:gainsboro"><code class="language-python>">coords = peak_local_max(distance, min_distance =100)
 mask = np.zeros(distance.shape, dtype=bool)
@@ -167,11 +140,11 @@ markers,_= ndi.label(mask)</code></pre>
                         <!--CODE-->
                     <pre style="background-color:gainsboro"><code class="language-python"> individual_particles = watershed(-distance, markers, mask=binary)</code></pre>
                     <!---->
-                    
+
 <center><img src ="assets/img/image_dist_segmented.jpg" width=100%></center>
 <span class="caption text-muted">Code output displaying original image, distance map, and segmented image (after applying watershed function)</span>
-                    
-                    
+
+
 
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
@@ -193,7 +166,7 @@ markers,_= ndi.label(mask)</code></pre>
                     <p><b><i>Size measurement using <a href="https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops"><font color=blue>regionprops</font></a> function of skimage.measure module</i></b></p>
 
 <p>The code for measurement applying regionprops function to the labeled image regions is presented below.</p>
-                    
+
                     <!--CODE-->
 <pre style="background-color:gainsboro"><code class="language-python>">from skimage.measure import label, regionprops, regionprops_table
 label_img = label(individual_particles, connectivity = im2.ndim)
@@ -214,20 +187,20 @@ df = pd.DataFrame(props_t)</code></pre>
 
 <p>The distribution plot of particle size showing D10, D50, and D90 percentile becomes informative and is used as a guidance to understand the behavior of materials. Additionally, it tells us about the uniformity of the parameter by calculating the 'Span' defined as follows.</p>
 <center><img src ="assets/img/percentile.jpg" width=50%></center>
-                    
+
 <p>A smaller span value signifies more consistency in particle size. On the other hand, a larger span value implies heterogeneity in the distribution.</p>
 
 <p>I have taken a simulated image below to show the calculation of particle size distribution.</p>
-                    
-                    
+
+
 <center><img src ="assets/img/simulated.jpg" width=50%></center>
-<span class="caption text-muted">Image by author: Simulated Image</span>              
- 
+<span class="caption text-muted">Image by author: Simulated Image</span>
+
 <p>This image shows a considerable number of well-separated individual particles with varying sizes. Since there are no clusters of particles in this image, the step of applying the watershed function is irrelevant. First, we convert this image to grayscale followed by thresholding. We then apply the label function to the binary image to generate a labeled image ( as shown below) displaying particles of different sizes with distinct colors.</p>
 
     <center><img src ="assets/img/Simulated_overlay.jpg" width=50%></center>
-<span class="caption text-muted">Labeled image</span> 
-                    
+<span class="caption text-muted">Labeled image</span>
+
 
 <p>A scale of 4 nanometers per pixel is applied to calculate the <b>equivalent diameter representing the particle size</b>. <i>Note that an equivalent diameter is the diameter of a circle with the same area as the region</i>. We directly compute and tabulate the required properties using regionprops and regionprops_table. The table is then exported as a spreadsheet file. Using the percentile function of Numpy, we obtain the statistical parameters-D10, D50, and D90 percentiles. Accordingly, a span approximately equal to unity is estimated which indicates non-uniformity of particle size for the simulated image. Note that a span closer to zero denotes a more consistent PSD.</p>
 
@@ -235,7 +208,7 @@ df = pd.DataFrame(props_t)</code></pre>
 
                     <p>I have used <a href="https://seaborn.pydata.org/"><font color=blue>Seaborn</font></a>-a statistical data visualization library to plot the particle size distribution using distplot function. This function combines the histogram and kernel density estimation (KDE) functions. The figure below shows the particle size distribution plot of the simulated image.</p>
  <center><img src ="assets/img/PSD.jpg" width=50%></center>
-<span class="caption text-muted">Particle Size Distribution plot</span> 
+<span class="caption text-muted">Particle Size Distribution plot</span>
 
 
                    <mark style='background-color: lightcyan'> <b>CODE:</b> Please click <a href="https://github.com/Bjoyita/ImageProcessing"><font color=blue>here</font></a> to get the code from my Github repository.</mark>
@@ -252,35 +225,10 @@ df = pd.DataFrame(props_t)</code></pre>
 
                     <p>Thanks for reading!</p>
                      <!-- Footer-->
-        <footer class="border-top">
-         
-
-                <p>
-                <div class="sharethis-inline-share-buttons"></div> 
-<!-- ShareThis END -->
-                        <!--!--SHARE BUTTON -->
-<div>
-                       <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-xs-15 col-md-10 col-lg-8 col-xl-7">
-<!--
-                        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                        <div class="elfsight-app-76277869-2ec6-4fa9-a07b-1c0a871e383f" data-elfsight-app-lazy></div></div></div></div>
--->
-                                               <p>
-                        <div class="small text-center text-muted">
-                            
-                            <p><i> <span> © 2026 Joyita Bhattacharya • Materials Data Explorer. All rights reserved.</span> </i></p>
-                                <!--            copyright year-->
-        <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>                   
-                                <p><a href="PrivacyPolicy.html">Privacy Policy</a> |  <a href="CookiePolicy.html"> Cookie Policy</a> |  <a href="TermsofUse.html"> Terms of Use</a> |  <a href="Disclaimer.html">  Disclaimer </a> |  <a href="Copyright.html"> Copyright &amp; Licensing </a></p> 
-                                
-                        </div></div></div> </div></div></footer>
+        </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
 </div></div></div></div></header>
-                            
-                                                  
+
+
 <!--
                             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href='PrivacyPolicy.html'>Privacy policy</a>| <a property="dct:title" rel="cc:attributionURL" href="https://bjoyita.github.io/"> Materials Data Explorer</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>  </div>
                     </div>
@@ -289,15 +237,6 @@ df = pd.DataFrame(props_t)</code></pre>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script> 
+
     </body>
 </html>
-
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
