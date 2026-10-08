@@ -70,5 +70,47 @@
 <section><h3>Jupyter Notebook</h3><p>Run the notebook on your own computer. Install Python, Jupyter Notebook, and the libraries listed in the tutorial. Keep the notebook and its input files in the expected folders, then run each cell in order.</p><a href="https://jupyter.org/install">See Jupyter installation instructions ↗</a></section>
 <section><h3>Try an example on this website</h3><p>Some tutorials include interactive tools. Change a setting and inspect the result directly on the page. To study or change the Python code, use the accompanying notebook where one is provided.</p><a href="tutorials/pca-pixel-images.html">Try PCA with small pixel images</a></section>
 </div>
-<p>Run one cell at a time and inspect its output before continuing. If a cell gives an error, check that the earlier cells have run and that the required libraries and input files are available.</p>
+<h3 id="write-and-test">Write a little, run it, and check the result</h3>
+<p>I suggest building a program in small parts. First decide what you want it to do and write the steps in ordinary language. For an image example, these steps might be: create an array, change some pixel values, and display the image. Write a few lines for the first step, run them, and check the output before adding the next step.</p>
+<ol>
+<li><strong>Give each part one task.</strong> In a notebook, put each task in a separate code cell. Add a text cell to explain what you are doing and what result you expect.</li>
+<li><strong>Start with a small example.</strong> A 4 × 4 array is easy to inspect. Once the code works, increase the image size or use your own data.</li>
+<li><strong>Check values as well as pictures.</strong> Print the array shape, a few values, or a quantity you can calculate by hand. A program can run without an error and still give the wrong result.</li>
+<li><strong>Change one thing at a time.</strong> Keep the working version, make a small change, and run it again. This makes it easier to identify which change caused a problem.</li>
+</ol>
+<h3>A small example in three cells</h3>
+<p>Here I create a 4 × 4 image. Its values are dimensionless: 0 is the background and 1 marks a selected pixel. Run the cells below in order.</p>
+<p><strong>Cell 1: Create the array and inspect it.</strong> The shape should be <code>(4, 4)</code>, and all 16 entries should be zero.</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+image = np.zeros((4, 4))
+print(image.shape)
+print(image)</code></pre>
+<p><strong>Cell 2: Change the four central pixels.</strong> The slice <code>1:3</code> selects indices 1 and 2; the end index 3 is excluded. The sum should be 4 and the mean should be 0.25. An <code>assert</code> statement checks a condition and reports an error if it is false.</p>
+<pre><code>image[1:3, 1:3] = 1
+print(image)
+print("Sum:", image.sum())
+print("Mean:", image.mean())
+assert image.sum() == 4</code></pre>
+<p><strong>Cell 3: Display the image.</strong> You should see a white 2 × 2 square in a black background. Try changing one pixel and compare the displayed image with the printed array.</p>
+<pre><code>plt.imshow(image, cmap="gray", vmin=0, vmax=1,
+           interpolation="nearest")
+plt.xlabel("Column index")
+plt.ylabel("Row index")
+plt.xticks(range(4))
+plt.yticks(range(4))
+plt.show()</code></pre>
+<h3>When a cell gives an error</h3>
+<p>Read the last line of the error message first. It usually names the error and gives a short description. Then look at the highlighted line in your code. Check spelling, indentation, variable names, array dimensions, and file locations. If a name is not defined, check whether you ran the cell that creates it. If a library cannot be imported, check that it is installed in the Python environment you are using.</p>
+<p>Try to explain the problem and make a small correction yourself before asking for a complete replacement program. Print the relevant values or reduce the code to a few lines that still produce the error. This helps you understand the cause.</p>
+<p>In Colab, you can also ask its AI assistant to explain an error. If an “Explain error” option is available, use it, or ask in the AI chat. For example: <em>“Explain this error in simple terms. Which line causes it? Give me a hint before suggesting a fix.”</em> Read the explanation, check the suggested change, and rerun your small test. A suggested fix still needs to produce the result you expect. See <a href="https://research.google.com/colaboratory/faq.html">Colab’s guidance on its AI features</a>.</p>
+<p>When the notebook works, restart its kernel or runtime and run all cells from the beginning. This checks that the result does not depend on a variable left over from an earlier attempt. Save the notebook with a clear name.</p>
+<h3>Use an editor when the program grows</h3>
+<p>An IDE, or integrated development environment, brings together tools for writing, running, and debugging code. Visual Studio Code with its Python extension is one option. You can keep related files in a project folder, save a program as a <code>.py</code> file, and use the debugger to pause at a line and inspect variable values. Make sure the selected Python interpreter is the environment where you installed the required libraries. Follow the <a href="https://code.visualstudio.com/docs/python/python-tutorial">VS Code Python tutorial</a> for setup and a first program.</p>
+<h3>More places to learn</h3>
+<ul>
+<li><a href="https://www.kaggle.com/learn/python">Kaggle’s Python tutorial</a>: short lessons and exercises for practicing Python. Try the exercises yourself before looking at a solution.</li>
+<li><a href="https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods: A Guide for Engineers and Scientists</a>: an online book covering Python, NumPy arrays, plotting, debugging, and numerical methods. Start with the Python basics, then read the chapters related to the calculation you want to do.</li>
+</ul>
 </section></main><footer class="mdx-footer"><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer></body></html>
