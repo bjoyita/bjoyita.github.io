@@ -82,7 +82,8 @@ _iub.csConfiguration = {"siteId":3872775,"cookiePolicyId":28979278,"lang":"en","
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
        
-    </head>                                         
+    <link rel="stylesheet" href="assets/explorer/discovery.css">
+</head>
         <body>
             
     
@@ -126,14 +127,63 @@ _iub.csConfiguration = {"siteId":3872775,"cookiePolicyId":28979278,"lang":"en","
         <a href="blog1.html"><b><font color="yellow">Insights</font></b></a></span>
                             
   
-                        </div>
+                        <a class="mdx-hero-link" href="#latest-posts">Explore the new interactive posts <span aria-hidden="true">↓</span></a></div>
                     </div>
                 </div>
             </div>
         </header>
             
                 <!-- Main Content-->
-<div class="container"><section aria-labelledby="new-posts"><h2 id="new-posts">Explore materials and data</h2><p><a href="posts/pca-materials.html">What does PCA actually show?</a><br>Explore how principal component analysis finds directions of variation, and why a mathematical pattern needs a physical explanation.</p><p><a href="posts/fit-and-predict.html">A good fit is not always a good prediction</a><br>Change model complexity and measurement noise to compare fitting observations with predicting an underlying trend.</p><p><a href="posts/materials-design-space.html">Why even a small alloy design space becomes large</a><br>Count composition candidates and explore why processing and experimental choices make materials searches grow quickly.</p></section></div>
+<div class="container"><section class="mdx-latest" id="latest-posts" aria-labelledby="latest-posts-title">
+<div class="mdx-section-heading">
+<div>
+<p class="mdx-eyebrow">New · October 8, 2026</p>
+<h2 id="latest-posts-title">Explore materials and data</h2>
+<p>Three articles with interactive examples. Change the inputs and see what happens.</p>
+</div>
+</div>
+<div class="mdx-post-grid">
+<article class="mdx-post-card">
+<img src="assets/explorer/pca-preview.svg" width="560" height="350" alt="Synthetic descriptor cloud with two principal directions." loading="lazy">
+<div class="mdx-card-body">
+<p class="mdx-card-meta">Interactive article · <time datetime="2026-10-08">October 8, 2026</time>
+</p>
+<h3>
+<a href="posts/pca-materials.html">What does PCA actually show?</a>
+</h3>
+<p>Rotate a point cloud and see how PCA finds its main directions of variation.</p>
+<a class="mdx-read-link" href="posts/pca-materials.html">Read and explore <span aria-hidden="true">→</span>
+</a>
+</div>
+</article>
+<article class="mdx-post-card">
+<img src="assets/explorer/fit-preview.svg" width="560" height="350" alt="Synthetic hardness observations, underlying trend and a degree-eight polynomial fit." loading="lazy">
+<div class="mdx-card-body">
+<p class="mdx-card-meta">Interactive article · <time datetime="2026-10-08">October 8, 2026</time>
+</p>
+<h3>
+<a href="posts/fit-and-predict.html">A good fit is not always a good prediction</a>
+</h3>
+<p>Change model complexity and noise, then compare fitting error with prediction of the known trend.</p>
+<a class="mdx-read-link" href="posts/fit-and-predict.html">Read and explore <span aria-hidden="true">→</span>
+</a>
+</div>
+</article>
+<article class="mdx-post-card">
+<img src="assets/explorer/design-space-preview.svg" width="560" height="350" alt="Composition counts for five elements at progressively finer atomic-percent steps." loading="lazy">
+<div class="mdx-card-body">
+<p class="mdx-card-meta">Interactive article · <time datetime="2026-10-08">October 8, 2026</time>
+</p>
+<h3>
+<a href="posts/materials-design-space.html">Why even a small alloy design space becomes large</a>
+</h3>
+<p>Count possible alloy compositions and see how processing choices multiply the search.</p>
+<a class="mdx-read-link" href="posts/materials-design-space.html">Read and explore <span aria-hidden="true">→</span>
+</a>
+</div>
+</article>
+</div>
+</section></div>
   
     <style>
         .column {
@@ -203,7 +253,7 @@ _iub.csConfiguration = {"siteId":3872775,"cookiePolicyId":28979278,"lang":"en","
                             </div>
              
     <div class="column2" style="background-color: #80ffff;">
-      <h3><font face=veradana >Latest Posts</font></h3>
+      <h3><font face=veradana >Earlier tutorials and articles</font></h3>
         
         <ul><p><font face='monospace'><b>September 2024</b></font></p>
             <hr size =4 style="background-color: darkblue">
