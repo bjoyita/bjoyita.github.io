@@ -103,6 +103,12 @@
                         <p>In my <b><a href='Tut10_LogReg.html' style='color: blue'>earlier tutorial</a></b>, I have discussed the confusion matrix and its significance in understanding performance metrics for a machine learning model applied to a given dataset. <p>Here is a recap of a confusion matrix for binary classification. </p>
                         <img src='assets/tut10&11/CM.jpg' width=60% style='float:right; margin-bottom:5 px; margin-left: 5 px' alt='Confusion matrix for a binary classification'><p>As the name suggests, <b>binary classification</b> results in a dichotomous outcome, such as 'yes' or 'no', 'present' or 'absent'. If the actual and predicted values coincide, the result is categorized as either a True Positive or a True Negative, depending on the presence or absence of the variable. Conversely, if the actual and predicted values do not match, the outcome is categorized as either a False Positive or a False Negative.
                         <p>However, in real-world applications, we frequently encounter <b>multiclass systems </b>that offer a broader range of possible outcomes. <p><i style='background-color: antiquewhite'>Let’s discuss how to read the confusion matrix accurately in these more complex scenarios.</i></p>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                         <h4>Interpretation of a Confusion Matrix for a Multi-class Classification</h4>
 <p>Let me take an example of a confusion matrix generated from a <b><a href="https://bjoyita.github.io/Tut_dataset.html" style ='color: blue'>dataset </a></b> capturing the corrosion properties of 150 metals and alloys. The snapshot of the dataset is displayed below for reference.The output variable,y (corrosion resistance) column has three outcomes: ‘Poor ’, ‘Fair’, and ‘Excellent’. The remaining columns are input variables (Xs).</p> 
                         <p><center><img src='assets/tut10&11/dataframe.jpg' width="100%" alt='dataset'></center></p>
@@ -149,12 +155,6 @@ Here’s how you can transform a confusion matrix for each category—Poor, Fair
             <p> Now that we are clear with the interpretation of a multi-class confusion matrix,  let's dive into <u style='text-decoration-color: gold'>calculating the 'accuracy' score</u>, which tells us how well our model is performing.</p>            
    
                         
-
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
                         <p><b><a href='https://en.wikipedia.org/wiki/Accuracy_and_precision#In_binary_classification' style='color:blue'>Accuracy</a> and Confusion Matrix</b></p>
 <SCRIPT SRC='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></SCRIPT>
 <SCRIPT>MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}})</SCRIPT> 
