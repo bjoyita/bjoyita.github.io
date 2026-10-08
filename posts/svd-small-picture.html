@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SVD, explained with a small picture | Materials Data Explorer</title>
+<meta name="description" content="A simple introduction to singular value decomposition through picture layers, everyday analogies and an interactive example. No matrix knowledge required.">
+<meta name="author" content="Joyita Bhattacharya">
+<link rel="canonical" href="https://bjoyita.github.io/posts/svd-small-picture.html">
+<link rel="stylesheet" href="../assets/explorer/posts.css"><link rel="stylesheet" href="../assets/explorer/pixel-pca/tutorial.css"><link rel="stylesheet" href="../assets/explorer/ads.css">
+<meta property="og:type" content="article"><meta property="og:title" content="SVD, explained with a small picture"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/svd/preview.png"><meta name="twitter:card" content="summary_large_image">
+<script type="module" src="../assets/explorer/svd/picture.mjs"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159" crossorigin="anonymous"></script>
+</head><body>
+<nav aria-label="Main navigation"><a href="../index.html">Materials Data Explorer</a><a href="../blog_list.html">Posts</a><a href="../tutorial_list.html">Tutorials</a></nav>
+<main><article>
+<p class="eyebrow">Start here · <time datetime="2026-10-08">October 8, 2026</time></p>
+<h1>SVD, explained with a small picture</h1>
+<p class="intro">Singular value decomposition is a long name for a useful way of breaking an array of numbers into simpler parts. Let us start with a picture. We can understand the idea without starting with a matrix equation.</p>
+<h2>A picture is made of numbers</h2>
+<p>Zoom far enough into a digital picture and you see small squares called pixels. In a grayscale picture, each pixel has one number describing its brightness. I use 0 for black and 1 for white. Numbers between them give shades of gray. These brightness values have no physical units in this example.</p>
+<p>The picture below is only eight pixels wide and eight pixels high. Its 64 brightness values form eight rows of numbers. That rectangular arrangement is called a matrix. SVD is a calculation we can apply to it.</p>
+<h2>Think of a rough sketch and its corrections</h2>
+<p>Suppose you draw a scene. You might begin with a rough arrangement of light and dark regions, then add corrections to make the picture closer to what you see. Something similar happens here: SVD gives us numerical patterns that we add together to recover the original picture.</p>
+<p>I call these patterns <strong>layers</strong> in this explanation. Each layer adds to some pixels and may subtract from others. They are not transparent sheets placed over a photograph. We are adding and subtracting numbers at corresponding pixel positions.</p>
+<p>The layers are ordered by their mathematical strength. The first makes the largest reduction in the total squared pixel error. The next makes a further reduction, and so on. A layer need not look like a familiar object. SVD does not know that this picture contains a roof or a door.</p>
+<section class="playground" aria-labelledby="play-title"><h2 id="play-title">Add the layers yourself</h2>
+<p>Move the slider, or select “Play layers.” Compare the original, the rebuilt picture and the layer just added.</p>
+<div class="controls"><label>Layers retained: <output id="layer-value">1</output><br><input id="layer-count" type="range" min="0" max="4" value="1" step="1"></label><button id="play" type="button">Play layers</button><button id="reset" type="button">Reset</button></div>
+<div id="panels" class="pixel-panels"></div><p id="readout" class="readout" aria-live="polite">Loading the picture…</p>
+<p>Original and rebuilt picture: black = 0 and white = 1, with the same scale. For the layer just added, red means add brightness, blue means subtract brightness, and white means no change. Its fixed scale is −1 to +1. The error is calculated from the numerical values, before any display adjustment.</p>
+<noscript><p>Enable JavaScript to add the layers interactively, or use the downloadable Python example below.</p></noscript></section>
+<h2>Why are there two patterns in each layer?</h2>
+<p>Think of a curtain with a simple light-and-dark pattern. One set of numbers describes how the pattern changes from top to bottom. Another describes how it changes from left to right. Multiplying a row's number by a column's number gives the value at their intersection.</p>
+<p>That is how one SVD layer is formed: a pattern down the rows, a pattern across the columns, and a number that sets the layer's strength. One layer has a restricted form, so it usually cannot reproduce a complicated picture by itself. Adding layers lets us describe more complicated arrangements.</p>
+<p>This curtain comparison explains the multiplication. It does not mean that the algorithm looks for fabric, stripes or any other physical object.</p>
+<h2>The strength is like a volume control</h2>
+<p>Imagine mixing several sound tracks. A volume control changes how strongly each track contributes to the final sound. The strength assigned to an SVD layer plays a similar role. This nonnegative strength is called a <strong>singular value</strong>.</p>
+<p>The comparison is about scaling and combining patterns. SVD does not automatically separate a recording into its instruments, and its image layers do not automatically identify physical features. A mathematically strong pattern might represent illumination, a large background region, or a feature we care about.</p>
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement"><p class="article-ad-label">Advertisement</p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<h2>Keeping fewer layers is like keeping a simpler description</h2>
+<p>Suppose you describe a room to someone. A short description might give its broad arrangement. More detail makes the description closer to the actual room, but also longer. With SVD, keeping fewer layers gives a simpler numerical description of the picture.</p>
+<p>Unlike an ordinary description, we have a precise measure of the difference: compare corresponding pixels, square their differences, and add them. For a fixed number of layers, keeping the largest singular values gives the smallest possible total squared error among matrices of that rank. Rank here is the number of independent row-and-column patterns needed to represent the matrix.</p>
+<p>Small error does not necessarily mean that every important detail is preserved. A small pore or a thin interface may matter greatly in a material, even if it contributes little to the total pixel error. The choice of how many layers to keep depends on what we want to learn from the image.</p>
+<h2>What should you notice in this example?</h2>
+<p>Zero layers gives a black picture because we have added nothing. One layer gives a broad approximation. More layers improve the match. Four layers recover this particular picture to numerical precision. I deliberately chose a small, simple picture; four layers will not generally be enough for a microscope image.</p>
+<p>The displayed RMSE is the root-mean-square error. It is found by averaging the squared pixel differences and taking the square root. It has the same dimensionless brightness scale as the image. A smaller value means closer numerical agreement.</p>
+<details><summary>The equation, if you want to see it</summary>
+<p>SVD writes the image matrix A as <strong>A = U Σ Vᵀ</strong>. A is the original array of pixel values. The columns of U contain the row-direction patterns. The rows of Vᵀ contain the column-direction patterns. The diagonal entries of Σ are the singular values, arranged from largest to smallest. All other entries of Σ are zero. The superscript T means transpose: rows and columns are exchanged.</p>
+<p>Multiplying one column of U by its singular value and the matching row of Vᵀ gives one layer. Adding all the layers recovers A, apart from numerical rounding. In the code, I store the diagonal entries of Σ as a list named strengths rather than create a full diagonal matrix.</p>
+<p>In this example, A and the singular values are dimensionless. U and V contain normalized, dimensionless weights. If A had physical units, its singular values would carry those units.</p></details>
+<h2>How does this connect to PCA?</h2>
+<p>The example above applies SVD to <strong>one image</strong>, with image rows and columns forming the matrix. In the PCA tutorial, I use <strong>a collection of images</strong>. Each whole image becomes one data row, and each pixel position becomes one feature column. I subtract the mean value of each feature before finding the directions of variation.</p>
+<p>SVD is then a way to calculate those PCA directions. SVD itself is a matrix decomposition; PCA asks which directions explain the variation in a collection of observations. Their connection depends on centering the data and on what the matrix rows and columns represent.</p>
+<p>There is also an important difference in the zero-component result. The SVD picture above starts from zero. In the centered PCA tutorial, reconstruction adds the mean image back, so zero principal components gives the mean image.</p>
+<p><a href="../tutorials/pca-pixel-images.html"><strong>Next: build PCA with small pixel images</strong></a></p>
+<details><summary>Run the small picture example in Python</summary><p><a href="../assets/explorer/svd/svd-picture.py" download>Download the tested Python example</a>. Install NumPy and Matplotlib with <code>python -m pip install numpy matplotlib</code>, then run <code>python svd-picture.py</code>. It prints the error for each layer count and displays the reconstructions. No image downloads are needed.</p></details>
+</article><footer><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><p><a href="../Copyright.html">Copyright and licensing</a> · <a href="../PrivacyPolicy.html">Privacy policy</a></p></footer></main></body></html>
