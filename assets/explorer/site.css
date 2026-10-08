@@ -151,3 +151,23 @@ main,.page{padding:30px 18px}
 .mdx-purpose>div:nth-child(2){padding:22px}
 }
 
+
+/* I preserve the original home-page title, image and yellow topic links. */
+.mdx-home header.masthead .site-heading h1 {
+  color: #fff !important;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 3rem !important;
+  line-height: 1.2;
+  letter-spacing: normal;
+  margin-bottom: 0 !important;
+}
+.mdx-home header.masthead .subheading a { color: yellow; }
+@media (min-width: 992px) {
+  .mdx-home header.masthead .site-heading h1 { font-size: 5rem !important; }
+}
+@media (max-width: 560px) {
+  .mdx-home header.masthead .site-heading h1 { font-size: clamp(2rem, 9vw, 3rem) !important; }
+  .mdx-home header.masthead .subheading { font-size: 1.1rem; line-height: 1.6; }
+}
+
+.mdx-title-word { white-space: nowrap; }
