@@ -171,3 +171,21 @@ main,.page{padding:30px 18px}
 }
 
 .mdx-title-word { white-space: nowrap; }
+/* I keep the original title design in a more compact banner. */
+.mdx-home header.masthead {
+  padding: 52px 18px;
+  margin-bottom: 12px;
+}
+.mdx-home header.masthead .container { max-width: 1120px; }
+.mdx-home header.masthead .row > div { width: 100%; }
+.mdx-home header.masthead .site-heading h1 {
+  font-size: clamp(2rem, 4.4vw, 3.5rem) !important;
+}
+.mdx-home header.masthead .subheading { font-size: 1.15rem; }
+.mdx-home header.masthead .mdx-hero-link { margin-top: 18px; padding: 9px 16px; }
+.mdx-home > main { padding-top: 24px; }
+@media (max-width: 560px) {
+  .mdx-home header.masthead { padding: 36px 14px; }
+  .mdx-home header.masthead .subheading { font-size: 1rem; }
+  .mdx-home header.masthead .mdx-hero-link { font-size: .9rem; }
+}
