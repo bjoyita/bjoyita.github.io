@@ -1,0 +1,5 @@
+/* I keep code cells and pixel figures readable on narrow screens. */
+pre{max-width:100%;overflow-x:auto;padding:18px;border:1px solid #d6dfdd;border-radius:8px;background:#edf2f1;font:14px/1.6 ui-monospace,monospace}
+pre code{padding:0;background:transparent;white-space:pre}
+.pixel-panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,195px),1fr));gap:14px;margin:20px 0}
+.pixel-panels figure{margin:0;min-width:0}.pixel-panels figcaption{font-size:15px;font-weight:600;line-height:1.5;margin-bottom:8px}.pixel-panels svg{background:#f7faf9;border-radius:6px}.pixel-panels svg text{font-size:12px}
