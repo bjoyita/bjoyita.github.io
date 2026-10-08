@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Can you rebuild this microstructure? | Materials Data Explorer</title><meta name="description" content="Generate rainbow-colored pixel patterns and play a PCA reconstruction game with stripes, clusters, checkerboards and random images."><meta name="author" content="Joyita Bhattacharya"><link rel="canonical" href="https://bjoyita.github.io/tutorials/microstructure-pca-game.html"><meta property="og:title" content="Can you rebuild this microstructure?"><meta property="og:type" content="article"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/microstructure-game/preview.png"><link rel="stylesheet" href="../assets/explorer/posts.css"><link rel="stylesheet" href="../assets/explorer/site.css?v=2ec07fe"><link rel="stylesheet" href="../assets/explorer/microstructure-game/game.css"><script type="module" src="../assets/explorer/microstructure-game/game.mjs"></script></head><body class="mdx-modern"><nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="../index.html"><img src="../assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="../index.html">Home</a><a href="../blog_list.html">Articles</a><a href="../tutorial_list.html" aria-current="page">Tutorials</a></div></nav><main><article><p class="eyebrow">Pixel playground · <time datetime="2026-10-08">October 8, 2026</time></p><h1>Can you rebuild this microstructure?</h1><p class="intro">A checkerboard, a set of stripes and a random arrangement can contain the same colors. But do they need the same number of principal components? Let us create the patterns and find out.</p><p>In my <a href="../Tutorial_1.html">earlier image-generation tutorial</a>, I showed how to build simulated images. Here I extend that idea with colored pixels and a reconstruction game. If PCA is new to you, start with <a href="../posts/svd-small-picture.html">SVD with a small picture</a> and <a href="pca-pixel-images.html">PCA with small pixel images</a>.</p><section class="playground" aria-labelledby="generator-title"><h2 id="generator-title">Make a pattern</h2><p>I use violet, indigo, blue, green, yellow, orange, red and white. Choose the settings, then select “Generate pattern.” With fewer than eight colors, I keep white and use the first colors in the list. The checkerboard uses two of the available colors.</p><div class="game-generator-layout"><div><form id="generator" class="game-form"><label>Pattern<select id="kind"><option value="clustered">Clustered patches</option><option value="random">Random pixels</option><option value="checkerboard">Two-color checkerboard</option><option value="horizontal">Horizontal stripes</option><option value="vertical">Vertical stripes</option><option value="diagonal">Diagonal stripes</option><option value="uniform">One uniform color</option></select></label><label>Grid size<select id="size"><option>8</option><option>12</option><option selected>16</option><option>24</option></select></label><label>Available colors<select id="colors"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option></select></label><label>Patch or band width (pixels)<select id="width"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></label><label>Random seed<input id="seed" type="number" min="0" max="999999" step="1" value="42" required></label><div class="game-buttons"><button type="submit">Generate pattern</button><button id="new-seed" type="button">Next seed</button><button id="rotate" type="button">Rotate 90°</button></div></form></div><div id="original-preview" class="game-preview"></div></div><p id="settings-readout" class="readout" aria-live="polite">Preparing the pattern…</p><div id="legend" class="game-legend" aria-label="Color key"></div><div class="game-challenge"><h3>Guess the smallest number of components</h3><p>First choose what “reconstruct” means. Guess the minimum, then check it. The mean row is retained even when you keep zero components.</p><div class="controls"><label>Target<select id="goal"><option value="exact">Exact numerical reconstruction</option><option value="phase">Recover every pixel color</option></select></label><label>Your guess<select id="guess"></select></label><button type="button" id="check">Check my guess</button><button type="button" id="reveal">Show answer</button><button type="button" id="explore">Skip the guess and explore</button></div><p id="verdict" role="status"></p><p id="answer" class="game-answer" hidden></p></div><div class="game-controls"><label>Components retained: <output id="retained-value">0</output><br><input id="retained" type="range" min="0" max="15" value="0" step="1" disabled></label><button id="animate" type="button" disabled>Play components</button><button id="reset-reconstruction" type="button">Reset reconstruction</button><label>Reconstruction display<select id="display"><option value="phase">Recovered pixel colors</option><option value="blend">Blended color weights</option></select></label></div><div id="panels" class="game-panels"></div><p id="readout" class="readout" aria-live="polite"></p><progress id="progress" max="256" value="0"></progress><p>Orange in the last panel marks an incorrect pixel color; pale gray marks a correct one. The blended display combines reconstructed weights with the palette and limits displayed RGB values to 0–255. The numerical error is calculated before this display adjustment.</p><noscript><p>Enable JavaScript to play, or run the Python notebook below.</p></noscript></section><h2>What is PCA looking at here?</h2><p>I treat each <strong>image row</strong> as one observation. Each pixel column contributes one feature for every available color. This is called one-hot encoding: with three colors, the labels become [1, 0, 0], [0, 1, 0] and [0, 0, 1]. It avoids treating violet, green and red as ordered numerical values. Changing their displayed shades does not change this calculation.</p><p>For a 16 × 16 image and eight available colors, the data table has 16 rows and 128 feature columns. I subtract the mean of each feature across the 16 rows, calculate the principal directions and reconstruct the data using the first few directions. I then add the mean row back.</p><p>This differs from the earlier PCA tutorial, where each complete image was an observation. Here the experiment examines how image rows vary within one pattern. Rotating the image changes that row representation. The component count is therefore not a complete measure of microstructural complexity.</p><h2>Two different reconstruction targets</h2><p><strong>Exact numerical reconstruction:</strong> the reconstructed one-hot entries must match the original entries within rounding. For the game, I require RMSE below 10⁻⁸. RMSE means root-mean-square error, averaged over all one-hot entries. It is dimensionless.</p><p><strong>Recover every pixel color:</strong> I choose the color with the largest reconstructed weight at each pixel. This can recover all labels even while the weights differ from 0 and 1. The weights are not probabilities and can lie outside that interval. When weights tie exactly, the first color in the palette is selected.</p><p>The answers use the component directions calculated in this game. If principal variances tie, more than one set of intermediate directions is valid. A different valid basis can change the smallest count that recovers all labels. Numerical reconstruction error does not increase as components are added; pixel-color accuracy need not improve at every step.</p><h2>Try these challenges</h2><ol><li>Generate vertical stripes. Guess the numerical reconstruction count, then rotate the pattern. Why does the answer change?</li><li>Choose a checkerboard. Change the block width and compare it with random pixels.</li><li>Generate clusters. Can every pixel color be recovered before the numerical data are recovered exactly?</li><li>Try a uniform pattern. What should zero components produce?</li><li>Increase the random grid size. Does the answer depend only on the number of colors?</li></ol><details><summary>Worked explanations</summary><p>Vertical stripes have identical rows. Their mean row already contains the complete pattern, so no components are needed. Rotation gives rows with different colors, which introduces variation. A two-color checkerboard has a single independent centered row pattern and needs one component when both row types occur. A uniform pattern also needs zero components.</p><p>Clusters and random arrangements generally have more independent row patterns. A centered table with N rows has rank at most N − 1, so the game never needs more than that many components for numerical reconstruction. This is a bound from the data arrangement, not a rule that all random images require the maximum.</p></details><h2>Patterns, not simulated phase evolution</h2><p>These are synthetic pixel patterns. Clustered patches are made by assigning pixels to nearby seed points; stripes and checkerboards follow simple geometric rules. The colors identify labels. They do not specify compositions, real phases or physical units of length. This playground does not evolve a thermodynamic model.</p><p>The mean row is stored separately. A small component count alone does not prove a small file size, nor does it establish the number of physical mechanisms in a material.</p><p><a href="../assets/explorer/microstructure-game/validation.json">Numerical checks against NumPy: 252 cases, including rotations</a>.</p><h2>Build the calculation in small steps</h2><p>Download the <a href="../assets/explorer/microstructure-game/microstructure-pca.ipynb" download>step-by-step notebook</a> or the <a href="../assets/explorer/microstructure-game/microstructure-pca.py" download>Python script</a>. Install the dependencies with <code>python -m pip install numpy matplotlib</code>, then run <code>python microstructure-pca.py</code>. The <a href="../assets/explorer/microstructure-game/model.mjs">browser calculation source</a> is also available. To repeat the numerical comparison, save <a href="../assets/explorer/microstructure-game/check-reference.py">check-reference.py</a> and <a href="../assets/explorer/microstructure-game/check-browser.mjs">check-browser.mjs</a> alongside these source files. Run <code>python check-reference.py</code>, then <code>node check-browser.mjs</code>. The first command creates a reference file; the second writes the comparison report. The notebook uses NumPy SVD; the browser calculates the equivalent row-space PCA with a small symmetric eigensolver. Tied variances can give different valid intermediate pictures.</p><details><summary>1: I choose the display colors. White is included for every palette size.</summary><p>Each integer in the image is a color label, not a composition or brightness. I use VIBGYOR plus white. The palette affects the display, but does not affect the one-hot PCA calculation. Rows and columns count pixels; there is no physical length calibration.</p><pre><code>PALETTE = [&#x27;#8b5cf6&#x27;, &#x27;#4f46e5&#x27;, &#x27;#3b82f6&#x27;, &#x27;#22c55e&#x27;,
+           &#x27;#facc15&#x27;, &#x27;#fb923c&#x27;, &#x27;#ef4444&#x27;, &#x27;#ffffff&#x27;]</code></pre></details><details><summary>2: I generate reproducible random numbers with the same rule as the browser.</summary><p>The seed determines the random-number sequence. The same size, color count, pattern, patch width and seed give the same labels in Python and the browser. Clustered patterns assign each pixel the color of its nearest seed point. These are invented geometrical patterns, not phase-field simulation results. Patch width is measured in pixels. In a checkerboard it sets block width; in stripes it sets band width. For random and uniform patterns it has no effect.</p><pre><code>def random_numbers(seed):
+    state = int(seed) &amp; 0xffffffff
+    while True:
+        state = (1664525 * state + 1013904223) &amp; 0xffffffff
+        yield state / 4294967296
+
+
+def make_pattern(size, colors, kind, width, seed):
+    random = random_numbers(seed)
+    labels = np.zeros((size, size), dtype=int)
+    offset = int(next(random) * colors)
+    centers = []
+    if kind == &#x27;clustered&#x27;:
+        count = max(colors, int(np.floor(size * size / (width * width) + 0.5)))
+        for i in range(count):
+            centers.append((next(random) * size, next(random) * size, i % colors))
+    for row in range(size):
+        for column in range(size):
+            label = offset
+            if kind == &#x27;random&#x27;:
+                label = int(next(random) * colors)
+            elif kind == &#x27;horizontal&#x27;:
+                label = (row // width + offset) % colors
+            elif kind == &#x27;vertical&#x27;:
+                label = (column // width + offset) % colors
+            elif kind == &#x27;diagonal&#x27;:
+                label = ((row + column) // width + offset) % colors
+            elif kind == &#x27;checkerboard&#x27;:
+                label = 0 if (row // width + column // width) % 2 == 0 else colors - 1
+            elif kind == &#x27;clustered&#x27;:
+                nearest = float(&#x27;inf&#x27;)
+                for center_row, center_column, color in centers:
+                    distance = (row - center_row)**2 + (column - center_column)**2
+                    if distance &lt; nearest:
+                        nearest = distance
+                        label = color
+            labels[row, column] = label
+    return labels</code></pre></details><details><summary>3: I encode each color as a separate feature, then center the image rows.</summary><p>One-hot encoding uses one entry per color. For example, with three colors, color 0 is [1, 0, 0] and color 2 is [0, 0, 1]. np.eye creates this table. Indexing it with labels gives an array of shape (size, size, colors). reshape puts each image row into one data row, keeping the color entries of each column together. At size 16 and eight colors, X has shape (16, 128). The mean is calculated down rows, separately for each feature.</p><pre><code>def encode_rows(labels, colors):
+    size = labels.shape[0]
+    return np.eye(colors)[labels].reshape(size, size * colors)</code></pre></details><details><summary>4: I use NumPy SVD to calculate the principal directions of the centered rows.</summary><p>The data observations here are image rows, not a collection of complete images. Centering subtracts the mean row. Vt contains the principal directions as rows; scores tells me how much each observation uses each direction. @ is matrix multiplication; :count keeps the first count entries or directions. I add the mean back when reconstructing. Zero components therefore gives the mean row repeated down the image. The centered rank cannot exceed size minus one. RMSE is calculated over all one-hot entries, with no physical units.</p><pre><code>def analyze_pattern(labels, colors):
+    X = encode_rows(labels, colors)
+    mean_row = X.mean(axis=0)
+    centered = X - mean_row
+    U, strengths, Vt = np.linalg.svd(centered, full_matrices=False)
+    scores = centered @ Vt.T
+    total_variation = np.sum(strengths**2)
+    states = []
+    size = len(labels)
+    for count in range(size):
+        rebuilt = mean_row + scores[:, :count] @ Vt[:count]
+        weights = rebuilt.reshape(size, size, colors)
+        recovered = weights.argmax(axis=2)
+        rmse = np.sqrt(np.mean((X - rebuilt)**2))
+        correct = int(np.sum(recovered == labels))
+        fraction = None if total_variation &lt; 1e-12 else np.sum(strengths[:count]**2) / total_variation
+        states.append({&#x27;count&#x27;: count, &#x27;rmse&#x27;: float(rmse), &#x27;correct&#x27;: correct,
+                       &#x27;fraction&#x27;: fraction, &#x27;labels&#x27;: recovered, &#x27;weights&#x27;: weights})
+    return {&#x27;labels&#x27;: labels, &#x27;states&#x27;: states,
+            &#x27;exact&#x27;: next(s[&#x27;count&#x27;] for s in states if s[&#x27;rmse&#x27;] &lt; 1e-8),
+            &#x27;phase&#x27;: next(s[&#x27;count&#x27;] for s in states if s[&#x27;correct&#x27;] == size * size)}</code></pre></details><details><summary>5: I choose a case, inspect the error and compare the original and reconstruction.</summary><p>The largest reconstructed weight chooses the displayed color. argmax selects the first color when weights tie exactly. These weights are not probabilities: some can be negative or greater than one. Recovering every color label does not require every weight to be exactly 0 or 1. The browser uses a Jacobi eigensolver and this notebook uses NumPy SVD. When principal variances tie, valid intermediate component directions can differ, as can the smallest count that recovers every label. Numerical rank and reconstruction error agree within rounding. The browser game refers to its own calculated directions.</p><pre><code>def run_example():
+    size = 16
+    colors = 8
+    kind = &#x27;clustered&#x27;
+    width = 3
+    seed = 42
+    labels = make_pattern(size, colors, kind, width, seed)
+    result = analyze_pattern(labels, colors)
+    for state in result[&#x27;states&#x27;]:
+        print(f&quot;Components: {state[&#x27;count&#x27;]:2d}, RMSE: {state[&#x27;rmse&#x27;]:.6f}, &quot;
+              f&quot;correct colors: {state[&#x27;correct&#x27;]}/{size * size}&quot;)
+    print(&#x27;Minimum for numerical reconstruction:&#x27;, result[&#x27;exact&#x27;])
+    print(&#x27;Minimum for pixel colors with this NumPy basis:&#x27;, result[&#x27;phase&#x27;])
+    retained = 4
+    colormap = ListedColormap(PALETTE[:colors - 1] + [PALETTE[-1]])
+    fig, axes = plt.subplots(1, 2, figsize=(8, 4))
+    axes[0].imshow(labels, cmap=colormap, vmin=0, vmax=colors - 1, interpolation=&#x27;nearest&#x27;)
+    axes[1].imshow(result[&#x27;states&#x27;][retained][&#x27;labels&#x27;], cmap=colormap,
+                   vmin=0, vmax=colors - 1, interpolation=&#x27;nearest&#x27;)
+    axes[0].set_title(&#x27;Original pattern&#x27;)
+    axes[1].set_title(f&#x27;{retained}-component reconstruction&#x27;)
+    for ax in axes:
+        ax.set_xlabel(&#x27;Column index&#x27;)
+        ax.set_ylabel(&#x27;Row index&#x27;)
+    plt.tight_layout()
+    plt.show()
+    return result</code></pre></details><details><summary>6: I check known cases and numerical recovery before changing the example.</summary><p>I compare each new RMSE with the preceding one and check full numerical recovery. Vertical stripes have identical rows, so the saved mean row already reproduces them. A two-color checkerboard has one independent centered row pattern. These are checks of this representation. They do not establish that a real microstructure has only one physical mechanism.</p><pre><code>def check_examples():
+    for kind in [&#x27;uniform&#x27;, &#x27;vertical&#x27;, &#x27;horizontal&#x27;, &#x27;checkerboard&#x27;, &#x27;diagonal&#x27;, &#x27;clustered&#x27;, &#x27;random&#x27;]:
+        result = analyze_pattern(make_pattern(12, 8, kind, 2, 42), 8)
+        errors = [state[&#x27;rmse&#x27;] for state in result[&#x27;states&#x27;]]
+        assert errors[-1] &lt; 1e-8
+        assert all(b &lt;= a + 1e-12 for a, b in zip(errors, errors[1:]))
+        if kind in [&#x27;uniform&#x27;, &#x27;vertical&#x27;]:
+            assert result[&#x27;exact&#x27;] == 0
+        if kind == &#x27;checkerboard&#x27;:
+            assert result[&#x27;exact&#x27;] == 1
+    print(&#x27;All pattern checks passed.&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    run_example()
+    check_examples()</code></pre></details></article><footer class="mdx-footer"><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="../PrivacyPolicy.html">Privacy</a><a href="../CookiePolicy.html">Cookies</a><a href="../TermsofUse.html">Terms of use</a><a href="../Disclaimer.html">Disclaimer</a><a href="../Copyright.html">Copyright and licensing</a></div></footer></main></body></html>

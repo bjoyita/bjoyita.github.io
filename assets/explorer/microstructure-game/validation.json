@@ -1,0 +1,8 @@
+{
+  "cases": 252,
+  "largestRMSEDifference": 3.236515010526205e-13,
+  "generatorsMatch": true,
+  "numericalRanksMatch": true,
+  "labelCountDifferences": 8,
+  "explanation": "Label recovery can depend on the valid PCA basis within tied variance groups and on floating-point ties. The game reports its own basis."
+}
