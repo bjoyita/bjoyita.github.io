@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPPQKTW0JB"></script>
@@ -32,7 +33,8 @@
 }
         </style>
 
-        <meta name="description" content="Tutorial article on generation of microstructure." />
+        <title>Generation of Simulated Images | Materials Data Explorer</title>
+        <meta name="description" content="Create simple images with NumPy, inspect their Fourier transforms, and plot a periodic function as an image and a surface." />
         <meta name="author" content="Joyita Bhattacharya" />
         <meta name="keywords" content="Simulated Images, Python, Canny, Sobel, Roberts, Fourier Transform, Fourier space, Real space, periodic functions"/>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -57,30 +59,28 @@
 
 
 <!--Title of the blog-->
-<p><h1 align = center><font face ="verdana", color = "maroon">Generation of Simulated Images</font></h1><figure class="mdx-opening-photo"><img src="assets/explorer/opening-photos/unique/abstract.jpg" width="960" height="625" alt="A mosaic built from repeating geometric patterns."><figcaption>Photo by 14GTR. <a href="https://commons.wikimedia.org/wiki/File:Mosaic_with_two_squares_of_geometric_patterns,_British_Museum_02.jpg">Wikimedia Commons</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</figcaption></figure>
+<h1>Generation of Simulated Images</h1><figure class="mdx-opening-photo"><img src="assets/explorer/opening-photos/unique/abstract.jpg" width="960" height="625" alt="A mosaic built from repeating geometric patterns."><figcaption>Photo by 14GTR. <a href="https://commons.wikimedia.org/wiki/File:Mosaic_with_two_squares_of_geometric_patterns,_British_Museum_02.jpg">Wikimedia Commons</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>.</figcaption></figure>
                     <center><p> <font face="monospace"><b>by Joyita Bhattacharya</b></font></p></center>
-                    <hr size =4 > </p>
-                <div class="container position-relative px-2 px-lg-2">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
+                    <hr>
+<article>
 
 
-                        <center><img style="float:bottom" src='assets/img/Simulated_overlay.jpg'></center><span class="caption text-muted" style = 'float:bottom'>Simulated image</span>
-<i>
-
-    This is a tutorial post where I will show the steps to simulate simple images both from scratch and predefined functions using Python.</i></p>
-
-                        <p>Akin to other coding activities, <mark style= background-color: yellow>the first step is to import all the relevant libraries such as NumPy, Matplotlib after installing Python.</mark></p> <p>You can use <mark style= background-color: yellow>either Jupyter notebook or Google Colab notebook </mark>for running the code. Running in Google Colab is relatively easy as it has pre-installed Python libraries.</i></p>
+<p>I find it helpful to begin with an image whose pattern I already know. I can change the size or spacing of the shapes and see how these changes appear in the image and its Fourier transform.</p>
+<p>In this post, I create a row of circles, a square grid of circles, and an image from a periodic function. These are simple test images, rather than simulations of how a material evolves.</p>
+<figure><img src="assets/img/Simulated_overlay.jpg" alt="Examples of simulated image patterns"><figcaption>Simple patterns generated with Python.</figcaption></figure>
+<h2>Start with NumPy and Matplotlib</h2>
+<p>You can run the examples in a Jupyter notebook or Google Colab. NumPy creates and processes the arrays; Matplotlib displays the results. Run these imports first:</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt</code></pre>
+<p>An image is an array of pixel values. In the circle examples, 0 marks the background and 1 marks a circle. The lengths below are measured in pixels; no physical length scale has been assigned.</p>
 <!--Examples-->
 
-    <p><b>Example 1: Generation of an image with circles forming a horizontal line at the center</b></p>
-    <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed at its center.
+    <h2>1. Create a horizontal row of circles</h2>
+    <p>I start with a 400 × 400 pixel array. Each circle has a radius of 10 pixels. Their centers are 20 pixels apart along the middle row, so neighboring circles touch. Circles centered on the image edges are partly outside the array.
 </p>
 <!--TABLE-->
 <TABLE border="1" width=100%  >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
-<TR>
-
 <TR> <TH><pre><code>Micro1 = np.zeros((400,400), np.uint8) 
 center_x = 400/2
 center_y = 400/2
@@ -89,30 +89,28 @@ x, y = np.ogrid[:400, :400]
 for j in range(0, 401, 20):
   circles_w = (x-center_x)**2 + (y-j)**2 <= 10**2
   Micro1[circles_w]=1
-  plt.imshow(Micro1, cmap ='gray')</code></pre></pre></TH> <TH> <img src = 'assets/img/micro1.png'</TH>
+  plt.imshow(Micro1, cmap ='gray')</code></pre></TH> <TH> <img src="assets/img/micro1.png" alt="Generated example output"></TH>
                         </TR>
                         </TABLE>
-                    <p><b>Fourier Transform </b></p>
-                            <p> The output of the Fourier Transform of the image is shown below. A vertical streak at the center is observed which represents the horizontal circles in the real space. The codelines for Fourier trasform and the corresponding transformed image is displayed below. </p>
+                    <h3>Look at the Fourier transform</h3>
+                            <p> The Fourier transform describes the spatial frequencies in the image. A spatial frequency tells us how often a pattern repeats over a distance. Here I plot the magnitude of the transform, with zero frequency moved to the center by <code>fftshift</code>. The vertical streak reflects the narrow horizontal row in the original image. Its appearance also depends on the circle shape and the finite image size. </p>
                                     <TABLE border="1" >
                         <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
-                        <TR>
-
-                    <TR> <TH><pre><code>Micro1_f = np.fft.fft2(Micro1)
+                        <TR> <TH><pre><code>Micro1_f = np.fft.fft2(Micro1)
 Micro1_f_shift = np.fft.fftshift(Micro1_f)
 Micro1_shift=plt.imshow((abs(Micro1_f_shift)), cmap ='gray')
 plt.colorbar(Micro1_shift)
-plt.show()</code></pre></pre></TH> <TH> <img src = 'assets/img/F_micro1.png'</TH>
+plt.show()</code></pre></TH> <TH> <img src="assets/img/F_micro1.png" alt="Generated example output"></TH>
                         </TR>
                         </TABLE>
-<p> Please  <a href="blog1.html"><font color=blue>click this link</font></a> to read about Fourier transform in details.</p>
+<p> I explain the transform further in <a href="blog1.html">my Fourier transform post</a>.</p>
 
-<! -- Examples -->
+<!-- Examples -->
 
-<p><b>Example 2: Generation of an image with circles forming square grid pattern</b></p>
-    <p>Generate a box of the required dimension. Here, I have simulated a box of 400 X 400 dimensions with circles 10-unit radius placed horizontally and vertically witha spacing of 100-unit forming square grid pattern.</p>
+<h2>2. Arrange circles on a square grid</h2>
+    <p>Here I use another 400 × 400 pixel array. The code sets the circle radius to 5 pixels and places their centers 100 pixels apart in both directions. Notice that the radius is smaller than in the first example.</p>
 
-<! --Table -->
+<!-- Table -->
 
 <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
@@ -126,21 +124,21 @@ for i in range(0,420,100):
         circles = (x-i)**2 + (y-j)**2 <= 5**2
         Box1[circles] = 1.0
 plt.imshow(Box1, cmap ='gray')</code></pre></TH>
-<TH> <img src = 'assets/img/micro2.png'</TH></TR>
+<TH> <img src="assets/img/micro2.png" alt="Generated example output"></TH></TR>
                     </TABLE>
-<p> This image in the inverse or Fourier space looks like this &#128071:</p>
+<p> The magnitude of its Fourier transform is shown below:</p>
                     <center><img src="assets/img/F_micro2.png" > </center>
-<p> Note the narrow spacings between the circles in the Fourier space which is the inverse of that displayed in the real space image. </p>
+<p> A repeated pattern produces regularly spaced features in Fourier space. If I increase the spacing between circles in the image, the corresponding frequency spacing becomes smaller. Try changing 100 to 50 in both loops and compare the results. </p>
 
 <!--Function and Image-->
 
- <h3>Functions and Images</h3>
-<p> Now I will demsonstate the simulation of 2D images from periodic functions. Additionally, I will also show how to generate their 3D counterparts.</p>
+ <h2>3. Make an image from a periodic function</h2>
+<p> I can also assign each pixel a value calculated from a function. Here I add a sine function of X to a cosine function of Y. The coordinates are dimensionless. The colors now represent the function value, rather than two separate regions.</p>
 
-<p><b><u>Periodic function 1</u></b></p>
-<p>Consider the below periodic function:
-<img src ='assets/img/eq7.jpg' height="50" width = "700">
-    Here is the code and the output for simulating 2D image.</p>
+
+<p>The function used below is:
+<code>f(X, Y) = sin(4πX) + cos(6πY)</code>.
+    Here is the code and its two-dimensional image.</p>
 
          <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
@@ -152,10 +150,10 @@ f = np.ones([50, 50])
 f = np.sin(4*np.pi*X) + np.cos(6*np.pi*Y)
 plt.imshow(f)
 </code></pre></TH>
-<TH> <img src = 'assets/img/p1.png'</TH></TR>
+<TH> <img src="assets/img/p1.png" alt="Generated example output"></TH></TR>
                     </TABLE>
 
-<p>The code for generating the 3D version of the above image is displayed below: </p>
+<p>Next I plot the same values as a surface. X and Y give the horizontal coordinates; the height is f(X, Y). This is a height plot of the same two-dimensional function, not a three-dimensional microstructure. </p>
 <TABLE border="1" width=100% >
 <TR bgcolor='lightgray' align ='center'><TH>Code</TH> <TH>Output</TH> </TR>
 
@@ -169,19 +167,21 @@ fig.colorbar(f_surf)
 
 plt.show()
 </code></pre></TH>
-<TH> <img src = 'assets/img/p1_3D.png'</TH></TR>
+<TH> <img src="assets/img/p1_3D.png" alt="Generated example output"></TH></TR>
                     </TABLE>
-<p> <mark style= background-color: yellow> The 3D version distinctly depicts the sinusoidal characteristics of the image.</mark></p>
+<p>The surface makes the peaks and valleys easier to see. Try changing one frequency coefficient and plot both views again. The 50-point example is coarse and undersamples this function. Increase it to 500 points along each axis to resolve the oscillations more clearly. For higher frequencies, increase the sample count in each <code>linspace</code> call.</p>
+<h2>Try another pattern</h2>
+<p>Change one quantity at a time: circle radius, circle spacing, or a frequency coefficient. Predict what will change before running the code, then compare your prediction with the image and its Fourier transform.</p>
+<p>For a related interactive exercise, try <a href="tutorials/microstructure-pca-game.html">reconstructing colored patterns with PCA</a>.</p>
 
-    <p><i>You can visit <b><a href='https://github.com/Bjoyita/ImageSimulation'><font color =blue>my GitHub link</font></a></b> to see more number of examples related to image simulation.</i></p>
+    <p><i>You can visit <b><a href='https://github.com/Bjoyita/ImageSimulation'><font color =blue>my GitHub link</font></a></b> to find more image-generation examples.</i></p>
 
-                     </div>
+</article>
               <!-- Footer-->
         </main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a href="PrivacyPolicy.html">Privacy policy</a>| <a href="https://bjoyita.github.io/" property="dct:title" rel="cc:attributionURL">Materials Data Explorer</a> by <a href="https://www.linkedin.com/in/joyita-de-bhattacharya-6b949b1b" property="cc:attributionName" rel="cc:attributionURL dct:creator">Joyita Bhattacharya</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" rel="license noopener noreferrer" style="display:inline-block;" target="_blank">CC BY-SA 4.0<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a></p><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer>
--->
-      <!-- Bootstrap core JS-->
+<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
 
-            </div></footer></TABLE></TR></TABLE></TABLE></TR></TABLE></div></header></body>
+</body>
 </html>
