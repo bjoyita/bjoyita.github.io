@@ -1,7 +1,7 @@
 const byId = id => document.getElementById(id);
 const dot = (a, b) => a.reduce((sum, value, i) => sum + value * b[i], 0);
 const multiply = (v, scale) => v.map(value => value * scale);
-const clouds = await fetch('../assets/explorer/pca-preview/clouds.json').then(response => {
+const clouds = await fetch('../assets/explorer/pca-series/clouds.json').then(response => {
   if (!response.ok) throw new Error('The point data could not be loaded.');
   return response.json();
 });
