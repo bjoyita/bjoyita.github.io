@@ -87,7 +87,7 @@ def run_example():
     colors = 8
     kind = 'clustered'
     width = 3
-    seed = 42
+    seed = 110
     labels = make_pattern(size, colors, kind, width, seed)
     result = analyze_pattern(labels, colors)
     for state in result['states']:
