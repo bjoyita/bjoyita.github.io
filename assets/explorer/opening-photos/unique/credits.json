@@ -232,5 +232,18 @@
     "checked": "2026-10-08",
     "changes": "Resized and recompressed as JPEG, without local cropping or color changes.",
     "description": "Colored pieces arranged in a patterned window."
+  },
+  {
+    "page": "posts/ai-materials-discovery.html",
+    "asset": "assets/explorer/opening-photos/unique/bismuth-ai.jpg",
+    "title": "Bismuth crystal.jpg",
+    "creator": "Philippe Giabbanelli",
+    "source": "https://commons.wikimedia.org/wiki/File:Bismuth_crystal.jpg",
+    "original_image": "https://upload.wikimedia.org/wikipedia/commons/3/30/Bismuth_crystal.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "checked": "2026-10-10",
+    "changes": "None. Original JPEG bytes retained.",
+    "description": "An iridescent bismuth crystal with stepped geometric faces."
   }
 ]
