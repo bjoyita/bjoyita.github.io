@@ -10,3 +10,9 @@ I use the existing Google Analytics property, `G-SPPQKTW0JB`. Each public HTML p
 I check coverage and duplicate initialization with `node --test tests/analytics.mjs`. The Google site-verification file is not a content page and stays unchanged. Analytics changes apply to future visits; they do not recover previously unrecorded visits.
 
 The sitemap lists public resources. `llms.txt` provides a short reading guide for tools that choose to use it; it does not generate visits or guarantee inclusion in AI answers.
+
+## Search descriptions and structured data
+
+I give each public page its own title, description and canonical URL. My home page identifies me with Person structured data. Articles and tutorials use BlogPosting data and refer to the same author URL. I use publication dates already shown in the article, rather than guessing dates for older articles.
+
+When I update an article, I update its description, social preview description and structured data together. I update the sitemap lastmod date for changes to the content, structured data or links. I do not change dates just to make an unchanged page appear new. Google Search Console can inspect an individual URL and accept an indexing request, but submission does not guarantee indexing or ranking.
