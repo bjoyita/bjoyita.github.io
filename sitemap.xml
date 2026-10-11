@@ -2,90 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bjoyita.github.io/</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/blog_list.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/tutorial_list.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/blog1.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/blog2_Matminer.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/blog2_materials.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/blog4_Measurement.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Blog5_SHAP.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Blog6_ANN.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Blog7_HRmat.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tutorial_1.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tutorial_2.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tutorial_3_SHAP.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tutorial_4_CNN.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tutorial5_FolderUplaoding.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut6_params.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut7_heatmap.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut8_Reg.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut9_Reg.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut10_LogReg.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut11_OrdReg.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut13_CM.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut14_2PtCorr.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/Tut_dataset.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/EvMetrics.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
   <url>
     <loc>https://bjoyita.github.io/PrivacyPolicy.html</loc>
+    <lastmod>2026-10-11</lastmod>
   </url>
-  <url><loc>https://bjoyita.github.io/posts/pca-materials.html</loc><lastmod>2026-10-09</lastmod></url>
-  <url><loc>https://bjoyita.github.io/posts/fit-and-predict.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://bjoyita.github.io/posts/materials-design-space.html</loc><lastmod>2026-10-08</lastmod></url>
-<url><loc>https://bjoyita.github.io/tutorials/pca-pixel-images.html</loc><lastmod>2026-10-08</lastmod></url>
-<url><loc>https://bjoyita.github.io/posts/svd-small-picture.html</loc><lastmod>2026-10-08</lastmod></url>
-<url><loc>https://bjoyita.github.io/posts/pca-eigenvectors.html</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://bjoyita.github.io/posts/pca-measurements.html</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://bjoyita.github.io/posts/pca-calculation.html</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://bjoyita.github.io/posts/ai-materials-discovery.html</loc><lastmod>2026-10-10</lastmod></url>
-  <url><loc>https://bjoyita.github.io/tutorials/microstructure-pca-game.html</loc><lastmod>2026-10-11</lastmod></url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/pca-materials.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/fit-and-predict.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/materials-design-space.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/tutorials/pca-pixel-images.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/svd-small-picture.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/pca-eigenvectors.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/pca-measurements.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/pca-calculation.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/posts/ai-materials-discovery.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+  <url>
+    <loc>https://bjoyita.github.io/tutorials/microstructure-pca-game.html</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
 </urlset>
