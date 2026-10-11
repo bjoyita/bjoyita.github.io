@@ -1,0 +1,20 @@
+# Materials Data Explorer
+
+> Joyita Bhattacharya's articles, Python tutorials and interactive examples connect materials science, microscopy and data analysis. The explanations begin with concrete examples and develop the code in small steps.
+
+## Browse
+- [Articles](https://bjoyita.github.io/blog_list.html): Materials, images, machine learning and materials design.
+- [Tutorials](https://bjoyita.github.io/tutorial_list.html): Practical calculations and explained code.
+
+## Begin here
+- [PCA for materials data](https://bjoyita.github.io/posts/pca-materials.html): The first article in a four-part introduction.
+- [Microstructure reconstruction game](https://bjoyita.github.io/tutorials/microstructure-pca-game.html): Generate patterns and explore PCA reconstruction.
+- [Generate simulated images](https://bjoyita.github.io/Tutorial_1.html): Build synthetic images in Python.
+- [SHAP and materials design](https://bjoyita.github.io/Blog5_SHAP.html): Interpret model predictions using thermoelectric measurements.
+- [AI and materials discovery](https://bjoyita.github.io/posts/ai-materials-discovery.html): Generative models and materials for energy and sustainability.
+
+## Sources and terms
+- [Sitemap](https://bjoyita.github.io/sitemap.xml): Public page URLs.
+- [Copyright and licensing](https://bjoyita.github.io/Copyright.html): Terms for using the material.
+
+Consult the linked articles for their definitions, assumptions, source references and limitations. Link to the original page when citing it.
