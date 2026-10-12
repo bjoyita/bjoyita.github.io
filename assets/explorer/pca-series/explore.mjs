@@ -13,7 +13,11 @@ let currentCamera = camera;
 const colors = ['#c35e25', '#16826c', '#7757a5'];
 
 // We keep the observations fixed and turn only the direction used for projection.
-const plane = clouds.plane;
+// The points are standardized yield strength and tensile strength for our 300 specimens.
+const plane = await fetch('../assets/explorer/pca-series/strength-plane.json').then(response => {
+  if (!response.ok) throw new Error('The strength data could not be loaded.');
+  return response.json();
+});
 let showPC1 = false;
 function drawProjection() {
   const degrees = Number(byId('line-angle').value);
@@ -22,11 +26,11 @@ function drawProjection() {
   const scores = plane.points.map(point => dot(point, chosen));
   const variance = scores.reduce((sum,score)=>sum+score*score,0)/(scores.length-1);
   byId('line-angle-value').value = degrees;
-  const X=x=>350+62*x, Y=y=>220-62*y;
-  const line=(v,color,width=3)=>`<line x1="${X(-3.6*v[0])}" y1="${Y(-3.6*v[1])}" x2="${X(3.6*v[0])}" y2="${Y(3.6*v[1])}" stroke="${color}" stroke-width="${width}"/>`;
+  const X=x=>350+75*x, Y=y=>220-75*y;
+  const line=(v,color,width=3)=>`<line x1="${X(-2.9*v[0])}" y1="${Y(-2.9*v[1])}" x2="${X(2.9*v[0])}" y2="${Y(2.9*v[1])}" stroke="${color}" stroke-width="${width}"/>`;
   let drawing = '<line x1="100" y1="220" x2="600" y2="220" stroke="#d3dedc"/><line x1="350" y1="20" x2="350" y2="420" stroke="#d3dedc"/>';
   // We show a few connectors to keep the picture readable, but project every point.
-  for(let i=0;i<plane.points.length;i+=23) {
+  for(let i=0;i<plane.points.length;i+=11) {
     const p=plane.points[i], q=multiply(chosen,scores[i]);
     drawing+=`<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="#d4c797" stroke-width="1"/>`;
   }
@@ -37,14 +41,14 @@ function drawProjection() {
     const q=multiply(chosen,score);
     drawing+=`<circle cx="${X(q[0])}" cy="${Y(q[1])}" r="1.8" fill="#aa851c"/>`;
   }
-  drawing+='<circle cx="350" cy="220" r="4" fill="#243c42"/><text x="350" y="457" text-anchor="middle">Coordinate 1 (dimensionless)</text><text transform="translate(25,220) rotate(-90)" text-anchor="middle">Coordinate 2 (dimensionless)</text>';
+  drawing+='<circle cx="350" cy="220" r="4" fill="#243c42"/><text x="350" y="457" text-anchor="middle">Standardized yield strength (dimensionless)</text><text transform="translate(25,220) rotate(-90)" text-anchor="middle">Standardized tensile strength (dimensionless)</text>';
   byId('fixed-points').innerHTML=drawing;
   byId('line-strip').innerHTML='<line x1="30" y1="55" x2="670" y2="55" stroke="#a2aca9"/>'+
     scores.map((score,i)=>`<circle cx="${350+score*85}" cy="${35+(i%5)*8}" r="1.5" fill="#aa851c" opacity="0.7"/>`).join('')+
     '<text x="95" y="95" text-anchor="middle">−3</text><text x="350" y="95" text-anchor="middle">0</text><text x="605" y="95" text-anchor="middle">3</text>';
   byId('line-status').textContent=`Spread along your line (variance): ${variance.toFixed(3)}. Try another angle and compare.`;
   byId('pc1-status').textContent=showPC1 ?
-    `PC1 is at ${((Math.atan2(plane.directions[0][1],plane.directions[0][0])*180/Math.PI+180)%180).toFixed(0)}°. Its variance is ${plane.variances[0].toFixed(3)}. Your line gives ${(100*variance/plane.variances[0]).toFixed(1)}% of that maximum. The blue observations have not moved.` : 'Make your prediction first.';
+    `PC1 is at ${((Math.atan2(plane.directions[0][1],plane.directions[0][0])*180/Math.PI+180)%180).toFixed(0)}°. Its variance is ${plane.variances[0].toFixed(3)}. Your line gives ${(100*variance/plane.variances[0]).toFixed(1)}% of that maximum. PC1 points along the arrow (1, 1), and its variance equals the eigenvalue 1.967 that we found in Part 3. The blue points have not moved.` : 'Make your prediction first.';
 }
 byId('line-angle').addEventListener('input',drawProjection);
 byId('find-pc1').addEventListener('click',()=>{showPC1=true;drawProjection();});

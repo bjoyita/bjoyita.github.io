@@ -32,11 +32,16 @@ directions = directions[:, order]
 # We choose a sign that makes the yield-strength coefficient positive.
 if directions[1, 0] < 0:
     directions[:, 0] *= -1
+# We fix PC2's sign as well, so that our numbers match the article.
+# With this choice, PC2's conductivity coefficient is negative.
+if directions[4, 1] > 0:
+    directions[:, 1] *= -1
 
 fractions = values / values.sum()
 scores = scaled @ directions
 print(100 * fractions)
 print(directions[:, 0])
+print(directions[:, 1])
 
 # We reconstruct all five standardized measurements using two components.
 kept = 2
@@ -45,6 +50,9 @@ reconstructed = reconstructed_scaled * standard_deviations + means
 print("Variance retained (%):", 100 * fractions[:kept].sum())
 print("RMS error in standardized values:",
       np.sqrt(np.mean((scaled - reconstructed_scaled)**2)))
+# We compare the reconstruction with the original measurements, column by column.
+errors = np.sqrt(np.mean((data - reconstructed)**2, axis=0))
+print("RMS error in original units:", errors.round(2))
 
 # We check that using all five components recovers the input.
 full = scores @ directions.T
