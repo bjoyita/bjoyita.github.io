@@ -19,7 +19,7 @@ When I update an article, I update its description, social preview description a
 
 ## Manual ad placement
 
-I use two responsive display ads in longer articles and tutorials and one in shorter articles. The homepage has one placement. Policy pages, navigation lists and the short dataset index have no placements. I keep ads between reading sections, outside code blocks and interactive exercises. Each placement is labeled Advertisement, with space above and below it. Empty units collapse when Google marks them unfilled.
+I use two responsive display ads in longer articles and tutorials and one in shorter articles. The homepage has one central placement and two side placements on screens at least 1200 pixels wide. The side units are not requested on smaller screens or local previews. They scroll with the page and do not cover content. Policy pages, navigation lists and the short dataset index have no placements. I keep ads between reading sections, outside code blocks and interactive exercises. Each placement is labeled Advertisement, with space above and below it. Empty units collapse when Google marks them unfilled.
 
 I keep the reading breaks in `tools/manual-ad-placements.json`. To change a placement, I update its heading or paragraph prefix there and run `python tools/place_manual_ads.py` from the repository root. This needs `beautifulsoup4`. The script retains the surrounding HTML formatting. I check the placement counts with `node --test tests/*.mjs` and inspect the changed pages in a browser.
 
