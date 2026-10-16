@@ -42,7 +42,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <link rel="stylesheet" href="assets/explorer/opening-photos/opening.css?v=unique-20261008"><script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Tut14_2PtCorr.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="How to Code 2-Point Spatial Correlations for Materials Microstructures | Materials Data Explorer"><meta property="og:description" content="Tutorial on how to code 2 point statistics to find out correlations from a microstructure of a material."><meta property="og:url" content="https://bjoyita.github.io/Tut14_2PtCorr.html"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/opening-photos/unique/honeycomb.jpg"><meta property="og:image:alt" content="A honeybee on a repeating honeycomb structure."><meta name="twitter:card" content="summary_large_image">
@@ -70,7 +70,13 @@
 
                         <p>Observe in the above photo how different-sized Lego pieces are joined together to make the pyramid-like structure. Similarly, materials are also made up of micro and macro structures. Each of these features is interlinked to various properties of materials. I have discussed this structural hierarchy of materials in my blog post, <a href='https://bjoyita.github.io/Blog7_HRmat.html' style="color: blue">'Exploring Hierarchical Materials'</a>. Materials hierarchy is not only limited to organising but also to correlating different length-scaled structures impacting the materials properties and subsequently the performance metrics. In other words, the structural properties govern the functional properties of materials. We can view the structural features of materials using different types of microscopes. Also, it is crucial to understand the spatial distributions of these features mathematically using <a href='https://en.wikipedia.org/wiki/Correlation_function_(statistical_mechanics)' style="color: blue">correlation functions</a>. </p>
                         <p>This tutorial provides a comprehensive coding guidance to compute 2-point correlation functions.</p>
-                        <h4 style="font-family: cursive"> Coding 2-Point correlations using <a href='https://pymks.readthedocs.io/en/stable/rst/README.html' style="color: blue">PyMKS</a></h4>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<h4 style="font-family: cursive"> Coding 2-Point correlations using <a href='https://pymks.readthedocs.io/en/stable/rst/README.html' style="color: blue">PyMKS</a></h4>
                         <p><i>Before diving into the coding activity, it is important to get aquainted with a few terms associated with correlation functions.</i> </p>
 
                         <p><li><b>1-point correlation function (1-point statistics):</b>Denotes the probability of finding a stucture or feature at one particular point. 1-point statistics compute the volume fractions of the local states in the microstructure</li>
@@ -115,12 +121,7 @@ plt.show()</code></pre>
 
                     <span class="caption text-muted">Simulated Binary image with 2 phases (Phase 1: Black matrix; Phase 2: White circles)  </span>
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
-                    <p><h5>Step 3: Adding Sample and Phase axes to image shape</h5>
+<p><h5>Step 3: Adding Sample and Phase axes to image shape</h5>
                     <p><mark style="background-color: beige">PyMKS requires certain data shapes for 2-point spatial correlation calculations. To compute 2-point correlations for <b>two-dimensional microstructure, PyMKS requires a 4-dimensional array</b>.</mark></p>
                     <center><img src='assets/img/4Dim.jpg' width=100% alt='table showing 4 axes'></center>
                     <p> <i>In the phase axis, the specific phase is encoded as '1's and the rest of the image gets '0's-analogous to one-hot encoding in image analysis.</i></p>
@@ -228,12 +229,13 @@ count_c/(xsize*ysize)</code></pre>
 0.1268</code></pre>
         <h6>Circular phase: ~ 13%</h6>
 
+
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-                           <p><h4>Example 2: Real Microstructure (Scanning electron micrograph of Pearlite)</h4></p>
+<p><h4>Example 2: Real Microstructure (Scanning electron micrograph of Pearlite)</h4></p>
 
                     <p> <b>&check;</b> Load the image as shown in example 1</p>
                     <pre style="background-color:gainsboro"><code>im_s=io.imread('test2pt.jpg')

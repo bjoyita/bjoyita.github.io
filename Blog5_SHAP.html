@@ -40,7 +40,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Blog5_SHAP.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="Shapley Value aided Recipe for Materials Design | Materials Data Explorer"><meta property="og:description" content="A SHAP tutorial using thermoelectric materials to explain feature contributions, read summary plots, and identify candidates for further study."><meta property="og:url" content="https://bjoyita.github.io/Blog5_SHAP.html"><meta name="twitter:card" content="summary">
@@ -81,6 +81,12 @@
 
 <p>I will give you a brief overview of the concept before delving into the machine learning analysis and insights. </p>
 
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h3>A short introduction to Shapley value</h3>
 <p>The <b><a href="https://christophm.github.io/interpretable-ml-book/shapley.html">Shapley value</a></b> is a concept from cooperative game theory developed by L. S. Shapley. I calculate a participant’s contribution by considering every possible order in which participants can join a group. For each order, I find how much the participant adds when they join, then average these marginal contributions over the orders.</p>
 <p>Let us take an example. Three friends, X, Y, and Z, donated <b>$1200</b> to an orphanage. To calculate their Shapley values, I make the following assumptions:</p>
@@ -98,12 +104,7 @@
 </p>
     <p>I will now proceed to demonstrate the usefulness of SHAP value in designing a high-performance <b><a href ="https://www.frontiersin.org/articles/10.3389/femat.2021.677845/full">thermoelectric material</a></b> from the available experimental database of several compositions. I have used Google Colab to run the entire code.</p>
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
-                        <h4>Case study: A SHAP-based approach in search of efficient thermoelectric materials </h4>
+<h4>Case study: A SHAP-based approach in search of efficient thermoelectric materials </h4>
                         <p><h5>About Thermoelectrics</h5>
                         <p>Thermoelectric materials have the ability to generate electricity from heat and vice versa, making them a significant component of 'green energy' initiatives. Given the interplay between heat and electricity in these materials, the parameters of thermal conductivity (&kappa;) and electrical conductivity (&sigma;) are closely intertwined for calculating performance metrics such as ZT or the figure of merit. Additionally, the calculation of ZT involves another crucial parameter known as the Seebeck coefficient (S), which acts as a conversion factor governing the transformation of thermal and electrical energy. The relationship of ZT with these three parameters, S, &sigma;, and &kappa;, at an absolute temperature, T, is as follows:
                             </p>
@@ -153,12 +154,13 @@ shap_values_s = explainer.shap_values(X_train_s)
 shap.summary_plot(shap_values_s, X_train_s)
 </code></pre>
 
+
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-                    <p> <h5>
+<p> <h5>
 Understanding the role of SHAP plots in materials design
 </h5>
                     <p>The SHAP plot, with the X-axis representing SHAP values and the Y-axis representing features, provides valuable insights into materials design. By examining the plot, we can easily identify the elements that make a positive contribution to predicted &sigma; , which is important for thermoelectric materials. In this case, the elements iron (Fe), sodium (Na), tellurium (Te), and antimony (Sb) are identified as having a strong positive contribution to &sigma; for some of the samples shown. I read this from the horizontal position of the points, not their color.</p>

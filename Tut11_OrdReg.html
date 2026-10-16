@@ -40,7 +40,7 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Tut11_OrdReg.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="How to Apply Ordinal Logistic Regression for prediction of Materials Properties | Materials Data Explorer"><meta property="og:description" content="Tutorial on ordinal logistic regression and its application in materials science."><meta property="og:url" content="https://bjoyita.github.io/Tut11_OrdReg.html"><meta name="twitter:card" content="summary">
@@ -78,18 +78,19 @@
                         <p>Here comes the role of <b><u style='text-decoration-color: gold'>ordinal logistic regression</u></b>. The word <i>‘ordinal’</i> means sequence or order. Hence, ordinal regression is a type of logistic regression used for modeling and predicting ordinal variables, where the categories have a natural order in a meaningful way. For instance, the <a href='https://www.scribbr.com/methodology/likert-scale/'><b style='color:darkblue'>Likert scale</b></a>, or customer satisfaction surveys - the response variable in all of these falls into <b>ordered categories</b>.</p>
 <p>In this tutorial, we'll explore how to apply ordinal regression in coding to predict material properties with more than two categories. By the end, you'll gain the skills to model and interpret such data for your own projects effectively. Let's get started!</p>
 
-<h4>The Dataset</h4>
-<p>Data is the precursor to building efficient models in machine learning. Hence, amassing sufficient and necessary data is the very first step. I have used a <a href='https://bjoyita.github.io/Tut_dataset.html'><b style='color: darkblue'>hypothetically generated dataset</b></a> on the corrosion properties of <b>150 metals and alloys</b>.</p>
-                        <p></p>There are <b><u style='text-decoration-color: gold'>four independent variables (Xs)</u></b> namely corrosion rate, corrosion current density, polarization resistance, and media.
-                        <p>The <b>target variable (y)</b> is corrosion property categorized as <u style='text-decoration-color: gold'><b>'poor'</b>, <b>'fair'</b>, and <b>excellent</b>.</u></p>
-
 
 <aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-                        <h4>The Coding</h4>
+<h4>The Dataset</h4>
+<p>Data is the precursor to building efficient models in machine learning. Hence, amassing sufficient and necessary data is the very first step. I have used a <a href='https://bjoyita.github.io/Tut_dataset.html'><b style='color: darkblue'>hypothetically generated dataset</b></a> on the corrosion properties of <b>150 metals and alloys</b>.</p>
+                        <p></p>There are <b><u style='text-decoration-color: gold'>four independent variables (Xs)</u></b> namely corrosion rate, corrosion current density, polarization resistance, and media.
+                        <p>The <b>target variable (y)</b> is corrosion property categorized as <u style='text-decoration-color: gold'><b>'poor'</b>, <b>'fair'</b>, and <b>excellent</b>.</u></p>
+
+
+<h4>The Coding</h4>
                         <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step1: Importing relevant libaries and loading the dataset</h5>
 
                                             <p><pre style="background-color: gainsboro"><code>import numpy as np

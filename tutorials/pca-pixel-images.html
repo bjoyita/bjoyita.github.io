@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="../assets/explorer/site.css?v=tutorial-20261008">
 <link rel="stylesheet" href="../assets/explorer/opening-photos/opening.css?v=unique-20261008"><script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "PCA with small pixel images", "description": "Build PCA step by step with small grayscale images, NumPy code, an interactive reconstruction and worked self-checks.", "author": {"@type": "Person", "@id": "https://bjoyita.github.io/#joyita", "name": "Joyita Bhattacharya", "url": "https://bjoyita.github.io/"}, "mainEntityOfPage": "https://bjoyita.github.io/tutorials/pca-pixel-images.html", "url": "https://bjoyita.github.io/tutorials/pca-pixel-images.html", "datePublished": "2026-10-08", "image": "https://bjoyita.github.io/assets/explorer/opening-photos/unique/glass.jpg", "dateModified": "2026-10-11"}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/explorer/ads.css?v=20261016-manual">
 </head>
 <body class="mdx-modern"><nav class="mdx-nav" aria-label="Main navigation"><a class="mdx-brand" href="../index.html"><img src="../assets/img/logo_mdxp.png" alt="" width="40" height="40"><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="../index.html">Home</a><a href="../blog_list.html">Articles</a><a href="../tutorial_list.html" aria-current="page">Tutorials</a></div></nav>
 <main><article>
@@ -23,7 +25,13 @@
 <p><strong>Allow 45–60 minutes.</strong> You need basic Python and array indexing. I explain the new quantities as we use them. Start with the interactive example, then run the code cells in order.</p>
 <p><a href="../assets/explorer/pixel-pca/pixel-pca.ipynb" download>Download the notebook</a> · <a href="../assets/explorer/pixel-pca/pixel-pca.py" download>Download the Python script</a> · <a href="../posts/pca-materials.html">Read the PCA introduction</a></p>
 <p>In Jupyter or Colab, open the downloaded notebook and run its cells from top to bottom. For a local Python installation, install the packages with <code>python -m pip install numpy matplotlib</code>, then run <code>python pixel-pca.py</code>. No external images are required.</p>
-<section class="playground" aria-labelledby="play-title"><h2 id="play-title">Reconstruct a pixel image</h2>
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<section class="playground" aria-labelledby="play-title">
+<h2 id="play-title">Reconstruct a pixel image</h2>
 <p>Each image has 6 × 6 pixels. The 24 images vary in left/right and top/bottom brightness contrast. They are synthetic images, with dimensionless brightness from 0 to 1.</p>
 <div class="controls"><label>Image index: <output id="sample-value">3</output><br><input id="sample" type="range" min="0" max="23" step="1" value="3"></label><label>Components retained: <output id="rank-value">1</output><br><input id="rank" type="range" min="0" max="2" step="1" value="1"></label><button id="reset" type="button">Reset</button></div>
 <div id="panels" class="pixel-panels"></div><p id="readout" class="readout" aria-live="polite">Loading the pixel data…</p>
@@ -78,7 +86,13 @@ print(&quot;Data matrix shape:&quot;, X.shape)
 restored = X[0].reshape(size, size)
 assert X.shape == (24, 36)
 assert np.array_equal(restored, images[0])</code></pre><p class="readout"><strong>Check:</strong> Reshaping the first row back into 6 × 6 recovers the first image exactly.</p><details><summary>Read the code, line by line</summary><p>PCA expects a table with observations in rows and features in columns. <code>reshape(sample_count, size * size)</code> changes the arrangement of the numbers without changing the numbers themselves. The default order reads each image row by row.</p><p>There are 24 observations and 36 features. I then reshape the first data row back into a 6 × 6 image. <code>np.array_equal</code> checks that it is identical to the first original image. This confirms that the conversion is reversible.</p></details></section>
-<section><h2>4. Subtract the mean image</h2><p>The mean of a feature is its average over all 24 images. I calculate a separate mean for each of the 36 pixel positions. Subtracting these means centers the data. The centered entries can be negative: they represent brightness below the mean, not an invalid negative brightness. I do not standardize the pixels here. All pixels use the same brightness scale; standardization would give a different analysis.</p><pre><code># I calculate one mean for each pixel position.
+<section>
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<h2>4. Subtract the mean image</h2><p>The mean of a feature is its average over all 24 images. I calculate a separate mean for each of the 36 pixel positions. Subtracting these means centers the data. The centered entries can be negative: they represent brightness below the mean, not an invalid negative brightness. I do not standardize the pixels here. All pixels use the same brightness scale; standardization would give a different analysis.</p><pre><code># I calculate one mean for each pixel position.
 mean_row = X.mean(axis=0)
 X_centered = X - mean_row
 mean_image = mean_row.reshape(size, size)

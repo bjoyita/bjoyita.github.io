@@ -16,3 +16,11 @@ The sitemap lists public resources. `llms.txt` provides a short reading guide fo
 I give each public page its own title, description and canonical URL. My home page identifies me with Person structured data. Articles and tutorials use BlogPosting data and refer to the same author URL. I use publication dates already shown in the article, rather than guessing dates for older articles.
 
 When I update an article, I update its description, social preview description and structured data together. I update the sitemap lastmod date for changes to the content, structured data or links. I do not change dates just to make an unchanged page appear new. Google Search Console can inspect an individual URL and accept an indexing request, but submission does not guarantee indexing or ranking.
+
+## Manual ad placement
+
+I use two responsive display ads in longer articles and tutorials and one in shorter articles. The homepage has one placement. Policy pages, navigation lists and the short dataset index have no placements. I keep ads between reading sections, outside code blocks and interactive exercises. Each placement is labeled Advertisement, with space above and below it. Empty units collapse when Google marks them unfilled.
+
+I keep the reading breaks in `tools/manual-ad-placements.json`. To change a placement, I update its heading or paragraph prefix there and run `python tools/place_manual_ads.py` from the repository root. This needs `beautifulsoup4`. The script retains the surrounding HTML formatting. I check the placement counts with `node --test tests/*.mjs` and inspect the changed pages in a browser.
+
+Auto ads are off in AdSense, and the offerwall is unpublished. I keep full-screen and overlay ads off. These account settings are separate from the HTML, so I check them in AdSense when changing advertising settings. Manual placements do not guarantee that Google will fill each request or that earnings will increase.

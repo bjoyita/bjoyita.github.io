@@ -40,7 +40,7 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <link rel="stylesheet" href="assets/explorer/opening-photos/opening.css?v=unique-20261008"><script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Tut13_CM.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="How to Read Confusion Matrix for Multi-Class Classification | Materials Data Explorer"><meta property="og:description" content="Tutorial on reading and interpreting multi-class confusion matrix."><meta property="og:url" content="https://bjoyita.github.io/Tut13_CM.html"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/opening-photos/unique/flowers.jpg"><meta property="og:image:alt" content="Distinct areas of color in a flower garden."><meta name="twitter:card" content="summary_large_image">
@@ -75,12 +75,13 @@
                         <img src='assets/tut10&11/CM.jpg' width=60% style='float:right; margin-bottom:5 px; margin-left: 5 px' alt='Confusion matrix for a binary classification'><p>As the name suggests, <b>binary classification</b> results in a dichotomous outcome, such as 'yes' or 'no', 'present' or 'absent'. If the actual and predicted values coincide, the result is categorized as either a True Positive or a True Negative, depending on the presence or absence of the variable. Conversely, if the actual and predicted values do not match, the outcome is categorized as either a False Positive or a False Negative.
                         <p>However, in real-world applications, we frequently encounter <b>multiclass systems </b>that offer a broader range of possible outcomes. <p><i style='background-color: antiquewhite'>Let’s discuss how to read the confusion matrix accurately in these more complex scenarios.</i></p>
 
+
 <aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-                        <h4>Interpretation of a Confusion Matrix for a Multi-class Classification</h4>
+<h4>Interpretation of a Confusion Matrix for a Multi-class Classification</h4>
 <p>Let me take an example of a confusion matrix generated from a <b><a href="https://bjoyita.github.io/Tut_dataset.html" style ='color: blue'>dataset </a></b> capturing the corrosion properties of 150 metals and alloys. The snapshot of the dataset is displayed below for reference.The output variable,y (corrosion resistance) column has three outcomes: ‘Poor ’, ‘Fair’, and ‘Excellent’. The remaining columns are input variables (Xs).</p>
                         <p><center><img src='assets/tut10&11/dataframe.jpg' width="100%" alt='dataset'></center></p>
 <p>The confusion matrix and the encoded categories are displayed below:</p>

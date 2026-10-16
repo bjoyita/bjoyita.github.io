@@ -37,7 +37,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/blog4_Measurement.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="Materials Data Mining via Image Processing of Micrographs -II | Materials Data Explorer"><meta property="og:description" content="Measure microstructural features from images and use them in materials data analysis."><meta property="og:url" content="https://bjoyita.github.io/blog4_Measurement.html"><meta name="twitter:card" content="summary">
@@ -71,6 +71,12 @@
     <h2> Background</font></h2>
                     <p>My previous post <a href='blog2_materials.html'>'Materials Data Mining via Image Processing of Micrographs-I'</a> explained some of the basic and crucial steps of micrograph processing for the identification of features. As stated earlier, micrographs capture fine micron/sub-micron sized features of materials that can significantly impact their properties. Here, I will be discussing the quantitative assessment of one such feature-'particle size' using <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a>.
 
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h3>Measurement of parameters</h3>
 
 <p><b>Case Study 1: Retrieving individual particle size from clusters applying Watershed algorithm</b></p>
@@ -108,11 +114,6 @@ plt.imshow(im1, cmap ='gray')</code></pre>
 <p>The mean thresholding method is found to be most suitable for this image after it is subjected to other thresholding methods using the try_all_threshold function.</p>
 
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
 <p><b><i>Step 4: Computing the Euclidean distance transform</i></b></p>
 
                     <p>The <a href="https://en.wikipedia.org/wiki/Euclidean_distance"><font color=blue>Euclidean distance </font></a>is a measure of the closest distance between any two pixels in the image. Each pixel of the image is categorized as either a source/background pixel (with zero intensity) or an object pixel (with non-zero intensity). We observe a descending gradient in Euclidean distances from the center of any object to the background. This is beautifully captured in the distance map obtained from the image:</p>
@@ -141,6 +142,7 @@ markers,_= ndi.label(mask)</code></pre>
 
 <center><img src ="assets/img/image_dist_segmented.jpg" width=100%></center>
 <span class="caption text-muted">Code output displaying original image, distance map, and segmented image (after applying watershed function)</span>
+
 
 
 

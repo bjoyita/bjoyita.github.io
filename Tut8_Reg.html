@@ -40,7 +40,7 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <link rel="stylesheet" href="assets/explorer/opening-photos/opening.css?v=unique-20261008"><script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Tut8_Reg.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="Assessing Evaluation Metrics for Regression Analysis with a Single Input Variable (Part I) | Materials Data Explorer"><meta property="og:description" content="Calculate prediction errors and R-squared for regression with a single input variable."><meta property="og:url" content="https://bjoyita.github.io/Tut8_Reg.html"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/opening-photos/unique/rings.jpg"><meta property="og:image:alt" content="Growth rings in a tree cross-section."><meta name="twitter:card" content="summary_large_image">
@@ -86,7 +86,13 @@ The dataset comprises 204 thermoelectric materials (compositions), their room te
                         <p><center><img src='assets/Tut8_9_Reg/eqZT.jpg' width="80%"></center></p>
                         <p>Let’s now go through the coding steps to compute the error functions and performance metrics.</p>
 
-                        <h4>Simple Linear Regression Analysis with a Single Input Feature</h4>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<h4>Simple Linear Regression Analysis with a Single Input Feature</h4>
                         <p><u>Coding for Computing Error/Loss functions and performance metric </u></p>
                     <p><b>Step 1: Importing the relevant libraries and loading the dataset</b></p>
 
@@ -168,12 +174,7 @@ r2_score_lr
                         <p><i> Therefore, we can <b>apply polynomial regression fitting</b> to see if there is any improvement in the model's performance. </i></p>
 
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
-                        <h4>Polynomial Linear Regression Analysis with Single Input Feature</h4>
+<h4>Polynomial Linear Regression Analysis with Single Input Feature</h4>
                         <p>We now fit a polynomial regression model to the training dataset using the same input variable, kappa to observe any improvement in the R<sup>2</sup> value. We will be using the same dataset as before. So, let's directly move to the polynomial regression part.</p>
                         <p><b>Import <a href='https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html'><b><font color=blue>PolynomialFeatures</font></b></a> from sklearn.preprocessing class</b> for polynomial regression fitting. <b>'PolynomialFeatures' generates a new feature matrix</b> of polynomial combinations with specified degrees followed by applying the fit_tranform() method to the input variable. </p>
 

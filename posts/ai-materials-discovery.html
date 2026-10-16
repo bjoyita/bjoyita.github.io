@@ -6,7 +6,7 @@
 <link rel="canonical" href="https://bjoyita.github.io/posts/ai-materials-discovery.html">
 <meta property="og:type" content="article"><meta property="og:title" content="AI can help us write. Can it help us discover new materials?"><meta property="og:description" content="From thermoelectrics and waste heat to batteries and solar cells: how materials AI could help us choose promising candidates for a more sustainable future."><meta property="og:url" content="https://bjoyita.github.io/posts/ai-materials-discovery.html"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/opening-photos/unique/bismuth-ai.jpg"><meta property="og:image:alt" content="An iridescent bismuth crystal with stepped geometric faces."><meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI can help us write. Can it help us discover new materials?", "description": "From thermoelectrics and waste heat to batteries and solar cells: how materials AI could help us choose promising candidates for a more sustainable future.", "datePublished": "2026-10-10", "dateModified": "2026-10-11", "author": {"@type": "Person", "@id": "https://bjoyita.github.io/#joyita", "name": "Joyita Bhattacharya", "url": "https://bjoyita.github.io/"}, "image": "https://bjoyita.github.io/assets/explorer/opening-photos/unique/bismuth-ai.jpg", "mainEntityOfPage": "https://bjoyita.github.io/posts/ai-materials-discovery.html", "url": "https://bjoyita.github.io/posts/ai-materials-discovery.html"}</script>
-<link rel="stylesheet" href="../assets/explorer/posts.css"><link rel="stylesheet" href="../assets/explorer/site.css"><link rel="stylesheet" href="../assets/explorer/opening-photos/opening.css?v=unique-20261008"><link rel="stylesheet" href="../assets/explorer/ads.css?v=20261010-placements">
+<link rel="stylesheet" href="../assets/explorer/posts.css"><link rel="stylesheet" href="../assets/explorer/site.css"><link rel="stylesheet" href="../assets/explorer/opening-photos/opening.css?v=unique-20261008"><link rel="stylesheet" href="../assets/explorer/ads.css?v=20261016-manual">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159" crossorigin="anonymous"></script>
 <script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 </head><body class="mdx-modern"><nav aria-label="Main navigation" class="mdx-nav"><a class="mdx-brand" href="../index.html"><img alt="" height="40" src="../assets/img/logo_mdxp.png" width="40"/><span>Materials Data Explorer</span></a><div class="mdx-nav-links"><a href="../index.html">Home</a><a aria-current="page" href="../blog_list.html">Articles</a><a href="../tutorial_list.html">Tutorials</a></div></nav><main><article>
@@ -23,17 +23,18 @@
 <p>In my <a href="materials-design-space.html">alloy design-space post</a>, five elements distributed in steps of five atomic percent give <strong>10,626 possible compositions</strong>, including combinations where some elements are absent. Adding different structures and processing conditions increases the possibilities.</p>
 <p>We cannot prepare and test everything. Which candidates should we investigate first?</p>
 <p>As discussed in my <a href="../blog2_Matminer.html">Matminer and Pymatgen post</a>, composition is only part of the problem. Processing and structure also influence properties and performance.</p>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h2>From proteins to materials</h2>
 <p>Many of us have heard about Google DeepMind’s AlphaFold, which predicts protein structures. AlphaFold 3 also predicts structures involving interactions between biological molecules and uses a diffusion-based method. <a href="https://blog.google/innovation-and-ai/products/how-we-built-alphafold-3/">Google explains it here</a>.</p>
 <p>This suggests an interesting possibility for materials, where atomic arrangements also affect behavior. However, AlphaFold is a specialized scientific model, rather than a conversational LLM. Materials design requires models developed for its own scientific questions.</p>
 <p>Microsoft’s <strong>MatterGen</strong> is one example. It generates candidate inorganic crystal structures and can be adapted to selected property targets. <a href="https://www.nature.com/articles/s41586-025-08628-5">The research paper describes its capabilities and tests</a>.</p>
 <p>During training, diffusion models introduce randomness into known examples and learn how to remove it. Generation starts from a randomized representation and repeatedly refines it into a candidate. MatterGen works with atom types, atomic positions and the repeating crystal cell. This is not a simulation of atoms physically diffusing.</p>
 <p>DeepMind’s <strong>GNoME</strong> uses a different approach to explore crystal stability. <a href="https://deepmind.google/blog/millions-of-new-materials-discovered-with-deep-learning/">Its explanation is available here</a>.</p>
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-<p class="article-ad-label">Advertisement</p>
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(window.adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</aside>
 <h2>A thermoelectric example</h2>
 <p>For electricity generation, we generally seek a large <strong>Seebeck coefficient</strong>, which describes voltage produced per temperature difference, high <strong>electrical conductivity</strong>, and low <strong>thermal conductivity</strong>.</p>
 <p>These properties are coupled. Changing composition may improve one while worsening another.</p>

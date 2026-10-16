@@ -40,7 +40,7 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <link rel="stylesheet" href="assets/explorer/opening-photos/opening.css?v=unique-20261008"><script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/Tutorial_4_CNN.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="Classification of Microstructures using Convolutional Neural Network | Materials Data Explorer"><meta property="og:description" content="Tutorial on building CNN model for microstructure classification."><meta property="og:url" content="https://bjoyita.github.io/Tutorial_4_CNN.html"><meta property="og:image" content="https://bjoyita.github.io/assets/explorer/opening-photos/unique/butterflies.jpg"><meta property="og:image:alt" content="Butterfly specimens with different wing patterns."><meta name="twitter:card" content="summary_large_image">
@@ -84,7 +84,13 @@
                     <p><b>&#10103;  Identifying the microstructure and splitting the dataset into training and test data  (~80:20)</b>
                         <p>First, the four types of microstructures of steel, namely network, pearlite-spheroidite, martensite and pearlite, are manually identified from the image dataset. Further, they are grouped and stored in four folders and split into training and test data. A folder structure diagram is shown below for clarity.</p>
                     <center><img src="assets/T4_Im/Train_test_1.jpg" width=100%></center>
-                    <p><b>&#10104; Loading the image dataset in Python</b></p>
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<p><b>&#10104; Loading the image dataset in Python</b></p>
                     <p>Begin with <b>importing the relevant Python libraries</b>.</p>
                         <pre style="background-color: gainsboro"><code>import tensorflow as tf
 from tensorflow import keras
@@ -120,12 +126,7 @@ test_set = test_datagen.flow_from_directory('/Users/saswa/Documents/Joyita_2023/
                     <pre style="background-color: greenyellow"><code>Found 102 images belonging to 4 classes.
                     </code></pre>
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
-                    <p><b>&#10105; Building Convolutional Neural Network (CNN) </b></p>
+<p><b>&#10105; Building Convolutional Neural Network (CNN) </b></p>
                     <p>Aim of the model is to identify or, more appropriately in ML language, <b>'classify'</b> the micrographs.</p>
 <p>CNN is a deep learning algorithm used for images, and it consists of multiple layers arranged sequentially.</p>
                     <p><b>Code</b></p>
@@ -201,12 +202,13 @@ Epoch 6/50
                         <p>Validation data is used to evaluate the loss at the end of each epoch.</p>
 
 
+
 <aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-                        <p><b>&#10107; Making Predictions</b></p>
+<p><b>&#10107; Making Predictions</b></p>
 <p>Finally, we use the predict method to make prediction for an unknown data. Let’s try to predict an untrained network microstructure using the above trained CNN model.
     <p><center><img src='assets/T4_Im/unknown.jpg' width='60%'><span class="caption text-muted" >Untrained network microstructure</span></center></p>
 

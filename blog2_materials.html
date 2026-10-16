@@ -37,7 +37,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/explorer/ads.css">
+    <link rel="stylesheet" href="assets/explorer/ads.css?v=20261016-manual">
 <link rel="stylesheet" href="assets/explorer/site.css">
 <script defer src="/assets/explorer/analytics.js?v=20261011"></script>
 <link rel="canonical" href="https://bjoyita.github.io/blog2_materials.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Materials Data Explorer"><meta property="og:title" content="Materials Data Mining via Image Processing of Micrographs - I | Materials Data Explorer"><meta property="og:description" content="Extract materials data from micrographs using image processing and discuss what the measurements represent."><meta property="og:url" content="https://bjoyita.github.io/blog2_materials.html"><meta name="twitter:card" content="summary">
@@ -80,6 +80,12 @@
 
                     <p>Edge detection by manual observation is a tedious task and involves various human errors. To minimize such errors, one needs to automate such a process. Automation of the process requires implementation of robust digital image processing and data mining algorithms. Now that I have highlighted the importance of digital image analysis of micrographs, let me walk you through some of the basic processing steps. I have used the open-source python-based library, <a href="https://scikit-image.org/"><font color=blue>scikit-image</font></a> for demonstration. You can also explore OpenCV, PIL for the same purpose.</p>
 
+
+<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h3>Viewing the image and obtaining shape</h3>
 
 <p>The code snippet below shows how to read an image and find its dimensions or 'shape'. The shape attribute yields the dimensions of the image in the form of a tuple. In this current micrograph, it is (1800, 1500)-the height and width being 1800 and 1500 pixels, respectively. Note that it is a grayscale image since the third item in the tuple is not mentioned and takes the default value of 1.</p>
@@ -117,12 +123,7 @@ ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
         <center><img src ="assets/img/gamma1.jpg" width="100%"></center>
         <span class="caption text-muted"> Gamma-corrected micrograph</span>
 
-<aside class="article-ad" id="article-ad-1" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
-                    <h3>Thresholding for image segmentation: Creating Binary image</h3>
+<h3>Thresholding for image segmentation: Creating Binary image</h3>
 
                     <p>Thresholding is required when we need to separate the image background from the foreground based on pixel intensity. For example, in the case of <a href="https://matmatch.com/learn/material/superalloys"><font color=blue>superalloy</font></a> (material for jet engines of airplanes, gas turbines) microstructures, the background is the base metal, and the foreground is comprised of precipitates which imparts super strength to this type of material. Sometimes, the background can be just the sample holder used to load the sample for investigation under microscopes. The image used for thresholding, in this case, shows four-corned particles on a transmission electron microscope (TEM) grid/ holder. Different types of thresholding methods are applied to distinguish the background (TEM grid) from the particles. For the given micrograph, we find the mean thresholding is doing a better job than the other methods by clearly forming a binary image as shown in the code output snippet.</p>
 
@@ -131,6 +132,12 @@ ax[1].set_title("Sharpened",fontsize = 10)</code></pre>
 
 <p>The above methods are some of the preliminary steps to obtain a noise-free image before subjecting it to further processing for extraction of meaningful features both qualitative and quantitative. As mentioned at the beginning of this post, particle size is one of the vital parameters/ features controlling the properties of a material. To estimate the particle size from an image, we need to detect the edges of the particles vividly. And this task becomes easy using various edge-detection filters. Here, I will be discussing a few of them.</p>
 
+
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h3>Edge Detection using Roberts, Sobel, Canny filters</h3>
 
                     <p><a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.roberts"><font color = blue>Roberts</font></a> and <a href="https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.sobel"><font color=blue> Sobel</font></a> filters are 2 x 2 and 3 x 3 convolution kernels respectively. Both filters have x and y components for horizontal and vertical edge detection. Code snippets for the Sobel kernel operations along with the corresponding outputs are displayed below.</p>
@@ -147,11 +154,6 @@ p_sobel_h=sobel_h(p_g)</code></pre>
                     <p><b><a href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.canny"><font color=blue>Canny filter</font></a></b> does a multi-tasking job by smoothing, gradient approximation by Sobel operators, detecting the edges using hysteresis thresholding. The function 'canny' has parameters such as sigma for the Gaussian smoothing and low and high threshold.
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
-  <p class="article-ad-label">Advertisement</p>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</aside>
 <h3>Gabor Filter for detecting Edge orientations</h3>
 
                     <p>This linear filter captures the <b>texture or orientation distribution</b> of features in the microstructure. Orientation distribution determines the uniformity of materials property. Random orientation of particles/grains leads to uniform/ isotropic properties while orientation in a particular direction, technically termed as <i>preferred orientation</i>, gives rise to anisotropic properties. The complex sinusoid component of the Gabor filter provides information related to orientation. The output of the said filter has both real and imaginary components. To know more about Gabor filters, please click <a href="http://ttsuchi.github.io/2015/08/26/gaborfilters.html"><font color=blue>here</font></a>.</p>
