@@ -1,32 +1,154 @@
 {
-  "Blog5_SHAP.html": ["A short introduction to Shapley value", "Understanding the role of SHAP plots"],
-  "Blog6_ANN.html": ["A case study", "Plotting and interpreting Shap values"],
-  "Blog7_HRmat.html": ["Man-made hierarchical materials"],
-  "Tut10_LogReg.html": ["Task 3: Encoding Categorical Data"],
-  "Tut11_OrdReg.html": ["The Dataset"],
-  "Tut13_CM.html": ["Interpretation of a Confusion Matrix"],
-  "Tut14_2PtCorr.html": ["Coding 2-Point correlations", "Example 2: Real Microstructure"],
-  "Tut6_params.html": ["The Calculations"],
-  "Tut7_heatmap.html": ["Coding for generation of heatmap"],
-  "Tut8_Reg.html": ["Simple Linear Regression Analysis"],
-  "Tut9_Reg.html": ["Input Feature Importance"],
-  "Tutorial5_FolderUplaoding.html": ["Step 5: Load and extract"],
-  "Tutorial_1.html": ["Start with NumPy and Matplotlib", "Compare the patterns in Fourier space"],
-  "Tutorial_2.html": ["Unsharp Masking filter"],
-  "Tutorial_3_SHAP.html": ["Step 1: Import and Install", "Step 8: Unleashing"],
-  "Tutorial_4_CNN.html": ["❸ Loading the image dataset", "❻ Making Predictions"],
-  "blog1.html": ["Digital Image and Fourier Transform", "Spatial domain to Frequency domain"],
-  "blog2_Matminer.html": ["Materials Data", "A Step-by-Step Guide to Preprocessing"],
-  "blog2_materials.html": ["Viewing the image and obtaining shape", "Edge Detection using Roberts"],
-  "blog4_Measurement.html": ["Measurement of parameters", "Case Study 2: Measurement"],
-  "posts/ai-materials-discovery.html": ["From proteins to materials"],
-  "posts/fit-and-predict.html": ["Two errors answer different questions"],
-  "posts/materials-design-space.html": ["Why do the counts grow so quickly?"],
-  "posts/pca-calculation.html": ["Where do eigenvectors enter?", "How much does a simpler picture retain?"],
-  "posts/pca-eigenvectors.html": ["What is a transformation?", "A materials example: does current follow"],
-  "posts/pca-materials.html": ["Let us compare two specimens"],
-  "posts/pca-measurements.html": ["Why do we subtract the mean?", "We now have a covariance matrix"],
-  "posts/svd-small-picture.html": ["Think of a rough sketch", "Keeping fewer layers"],
-  "tutorials/microstructure-pca-game.html": ["Make a pattern", "What is PCA looking at here?"],
-  "tutorials/pca-pixel-images.html": ["Reconstruct a pixel image", "4. Subtract the mean image"]
+  "Blog5_SHAP.html": [
+    "A short introduction to Shapley value",
+    "Aim of the ML project",
+    "Understanding the role of SHAP plots",
+    "Strategy for Robust Design After generating two SHAP summary plots, we move on to the main part of this articl"
+  ],
+  "Blog6_ANN.html": [
+    "A case study",
+    "Identifying X and y",
+    "Analyzing the extent of influence of predictors on target variables",
+    "Plotting and interpreting Shap values"
+  ],
+  "Blog7_HRmat.html": [
+    "Man-made hierarchical materials",
+    "Designing high-performance materials: The role of correlations and hierarchical structures"
+  ],
+  "Tut10_LogReg.html": [
+    "Task 3: Encoding Categorical Data",
+    "Task 6: Prediction with test set"
+  ],
+  "Tut11_OrdReg.html": [
+    "The Dataset",
+    "Step 4: Split data ino training and test set"
+  ],
+  "Tut13_CM.html": [
+    "Interpretation of a Confusion Matrix",
+    "Row-wise Reading:"
+  ],
+  "Tut14_2PtCorr.html": [
+    "Coding 2-Point correlations",
+    "Example 1: Demonstration with simulated microstructure",
+    "Step 4: Computing correlations",
+    "Example 2: Real Microstructure"
+  ],
+  "Tut6_params.html": [
+    "The Calculations",
+    "The Summary Table"
+  ],
+  "Tut7_heatmap.html": [
+    "Coding for generation of heatmap",
+    "Method 2: Using Seaborn"
+  ],
+  "Tut8_Reg.html": [
+    "Simple Linear Regression Analysis",
+    "Polynomial Linear Regression Analysis with Single Input Feature"
+  ],
+  "Tut9_Reg.html": [
+    "Computing Loss Functions and R 2 with 2 Input Features using Polynomial Linear Regression",
+    "Input Feature Importance"
+  ],
+  "Tutorial5_FolderUplaoding.html": [
+    "Step 3: Open Google Colab",
+    "Step 5: Load and extract"
+  ],
+  "Tutorial_1.html": [
+    "Start with NumPy and Matplotlib",
+    "7. Criss-cross diagonal bands",
+    "Compare the patterns in Fourier space",
+    "What are these Fourier spots"
+  ],
+  "Tutorial_2.html": [
+    "Unsharp Masking filter",
+    "Fourier Transform of the Image"
+  ],
+  "Tutorial_3_SHAP.html": [
+    "Step 1: Import and Install",
+    "Step 3: Prepossessing data for machine learning",
+    "Step 7: Fitting ML model",
+    "Step 8: Unleashing"
+  ],
+  "Tutorial_4_CNN.html": [
+    "❸ Loading the image dataset",
+    "❹ Building Convolutional Neural Network (CNN)",
+    "❺ Fitting and training CNN with training data",
+    "❻ Making Predictions"
+  ],
+  "blog1.html": [
+    "Digital Image and Fourier Transform",
+    "Frequency domain to Spatial domain: Inverse Fourier transform",
+    "Spatial domain to Frequency domain",
+    "Key points to remember"
+  ],
+  "blog2_Matminer.html": [
+    "Materials Data",
+    "A Step-by-Step Guide to Preprocessing",
+    "Step 3: Installing Pymatgen and Matminer",
+    "Step 5: Calculation"
+  ],
+  "blog2_materials.html": [
+    "Viewing the image and obtaining shape",
+    "Thresholding for image segmentation: Creating Binary image",
+    "Edge Detection using Roberts",
+    "Gabor Filter for detecting Edge orientations"
+  ],
+  "blog4_Measurement.html": [
+    "Measurement of parameters",
+    "Step 4: Computing the Euclidean distance transform",
+    "Case Study 2: Measurement",
+    "Visualization of particle size distribution"
+  ],
+  "posts/ai-materials-discovery.html": [
+    "From proteins to materials",
+    "Could we also improve cooling?"
+  ],
+  "posts/fit-and-predict.html": [
+    "Two errors answer different questions",
+    "How would we check a real model?"
+  ],
+  "posts/materials-design-space.html": [
+    "Why do the counts grow so quickly?",
+    "Use data to choose the next experiment"
+  ],
+  "posts/pca-calculation.html": [
+    "Where do eigenvectors enter?",
+    "We calculate one step at a time",
+    "How much does a simpler picture retain?",
+    "What can we conclude?"
+  ],
+  "posts/pca-eigenvectors.html": [
+    "What is a transformation?",
+    "Why the names eigenvector",
+    "A materials example: does current follow",
+    "We return to the PCA question"
+  ],
+  "posts/pca-materials.html": [
+    "Let us compare two specimens",
+    "What does PCA offer?"
+  ],
+  "posts/pca-measurements.html": [
+    "Why do we subtract the mean?",
+    "Which measurements change together?",
+    "We now have a covariance matrix",
+    "What are the eigenvectors of this small matrix?"
+  ],
+  "posts/svd-small-picture.html": [
+    "Think of a rough sketch",
+    "Why are there two patterns",
+    "Keeping fewer layers",
+    "What should you notice"
+  ],
+  "tutorials/microstructure-pca-game.html": [
+    "Make a pattern",
+    "What is PCA looking at here?",
+    "Try these challenges",
+    "Build the calculation in small steps"
+  ],
+  "tutorials/pca-pixel-images.html": [
+    "Reconstruct a pixel image",
+    "2. Create a collection of images",
+    "4. Subtract the mean image",
+    "6. Reconstruct an image"
+  ]
 }

@@ -107,6 +107,11 @@ from sklearn.model_selection import train_test_split
 ds_RT</code></pre>
                     <center><img src="assets/img/tut3/DataFile.jpg" width=70%></center>
 
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <p><b><u>Step 3: Prepossessing data for machine learning</u></b></p>
                     <p><i>Why preprocessing step is a must activity in this case?</i></p>
 <p>The original data file contains only three variables-Formula, PF and kappa where the latter two are targets/ responses. However, to come up with new composition we need to do a permutation of elements comprising these formulae and incorporate them as input variables/ features. Moreover,  we also need the data (amount or elemental fraction) of each element present in a composition.</p>
@@ -169,6 +174,11 @@ Comp</code></pre>
  y_train = sc.fit_transform(y_train)
  y_test = sc.transform(y_test)</code></pre>
 
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
         <p><b><u>Step 7: Fitting ML model</u></b></p>
                     <p>We now fit the training set to the <b><a href ="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor" style="color: darkblue">random forest regressor</a></b> algorithm. An ensemble regressor algorithm provides better accuracy in predicting numerical targets. The code snippet for the same is shown below:</p>
 
@@ -176,7 +186,7 @@ Comp</code></pre>
  regr_rf.fit(X_train, y_train)</code></pre>
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>

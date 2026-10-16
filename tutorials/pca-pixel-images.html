@@ -58,7 +58,12 @@ plt.colorbar(label=&quot;Brightness (dimensionless)&quot;)
 plt.show()
 assert image.shape == (4, 4)
 assert image[0, 2] == 1.0</code></pre><p class="readout"><strong>Check:</strong> The shape is (4, 4), and pixel [0, 2] has brightness 1.0.</p><details><summary>Read the code, line by line</summary><p><code>np.array</code> collects the four lists of pixel values into a two-dimensional array. Each inner list is one row. Python counts from zero, so <code>image[0, 2]</code> means the first row and the third column. <code>image.shape</code> reports the number of rows and columns.</p><p><code>imshow</code> displays the numbers as an image. <code>cmap=&quot;gray&quot;</code> selects a grayscale display. I fix <code>vmin=0</code> and <code>vmax=1</code> so that black and white mean the same thing in every image. <code>interpolation=&quot;nearest&quot;</code> keeps the individual pixels visible instead of smoothing their edges. The color bar labels the brightness scale.</p><p>An <code>assert</code> is a small check. If its condition is false, Python stops with an <code>AssertionError</code>. I use it to check the result before moving on.</p></details></section>
-<section><h2>2. Create a collection of images</h2><p>PCA needs observations to compare. Here, one complete image is one observation, and each pixel position is one feature. I create 24 images, each with 6 rows and 6 columns. Their brightness changes along two independent patterns: a left/right contrast and a top/bottom contrast. The amplitudes are dimensionless.</p><pre><code>size = 6
+<section><aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<h2>2. Create a collection of images</h2><p>PCA needs observations to compare. Here, one complete image is one observation, and each pixel position is one feature. I create 24 images, each with 6 rows and 6 columns. Their brightness changes along two independent patterns: a left/right contrast and a top/bottom contrast. The amplitudes are dimensionless.</p><pre><code>size = 6
 sample_count = 24
 left_right = np.ones((size, size))
 # I change the first three columns to make a left/right contrast.
@@ -87,7 +92,7 @@ restored = X[0].reshape(size, size)
 assert X.shape == (24, 36)
 assert np.array_equal(restored, images[0])</code></pre><p class="readout"><strong>Check:</strong> Reshaping the first row back into 6 × 6 recovers the first image exactly.</p><details><summary>Read the code, line by line</summary><p>PCA expects a table with observations in rows and features in columns. <code>reshape(sample_count, size * size)</code> changes the arrangement of the numbers without changing the numbers themselves. The default order reads each image row by row.</p><p>There are 24 observations and 36 features. I then reshape the first data row back into a 6 × 6 image. <code>np.array_equal</code> checks that it is identical to the first original image. This confirms that the conversion is reversible.</p></details></section>
 <section>
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -111,7 +116,12 @@ print(&quot;First two variance fractions:&quot;, variance_fraction[:2])
 assert np.allclose(variance_fraction[:2], [0.28**2, 0.10**2] / np.array(0.28**2 + 0.10**2))
 assert np.allclose(variance_fraction[:2].sum(), 1.0)
 assert np.allclose(components @ components.T, np.eye(sample_count))</code></pre><p class="readout"><strong>Check:</strong> The first component explains about 88.7% of the variance; the second explains about 11.3%. All remaining variance is numerical rounding in this constructed example.</p><details><summary>Read the code, line by line</summary><p><code>np.linalg.svd</code> returns three arrays. Here, <code>U</code> has shape <code>(24, 24)</code>, <code>singular_values</code> has length 24 and <code>Vt</code> has shape <code>(24, 36)</code>. The option <code>full_matrices=False</code> avoids storing additional directions that are unnecessary for this calculation.</p><p>Each row of <code>components</code> is a direction in the 36-feature pixel space. <code>.T</code> exchanges rows and columns. The operator <code>@</code> performs matrix multiplication. Thus <code>X_centered @ components.T</code> calculates a score for each observation along each direction.</p><p>The operator <code>**2</code> squares each singular value. I divide by <code>sample_count - 1</code>, which is 23, to obtain sample variances. Dividing each variance by their sum gives the variance fractions. <code>[:2]</code> selects the first two entries.</p><p>The final check uses <code>np.eye(sample_count)</code>, an identity matrix with ones on its diagonal and zeros elsewhere. It checks that the component directions are normalized and mutually perpendicular. It does not show that these directions identify physical mechanisms.</p></details></section>
-<section><h2>6. Reconstruct an image</h2><p>For k retained components, I multiply the first k scores by the first k component directions, then add the mean image. Here, k is the number of retained components and sample is the image index, from 0 to 23. RMSE is the square root of the mean squared difference over the 36 pixels; it measures the brightness error. With k = 0, every reconstruction is the mean image. One component keeps the dominant left/right variation. Two components reproduce these particular images, because I constructed them using only two independent patterns. Real micrographs generally need more.</p><pre><code>sample = 3
+<section><aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+<h2>6. Reconstruct an image</h2><p>For k retained components, I multiply the first k scores by the first k component directions, then add the mean image. Here, k is the number of retained components and sample is the image index, from 0 to 23. RMSE is the square root of the mean squared difference over the 36 pixels; it measures the brightness error. With k = 0, every reconstruction is the mean image. One component keeps the dominant left/right variation. Two components reproduce these particular images, because I constructed them using only two independent patterns. Real micrographs generally need more.</p><pre><code>sample = 3
 k = 1
 # I add the retained patterns to the mean image.
 reconstructed_row = mean_row + scores[sample, :k] @ components[:k]

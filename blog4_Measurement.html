@@ -114,6 +114,11 @@ plt.imshow(im1, cmap ='gray')</code></pre>
 <p>The mean thresholding method is found to be most suitable for this image after it is subjected to other thresholding methods using the try_all_threshold function.</p>
 
 
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <p><b><i>Step 4: Computing the Euclidean distance transform</i></b></p>
 
                     <p>The <a href="https://en.wikipedia.org/wiki/Euclidean_distance"><font color=blue>Euclidean distance </font></a>is a measure of the closest distance between any two pixels in the image. Each pixel of the image is categorized as either a source/background pixel (with zero intensity) or an object pixel (with non-zero intensity). We observe a descending gradient in Euclidean distances from the center of any object to the background. This is beautifully captured in the distance map obtained from the image:</p>
@@ -146,7 +151,7 @@ markers,_= ndi.label(mask)</code></pre>
 
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -204,6 +209,11 @@ df = pd.DataFrame(props_t)</code></pre>
 
 <p>A scale of 4 nanometers per pixel is applied to calculate the <b>equivalent diameter representing the particle size</b>. <i>Note that an equivalent diameter is the diameter of a circle with the same area as the region</i>. We directly compute and tabulate the required properties using regionprops and regionprops_table. The table is then exported as a spreadsheet file. Using the percentile function of Numpy, we obtain the statistical parameters-D10, D50, and D90 percentiles. Accordingly, a span approximately equal to unity is estimated which indicates non-uniformity of particle size for the simulated image. Note that a span closer to zero denotes a more consistent PSD.</p>
 
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <p><b><i>Visualization of particle size distribution</i></b></p>
 
                     <p>I have used <a href="https://seaborn.pydata.org/"><font color=blue>Seaborn</font></a>-a statistical data visualization library to plot the particle size distribution using distplot function. This function combines the histogram and kernel density estimation (KDE) functions. The figure below shows the particle size distribution plot of the simulated image.</p>

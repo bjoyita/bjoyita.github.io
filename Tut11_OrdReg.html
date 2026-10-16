@@ -143,6 +143,11 @@ y_encoded = ordinal_encoder.fit_transform(y.values.reshape(-1, 1)).ravel()</code
 result = pd.concat(map_data, axis=1)
 result</code></pre>
             <p><center><img src='assets/tut10&11/encoded.jpg' width=60%></center></p>
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                                 <h5 style=" border-style: solid; border-color:darkblue; background-color:lightcyan; font-family: cursive"> Step 4: Split data ino training and test set</h5>
 
  <pre style="background-color: gainsboro"><code>X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42)

@@ -92,6 +92,11 @@
                        <span class="caption text-muted">Clean dataset for deep learning </span>
 <p>This clean dataset contains 49 predictors or X and 2 targets or y. The predictors are all individual elements of the material compositions. While ‘kappa’ and ‘PF’ are the two targets (y).</p>
 
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                         <h4>Identifying X and y</h4>
                          <pre style="background-color:gainsboro"><code>X = ds_RT.iloc[:, 1: 50]
 y = ds_RT.iloc[:,50:]
@@ -128,6 +133,11 @@ history = model.fit(X_train, y_train, verbose = 'auto',epochs = 400)from sklearn
 mae = mean_absolute_error
 mae(y_test, y_pred)</code></pre>
 
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h4>Analyzing the extent of influence of predictors on target variables</h4>
 
                         <p>Let us dive deep into the impact of predictors on these target variables with the aid of Shapley values. This impact analysis is vital for every dataset to understand and interpret any machine learning model which is otherwise impenetrable.</p>
@@ -141,7 +151,7 @@ import shapexplainer = shap.KernelExplainer(model = model, data = X_train,link =
 shap_values = explainer.shap_values(X_train)</code></pre>
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>

@@ -113,6 +113,11 @@
                         <ul> &check; <b>Low &kappa;</b></ul>
                         <ul> &check; <b>High &sigma;</b></ul>
                         <ul> &check; <b>High power factor-S<sup>2</sup>&sigma;</b></ul>
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                         <h5>Aim of the ML project</h5>
                         <p>Building a machine learning model to identify possible combinations of elements, with the desirable characteristics of high &sigma; and low &kappa; . Here, I will showcase the correlations of various elements with &sigma; and &kappa; independently, and then compute their SHAP values, which will eventually assist in designing a new improved material.  </p>
                         <h5>Database of materials</h5>
@@ -155,7 +160,7 @@ shap.summary_plot(shap_values_s, X_train_s)
 </code></pre>
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -169,6 +174,11 @@ Understanding the role of SHAP plots in materials design
                     <p><i>However, a novel thermoelectric material also requires elements with low thermal conductivity (&kappa;). This prompted the training of the same features to come up with a model which can identify elements with low &kappa; value as the response.</i></p>
                     <p><h5>Training 2 with target-Thermal conductivity (&kappa;)</h5>
                     <p>The machine is trained with a regressor algorithm on the same features (Xs) used in training 1 and &kappa; as the target in lieu of &sigma;.  The SHAP summary plot is obtained in a similar way as in training 1. Since the final composition (material) should be a poor thermal conductor we focussed on those elements showing high negative contributions to &kappa;. We could identify only a few elements, such as Sb, Ge (Germanium), Hf (Hafnium), and Ca (Calcium) associated with lower predicted &kappa; in the samples shown.</p>
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
                     <p><h5>Strategy for Robust Design </h5>
                     <p>After generating two SHAP summary plots, we move on to the main part of this article:<b>materials design</b>. </p>
                     <p>We carefully analyze the two plots to select the combination of elements that can result in a promising thermoelectric composition. Keep in mind that we need combinations with a high positive SHAP value for "&sigma;" and a high negative SHAP value for "&kappa;" to achieve potential thermoelectric compositions.</p>

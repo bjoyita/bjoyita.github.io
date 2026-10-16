@@ -23,7 +23,7 @@ def placement(number):
 
 def update_page(path, breaks):
     html = path.read_text()
-    html = re.sub(r'<aside\b(?=[^>]*class="[^"]*\barticle-ad\b)[^>]*>.*?</aside>\s*', '', html, flags=re.S)
+    html = re.sub(r'<aside\b(?=[^>]*class="[^"]*\barticle-ad\b)[^>]*>.*?</aside>[ \t]*\n?', '', html, flags=re.S)
     soup = BeautifulSoup(html, 'html.parser')
     lines = html.splitlines(keepends=True)
     edits = []
@@ -72,5 +72,5 @@ if __name__ == '__main__':
     for path, html in updates.items():
         path.write_text(html)
     print(f'Updated {len(updates)} articles and tutorials: '
-          f'{sum(len(breaks) == 2 for breaks in PLAN.values())} with two ads, '
-          f'{sum(len(breaks) == 1 for breaks in PLAN.values())} with one.')
+          f'{sum(len(breaks) == 4 for breaks in PLAN.values())} with four ads, '
+          f'{sum(len(breaks) == 2 for breaks in PLAN.values())} with two.')

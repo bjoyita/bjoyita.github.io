@@ -8,19 +8,3 @@
 /* I collapse an empty placement only after Google marks its first ad unit unfilled. */
 .article-ad:has(> ins.adsbygoogle:first-of-type[data-ad-status="unfilled"]){display:none;}
 
-/* I use the homepage side margins only when the reading column stays wide enough. */
-.mdx-home-layout{max-width:1568px;margin:0 auto;}
-.mdx-home-layout>main{min-width:0;padding-top:24px;}
-.home-side-ad{display:none;}
-@media(min-width:1200px){
-  .mdx-home-layout{display:grid;grid-template-columns:160px minmax(0,1fr) 160px;gap:24px;padding:0 24px;align-items:start;}
-  .mdx-home-layout>main{grid-column:2;grid-row:1;padding-left:0;padding-right:0;}
-  .home-side-ad{display:block;width:160px;margin:24px 0 0;padding:12px 0;border-top:1px solid #e1e6e5;border-bottom:1px solid #e1e6e5;}
-  .home-side-ad-left{grid-column:1;grid-row:1;}
-  .home-side-ad-right{grid-column:3;grid-row:1;}
-  .home-side-ad ins.adsbygoogle{display:block;width:160px;}
-  .home-side-ad:has(ins[data-ad-status="unfilled"]){visibility:hidden;}
-}
-@media(min-width:1200px) and (max-width:1499px){
-  .mdx-home-layout .mdx-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
-}

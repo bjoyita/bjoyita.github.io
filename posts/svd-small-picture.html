@@ -37,6 +37,11 @@
 <div id="panels" class="pixel-panels"></div><p id="readout" class="readout" aria-live="polite">Loading the picture…</p>
 <p>Original and rebuilt picture: black = 0 and white = 1, with the same scale. For the layer just added, red means add brightness, blue means subtract brightness, and white means no change. Its fixed scale is −1 to +1. The error is calculated from the numerical values, before any display adjustment.</p>
 <noscript><p>Enable JavaScript to add the layers interactively, or use the downloadable Python example below.</p></noscript></section>
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h2>Why are there two patterns in each layer?</h2>
 <p>Think of a curtain with a simple light-and-dark pattern. One set of numbers describes how the pattern changes from top to bottom. Another describes how it changes from left to right. Multiplying a row's number by a column's number gives the value at their intersection.</p>
 <p>That is how one SVD layer is formed: a pattern down the rows, a pattern across the columns, and a number that sets the layer's strength. One layer has a restricted form, so it usually cannot reproduce a complicated picture by itself. Adding layers lets us describe more complicated arrangements.</p>
@@ -46,7 +51,7 @@
 <p>The comparison is about scaling and combining patterns. SVD does not automatically separate a recording into its instruments, and its image layers do not automatically identify physical features. A mathematically strong pattern might represent illumination, a large background region, or a feature we care about.</p>
 
 
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -55,6 +60,11 @@
 <p>Suppose you describe a room to someone. A short description might give its broad arrangement. More detail makes the description closer to the actual room, but also longer. With SVD, keeping fewer layers gives a simpler numerical description of the picture.</p>
 <p>Unlike an ordinary description, we have a precise measure of the difference: compare corresponding pixels, square their differences, and add them. For a fixed number of layers, keeping the largest singular values gives the smallest possible total squared error among matrices of that rank. Rank here is the number of independent row-and-column patterns needed to represent the matrix.</p>
 <p>Small error does not necessarily mean that every important detail is preserved. A small pore or a thin interface may matter greatly in a material, even if it contributes little to the total pixel error. The choice of how many layers to keep depends on what we want to learn from the image.</p>
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h2>What should you notice in this example?</h2>
 <p>Zero layers gives a black picture because we have added nothing. One layer gives a broad approximation. More layers improve the match. Four layers recover this particular picture to numerical precision. I deliberately chose a small, simple picture; four layers will not generally be enough for a microscope image.</p>
 <p>The displayed RMSE is the root-mean-square error. It is found by averaging the squared pixel differences and taking the square root. It has the same dimensionless brightness scale as the image. A smaller value means closer numerical agreement.</p>

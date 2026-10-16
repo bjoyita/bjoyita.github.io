@@ -22,6 +22,11 @@
 <p>Let us return to the factor of 2. Our horizontal arrow changes from 2 cm to 4 cm, but stays horizontal. Our vertical arrow remains 2 cm long and stays vertical. The diagonal arrow changes from parts (2, 2) cm to parts (4, 2) cm. It turns toward the horizontal.</p>
 <p>For the horizontal arrow, applying the matrix gives exactly the same result as multiplying the whole arrow by 2. For the vertical arrow, it gives the same result as multiplying the whole arrow by 1. We cannot do this for the diagonal arrow: multiplying it by 2 would give (4, 4) cm, whereas our matrix gives (4, 2) cm.</p>
 <p>This distinction is important. The horizontal and vertical directions have a particularly simple response to this rule. Along either direction, we need just one number to describe the change.</p>
+<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h2>Why the names eigenvector and eigenvalue?</h2>
 <p>The prefix <strong>eigen</strong> comes from German and means approximately “own.” Eigenvectors are also called <strong>characteristic vectors</strong>, and eigenvalues are called <strong>characteristic values</strong>. These are alternative names for the same mathematical quantities. <a href="https://www.textbooks.math.gatech.edu/ila/1553/eigenvectors.html">Georgia Tech's Interactive Linear Algebra</a> explains the word and the definition; <a href="https://mathworld.wolfram.com/Eigenvector.html">MathWorld</a> also uses the name characteristic vector.</p>
 <p>In our example, “characteristic” helps us remember that we are describing the stretching rule's own behavior. We did not declare the horizontal direction special merely because we drew a horizontal axis. It is special for this rule because the rule multiplies a horizontal arrow without turning it. If we changed the rule, its characteristic directions could change.</p>
@@ -41,7 +46,7 @@
 <p>A <strong>unit vector</strong> is a vector with length one. It specifies a direction. In this animation, a unit arrow has length one in our dimensionless coordinate scale.</p>
 <details><summary>How do the final numbers work?</summary><p>A unit arrow at 30° has horizontal and vertical parts approximately (0.866, 0.500). The rule maps it to (1.732, 1.000). Both parts have doubled, so the arrow remains along the same line. A horizontal unit arrow starts at (1, 0), but ends at approximately (1.750, 0.433). Its vertical part is now nonzero, so it has turned.</p><p>The final rule has matrix <span class="math">\(\begin{pmatrix}1.75&amp;\sqrt{3}/4\\\sqrt{3}/4&amp;1.25\end{pmatrix}\)</span>. Each row gives the rule for one new coordinate, just as in our earlier matrix example. Its eigenvector directions are 30° and 120°, and its eigenvalues are 2 and 1.</p></details>
 <p>This original interactive drawing illustrates the same idea as <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors#Overview">Wikipedia's animated eigenvector examples</a>: points on characteristic lines stay on those lines during the transformation. We use our own grid, controls and numerical example here.</p>
-<aside class="article-ad" id="article-ad-2" aria-label="Advertisement">
+<aside class="article-ad" id="article-ad-3" aria-label="Advertisement">
   <p class="article-ad-label">Advertisement</p>
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -76,6 +81,11 @@
 </details>
 </details>
 
+<aside class="article-ad" id="article-ad-4" aria-label="Advertisement">
+  <p class="article-ad-label">Advertisement</p>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
 <h2>We return to the PCA question</h2>
 <p>In the stretching example, the eigenvalue tells us the length multiplier. In the conductivity example, it gives a principal conductivity. In PCA, it gives the variance along a particular combination of features. The mathematical idea is the same, but the meaning of the matrix and its eigenvalues changes with the problem.</p>
 <p>Our five measurement columns do not have to be the most useful axes for examining the specimens. We want to find combinations that describe the main differences between them. Eigenvectors will specify these combinations, and eigenvalues will tell us the variance associated with each one.</p><p>In <a href="pca-measurements.html">Part 3</a>, we will see a small version of this with our two strength columns. Their covariance matrix has an eigenvector that points along &ldquo;both strengths above average together&rdquo;, and its eigenvalue is the variance of the specimens in that direction.</p>
