@@ -10,8 +10,7 @@
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6617877f27bd20001a32957e&product=inline-share-buttons&source=platform" async="async"></script>
 
         <!--        Google ADSENSE-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159"
-     crossorigin="anonymous"></script>
+
 
              <!--MEDIA-->
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -126,7 +125,7 @@ media_options = ["Seawater", "Acidic Solution", "Alkaline Solution", "Sulfide So
 media = np.random.choice(media_options, size=n_compositions)</code></pre>
                         <p><b>Step 5: Define target variable (y): Here we take corrosion resistance to categorize whether the metal/ alloys exhibits 'excellent', 'fair' or 'poor' corrosion property</b></p>
         <p><pre style="background-color: gainsboro"><code><font color=blue># Define corrosion resistance based on corrosion rate</font>
-                       
+
 <font color=blue>#Excellent: <= 0.15 mpy, Fair: > 0.15 and <= 0.3 mpy, Poor: > 0.3 mpy (mpy: mils per year)</font>
 
 corrosion_resistance = np.select( [corrosion_rates <= 0.15, corrosion_rates <= 0.3], ['Excellent', 'Fair'], default='Poor')</code></pre>

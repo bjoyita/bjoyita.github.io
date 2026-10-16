@@ -24,3 +24,5 @@ I use four responsive display ads in longer articles and tutorials and two in sh
 I keep the reading breaks in `tools/manual-ad-placements.json`. To change a placement, I update its heading or paragraph prefix there and run `python tools/place_manual_ads.py` from the repository root. This needs `beautifulsoup4`. The script retains the surrounding HTML formatting. I check the placement counts with `node --test tests/*.mjs` and inspect the changed pages in a browser.
 
 Auto ads are off in AdSense, and the offerwall is unpublished. I keep full-screen and overlay ads off. These account settings are separate from the HTML, so I check them in AdSense when changing advertising settings. Manual placements do not guarantee that Google will fill each request or that earnings will increase.
+
+I load AdSense through `assets/explorer/ad-loader.js` only on `bjoyita.github.io`. Local previews and copies on other hosts do not request ads. Pages without manual placements do not load AdSense. This prevents preview visits from entering my ad reports. It does not guarantee that Google fills every request on the public site.

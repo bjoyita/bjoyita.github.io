@@ -7,4 +7,3 @@
 .home-ad{max-width:880px;margin:3rem auto;}
 /* I collapse an empty placement only after Google marks its first ad unit unfilled. */
 .article-ad:has(> ins.adsbygoogle:first-of-type[data-ad-status="unfilled"]){display:none;}
-

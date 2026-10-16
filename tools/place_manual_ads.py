@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = json.loads((ROOT / 'tools/manual-ad-placements.json').read_text())
-LOADER = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8357043682630159" crossorigin="anonymous"></script>'
+LOADER = '<script defer src="/assets/explorer/ad-loader.js?v=20261016-live-only"></script>'
 
 
 def placement(number):
@@ -57,7 +57,7 @@ def update_page(path, breaks):
         raise ValueError(f'{path.name}: duplicate reading break')
     for offset, block in sorted(edits, reverse=True):
         html = html[:offset] + block + html[offset:]
-    if 'pagead/js/adsbygoogle.js' not in html:
+    if 'assets/explorer/ad-loader.js' not in html:
         html = html.replace('</head>', LOADER + '\n</head>', 1)
     if 'assets/explorer/ads.css' not in html:
         html = html.replace('</head>', '<link rel="stylesheet" href="/assets/explorer/ads.css?v=20261016-manual">\n</head>', 1)
