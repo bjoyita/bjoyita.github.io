@@ -205,3 +205,6 @@ main,.page{padding:30px 18px}
 .mdx-support-button:hover{background:#065d57;text-decoration:underline}
 .mdx-support-button:focus-visible{outline:3px solid #d86836;outline-offset:4px}
 .mdx-support-note{padding:16px 0;max-width:700px;font-size:1rem;line-height:1.65}
+
+.mdx-support-intro{margin:0 0 28px;padding:12px 16px;border-left:3px solid #08776f;background:#f1f8f6;font-size:1rem;line-height:1.65}
+.mdx-support-intro a{font-weight:650}
