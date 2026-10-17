@@ -208,3 +208,8 @@ main,.page{padding:30px 18px}
 
 .mdx-support-intro{margin:0 0 28px;padding:12px 16px;border-left:3px solid #08776f;background:#f1f8f6;font-size:1rem;line-height:1.65}
 .mdx-support-intro a{font-weight:650}
+
+.mdx-tutorial-support{margin:24px 0;padding:16px 20px;border-left:3px solid #08776f;background:#f1f8f6;border-radius:0 8px 8px 0;font-size:1rem;line-height:1.65}
+.mdx-tutorial-support p{font-size:1rem!important;line-height:1.65!important;margin:0 0 10px!important}
+.mdx-tutorial-support p:last-child{margin-bottom:0!important}
+.mdx-tutorial-support a{font-weight:650}

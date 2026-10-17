@@ -29,4 +29,4 @@ I include Google's original asynchronous AdSense tag once in the head of every p
 
 ## Voluntary support
 
-I link to my Buy Me a Coffee page at https://buymeacoffee.com/bjoyitax from the homepage and article footers. Support is voluntary. I keep the tutorials freely available and use a normal link, without a payment widget, popup or additional tracking script.
+I link to my Buy Me a Coffee page at https://buymeacoffee.com/bjoyitax from the homepage, near the beginning of tutorials, and from other article footers. Support is voluntary. I keep the tutorials freely available and use a normal link, without a payment widget, popup or additional tracking script.
