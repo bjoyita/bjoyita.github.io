@@ -25,4 +25,4 @@ I keep the reading breaks in `tools/manual-ad-placements.json`. To change a plac
 
 Auto ads are off in AdSense, and the offerwall is unpublished. I keep full-screen and overlay ads off. These account settings are separate from the HTML, so I check them in AdSense when changing advertising settings. Manual placements do not guarantee that Google will fill each request or that earnings will increase.
 
-I load AdSense through `assets/explorer/ad-loader.js` only on `bjoyita.github.io`. Local previews and copies on other hosts do not request ads. Pages without manual placements do not load AdSense. This prevents preview visits from entering my ad reports. It does not guarantee that Google fills every request on the public site.
+I include Google's original asynchronous AdSense tag once in the head of every published page. I do not use a second ad loader. Pages without manual placements still include the tag, but I have not added display units to them. The tag also runs in local copies, so I block Google ad requests when testing locally and avoid repeated live ad loads. I never click my own ads. This setup does not guarantee that Google fills every placement.
