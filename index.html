@@ -132,21 +132,5 @@ _iub.csConfiguration = {"siteId":3872775,"cookiePolicyId":28979278,"lang":"en","
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8357043682630159" data-ad-slot="4366045947" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
 </aside>
-<section class="mdx-newsletter"><h2>Join my newsletter</h2><p>Subscribe for updates when I share new articles and tutorials.</p><form name="submit-to-google-sheet"><label for="subscriber-name">Name<input id="subscriber-name" type="text" name="Name" autocomplete="name" required></label><label for="subscriber-email">Email<input id="subscriber-email" type="email" name="Email" autocomplete="email" required></label><button type="submit">Subscribe</button></form><p id="msg" role="status"></p></section>
-</main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer><script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbx4hCXvDOlEFwNWjj7U69BknbFQQ3HcnJMYV0y0T_VpST3HFtgqMXXPMiXAm7xqMCex3Q/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg")
-
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {msg.innerHTML="Thank you for subscribing!"
-                         setTimeout(function(){
-                             msg.innerHTML=""
-                         },5000)
-                         form.reset()
-    })
-      .catch(error => console.error('Error!', error.message))
-  })
-    </script></body></html>
+<section class="mdx-support" aria-labelledby="support-tutorials"><h2 id="support-tutorials">Support my tutorials</h2><p>If my articles and tutorials help you, you can support my work by buying me a coffee. Your support helps me prepare new examples, check code and keep developing this website.</p><p>Support is voluntary. My articles and tutorials remain freely available.</p><p><a class="mdx-support-button" href="https://buymeacoffee.com/bjoyitax" target="_blank" rel="noopener noreferrer">Buy me a coffee ↗</a></p></section>
+</main><footer class="mdx-footer"><div class="sharethis-inline-share-buttons"></div><p>© 2026 Joyita Bhattacharya · Materials Data Explorer</p><div class="mdx-footer-links"><a href="PrivacyPolicy.html">Privacy</a><a href="CookiePolicy.html">Cookies</a><a href="TermsofUse.html">Terms of use</a><a href="Disclaimer.html">Disclaimer</a><a href="Copyright.html">Copyright and licensing</a></div></footer></body></html>

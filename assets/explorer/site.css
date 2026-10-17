@@ -197,3 +197,11 @@ main,.page{padding:30px 18px}
 .mdx-run-options p{font-size:1rem;line-height:1.65;margin:0 0 16px}
 .mdx-run-options a{font-size:1rem;font-weight:650}
 @media(max-width:850px){.mdx-run-options{grid-template-columns:1fr}}
+
+/* I keep voluntary support separate from advertisements and reading controls. */
+.mdx-support{margin:45px 0 15px;padding:26px;border:1px solid var(--mdx-line);border-radius:12px;background:#f1f8f6}
+.mdx-support h2{margin-top:0!important}
+.mdx-support-button{display:inline-block;padding:10px 18px;border-radius:7px;background:#08776f;color:#fff!important;font-weight:650;text-decoration:none}
+.mdx-support-button:hover{background:#065d57;text-decoration:underline}
+.mdx-support-button:focus-visible{outline:3px solid #d86836;outline-offset:4px}
+.mdx-support-note{padding:16px 0;max-width:700px;font-size:1rem;line-height:1.65}
