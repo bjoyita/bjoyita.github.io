@@ -5,7 +5,7 @@ This website is on materials informatics. Materials informatics or materials gen
 
 ## Visitor statistics
 
-I use the existing Google Analytics property, `G-SPPQKTW0JB`. Each public HTML page loads `/assets/explorer/analytics.js` once, with `defer`, after its title is available. The shared script does not count local previews. I include the same script on new pages and give each page a descriptive `<title>`.
+I use my original Google Analytics tag for `G-SPPQKTW0JB` on every published HTML page. I include Google's asynchronous library once and call `gtag('config', 'G-SPPQKTW0JB')` once. I do not also load the shared analytics script. I give each page a descriptive `<title>`. These original tags also run in local copies, so I block Google Analytics and advertising requests when testing locally. The unused shared analytics file remains available for older unpublished previews.
 
 I check coverage and duplicate initialization with `node --test tests/analytics.mjs`. The Google site-verification file is not a content page and stays unchanged. Analytics changes apply to future visits; they do not recover previously unrecorded visits.
 
