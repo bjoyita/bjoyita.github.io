@@ -30,3 +30,7 @@ I include Google's original asynchronous AdSense tag once in the head of every p
 ## Voluntary support
 
 I link to my Buy Me a Coffee page at https://buymeacoffee.com/bjoyitax from the homepage, near the beginning of tutorials, and from other article footers. Support is voluntary. I keep the tutorials freely available and use a normal link, without a payment widget, popup or additional tracking script.
+
+## Telling Bing about new pages
+
+I keep an IndexNow key file at the site root. After publishing or updating a page, I run `python tools/indexnow.py` from the repository root to submit every sitemap URL, or pass specific URLs as arguments. Bing, Yandex, Seznam and Naver use IndexNow; Google does not. I submit each page once after it changes and do not resubmit unchanged pages.
