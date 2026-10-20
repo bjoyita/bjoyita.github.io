@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bjoyita.github.io/sitemap.xml
+Sitemap: https://bjoyita.github.io/sitemap-articles.xml
